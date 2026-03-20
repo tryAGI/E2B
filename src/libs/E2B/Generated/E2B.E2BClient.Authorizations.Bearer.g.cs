@@ -1,0 +1,24 @@
+
+#nullable enable
+
+namespace E2B
+{
+    public sealed partial class E2BClient
+    {
+        /// <inheritdoc/>
+        public void AuthorizeUsingBearer(
+            string apiKey)
+        {
+            apiKey = apiKey ?? throw new global::System.ArgumentNullException(nameof(apiKey));
+
+            Authorizations.Clear();
+            Authorizations.Add(new global::E2B.EndPointAuthorization
+            {
+                Type = "Http",
+                Location = "Header",
+                Name = "Bearer",
+                Value = apiKey,
+            });
+        }
+    }
+}

@@ -1,0 +1,51 @@
+
+#nullable enable
+
+namespace E2B
+{
+    /// <summary>
+    /// State of the sandbox
+    /// </summary>
+    public enum SandboxState
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        Running,
+        /// <summary>
+        /// 
+        /// </summary>
+        Paused,
+    }
+
+    /// <summary>
+    /// Enum extensions to do fast conversions without the reflection.
+    /// </summary>
+    public static class SandboxStateExtensions
+    {
+        /// <summary>
+        /// Converts an enum to a string.
+        /// </summary>
+        public static string ToValueString(this SandboxState value)
+        {
+            return value switch
+            {
+                SandboxState.Running => "running",
+                SandboxState.Paused => "paused",
+                _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
+            };
+        }
+        /// <summary>
+        /// Converts an string to a enum.
+        /// </summary>
+        public static SandboxState? ToEnum(string value)
+        {
+            return value switch
+            {
+                "running" => SandboxState.Running,
+                "paused" => SandboxState.Paused,
+                _ => null,
+            };
+        }
+    }
+}

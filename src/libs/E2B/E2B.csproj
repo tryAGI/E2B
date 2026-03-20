@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget">
+    <Description>Generated C# SDK for E2B — secure cloud sandboxes for AI agents. Create, manage, and orchestrate code execution environments.</Description>
+    <PackageTags>e2b;sandbox;code-execution;ai-agents;cloud;templates;volumes;api;sdk;dotnet;openapi;generated</PackageTags>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+#nullable enable
+
+namespace E2B
+{
+    public partial interface IAdminClient
+    {
+        /// <summary>
+        /// Get node info
+        /// </summary>
+        /// <param name="nodeID"></param>
+        /// <param name="clusterID"></param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::E2B.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::E2B.NodeDetail> GetNodesByNodeIDAsync(
+            string nodeID,
+            global::System.Guid? clusterID = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

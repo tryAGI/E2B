@@ -1,0 +1,25 @@
+#nullable enable
+
+namespace E2B
+{
+    public partial interface ISandboxesClient
+    {
+        /// <summary>
+        /// List all sandboxes
+        /// </summary>
+        /// <param name="metadata"></param>
+        /// <param name="state"></param>
+        /// <param name="nextToken"></param>
+        /// <param name="limit">
+        /// Default Value: 100
+        /// </param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::E2B.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetV2SandboxesAsync(
+            string? metadata = default,
+            global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
+            string? nextToken = default,
+            int? limit = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

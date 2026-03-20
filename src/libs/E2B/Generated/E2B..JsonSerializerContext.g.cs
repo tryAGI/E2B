@@ -1,0 +1,195 @@
+
+#nullable enable
+
+#pragma warning disable CS0618 // Type or member is obsolete
+#pragma warning disable CS3016 // Arrays as attribute arguments is not CLS-compliant
+
+namespace E2B
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+            typeof(global::E2B.JsonConverters.SandboxStateJsonConverter),
+
+            typeof(global::E2B.JsonConverters.SandboxStateNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.FromImageRegistryDiscriminatorTypeJsonConverter),
+
+            typeof(global::E2B.JsonConverters.FromImageRegistryDiscriminatorTypeNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.AWSRegistryTypeJsonConverter),
+
+            typeof(global::E2B.JsonConverters.AWSRegistryTypeNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.GCPRegistryTypeJsonConverter),
+
+            typeof(global::E2B.JsonConverters.GCPRegistryTypeNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.GeneralRegistryTypeJsonConverter),
+
+            typeof(global::E2B.JsonConverters.GeneralRegistryTypeNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.LogLevelJsonConverter),
+
+            typeof(global::E2B.JsonConverters.LogLevelNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.TemplateBuildStatusJsonConverter),
+
+            typeof(global::E2B.JsonConverters.TemplateBuildStatusNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.LogsDirectionJsonConverter),
+
+            typeof(global::E2B.JsonConverters.LogsDirectionNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.LogsSourceJsonConverter),
+
+            typeof(global::E2B.JsonConverters.LogsSourceNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.NodeStatusJsonConverter),
+
+            typeof(global::E2B.JsonConverters.NodeStatusNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.MetricJsonConverter),
+
+            typeof(global::E2B.JsonConverters.MetricNullableJsonConverter),
+
+            typeof(global::E2B.JsonConverters.FromImageRegistryJsonConverter),
+
+            typeof(global::E2B.JsonConverters.UnixTimestampJsonConverter),
+        })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.JsonSerializerContextTypes))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Team))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamUser))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateUpdateRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateUpdateResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxState))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SnapshotInfo))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxNetworkConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxAutoResumeConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLog))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLogEntry))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogLevel))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLogs))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxLog>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxLogEntry>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLogsV2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxMetric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxVolumeMount))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Sandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxDetail))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ListedSandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxesWithMetrics))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewSandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ResumedSandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ConnectSandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamMetric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.MaxTeamMetric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxKillResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Template))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStatus))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateRequestResponseV3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateLegacy))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuild))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuilds))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateBuild>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateAliasResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateStep))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildRequestV3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildRequestV2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.FromImageRegistry))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AWSRegistry))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GCPRegistry))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GeneralRegistry))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.FromImageRegistryDiscriminator))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.FromImageRegistryDiscriminatorType))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AWSRegistryType))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GCPRegistryType))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GeneralRegistryType))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStartV2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateStep>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildFileUpload))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildLogEntry))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildStatusReason))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.BuildLogEntry>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildInfo))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildLogsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogsDirection))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogsSource))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeStatus))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeStatusChange))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.DiskMetrics))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeMetrics))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.DiskMetrics>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.MachineInfo))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Node))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeDetail))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ListedSandbox>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.CreatedAccessToken))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.IdentifierMaskingDetails))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewAccessToken))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamAPIKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.CreatedTeamAPIKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewTeamAPIKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.UpdateTeamAPIKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AssignedTemplateTags))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTag))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AssignTemplateTagsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.DeleteTemplateTagsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Volume))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewVolume))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Request2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Request3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Metric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxState>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Team>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamMetric>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxMetric>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Template>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Node>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Volume>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxLog>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxLogEntry>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxVolumeMount>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateBuild>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateStep>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.BuildLogEntry>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.DiskMetrics>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ListedSandbox>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxState>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Team>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamMetric>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxMetric>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SnapshotInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Template>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTag>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Node>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamAPIKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Volume>))]
+    public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+}
