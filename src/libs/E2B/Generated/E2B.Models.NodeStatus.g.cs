@@ -11,19 +11,19 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        Ready,
+        NodeStatusReady,
         /// <summary>
         /// 
         /// </summary>
-        Draining,
+        NodeStatusDraining,
         /// <summary>
         /// 
         /// </summary>
-        Connecting,
+        NodeStatusConnecting,
         /// <summary>
         /// 
         /// </summary>
-        Unhealthy,
+        NodeStatusUnhealthy,
     }
 
     /// <summary>
@@ -38,10 +38,10 @@ namespace E2B
         {
             return value switch
             {
-                NodeStatus.Ready => "ready",
-                NodeStatus.Draining => "draining",
-                NodeStatus.Connecting => "connecting",
-                NodeStatus.Unhealthy => "unhealthy",
+                NodeStatus.NodeStatusReady => "ready",
+                NodeStatus.NodeStatusDraining => "draining",
+                NodeStatus.NodeStatusConnecting => "connecting",
+                NodeStatus.NodeStatusUnhealthy => "unhealthy",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace E2B
         {
             return value switch
             {
-                "ready" => NodeStatus.Ready,
-                "draining" => NodeStatus.Draining,
-                "connecting" => NodeStatus.Connecting,
-                "unhealthy" => NodeStatus.Unhealthy,
+                "ready" => NodeStatus.NodeStatusReady,
+                "draining" => NodeStatus.NodeStatusDraining,
+                "connecting" => NodeStatus.NodeStatusConnecting,
+                "unhealthy" => NodeStatus.NodeStatusUnhealthy,
                 _ => null,
             };
         }

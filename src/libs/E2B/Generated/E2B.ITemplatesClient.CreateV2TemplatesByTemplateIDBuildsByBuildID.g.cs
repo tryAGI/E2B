@@ -18,7 +18,6 @@ namespace E2B
 
             global::E2B.TemplateBuildStartV2 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Start the build
         /// </summary>

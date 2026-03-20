@@ -14,7 +14,6 @@ namespace E2B
 
             global::E2B.DeleteTemplateTagsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Delete multiple tags from templates
         /// </summary>

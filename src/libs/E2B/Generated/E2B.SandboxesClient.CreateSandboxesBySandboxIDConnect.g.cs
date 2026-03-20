@@ -337,7 +337,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
         /// </summary>

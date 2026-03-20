@@ -16,7 +16,6 @@ namespace E2B
 
             global::E2B.Request3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>

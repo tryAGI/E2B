@@ -16,7 +16,6 @@ namespace E2B
 
             global::E2B.UpdateTeamAPIKey request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Update a team API key
         /// </summary>

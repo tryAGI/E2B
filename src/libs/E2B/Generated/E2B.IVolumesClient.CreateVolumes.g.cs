@@ -14,7 +14,6 @@ namespace E2B
 
             global::E2B.NewVolume request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a new team volume
         /// </summary>

@@ -11,11 +11,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        Temporary,
+        LogsSourceTemporary,
         /// <summary>
         /// 
         /// </summary>
-        Persistent,
+        LogsSourcePersistent,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace E2B
         {
             return value switch
             {
-                LogsSource.Temporary => "temporary",
-                LogsSource.Persistent => "persistent",
+                LogsSource.LogsSourceTemporary => "temporary",
+                LogsSource.LogsSourcePersistent => "persistent",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace E2B
         {
             return value switch
             {
-                "temporary" => LogsSource.Temporary,
-                "persistent" => LogsSource.Persistent,
+                "temporary" => LogsSource.LogsSourceTemporary,
+                "persistent" => LogsSource.LogsSourcePersistent,
                 _ => null,
             };
         }

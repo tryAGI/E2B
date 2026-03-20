@@ -14,7 +14,6 @@ namespace E2B
 
             global::E2B.TemplateBuildRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a new template
         /// </summary>

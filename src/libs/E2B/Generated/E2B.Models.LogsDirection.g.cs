@@ -11,11 +11,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        Forward,
+        LogsDirectionForward,
         /// <summary>
         /// 
         /// </summary>
-        Backward,
+        LogsDirectionBackward,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace E2B
         {
             return value switch
             {
-                LogsDirection.Forward => "forward",
-                LogsDirection.Backward => "backward",
+                LogsDirection.LogsDirectionForward => "forward",
+                LogsDirection.LogsDirectionBackward => "backward",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace E2B
         {
             return value switch
             {
-                "forward" => LogsDirection.Forward,
-                "backward" => LogsDirection.Backward,
+                "forward" => LogsDirection.LogsDirectionForward,
+                "backward" => LogsDirection.LogsDirectionBackward,
                 _ => null,
             };
         }

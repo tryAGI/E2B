@@ -16,7 +16,6 @@ namespace E2B
 
             global::E2B.ConnectSandbox request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
         /// </summary>

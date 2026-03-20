@@ -316,7 +316,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Delete multiple tags from templates
         /// </summary>

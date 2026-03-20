@@ -284,7 +284,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Change status of a node
         /// </summary>

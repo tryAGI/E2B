@@ -299,7 +299,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Update template
         /// </summary>

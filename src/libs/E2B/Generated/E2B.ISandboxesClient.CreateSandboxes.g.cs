@@ -14,7 +14,6 @@ namespace E2B
 
             global::E2B.NewSandbox request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a sandbox from the template
         /// </summary>

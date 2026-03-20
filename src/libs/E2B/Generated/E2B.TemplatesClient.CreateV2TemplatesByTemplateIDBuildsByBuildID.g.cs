@@ -252,7 +252,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Start the build
         /// </summary>

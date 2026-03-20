@@ -255,7 +255,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Create a new team API key
         /// </summary>

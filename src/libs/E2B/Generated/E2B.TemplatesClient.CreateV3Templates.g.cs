@@ -293,7 +293,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Create a new template
         /// </summary>
