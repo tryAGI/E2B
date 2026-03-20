@@ -16,7 +16,6 @@ namespace E2B
 
             global::E2B.NodeStatusChange request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Change status of a node
         /// </summary>

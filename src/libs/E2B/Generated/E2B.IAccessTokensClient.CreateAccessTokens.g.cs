@@ -14,7 +14,6 @@ namespace E2B
 
             global::E2B.NewAccessToken request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a new access token
         /// </summary>

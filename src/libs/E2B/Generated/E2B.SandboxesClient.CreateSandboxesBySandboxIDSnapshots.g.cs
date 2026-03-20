@@ -337,7 +337,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>

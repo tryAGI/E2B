@@ -16,7 +16,6 @@ namespace E2B
 
             global::E2B.Request request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.
         /// </summary>

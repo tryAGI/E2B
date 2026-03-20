@@ -246,7 +246,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Refresh the sandbox extending its time to live
         /// </summary>

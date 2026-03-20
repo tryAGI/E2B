@@ -293,7 +293,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Create a sandbox from the template
         /// </summary>

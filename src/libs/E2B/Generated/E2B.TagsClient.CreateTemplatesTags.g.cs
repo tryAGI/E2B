@@ -331,7 +331,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Assign tag(s) to a template build
         /// </summary>

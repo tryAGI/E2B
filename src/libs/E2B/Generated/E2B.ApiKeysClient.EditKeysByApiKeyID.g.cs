@@ -284,7 +284,6 @@ namespace E2B
                 }
             }
         }
-
         /// <summary>
         /// Update a team API key
         /// </summary>

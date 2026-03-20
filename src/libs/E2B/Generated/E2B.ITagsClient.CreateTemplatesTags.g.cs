@@ -14,7 +14,6 @@ namespace E2B
 
             global::E2B.AssignTemplateTagsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Assign tag(s) to a template build
         /// </summary>
