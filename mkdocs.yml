@@ -4,6 +4,8 @@ nav:
 # EXAMPLES:START
 - Examples:
   - List Sandboxes: examples/list-sandboxes.md
+  - Templates: examples/templates.md
+  - Snapshots: examples/snapshots.md
 # EXAMPLES:END
         
 theme:

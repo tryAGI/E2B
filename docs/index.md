@@ -29,6 +29,27 @@ using var client = new E2BClient(apiKey);
 // List all currently running sandboxes.
 var sandboxes = await client.Sandboxes.GetSandboxesAsync();
 ```
+
+### Templates
+List available sandbox templates.
+
+```csharp
+using var client = new E2BClient(apiKey);
+
+// List all sandbox templates available in your team.
+var templates = await client.Templates.GetTemplatesAsync();
+```
+
+### Snapshots
+List sandbox snapshots for resuming paused sandboxes.
+
+```csharp
+using var client = new E2BClient(apiKey);
+
+// List all snapshots with pagination.
+var snapshots = await client.Snapshots.GetSnapshotsAsync(
+    limit: 10);
+```
 <!-- EXAMPLES:END -->
 
 ## Support
