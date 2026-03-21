@@ -5,24 +5,24 @@ namespace E2B
 {
     public partial class SandboxesClient
     {
-        partial void PrepareGetV2SandboxesArguments(
+        partial void PrepareGetSandboxes2Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? metadata,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state,
             ref string? nextToken,
             ref int? limit);
-        partial void PrepareGetV2SandboxesRequest(
+        partial void PrepareGetSandboxes2Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? metadata,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state,
             string? nextToken,
             int? limit);
-        partial void ProcessGetV2SandboxesResponse(
+        partial void ProcessGetSandboxes2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetV2SandboxesResponseContent(
+        partial void ProcessGetSandboxes2ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
@@ -38,7 +38,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetV2SandboxesAsync(
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetSandboxes2Async(
             string? metadata = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
             string? nextToken = default,
@@ -47,7 +47,7 @@ namespace E2B
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetV2SandboxesArguments(
+            PrepareGetSandboxes2Arguments(
                 httpClient: HttpClient,
                 metadata: ref metadata,
                 state: state,
@@ -91,7 +91,7 @@ namespace E2B
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetV2SandboxesRequest(
+            PrepareGetSandboxes2Request(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 metadata: metadata,
@@ -107,7 +107,7 @@ namespace E2B
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetV2SandboxesResponse(
+            ProcessGetSandboxes2Response(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // Authentication error
@@ -237,7 +237,7 @@ namespace E2B
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetV2SandboxesResponseContent(
+                ProcessGetSandboxes2ResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);

@@ -8,12 +8,12 @@ namespace E2B
         partial void PrepareCreateSandboxesBySandboxIDSnapshotsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
-            global::E2B.Request3 request);
+            global::E2B.CreateSandboxesSnapshotsRequest request);
         partial void PrepareCreateSandboxesBySandboxIDSnapshotsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string sandboxID,
-            global::E2B.Request3 request);
+            global::E2B.CreateSandboxesSnapshotsRequest request);
         partial void ProcessCreateSandboxesBySandboxIDSnapshotsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -33,7 +33,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.SnapshotInfo> CreateSandboxesBySandboxIDSnapshotsAsync(
             string sandboxID,
 
-            global::E2B.Request3 request,
+            global::E2B.CreateSandboxesSnapshotsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
@@ -351,7 +351,7 @@ namespace E2B
             string? name = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.Request3
+            var __request = new global::E2B.CreateSandboxesSnapshotsRequest
             {
                 Name = name,
             };

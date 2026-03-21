@@ -14,7 +14,7 @@ namespace E2B
         global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDTimeoutAsync(
             string sandboxID,
 
-            global::E2B.Request request,
+            global::E2B.CreateSandboxesTimeoutRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.

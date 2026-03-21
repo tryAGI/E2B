@@ -3,10 +3,10 @@
 namespace E2B.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class MetricJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::E2B.Metric>
+    public sealed class GetTeamsMetricsMaxMetricNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::E2B.GetTeamsMetricsMaxMetric?>
     {
         /// <inheritdoc />
-        public override global::E2B.Metric Read(
+        public override global::E2B.GetTeamsMetricsMaxMetric? Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,7 +18,7 @@ namespace E2B.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::E2B.MetricExtensions.ToEnum(stringValue) ?? default;
+                        return global::E2B.GetTeamsMetricsMaxMetricExtensions.ToEnum(stringValue);
                     }
                     
                     break;
@@ -26,11 +26,11 @@ namespace E2B.JsonConverters
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::E2B.Metric)numValue;
+                    return (global::E2B.GetTeamsMetricsMaxMetric)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::E2B.Metric);
+                    return default(global::E2B.GetTeamsMetricsMaxMetric?);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,12 +42,19 @@ namespace E2B.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::E2B.Metric value,
+            global::E2B.GetTeamsMetricsMaxMetric? value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
 
-            writer.WriteStringValue(global::E2B.MetricExtensions.ToValueString(value));
+            if (value == null)
+            {
+                writer.WriteNullValue();
+            }
+            else
+            {
+                writer.WriteStringValue(global::E2B.GetTeamsMetricsMaxMetricExtensions.ToValueString(value.Value));
+            }
         }
     }
 }

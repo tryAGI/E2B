@@ -14,7 +14,7 @@ namespace E2B
         global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDRefreshesAsync(
             string sandboxID,
 
-            global::E2B.Request2 request,
+            global::E2B.CreateSandboxesRefreshesRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Refresh the sandbox extending its time to live

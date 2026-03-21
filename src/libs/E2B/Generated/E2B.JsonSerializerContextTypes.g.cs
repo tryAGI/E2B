@@ -400,15 +400,15 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        public global::E2B.Request? Type93 { get; set; }
+        public global::E2B.CreateSandboxesTimeoutRequest? Type93 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::E2B.Request2? Type94 { get; set; }
+        public global::E2B.CreateSandboxesRefreshesRequest? Type94 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::E2B.Request3? Type95 { get; set; }
+        public global::E2B.CreateSandboxesSnapshotsRequest? Type95 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -416,7 +416,7 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        public global::E2B.Metric? Type97 { get; set; }
+        public global::E2B.GetTeamsMetricsMaxMetric? Type97 { get; set; }
         /// <summary>
         /// 
         /// </summary>

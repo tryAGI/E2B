@@ -8,12 +8,12 @@ namespace E2B
         partial void PrepareCreateSandboxesBySandboxIDTimeoutArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
-            global::E2B.Request request);
+            global::E2B.CreateSandboxesTimeoutRequest request);
         partial void PrepareCreateSandboxesBySandboxIDTimeoutRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string sandboxID,
-            global::E2B.Request request);
+            global::E2B.CreateSandboxesTimeoutRequest request);
         partial void ProcessCreateSandboxesBySandboxIDTimeoutResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -28,7 +28,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDTimeoutAsync(
             string sandboxID,
 
-            global::E2B.Request request,
+            global::E2B.CreateSandboxesTimeoutRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
@@ -298,7 +298,7 @@ namespace E2B
             int timeout,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.Request
+            var __request = new global::E2B.CreateSandboxesTimeoutRequest
             {
                 Timeout = timeout,
             };

@@ -5,18 +5,18 @@ namespace E2B
 {
     public partial class TemplatesClient
     {
-        partial void PrepareCreateV2TemplatesByTemplateIDBuildsByBuildIDArguments(
+        partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string templateID,
             ref string buildID,
             global::E2B.TemplateBuildStartV2 request);
-        partial void PrepareCreateV2TemplatesByTemplateIDBuildsByBuildIDRequest(
+        partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string templateID,
             string buildID,
             global::E2B.TemplateBuildStartV2 request);
-        partial void ProcessCreateV2TemplatesByTemplateIDBuildsByBuildIDResponse(
+        partial void ProcessCreateTemplatesByTemplateIDBuildsByBuildID2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
@@ -28,7 +28,7 @@ namespace E2B
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task CreateV2TemplatesByTemplateIDBuildsByBuildIDAsync(
+        public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
             string templateID,
             string buildID,
 
@@ -39,7 +39,7 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateV2TemplatesByTemplateIDBuildsByBuildIDArguments(
+            PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Arguments(
                 httpClient: HttpClient,
                 templateID: ref templateID,
                 buildID: ref buildID,
@@ -82,7 +82,7 @@ namespace E2B
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareCreateV2TemplatesByTemplateIDBuildsByBuildIDRequest(
+            PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Request(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 templateID: templateID,
@@ -97,7 +97,7 @@ namespace E2B
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessCreateV2TemplatesByTemplateIDBuildsByBuildIDResponse(
+            ProcessCreateTemplatesByTemplateIDBuildsByBuildID2Response(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // Authentication error
@@ -280,7 +280,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task CreateV2TemplatesByTemplateIDBuildsByBuildIDAsync(
+        public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
             string templateID,
             string buildID,
             string? fromImage = default,
@@ -303,7 +303,7 @@ namespace E2B
                 ReadyCmd = readyCmd,
             };
 
-            await CreateV2TemplatesByTemplateIDBuildsByBuildIDAsync(
+            await CreateTemplatesByTemplateIDBuildsByBuildID2Async(
                 templateID: templateID,
                 buildID: buildID,
                 request: __request,

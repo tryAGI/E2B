@@ -10,14 +10,14 @@ namespace E2B
             ref string teamID,
             ref long? start,
             ref global::System.DateTimeOffset? end,
-            ref global::E2B.Metric metric);
+            ref global::E2B.GetTeamsMetricsMaxMetric metric);
         partial void PrepareGetTeamsByTeamIDMetricsMaxRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string teamID,
             long? start,
             global::System.DateTimeOffset? end,
-            global::E2B.Metric metric);
+            global::E2B.GetTeamsMetricsMaxMetric metric);
         partial void ProcessGetTeamsByTeamIDMetricsMaxResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -40,7 +40,7 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::E2B.MaxTeamMetric> GetTeamsByTeamIDMetricsMaxAsync(
             string teamID,
-            global::E2B.Metric metric,
+            global::E2B.GetTeamsMetricsMaxMetric metric,
             long? start = default,
             global::System.DateTimeOffset? end = default,
             global::System.Threading.CancellationToken cancellationToken = default)

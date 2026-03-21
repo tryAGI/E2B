@@ -14,7 +14,7 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.SnapshotInfo> CreateSandboxesBySandboxIDSnapshotsAsync(
             string sandboxID,
 
-            global::E2B.Request3 request,
+            global::E2B.CreateSandboxesSnapshotsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
