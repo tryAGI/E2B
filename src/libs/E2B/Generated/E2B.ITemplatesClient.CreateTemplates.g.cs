@@ -10,7 +10,7 @@ namespace E2B
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateV3TemplatesAsync(
+        global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
 
             global::E2B.TemplateBuildRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -31,7 +31,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateV3TemplatesAsync(
+        global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
             string? name = default,
             global::System.Collections.Generic.IList<string>? tags = default,
             int? cpuCount = default,

@@ -6,7 +6,7 @@ namespace E2B
     /// <summary>
     /// 
     /// </summary>
-    public enum Metric
+    public enum GetTeamsMetricsMaxMetric
     {
         /// <summary>
         /// 
@@ -21,29 +21,29 @@ namespace E2B
     /// <summary>
     /// Enum extensions to do fast conversions without the reflection.
     /// </summary>
-    public static class MetricExtensions
+    public static class GetTeamsMetricsMaxMetricExtensions
     {
         /// <summary>
         /// Converts an enum to a string.
         /// </summary>
-        public static string ToValueString(this Metric value)
+        public static string ToValueString(this GetTeamsMetricsMaxMetric value)
         {
             return value switch
             {
-                Metric.ConcurrentSandboxes => "concurrent_sandboxes",
-                Metric.SandboxStartRate => "sandbox_start_rate",
+                GetTeamsMetricsMaxMetric.ConcurrentSandboxes => "concurrent_sandboxes",
+                GetTeamsMetricsMaxMetric.SandboxStartRate => "sandbox_start_rate",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
         /// <summary>
         /// Converts an string to a enum.
         /// </summary>
-        public static Metric? ToEnum(string value)
+        public static GetTeamsMetricsMaxMetric? ToEnum(string value)
         {
             return value switch
             {
-                "concurrent_sandboxes" => Metric.ConcurrentSandboxes,
-                "sandbox_start_rate" => Metric.SandboxStartRate,
+                "concurrent_sandboxes" => GetTeamsMetricsMaxMetric.ConcurrentSandboxes,
+                "sandbox_start_rate" => GetTeamsMetricsMaxMetric.SandboxStartRate,
                 _ => null,
             };
         }

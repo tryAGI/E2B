@@ -53,9 +53,9 @@ namespace E2B
 
             typeof(global::E2B.JsonConverters.NodeStatusNullableJsonConverter),
 
-            typeof(global::E2B.JsonConverters.MetricJsonConverter),
+            typeof(global::E2B.JsonConverters.GetTeamsMetricsMaxMetricJsonConverter),
 
-            typeof(global::E2B.JsonConverters.MetricNullableJsonConverter),
+            typeof(global::E2B.JsonConverters.GetTeamsMetricsMaxMetricNullableJsonConverter),
 
             typeof(global::E2B.JsonConverters.FromImageRegistryJsonConverter),
 
@@ -155,11 +155,11 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Volume))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewVolume))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Request2))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Request3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.CreateSandboxesTimeoutRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.CreateSandboxesRefreshesRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.CreateSandboxesSnapshotsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Metric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTeamsMetricsMaxMetric))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxState>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Team>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamMetric>))]

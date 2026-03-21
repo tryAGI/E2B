@@ -11,7 +11,7 @@ namespace E2B
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditV2TemplatesByTemplateIDAsync(
+        global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditTemplatesByTemplateID2Async(
             string templateID,
 
             global::E2B.TemplateUpdateRequest request,
@@ -25,7 +25,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditV2TemplatesByTemplateIDAsync(
+        global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditTemplatesByTemplateID2Async(
             string templateID,
             bool? @public = default,
             global::System.Threading.CancellationToken cancellationToken = default);

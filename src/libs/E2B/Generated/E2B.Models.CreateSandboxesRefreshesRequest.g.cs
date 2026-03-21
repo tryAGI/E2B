@@ -6,7 +6,7 @@ namespace E2B
     /// <summary>
     /// 
     /// </summary>
-    public sealed partial class Request2
+    public sealed partial class CreateSandboxesRefreshesRequest
     {
         /// <summary>
         /// Duration for which the sandbox should be kept alive in seconds
@@ -21,7 +21,7 @@ namespace E2B
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Request2" /> class.
+        /// Initializes a new instance of the <see cref="CreateSandboxesRefreshesRequest" /> class.
         /// </summary>
         /// <param name="duration">
         /// Duration for which the sandbox should be kept alive in seconds
@@ -29,16 +29,16 @@ namespace E2B
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public Request2(
+        public CreateSandboxesRefreshesRequest(
             int? duration)
         {
             this.Duration = duration;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Request2" /> class.
+        /// Initializes a new instance of the <see cref="CreateSandboxesRefreshesRequest" /> class.
         /// </summary>
-        public Request2()
+        public CreateSandboxesRefreshesRequest()
         {
         }
     }

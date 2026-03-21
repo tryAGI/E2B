@@ -5,20 +5,20 @@ namespace E2B
 {
     public partial class TemplatesClient
     {
-        partial void PrepareEditV2TemplatesByTemplateIDArguments(
+        partial void PrepareEditTemplatesByTemplateID2Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string templateID,
             global::E2B.TemplateUpdateRequest request);
-        partial void PrepareEditV2TemplatesByTemplateIDRequest(
+        partial void PrepareEditTemplatesByTemplateID2Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string templateID,
             global::E2B.TemplateUpdateRequest request);
-        partial void ProcessEditV2TemplatesByTemplateIDResponse(
+        partial void ProcessEditTemplatesByTemplateID2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessEditV2TemplatesByTemplateIDResponseContent(
+        partial void ProcessEditTemplatesByTemplateID2ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
@@ -30,7 +30,7 @@ namespace E2B
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditV2TemplatesByTemplateIDAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditTemplatesByTemplateID2Async(
             string templateID,
 
             global::E2B.TemplateUpdateRequest request,
@@ -40,7 +40,7 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareEditV2TemplatesByTemplateIDArguments(
+            PrepareEditTemplatesByTemplateID2Arguments(
                 httpClient: HttpClient,
                 templateID: ref templateID,
                 request: request);
@@ -82,7 +82,7 @@ namespace E2B
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareEditV2TemplatesByTemplateIDRequest(
+            PrepareEditTemplatesByTemplateID2Request(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 templateID: templateID,
@@ -96,7 +96,7 @@ namespace E2B
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessEditV2TemplatesByTemplateIDResponse(
+            ProcessEditTemplatesByTemplateID2Response(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // Bad request
@@ -226,7 +226,7 @@ namespace E2B
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessEditV2TemplatesByTemplateIDResponseContent(
+                ProcessEditTemplatesByTemplateID2ResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -308,7 +308,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditV2TemplatesByTemplateIDAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.TemplateUpdateResponse> EditTemplatesByTemplateID2Async(
             string templateID,
             bool? @public = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -318,7 +318,7 @@ namespace E2B
                 Public = @public,
             };
 
-            return await EditV2TemplatesByTemplateIDAsync(
+            return await EditTemplatesByTemplateID2Async(
                 templateID: templateID,
                 request: __request,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

@@ -12,7 +12,7 @@ namespace E2B
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task CreateV2TemplatesByTemplateIDBuildsByBuildIDAsync(
+        global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
             string templateID,
             string buildID,
 
@@ -46,7 +46,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task CreateV2TemplatesByTemplateIDBuildsByBuildIDAsync(
+        global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
             string templateID,
             string buildID,
             string? fromImage = default,

@@ -8,12 +8,12 @@ namespace E2B
         partial void PrepareCreateSandboxesBySandboxIDRefreshesArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
-            global::E2B.Request2 request);
+            global::E2B.CreateSandboxesRefreshesRequest request);
         partial void PrepareCreateSandboxesBySandboxIDRefreshesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string sandboxID,
-            global::E2B.Request2 request);
+            global::E2B.CreateSandboxesRefreshesRequest request);
         partial void ProcessCreateSandboxesBySandboxIDRefreshesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -28,7 +28,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDRefreshesAsync(
             string sandboxID,
 
-            global::E2B.Request2 request,
+            global::E2B.CreateSandboxesRefreshesRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
@@ -260,7 +260,7 @@ namespace E2B
             int? duration = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.Request2
+            var __request = new global::E2B.CreateSandboxesRefreshesRequest
             {
                 Duration = duration,
             };

@@ -15,7 +15,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetV2SandboxesAsync(
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetSandboxes2Async(
             string? metadata = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
             string? nextToken = default,

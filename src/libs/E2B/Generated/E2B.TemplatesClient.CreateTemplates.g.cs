@@ -3,70 +3,49 @@
 
 namespace E2B
 {
-    public partial class SandboxesClient
+    public partial class TemplatesClient
     {
-        partial void PrepareGetV2SandboxesBySandboxIDLogsArguments(
+        partial void PrepareCreateTemplatesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string sandboxID,
-            ref long? cursor,
-            ref int? limit,
-            ref global::E2B.LogsDirection? direction);
-        partial void PrepareGetV2SandboxesBySandboxIDLogsRequest(
+            global::E2B.TemplateBuildRequestV3 request);
+        partial void PrepareCreateTemplatesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string sandboxID,
-            long? cursor,
-            int? limit,
-            global::E2B.LogsDirection? direction);
-        partial void ProcessGetV2SandboxesBySandboxIDLogsResponse(
+            global::E2B.TemplateBuildRequestV3 request);
+        partial void ProcessCreateTemplatesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetV2SandboxesBySandboxIDLogsResponseContent(
+        partial void ProcessCreateTemplatesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get sandbox logs
+        /// Create a new template
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 1000
-        /// </param>
-        /// <param name="direction">
-        /// Direction of the logs that should be returned
-        /// </param>
+        /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.SandboxLogsV2Response> GetV2SandboxesBySandboxIDLogsAsync(
-            string sandboxID,
-            long? cursor = default,
-            int? limit = default,
-            global::E2B.LogsDirection? direction = default,
+        public async global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
+
+            global::E2B.TemplateBuildRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetV2SandboxesBySandboxIDLogsArguments(
+            PrepareCreateTemplatesArguments(
                 httpClient: HttpClient,
-                sandboxID: ref sandboxID,
-                cursor: ref cursor,
-                limit: ref limit,
-                direction: ref direction);
+                request: request);
 
             var __pathBuilder = new global::E2B.PathBuilder(
-                path: $"/v2/sandboxes/{sandboxID}/logs",
+                path: "/v3/templates",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder
-                .AddOptionalParameter("cursor", cursor?.ToString())
-                .AddOptionalParameter("limit", limit?.ToString())
-                .AddOptionalParameter("direction", direction?.ToValueString()) 
-                ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Get,
+                method: global::System.Net.Http.HttpMethod.Post,
                 requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
             __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -88,17 +67,20 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
+            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                content: __httpRequestContentBody,
+                encoding: global::System.Text.Encoding.UTF8,
+                mediaType: "application/json");
+            __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetV2SandboxesBySandboxIDLogsRequest(
+            PrepareCreateTemplatesRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                sandboxID: sandboxID,
-                cursor: cursor,
-                limit: limit,
-                direction: direction);
+                request: request);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -108,9 +90,47 @@ namespace E2B
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetV2SandboxesBySandboxIDLogsResponse(
+            ProcessCreateTemplatesResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
+            // Bad request
+            if ((int)__response.StatusCode == 400)
+            {
+                string? __content_400 = null;
+                global::System.Exception? __exception_400 = null;
+                global::E2B.Error? __value_400 = null;
+                try
+                {
+                    if (ReadResponseAsString)
+                    {
+                        __content_400 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                    }
+                    else
+                    {
+                        __content_400 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                    }
+                }
+                catch (global::System.Exception __ex)
+                {
+                    __exception_400 = __ex;
+                }
+
+                throw new global::E2B.ApiException<global::E2B.Error>(
+                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_400,
+                    statusCode: __response.StatusCode)
+                {
+                    ResponseBody = __content_400,
+                    ResponseObject = __value_400,
+                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                        __response.Headers,
+                        h => h.Key,
+                        h => h.Value),
+                };
+            }
             // Authentication error
             if ((int)__response.StatusCode == 401)
             {
@@ -143,44 +163,6 @@ namespace E2B
                 {
                     ResponseBody = __content_401,
                     ResponseObject = __value_401,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-            // Not found
-            if ((int)__response.StatusCode == 404)
-            {
-                string? __content_404 = null;
-                global::System.Exception? __exception_404 = null;
-                global::E2B.Error? __value_404 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                        __value_404 = global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
-                    }
-                    else
-                    {
-                        __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-
-                        __value_404 = global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_404 = __ex;
-                }
-
-                throw new global::E2B.ApiException<global::E2B.Error>(
-                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_404,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_404,
-                    ResponseObject = __value_404,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
@@ -238,7 +220,7 @@ namespace E2B
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetV2SandboxesBySandboxIDLogsResponseContent(
+                ProcessCreateTemplatesResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -248,7 +230,7 @@ namespace E2B
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::E2B.SandboxLogsV2Response.FromJson(__content, JsonSerializerContext) ??
+                        global::E2B.TemplateRequestResponseV3.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -279,7 +261,7 @@ namespace E2B
                     ).ConfigureAwait(false);
 
                     return
-                        await global::E2B.SandboxLogsV2Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::E2B.TemplateRequestResponseV3.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
@@ -310,6 +292,42 @@ namespace E2B
                     };
                 }
             }
+        }
+        /// <summary>
+        /// Create a new template
+        /// </summary>
+        /// <param name="name">
+        /// Name of the template. Can include a tag with colon separator (e.g. "my-template" or "my-template:v1"). If tag is included, it will be treated as if the tag was provided in the tags array.
+        /// </param>
+        /// <param name="tags">
+        /// Tags to assign to the template build
+        /// </param>
+        /// <param name="cpuCount">
+        /// CPU cores for the sandbox
+        /// </param>
+        /// <param name="memoryMB">
+        /// Memory for the sandbox in MiB
+        /// </param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
+            string? name = default,
+            global::System.Collections.Generic.IList<string>? tags = default,
+            int? cpuCount = default,
+            int? memoryMB = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::E2B.TemplateBuildRequestV3
+            {
+                Name = name,
+                Tags = tags,
+                CpuCount = cpuCount,
+                MemoryMB = memoryMB,
+            };
+
+            return await CreateTemplatesAsync(
+                request: __request,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
