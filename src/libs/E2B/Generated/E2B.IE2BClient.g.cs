@@ -42,22 +42,12 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        public TemplatesClient Templates { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SandboxesClient Sandboxes { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AuthClient Auth { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public AccessTokensClient AccessTokens { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AdminClient Admin { get; }
 
         /// <summary>
         /// 
@@ -67,12 +57,12 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        public TagsClient Tags { get; }
+        public AuthClient Auth { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public VolumesClient Volumes { get; }
+        public SandboxesClient Sandboxes { get; }
 
         /// <summary>
         /// 
@@ -82,7 +72,17 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        public AdminClient Admin { get; }
+        public TagsClient Tags { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TemplatesClient Templates { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public VolumesClient Volumes { get; }
 
     }
 }
