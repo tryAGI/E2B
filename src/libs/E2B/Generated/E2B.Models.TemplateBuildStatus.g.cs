@@ -15,7 +15,7 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        Waiting,
+        Error,
         /// <summary>
         /// 
         /// </summary>
@@ -23,7 +23,7 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        Error,
+        Waiting,
     }
 
     /// <summary>
@@ -39,9 +39,9 @@ namespace E2B
             return value switch
             {
                 TemplateBuildStatus.Building => "building",
-                TemplateBuildStatus.Waiting => "waiting",
-                TemplateBuildStatus.Ready => "ready",
                 TemplateBuildStatus.Error => "error",
+                TemplateBuildStatus.Ready => "ready",
+                TemplateBuildStatus.Waiting => "waiting",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -53,9 +53,9 @@ namespace E2B
             return value switch
             {
                 "building" => TemplateBuildStatus.Building,
-                "waiting" => TemplateBuildStatus.Waiting,
-                "ready" => TemplateBuildStatus.Ready,
                 "error" => TemplateBuildStatus.Error,
+                "ready" => TemplateBuildStatus.Ready,
+                "waiting" => TemplateBuildStatus.Waiting,
                 _ => null,
             };
         }
