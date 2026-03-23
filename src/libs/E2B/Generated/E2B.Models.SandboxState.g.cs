@@ -11,11 +11,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
-        Running,
+        Paused,
         /// <summary>
         /// 
         /// </summary>
-        Paused,
+        Running,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace E2B
         {
             return value switch
             {
-                SandboxState.Running => "running",
                 SandboxState.Paused => "paused",
+                SandboxState.Running => "running",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace E2B
         {
             return value switch
             {
-                "running" => SandboxState.Running,
                 "paused" => SandboxState.Paused,
+                "running" => SandboxState.Running,
                 _ => null,
             };
         }

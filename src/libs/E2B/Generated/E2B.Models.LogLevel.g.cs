@@ -15,15 +15,15 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        Error,
+        /// <summary>
+        /// 
+        /// </summary>
         Info,
         /// <summary>
         /// 
         /// </summary>
         Warn,
-        /// <summary>
-        /// 
-        /// </summary>
-        Error,
     }
 
     /// <summary>
@@ -39,9 +39,9 @@ namespace E2B
             return value switch
             {
                 LogLevel.Debug => "debug",
+                LogLevel.Error => "error",
                 LogLevel.Info => "info",
                 LogLevel.Warn => "warn",
-                LogLevel.Error => "error",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -53,9 +53,9 @@ namespace E2B
             return value switch
             {
                 "debug" => LogLevel.Debug,
+                "error" => LogLevel.Error,
                 "info" => LogLevel.Info,
                 "warn" => LogLevel.Warn,
-                "error" => LogLevel.Error,
                 _ => null,
             };
         }
