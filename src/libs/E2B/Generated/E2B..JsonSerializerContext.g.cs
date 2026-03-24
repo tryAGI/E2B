@@ -17,6 +17,10 @@ namespace E2B
 
             typeof(global::E2B.JsonConverters.SandboxStateNullableJsonConverter),
 
+            typeof(global::E2B.JsonConverters.SandboxOnTimeoutJsonConverter),
+
+            typeof(global::E2B.JsonConverters.SandboxOnTimeoutNullableJsonConverter),
+
             typeof(global::E2B.JsonConverters.FromImageRegistryDiscriminatorTypeJsonConverter),
 
             typeof(global::E2B.JsonConverters.FromImageRegistryDiscriminatorTypeNullableJsonConverter),
@@ -76,6 +80,8 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SnapshotInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxNetworkConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxAutoResumeConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxOnTimeout))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLifecycle))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLog))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLogEntry))]

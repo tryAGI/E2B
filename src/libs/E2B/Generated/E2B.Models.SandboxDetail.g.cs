@@ -63,6 +63,12 @@ namespace E2B
         public string? EnvdAccessToken { get; set; }
 
         /// <summary>
+        /// Whether internet access was explicitly enabled or disabled for the sandbox. Null means it was not explicitly set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("allowInternetAccess")]
+        public bool? AllowInternetAccess { get; set; }
+
+        /// <summary>
         /// Base domain where the sandbox traffic is accessible
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("domain")]
@@ -106,6 +112,18 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("network")]
+        public global::E2B.SandboxNetworkConfig? Network { get; set; }
+
+        /// <summary>
+        /// Sandbox lifecycle policy returned by sandbox info.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("lifecycle")]
+        public global::E2B.SandboxLifecycle? Lifecycle { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
         public global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? VolumeMounts { get; set; }
 
@@ -142,6 +160,9 @@ namespace E2B
         /// <param name="envdAccessToken">
         /// Access token used for envd communication
         /// </param>
+        /// <param name="allowInternetAccess">
+        /// Whether internet access was explicitly enabled or disabled for the sandbox. Null means it was not explicitly set.
+        /// </param>
         /// <param name="domain">
         /// Base domain where the sandbox traffic is accessible
         /// </param>
@@ -157,6 +178,10 @@ namespace E2B
         /// <param name="metadata"></param>
         /// <param name="state">
         /// State of the sandbox
+        /// </param>
+        /// <param name="network"></param>
+        /// <param name="lifecycle">
+        /// Sandbox lifecycle policy returned by sandbox info.
         /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
@@ -175,8 +200,11 @@ namespace E2B
             global::E2B.SandboxState state,
             string? alias,
             string? envdAccessToken,
+            bool? allowInternetAccess,
             string? domain,
             object? metadata,
+            global::E2B.SandboxNetworkConfig? network,
+            global::E2B.SandboxLifecycle? lifecycle,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
@@ -191,8 +219,11 @@ namespace E2B
             this.State = state;
             this.Alias = alias;
             this.EnvdAccessToken = envdAccessToken;
+            this.AllowInternetAccess = allowInternetAccess;
             this.Domain = domain;
             this.Metadata = metadata;
+            this.Network = network;
+            this.Lifecycle = lifecycle;
             this.VolumeMounts = volumeMounts;
         }
 
