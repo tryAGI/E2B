@@ -9,7 +9,7 @@ namespace E2B
     public sealed partial class SnapshotInfo
     {
         /// <summary>
-        /// Identifier of the snapshot template
+        /// Identifier of the snapshot template including the tag. Uses namespace/alias when a name was provided (e.g. team-slug/my-snapshot:default), otherwise falls back to the raw template ID (e.g. abc123:default).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("snapshotID")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -32,7 +32,7 @@ namespace E2B
         /// Initializes a new instance of the <see cref="SnapshotInfo" /> class.
         /// </summary>
         /// <param name="snapshotID">
-        /// Identifier of the snapshot template
+        /// Identifier of the snapshot template including the tag. Uses namespace/alias when a name was provided (e.g. team-slug/my-snapshot:default), otherwise falls back to the raw template ID (e.g. abc123:default).
         /// </param>
         /// <param name="names">
         /// Full names of the snapshot template including team namespace and tag (e.g. team-slug/my-snapshot:v2)

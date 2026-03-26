@@ -27,7 +27,7 @@ namespace E2B
         /// <param name="volumeID"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.Volume> GetVolumesByVolumeIDAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.VolumeAndToken> GetVolumesByVolumeIDAsync(
             string volumeID,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -221,7 +221,7 @@ namespace E2B
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::E2B.Volume.FromJson(__content, JsonSerializerContext) ??
+                        global::E2B.VolumeAndToken.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -252,7 +252,7 @@ namespace E2B
                     ).ConfigureAwait(false);
 
                     return
-                        await global::E2B.Volume.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::E2B.VolumeAndToken.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

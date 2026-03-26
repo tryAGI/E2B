@@ -44,13 +44,6 @@ namespace E2B
         public required string ServiceInstanceID { get; set; }
 
         /// <summary>
-        /// Identifier of the nomad node
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("nodeID")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string NodeID { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("machineInfo")]
@@ -66,11 +59,11 @@ namespace E2B
         public required global::E2B.NodeStatus Status { get; set; }
 
         /// <summary>
-        /// List of sandboxes running on the node
+        /// Number of sandboxes running on the node
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("sandboxes")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("sandboxCount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::E2B.ListedSandbox> Sandboxes { get; set; }
+        public required int SandboxCount { get; set; }
 
         /// <summary>
         /// Node metrics
@@ -124,15 +117,12 @@ namespace E2B
         /// <param name="serviceInstanceID">
         /// Service instance identifier of the node
         /// </param>
-        /// <param name="nodeID">
-        /// Identifier of the nomad node
-        /// </param>
         /// <param name="machineInfo"></param>
         /// <param name="status">
         /// Status of the node
         /// </param>
-        /// <param name="sandboxes">
-        /// List of sandboxes running on the node
+        /// <param name="sandboxCount">
+        /// Number of sandboxes running on the node
         /// </param>
         /// <param name="metrics">
         /// Node metrics
@@ -155,10 +145,9 @@ namespace E2B
             string commit,
             string id,
             string serviceInstanceID,
-            string nodeID,
             global::E2B.MachineInfo machineInfo,
             global::E2B.NodeStatus status,
-            global::System.Collections.Generic.IList<global::E2B.ListedSandbox> sandboxes,
+            int sandboxCount,
             global::E2B.NodeMetrics metrics,
             global::System.Collections.Generic.IList<string> cachedBuilds,
             int createSuccesses,
@@ -169,10 +158,9 @@ namespace E2B
             this.Commit = commit ?? throw new global::System.ArgumentNullException(nameof(commit));
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.ServiceInstanceID = serviceInstanceID ?? throw new global::System.ArgumentNullException(nameof(serviceInstanceID));
-            this.NodeID = nodeID ?? throw new global::System.ArgumentNullException(nameof(nodeID));
             this.MachineInfo = machineInfo ?? throw new global::System.ArgumentNullException(nameof(machineInfo));
             this.Status = status;
-            this.Sandboxes = sandboxes ?? throw new global::System.ArgumentNullException(nameof(sandboxes));
+            this.SandboxCount = sandboxCount;
             this.Metrics = metrics ?? throw new global::System.ArgumentNullException(nameof(metrics));
             this.CachedBuilds = cachedBuilds ?? throw new global::System.ArgumentNullException(nameof(cachedBuilds));
             this.CreateSuccesses = createSuccesses;
