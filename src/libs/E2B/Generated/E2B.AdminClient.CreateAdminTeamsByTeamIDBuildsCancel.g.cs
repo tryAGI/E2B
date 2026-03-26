@@ -3,84 +3,47 @@
 
 namespace E2B
 {
-    public partial class SandboxesClient
+    public partial class AdminClient
     {
-        partial void PrepareGetSandboxesBySandboxIDLogs2Arguments(
+        partial void PrepareCreateAdminTeamsByTeamIDBuildsCancelArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string sandboxID,
-            ref long? cursor,
-            ref int? limit,
-            ref global::E2B.LogsDirection? direction,
-            ref global::E2B.LogLevel? level,
-            ref string? search);
-        partial void PrepareGetSandboxesBySandboxIDLogs2Request(
+            ref global::System.Guid teamID);
+        partial void PrepareCreateAdminTeamsByTeamIDBuildsCancelRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string sandboxID,
-            long? cursor,
-            int? limit,
-            global::E2B.LogsDirection? direction,
-            global::E2B.LogLevel? level,
-            string? search);
-        partial void ProcessGetSandboxesBySandboxIDLogs2Response(
+            global::System.Guid teamID);
+        partial void ProcessCreateAdminTeamsByTeamIDBuildsCancelResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetSandboxesBySandboxIDLogs2ResponseContent(
+        partial void ProcessCreateAdminTeamsByTeamIDBuildsCancelResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get sandbox logs
+        /// Cancel all builds for a team<br/>
+        /// Cancels all in-progress and pending builds for the specified team
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 1000
-        /// </param>
-        /// <param name="direction">
-        /// Direction of the logs that should be returned
-        /// </param>
-        /// <param name="level">
-        /// State of the sandbox
-        /// </param>
-        /// <param name="search"></param>
+        /// <param name="teamID"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.SandboxLogsV2Response> GetSandboxesBySandboxIDLogs2Async(
-            string sandboxID,
-            long? cursor = default,
-            int? limit = default,
-            global::E2B.LogsDirection? direction = default,
-            global::E2B.LogLevel? level = default,
-            string? search = default,
+        public async global::System.Threading.Tasks.Task<global::E2B.AdminBuildCancelResult> CreateAdminTeamsByTeamIDBuildsCancelAsync(
+            global::System.Guid teamID,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetSandboxesBySandboxIDLogs2Arguments(
+            PrepareCreateAdminTeamsByTeamIDBuildsCancelArguments(
                 httpClient: HttpClient,
-                sandboxID: ref sandboxID,
-                cursor: ref cursor,
-                limit: ref limit,
-                direction: ref direction,
-                level: ref level,
-                search: ref search);
+                teamID: ref teamID);
 
             var __pathBuilder = new global::E2B.PathBuilder(
-                path: $"/v2/sandboxes/{sandboxID}/logs",
+                path: $"/admin/teams/{teamID}/builds/cancel",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder
-                .AddOptionalParameter("cursor", cursor?.ToString())
-                .AddOptionalParameter("limit", limit?.ToString())
-                .AddOptionalParameter("direction", direction?.ToValueString())
-                .AddOptionalParameter("level", level?.ToValueString())
-                .AddOptionalParameter("search", search) 
-                ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Get,
+                method: global::System.Net.Http.HttpMethod.Post,
                 requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
             __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -106,15 +69,10 @@ namespace E2B
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetSandboxesBySandboxIDLogs2Request(
+            PrepareCreateAdminTeamsByTeamIDBuildsCancelRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                sandboxID: sandboxID,
-                cursor: cursor,
-                limit: limit,
-                direction: direction,
-                level: level,
-                search: search);
+                teamID: teamID);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -124,7 +82,7 @@ namespace E2B
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetSandboxesBySandboxIDLogs2Response(
+            ProcessCreateAdminTeamsByTeamIDBuildsCancelResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // Authentication error
@@ -254,7 +212,7 @@ namespace E2B
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetSandboxesBySandboxIDLogs2ResponseContent(
+                ProcessCreateAdminTeamsByTeamIDBuildsCancelResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -264,7 +222,7 @@ namespace E2B
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::E2B.SandboxLogsV2Response.FromJson(__content, JsonSerializerContext) ??
+                        global::E2B.AdminBuildCancelResult.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -295,7 +253,7 @@ namespace E2B
                     ).ConfigureAwait(false);
 
                     return
-                        await global::E2B.SandboxLogsV2Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::E2B.AdminBuildCancelResult.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

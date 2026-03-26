@@ -10,7 +10,7 @@ namespace E2B
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.Volume> CreateVolumesAsync(
+        global::System.Threading.Tasks.Task<global::E2B.VolumeAndToken> CreateVolumesAsync(
 
             global::E2B.NewVolume request,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -22,7 +22,7 @@ namespace E2B
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.Volume> CreateVolumesAsync(
+        global::System.Threading.Tasks.Task<global::E2B.VolumeAndToken> CreateVolumesAsync(
             string name,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

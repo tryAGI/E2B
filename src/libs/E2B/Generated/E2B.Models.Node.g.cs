@@ -23,13 +23,6 @@ namespace E2B
         public required string Commit { get; set; }
 
         /// <summary>
-        /// Identifier of the nomad node
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("nodeID")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string NodeID { get; set; }
-
-        /// <summary>
         /// Identifier of the node
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -115,9 +108,6 @@ namespace E2B
         /// <param name="commit">
         /// Commit of the orchestrator
         /// </param>
-        /// <param name="nodeID">
-        /// Identifier of the nomad node
-        /// </param>
         /// <param name="id">
         /// Identifier of the node
         /// </param>
@@ -152,7 +142,6 @@ namespace E2B
         public Node(
             string version,
             string commit,
-            string nodeID,
             string id,
             string serviceInstanceID,
             string clusterID,
@@ -166,7 +155,6 @@ namespace E2B
         {
             this.Version = version ?? throw new global::System.ArgumentNullException(nameof(version));
             this.Commit = commit ?? throw new global::System.ArgumentNullException(nameof(commit));
-            this.NodeID = nodeID ?? throw new global::System.ArgumentNullException(nameof(nodeID));
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.ServiceInstanceID = serviceInstanceID ?? throw new global::System.ArgumentNullException(nameof(serviceInstanceID));
             this.ClusterID = clusterID ?? throw new global::System.ArgumentNullException(nameof(clusterID));
