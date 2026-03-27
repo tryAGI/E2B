@@ -1,6 +1,8 @@
 site_name: E2B .NET Documentation
 nav:
 - Overview: index.md
+- Guides:
+  - Authentication: guides/authentication.md
 # EXAMPLES:START
 - Examples:
   - List Sandboxes: examples/list-sandboxes.md
