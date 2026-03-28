@@ -78,6 +78,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxState), TypeInfoPropertyName = "SandboxState2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SnapshotInfo))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Mcp))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxNetworkConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxAutoResumeConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxOnTimeout), TypeInfoPropertyName = "SandboxOnTimeout2")]
