@@ -56,7 +56,7 @@ namespace E2B
             global::E2B.SandboxNetworkConfig? network = default,
             object? metadata = default,
             object? envVars = default,
-            object? mcp = default,
+            global::E2B.Mcp? mcp = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

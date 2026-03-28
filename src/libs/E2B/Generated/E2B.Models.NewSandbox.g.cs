@@ -69,7 +69,7 @@ namespace E2B
         /// MCP configuration for the sandbox
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mcp")]
-        public object? Mcp { get; set; }
+        public global::E2B.Mcp? Mcp { get; set; }
 
         /// <summary>
         /// 
@@ -126,7 +126,7 @@ namespace E2B
             global::E2B.SandboxNetworkConfig? network,
             object? metadata,
             object? envVars,
-            object? mcp,
+            global::E2B.Mcp? mcp,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
