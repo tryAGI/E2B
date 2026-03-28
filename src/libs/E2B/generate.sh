@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
+# OpenAPI spec: https://raw.githubusercontent.com/e2b-dev/E2B/main/spec/openapi.yml
+
 readonly openapi_url="https://raw.githubusercontent.com/e2b-dev/E2B/main/spec/openapi.yml"
 dotnet tool install --global autosdk.cli --prerelease
 rm -rf Generated
