@@ -177,7 +177,7 @@ namespace E2B
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>), JsonSerializerContext) as global::System.Collections.Generic.IList<global::E2B.TeamAPIKey> ??
+                        (global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>), JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -208,7 +208,7 @@ namespace E2B
                     ).ConfigureAwait(false);
 
                     return
-                        await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>), JsonSerializerContext).ConfigureAwait(false) as global::System.Collections.Generic.IList<global::E2B.TeamAPIKey> ??
+                        (global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>), JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
