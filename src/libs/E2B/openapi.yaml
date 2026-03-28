@@ -2,13 +2,16 @@ openapi: 3.0.0
 info:
   version: 0.1.0
   title: E2B API
+
 servers:
   - url: https://api.e2b.app
+
 components:
   securitySchemes:
     ApiKeyAuth:
-      type: http
-      scheme: bearer
+      type: apiKey
+      in: header
+      name: X-API-Key
     AccessTokenAuth:
       type: http
       scheme: bearer
@@ -28,6 +31,7 @@ components:
       type: apiKey
       in: header
       name: X-Admin-Token
+
   parameters:
     templateID:
       name: templateID
@@ -109,6 +113,7 @@ components:
       required: true
       schema:
         type: string
+
   responses:
     '400':
       description: Bad request
@@ -146,6 +151,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+
   schemas:
     Team:
       required:
@@ -166,6 +172,7 @@ components:
         isDefault:
           type: boolean
           description: Whether the team is the default team
+
     TeamUser:
       required:
         - id
@@ -178,11 +185,13 @@ components:
         email:
           type: string
           description: Email of the user
+
     TemplateUpdateRequest:
       properties:
         public:
           type: boolean
           description: Whether the template is public or only accessible by the team
+
     TemplateUpdateResponse:
       required:
         - names
@@ -192,34 +201,41 @@ components:
           description: Names of the template (namespace/alias format when namespaced)
           items:
             type: string
+
     CPUCount:
       type: integer
       format: int32
       minimum: 1
       description: CPU cores for the sandbox
+
     MemoryMB:
       type: integer
       format: int32
       minimum: 128
       description: Memory for the sandbox in MiB
+
     DiskSizeMB:
       type: integer
       format: int32
       minimum: 0
       description: Disk size for the sandbox in MiB
+
     EnvdVersion:
       type: string
       description: Version of the envd running in the sandbox
+
     SandboxMetadata:
       additionalProperties:
         type: string
         description: Metadata of the sandbox
+
     SandboxState:
       type: string
       description: State of the sandbox
       enum:
         - running
         - paused
+
     SnapshotInfo:
       type: object
       required:
@@ -234,15 +250,18 @@ components:
           items:
             type: string
           description: Full names of the snapshot template including team namespace and tag (e.g. team-slug/my-snapshot:v2)
+
     EnvVars:
       additionalProperties:
         type: string
         description: Environment variables for the sandbox
+
     Mcp:
       type: object
       description: MCP configuration for the sandbox
       additionalProperties: {}
       nullable: true
+
     SandboxNetworkConfig:
       type: object
       properties:
@@ -263,10 +282,12 @@ components:
         maskRequestHost:
           type: string
           description: Specify host mask which will be used for all sandbox requests
+
     SandboxAutoResumeEnabled:
       type: boolean
       description: Auto-resume enabled flag for paused sandboxes. Default false.
       default: false
+
     SandboxAutoResumeConfig:
       type: object
       description: Auto-resume configuration for paused sandboxes.
@@ -275,12 +296,14 @@ components:
       properties:
         enabled:
           $ref: "#/components/schemas/SandboxAutoResumeEnabled"
+
     SandboxOnTimeout:
       type: string
       description: Action taken when the sandbox times out.
       enum:
         - kill
         - pause
+
     SandboxLifecycle:
       type: object
       description: Sandbox lifecycle policy returned by sandbox info.
@@ -293,6 +316,7 @@ components:
           description: Whether the sandbox can auto-resume.
         onTimeout:
           $ref: "#/components/schemas/SandboxOnTimeout"
+
     SandboxLog:
       description: Log entry with timestamp and line
       required:
@@ -306,6 +330,7 @@ components:
         line:
           type: string
           description: Log line content
+
     SandboxLogEntry:
       required:
         - timestamp
@@ -326,6 +351,7 @@ components:
           type: object
           additionalProperties:
             type: string
+
     SandboxLogs:
       required:
         - logs
@@ -341,6 +367,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SandboxLogEntry'
+
     SandboxLogsV2Response:
       required:
         - logs
@@ -351,6 +378,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SandboxLogEntry'
+
     SandboxMetric:
       description: Metric entry with timestamp and line
       required:
@@ -396,6 +424,7 @@ components:
           type: integer
           format: int64
           description: Total disk space in bytes
+
     SandboxVolumeMount:
       type: object
       properties:
@@ -408,6 +437,7 @@ components:
       required:
         - name
         - path
+
     Sandbox:
       required:
         - templateID
@@ -441,6 +471,7 @@ components:
           type: string
           nullable: true
           description: Base domain where the sandbox traffic is accessible
+
     SandboxDetail:
       required:
         - templateID
@@ -506,6 +537,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SandboxVolumeMount'
+
     ListedSandbox:
       required:
         - templateID
@@ -556,6 +588,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SandboxVolumeMount'
+
     SandboxesWithMetrics:
       required:
         - sandboxes
@@ -563,6 +596,7 @@ components:
         sandboxes:
           additionalProperties:
             $ref: '#/components/schemas/SandboxMetric'
+
     NewSandbox:
       required:
         - templateID
@@ -587,7 +621,9 @@ components:
           description: Secure all system communication with sandbox
         allow_internet_access:
           type: boolean
-          description: Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
+          description:
+            Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut
+            to 0.0.0.0/0 in the network config.
         network:
           $ref: '#/components/schemas/SandboxNetworkConfig'
         metadata:
@@ -600,6 +636,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SandboxVolumeMount'
+
     ResumedSandbox:
       properties:
         timeout:
@@ -612,6 +649,7 @@ components:
           type: boolean
           deprecated: true
           description: Automatically pauses the sandbox after the timeout
+
     ConnectSandbox:
       type: object
       required:
@@ -622,6 +660,7 @@ components:
           type: integer
           format: int32
           minimum: 0
+
     TeamMetric:
       description: Team metric with timestamp
       required:
@@ -647,6 +686,7 @@ components:
           type: number
           format: float
           description: Number of sandboxes started per second
+
     MaxTeamMetric:
       description: Team metric with timestamp
       required:
@@ -666,6 +706,7 @@ components:
         value:
           type: number
           description: The maximum value of the requested metric in the given interval
+
     AdminSandboxKillResult:
       required:
         - killedCount
@@ -677,6 +718,7 @@ components:
         failedCount:
           type: integer
           description: Number of sandboxes that failed to kill
+
     AdminBuildCancelResult:
       required:
         - cancelledCount
@@ -688,6 +730,7 @@ components:
         failedCount:
           type: integer
           description: Number of builds that failed to cancel
+
     VolumeToken:
       type: object
       properties:
@@ -695,6 +738,7 @@ components:
           type: string
       required:
         - token
+
     Template:
       required:
         - templateID
@@ -769,6 +813,7 @@ components:
           $ref: '#/components/schemas/EnvdVersion'
         buildStatus:
           $ref: '#/components/schemas/TemplateBuildStatus'
+
     TemplateRequestResponseV3:
       required:
         - templateID
@@ -803,6 +848,7 @@ components:
           deprecated: true
           items:
             type: string
+
     TemplateLegacy:
       required:
         - templateID
@@ -867,6 +913,7 @@ components:
           description: Number of times the template was built
         envdVersion:
           $ref: '#/components/schemas/EnvdVersion'
+
     TemplateBuild:
       required:
         - buildID
@@ -902,6 +949,7 @@ components:
           $ref: '#/components/schemas/DiskSizeMB'
         envdVersion:
           $ref: '#/components/schemas/EnvdVersion'
+
     TemplateWithBuilds:
       required:
         - templateID
@@ -953,6 +1001,7 @@ components:
           description: List of builds for the template
           items:
             $ref: '#/components/schemas/TemplateBuild'
+
     TemplateAliasResponse:
       required:
         - templateID
@@ -964,6 +1013,7 @@ components:
         public:
           type: boolean
           description: Whether the template is public or only accessible by the team
+
     TemplateBuildRequest:
       required:
         - dockerfile
@@ -987,6 +1037,7 @@ components:
           $ref: '#/components/schemas/CPUCount'
         memoryMB:
           $ref: '#/components/schemas/MemoryMB'
+
     TemplateStep:
       description: Step in the template build process
       required:
@@ -1008,6 +1059,7 @@ components:
           default: false
           type: boolean
           description: Whether the step should be forced to run regardless of the cache
+
     TemplateBuildRequestV3:
       properties:
         name:
@@ -1030,6 +1082,7 @@ components:
           $ref: '#/components/schemas/CPUCount'
         memoryMB:
           $ref: '#/components/schemas/MemoryMB'
+
     TemplateBuildRequestV2:
       required:
         - alias
@@ -1045,6 +1098,7 @@ components:
           $ref: '#/components/schemas/CPUCount'
         memoryMB:
           $ref: '#/components/schemas/MemoryMB'
+
     FromImageRegistry:
       oneOf:
         - $ref: '#/components/schemas/AWSRegistry'
@@ -1056,6 +1110,7 @@ components:
           aws: '#/components/schemas/AWSRegistry'
           gcp: '#/components/schemas/GCPRegistry'
           registry: '#/components/schemas/GeneralRegistry'
+
     AWSRegistry:
       type: object
       required:
@@ -1077,6 +1132,7 @@ components:
         awsRegion:
           type: string
           description: AWS Region where the ECR registry is located
+
     GCPRegistry:
       type: object
       required:
@@ -1090,6 +1146,7 @@ components:
         serviceAccountJson:
           type: string
           description: Service Account JSON for GCP authentication
+
     GeneralRegistry:
       type: object
       required:
@@ -1107,6 +1164,7 @@ components:
         password:
           type: string
           description: Password to use for the registry
+
     TemplateBuildStartV2:
       type: object
       properties:
@@ -1134,6 +1192,7 @@ components:
         readyCmd:
           description: Ready check command to execute in the template after the build
           type: string
+
     TemplateBuildFileUpload:
       required:
         - present
@@ -1144,6 +1203,7 @@ components:
         url:
           description: Url where the file should be uploaded to
           type: string
+
     LogLevel:
       type: string
       description: State of the sandbox
@@ -1152,6 +1212,7 @@ components:
         - info
         - warn
         - error
+
     BuildLogEntry:
       required:
         - timestamp
@@ -1170,6 +1231,7 @@ components:
         step:
           type: string
           description: Step in the build process related to the log entry
+
     BuildStatusReason:
       required:
         - message
@@ -1186,6 +1248,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BuildLogEntry'
+
     TemplateBuildStatus:
       type: string
       description: Status of the template build
@@ -1194,6 +1257,7 @@ components:
         - waiting
         - ready
         - error
+
     TemplateBuildInfo:
       required:
         - templateID
@@ -1224,6 +1288,7 @@ components:
           $ref: '#/components/schemas/TemplateBuildStatus'
         reason:
           $ref: '#/components/schemas/BuildStatusReason'
+
     TemplateBuildLogsResponse:
       required:
         - logs
@@ -1234,6 +1299,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BuildLogEntry'
+
     LogsDirection:
       type: string
       description: Direction of the logs that should be returned
@@ -1243,6 +1309,7 @@ components:
       x-enum-varnames:
         - LogsDirectionForward
         - LogsDirectionBackward
+
     LogsSource:
       type: string
       description: Source of the logs that should be returned
@@ -1252,6 +1319,7 @@ components:
       x-enum-varnames:
         - LogsSourceTemporary
         - LogsSourcePersistent
+
     NodeStatus:
       type: string
       description: Status of the node
@@ -1265,6 +1333,7 @@ components:
         - NodeStatusDraining
         - NodeStatusConnecting
         - NodeStatusUnhealthy
+
     NodeStatusChange:
       required:
         - status
@@ -1275,6 +1344,7 @@ components:
           description: Identifier of the cluster
         status:
           $ref: '#/components/schemas/NodeStatus'
+
     DiskMetrics:
       required:
         - mountPoint
@@ -1300,6 +1370,7 @@ components:
           type: integer
           format: uint64
           description: Total space in bytes
+
     NodeMetrics:
       description: Node metrics
       required:
@@ -1359,6 +1430,7 @@ components:
         cpuArchitecture:
           type: string
           description: CPU architecture of the node
+
     Node:
       required:
         - id
@@ -1411,6 +1483,7 @@ components:
           type: integer
           format: int
           description: Number of starting Sandboxes
+
     NodeDetail:
       required:
         - id
@@ -1464,6 +1537,7 @@ components:
           type: integer
           format: uint64
           description: Number of sandbox create fails
+
     CreatedAccessToken:
       required:
         - id
@@ -1488,6 +1562,7 @@ components:
           type: string
           format: date-time
           description: Timestamp of access token creation
+
     NewAccessToken:
       required:
         - name
@@ -1495,6 +1570,7 @@ components:
         name:
           type: string
           description: Name of the access token
+
     TeamAPIKey:
       required:
         - id
@@ -1524,6 +1600,7 @@ components:
           format: date-time
           description: Last time this API key was used
           nullable: true
+
     CreatedTeamAPIKey:
       required:
         - id
@@ -1557,6 +1634,7 @@ components:
           format: date-time
           description: Last time this API key was used
           nullable: true
+
     NewTeamAPIKey:
       required:
         - name
@@ -1564,6 +1642,7 @@ components:
         name:
           type: string
           description: Name of the API key
+
     UpdateTeamAPIKey:
       required:
         - name
@@ -1571,6 +1650,7 @@ components:
         name:
           type: string
           description: New name for the API key
+
     AssignedTemplateTags:
       required:
         - tags
@@ -1585,6 +1665,7 @@ components:
           type: string
           format: uuid
           description: Identifier of the build associated with these tags
+
     TemplateTag:
       required:
         - tag
@@ -1602,6 +1683,7 @@ components:
           type: string
           format: date-time
           description: Time when the tag was assigned
+
     AssignTemplateTagsRequest:
       required:
         - target
@@ -1615,6 +1697,7 @@ components:
           type: array
           items:
             type: string
+
     DeleteTemplateTagsRequest:
       required:
         - name
@@ -1628,6 +1711,7 @@ components:
           type: array
           items:
             type: string
+
     Error:
       required:
         - code
@@ -1640,6 +1724,7 @@ components:
         message:
           type: string
           description: Error
+
     IdentifierMaskingDetails:
       required:
         - prefix
@@ -1659,6 +1744,7 @@ components:
         maskedValueSuffix:
           type: string
           description: Suffix used in masked version of the token or key
+
     Volume:
       type: object
       properties:
@@ -1671,6 +1757,7 @@ components:
       required:
         - volumeID
         - name
+
     VolumeAndToken:
       type: object
       properties:
@@ -1687,6 +1774,7 @@ components:
         - volumeID
         - name
         - token
+
     NewVolume:
       type: object
       properties:
@@ -1696,6 +1784,7 @@ components:
           pattern: '^[a-zA-Z0-9_-]+$'
       required:
         - name
+
 tags:
   - name: templates
   - name: sandboxes
@@ -1704,6 +1793,7 @@ tags:
   - name: api-keys
   - name: tags
   - name: volumes
+
 paths:
   /health:
     get:
@@ -1713,6 +1803,7 @@ paths:
           description: Request was successful
         '401':
           $ref: '#/components/responses/401'
+
   /teams:
     get:
       description: List all teams
@@ -1734,6 +1825,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /teams/{teamID}/metrics:
     get:
       description: Get metrics for the team
@@ -1775,6 +1867,7 @@ paths:
           $ref: '#/components/responses/403'
         '500':
           $ref: '#/components/responses/500'
+
   /teams/{teamID}/metrics/max:
     get:
       description: Get the maximum metrics for the team in the given interval
@@ -1821,6 +1914,7 @@ paths:
           $ref: '#/components/responses/403'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes:
     get:
       description: List all running sandboxes
@@ -1878,6 +1972,7 @@ paths:
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
+
   /v2/sandboxes:
     get:
       description: List all sandboxes
@@ -1921,6 +2016,7 @@ paths:
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/metrics:
     get:
       description: List metrics for given sandboxes
@@ -1954,6 +2050,7 @@ paths:
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}/logs:
     get:
       description: Get sandbox logs. Use /v2/sandboxes/{sandboxID}/logs instead.
@@ -1993,6 +2090,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /v2/sandboxes/{sandboxID}/logs:
     get:
       description: Get sandbox logs
@@ -2048,6 +2146,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}:
     get:
       description: Get a sandbox by id
@@ -2071,6 +2170,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
     delete:
       description: Kill a sandbox
       tags: [sandboxes]
@@ -2089,6 +2189,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}/metrics:
     get:
       description: Get sandbox metrics
@@ -2113,6 +2214,7 @@ paths:
             format: int64
             minimum: 0
             description: Unix timestamp for the end of the interval, in seconds, for which the metrics
+
       responses:
         '200':
           description: Successfully returned the sandbox metrics
@@ -2130,6 +2232,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   # TODO: Pause and resume might be exposed as POST /sandboxes/{sandboxID}/snapshot and then POST /sandboxes with specified snapshotting setup
   /sandboxes/{sandboxID}/pause:
     post:
@@ -2152,6 +2255,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}/resume:
     post:
       deprecated: true
@@ -2184,6 +2288,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}/connect:
     post:
       description: Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
@@ -2221,6 +2326,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}/timeout:
     post:
       description: Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.
@@ -2253,6 +2359,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /sandboxes/{sandboxID}/refreshes:
     post:
       description: Refresh the sandbox extending its time to live
@@ -2281,6 +2388,7 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+
   /sandboxes/{sandboxID}/snapshots:
     post:
       description: Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
@@ -2316,6 +2424,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /snapshots:
     get:
       description: List all snapshots for the team
@@ -2346,6 +2455,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /v3/templates:
     post:
       description: Create a new template
@@ -2360,6 +2470,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TemplateBuildRequestV3'
+
       responses:
         '202':
           description: The build was requested successfully
@@ -2373,6 +2484,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /v2/templates:
     post:
       description: Create a new template
@@ -2388,6 +2500,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TemplateBuildRequestV2'
+
       responses:
         '202':
           description: The build was requested successfully
@@ -2401,6 +2514,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/{templateID}/files/{hash}:
     get:
       description: Get an upload link for a tar file containing build layer files
@@ -2418,6 +2532,7 @@ paths:
           schema:
             type: string
             description: Hash of the files
+
       responses:
         '201':
           description: The upload link where to upload the tar file
@@ -2433,6 +2548,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /templates:
     get:
       description: List all templates
@@ -2477,6 +2593,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TemplateBuildRequest'
+
       responses:
         '202':
           description: The build was accepted
@@ -2490,6 +2607,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/{templateID}:
     get:
       description: List all builds for a template
@@ -2529,6 +2647,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TemplateBuildRequest'
+
       responses:
         '202':
           description: The build was accepted
@@ -2583,6 +2702,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/{templateID}/builds/{buildID}:
     post:
       description: Start the build
@@ -2602,6 +2722,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /v2/templates/{templateID}/builds/{buildID}:
     post:
       description: Start the build
@@ -2626,6 +2747,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /v2/templates/{templateID}:
     patch:
       description: Update template
@@ -2656,6 +2778,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/{templateID}/builds/{buildID}/status:
     get:
       description: Get template build info
@@ -2702,6 +2825,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/{templateID}/builds/{buildID}/logs:
     get:
       description: Get template build logs
@@ -2756,6 +2880,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/tags:
     post:
       description: Assign tag(s) to a template build
@@ -2809,6 +2934,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/{templateID}/tags:
     get:
       description: List all tags for a template
@@ -2836,6 +2962,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /templates/aliases/{alias}:
     get:
       description: Check if template with given alias exists
@@ -2866,6 +2993,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /nodes:
     get:
       description: List all nodes
@@ -2886,6 +3014,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /nodes/{nodeID}:
     get:
       description: Get node info
@@ -2935,6 +3064,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /admin/teams/{teamID}/sandboxes/kill:
     post:
       summary: Kill all sandboxes for a team
@@ -2963,6 +3093,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /admin/teams/{teamID}/builds/cancel:
     post:
       summary: Cancel all builds for a team
@@ -2991,6 +3122,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /access-tokens:
     post:
       description: Create a new access token
@@ -3014,6 +3146,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /access-tokens/{accessTokenID}:
     delete:
       description: Delete an access token
@@ -3031,6 +3164,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /api-keys:
     get:
       description: List all team API keys
@@ -3074,6 +3208,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /api-keys/{apiKeyID}:
     patch:
       description: Update a team API key
@@ -3115,6 +3250,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   /volumes:
     get:
       description: List all team volumes
@@ -3136,6 +3272,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
     post:
       description: Create a new team volume
       tags: [volumes]
@@ -3162,6 +3299,7 @@ paths:
           $ref: '#/components/responses/401'
         '500':
           $ref: '#/components/responses/500'
+
   /volumes/{volumeID}:
     get:
       description: Get team volume info
@@ -3185,6 +3323,7 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
     delete:
       description: Delete a team volume
       tags: [volumes]
@@ -3203,5 +3342,3 @@ paths:
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
-security:
-  - ApiKeyAuth: []
