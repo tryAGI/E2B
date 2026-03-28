@@ -5,16 +5,11 @@ dotnet tool update --global autosdk.cli --prerelease || dotnet tool install --gl
 rm -rf Generated
 curl --fail --silent --show-error --location "$openapi_url" -o openapi.yaml
 
-# E2B spec uses apiKey in X-API-Key header. Convert to http/bearer for AutoSDK constructor generation.
-# Add top-level security array.
-yq -i '
-  .components.securitySchemes.ApiKeyAuth = {"type": "http", "scheme": "bearer"} |
-  .security = [{"ApiKeyAuth": []}]
-' openapi.yaml
-
+# Auth: --security-scheme overrides the spec's apiKey auth with standard HTTP bearer.
 autosdk generate openapi.yaml \
   --namespace E2B \
   --clientClassName E2BClient \
   --targetFramework net10.0 \
   --output Generated \
-  --exclude-deprecated-operations
+  --exclude-deprecated-operations \
+  --security-scheme Http:Header:Bearer

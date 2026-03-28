@@ -22,7 +22,7 @@ var client = new E2BClient(apiKey); // E2B_API_KEY env var
 
 ## Key Files
 
-- `src/libs/E2B/generate.sh` — Regeneration script (downloads spec, converts apiKey→bearer, runs autosdk)
+- `src/libs/E2B/generate.sh` — Regeneration script (downloads spec, runs autosdk with `--security-scheme Http:Header:Bearer`)
 - `src/libs/E2B/Generated/` — **Never edit** — auto-generated code
 - `src/tests/IntegrationTests/Tests.cs` — Test helper with bearer auth
 - `src/tests/IntegrationTests/Examples/` — Example tests (also generate docs)
@@ -30,5 +30,5 @@ var client = new E2BClient(apiKey); // E2B_API_KEY env var
 ## Spec Notes
 
 - OpenAPI spec: `https://raw.githubusercontent.com/e2b-dev/E2B/main/spec/openapi.yml`
-- Spec defines 5 security schemes (ApiKeyAuth, Supabase, Admin, AccessToken); `generate.sh` converts ApiKeyAuth to bearer
+- Spec defines 5 security schemes (ApiKeyAuth, Supabase, Admin, AccessToken); `--security-scheme Http:Header:Bearer` overrides at generation time
 - Most endpoints accept ApiKeyAuth; Supabase/Admin schemes are for internal dashboard use
