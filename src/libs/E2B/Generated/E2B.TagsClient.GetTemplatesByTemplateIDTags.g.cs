@@ -259,7 +259,7 @@ namespace E2B
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>), JsonSerializerContext) as global::System.Collections.Generic.IList<global::E2B.TemplateTag> ??
+                        (global::System.Collections.Generic.IList<global::E2B.TemplateTag>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>), JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -290,7 +290,7 @@ namespace E2B
                     ).ConfigureAwait(false);
 
                     return
-                        await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>), JsonSerializerContext).ConfigureAwait(false) as global::System.Collections.Generic.IList<global::E2B.TemplateTag> ??
+                        (global::System.Collections.Generic.IList<global::E2B.TemplateTag>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>), JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
