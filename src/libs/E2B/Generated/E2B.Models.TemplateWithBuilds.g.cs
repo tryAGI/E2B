@@ -99,14 +99,14 @@ namespace E2B
         /// <param name="updatedAt">
         /// Time when the template was last updated
         /// </param>
-        /// <param name="lastSpawnedAt">
-        /// Time when the template was last used
-        /// </param>
         /// <param name="spawnCount">
         /// Number of times the template was used
         /// </param>
         /// <param name="builds">
         /// List of builds for the template
+        /// </param>
+        /// <param name="lastSpawnedAt">
+        /// Time when the template was last used
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -128,9 +128,9 @@ namespace E2B
             this.Names = names ?? throw new global::System.ArgumentNullException(nameof(names));
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
+            this.LastSpawnedAt = lastSpawnedAt;
             this.SpawnCount = spawnCount;
             this.Builds = builds ?? throw new global::System.ArgumentNullException(nameof(builds));
-            this.LastSpawnedAt = lastSpawnedAt;
         }
 
         /// <summary>

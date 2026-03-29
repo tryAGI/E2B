@@ -90,14 +90,14 @@ namespace E2B
         /// <param name="updatedAt">
         /// Time when the build was last updated
         /// </param>
-        /// <param name="finishedAt">
-        /// Time when the build was finished
-        /// </param>
         /// <param name="cpuCount">
         /// CPU cores for the sandbox
         /// </param>
         /// <param name="memoryMB">
         /// Memory for the sandbox in MiB
+        /// </param>
+        /// <param name="finishedAt">
+        /// Time when the build was finished
         /// </param>
         /// <param name="diskSizeMB">
         /// Disk size for the sandbox in MiB
@@ -123,9 +123,9 @@ namespace E2B
             this.Status = status;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
+            this.FinishedAt = finishedAt;
             this.CpuCount = cpuCount;
             this.MemoryMB = memoryMB;
-            this.FinishedAt = finishedAt;
             this.DiskSizeMB = diskSizeMB;
             this.EnvdVersion = envdVersion;
         }

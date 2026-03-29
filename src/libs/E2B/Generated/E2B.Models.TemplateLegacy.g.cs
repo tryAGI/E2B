@@ -140,10 +140,6 @@ namespace E2B
         /// <param name="updatedAt">
         /// Time when the template was last updated
         /// </param>
-        /// <param name="createdBy"></param>
-        /// <param name="lastSpawnedAt">
-        /// Time when the template was last used
-        /// </param>
         /// <param name="spawnCount">
         /// Number of times the template was used
         /// </param>
@@ -152,6 +148,10 @@ namespace E2B
         /// </param>
         /// <param name="envdVersion">
         /// Version of the envd running in the sandbox
+        /// </param>
+        /// <param name="createdBy"></param>
+        /// <param name="lastSpawnedAt">
+        /// Time when the template was last used
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -181,11 +181,11 @@ namespace E2B
             this.Aliases = aliases ?? throw new global::System.ArgumentNullException(nameof(aliases));
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
+            this.CreatedBy = createdBy;
+            this.LastSpawnedAt = lastSpawnedAt;
             this.SpawnCount = spawnCount;
             this.BuildCount = buildCount;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
-            this.CreatedBy = createdBy;
-            this.LastSpawnedAt = lastSpawnedAt;
         }
 
         /// <summary>

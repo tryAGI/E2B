@@ -45,9 +45,6 @@ namespace E2B
         /// <summary>
         /// Initializes a new instance of the <see cref="AWSRegistry" /> class.
         /// </summary>
-        /// <param name="type">
-        /// Type of registry authentication
-        /// </param>
         /// <param name="awsAccessKeyId">
         /// AWS Access Key ID for ECR authentication
         /// </param>
@@ -56,6 +53,9 @@ namespace E2B
         /// </param>
         /// <param name="awsRegion">
         /// AWS Region where the ECR registry is located
+        /// </param>
+        /// <param name="type">
+        /// Type of registry authentication
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -66,10 +66,10 @@ namespace E2B
             string awsRegion,
             global::E2B.AWSRegistryType type)
         {
+            this.Type = type;
             this.AwsAccessKeyId = awsAccessKeyId ?? throw new global::System.ArgumentNullException(nameof(awsAccessKeyId));
             this.AwsSecretAccessKey = awsSecretAccessKey ?? throw new global::System.ArgumentNullException(nameof(awsSecretAccessKey));
             this.AwsRegion = awsRegion ?? throw new global::System.ArgumentNullException(nameof(awsRegion));
-            this.Type = type;
         }
 
         /// <summary>

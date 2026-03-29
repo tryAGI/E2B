@@ -38,14 +38,14 @@ namespace E2B
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneralRegistry" /> class.
         /// </summary>
-        /// <param name="type">
-        /// Type of registry authentication
-        /// </param>
         /// <param name="username">
         /// Username to use for the registry
         /// </param>
         /// <param name="password">
         /// Password to use for the registry
+        /// </param>
+        /// <param name="type">
+        /// Type of registry authentication
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -55,9 +55,9 @@ namespace E2B
             string password,
             global::E2B.GeneralRegistryType type)
         {
+            this.Type = type;
             this.Username = username ?? throw new global::System.ArgumentNullException(nameof(username));
             this.Password = password ?? throw new global::System.ArgumentNullException(nameof(password));
-            this.Type = type;
         }
 
         /// <summary>

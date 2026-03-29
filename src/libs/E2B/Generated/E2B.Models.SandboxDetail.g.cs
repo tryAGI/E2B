@@ -141,9 +141,6 @@ namespace E2B
         /// <param name="templateID">
         /// Identifier of the template from which is the sandbox created
         /// </param>
-        /// <param name="alias">
-        /// Alias of the template
-        /// </param>
         /// <param name="sandboxID">
         /// Identifier of the sandbox
         /// </param>
@@ -159,15 +156,6 @@ namespace E2B
         /// <param name="envdVersion">
         /// Version of the envd running in the sandbox
         /// </param>
-        /// <param name="envdAccessToken">
-        /// Access token used for envd communication
-        /// </param>
-        /// <param name="allowInternetAccess">
-        /// Whether internet access was explicitly enabled or disabled for the sandbox. Null means it was not explicitly set.
-        /// </param>
-        /// <param name="domain">
-        /// Base domain where the sandbox traffic is accessible
-        /// </param>
         /// <param name="cpuCount">
         /// CPU cores for the sandbox
         /// </param>
@@ -177,10 +165,22 @@ namespace E2B
         /// <param name="diskSizeMB">
         /// Disk size for the sandbox in MiB
         /// </param>
-        /// <param name="metadata"></param>
         /// <param name="state">
         /// State of the sandbox
         /// </param>
+        /// <param name="alias">
+        /// Alias of the template
+        /// </param>
+        /// <param name="envdAccessToken">
+        /// Access token used for envd communication
+        /// </param>
+        /// <param name="allowInternetAccess">
+        /// Whether internet access was explicitly enabled or disabled for the sandbox. Null means it was not explicitly set.
+        /// </param>
+        /// <param name="domain">
+        /// Base domain where the sandbox traffic is accessible
+        /// </param>
+        /// <param name="metadata"></param>
         /// <param name="network"></param>
         /// <param name="lifecycle">
         /// Sandbox lifecycle policy returned by sandbox info.
@@ -210,20 +210,20 @@ namespace E2B
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
+            this.Alias = alias;
             this.SandboxID = sandboxID ?? throw new global::System.ArgumentNullException(nameof(sandboxID));
             this.ClientID = clientID ?? throw new global::System.ArgumentNullException(nameof(clientID));
             this.StartedAt = startedAt;
             this.EndAt = endAt;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
-            this.CpuCount = cpuCount;
-            this.MemoryMB = memoryMB;
-            this.DiskSizeMB = diskSizeMB;
-            this.State = state;
-            this.Alias = alias;
             this.EnvdAccessToken = envdAccessToken;
             this.AllowInternetAccess = allowInternetAccess;
             this.Domain = domain;
+            this.CpuCount = cpuCount;
+            this.MemoryMB = memoryMB;
+            this.DiskSizeMB = diskSizeMB;
             this.Metadata = metadata;
+            this.State = state;
             this.Network = network;
             this.Lifecycle = lifecycle;
             this.VolumeMounts = volumeMounts;
