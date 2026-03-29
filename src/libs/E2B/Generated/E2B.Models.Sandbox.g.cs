@@ -77,14 +77,14 @@ namespace E2B
         /// <param name="sandboxID">
         /// Identifier of the sandbox
         /// </param>
-        /// <param name="alias">
-        /// Alias of the template
-        /// </param>
         /// <param name="clientID">
         /// Identifier of the client
         /// </param>
         /// <param name="envdVersion">
         /// Version of the envd running in the sandbox
+        /// </param>
+        /// <param name="alias">
+        /// Alias of the template
         /// </param>
         /// <param name="envdAccessToken">
         /// Access token used for envd communication
@@ -110,9 +110,9 @@ namespace E2B
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.SandboxID = sandboxID ?? throw new global::System.ArgumentNullException(nameof(sandboxID));
+            this.Alias = alias;
             this.ClientID = clientID ?? throw new global::System.ArgumentNullException(nameof(clientID));
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
-            this.Alias = alias;
             this.EnvdAccessToken = envdAccessToken;
             this.TrafficAccessToken = trafficAccessToken;
             this.Domain = domain;

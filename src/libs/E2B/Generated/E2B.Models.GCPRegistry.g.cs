@@ -31,11 +31,11 @@ namespace E2B
         /// <summary>
         /// Initializes a new instance of the <see cref="GCPRegistry" /> class.
         /// </summary>
-        /// <param name="type">
-        /// Type of registry authentication
-        /// </param>
         /// <param name="serviceAccountJson">
         /// Service Account JSON for GCP authentication
+        /// </param>
+        /// <param name="type">
+        /// Type of registry authentication
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -44,8 +44,8 @@ namespace E2B
             string serviceAccountJson,
             global::E2B.GCPRegistryType type)
         {
-            this.ServiceAccountJson = serviceAccountJson ?? throw new global::System.ArgumentNullException(nameof(serviceAccountJson));
             this.Type = type;
+            this.ServiceAccountJson = serviceAccountJson ?? throw new global::System.ArgumentNullException(nameof(serviceAccountJson));
         }
 
         /// <summary>

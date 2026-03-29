@@ -111,9 +111,6 @@ namespace E2B
         /// <param name="templateID">
         /// Identifier of the template from which is the sandbox created
         /// </param>
-        /// <param name="alias">
-        /// Alias of the template
-        /// </param>
         /// <param name="sandboxID">
         /// Identifier of the sandbox
         /// </param>
@@ -135,13 +132,16 @@ namespace E2B
         /// <param name="diskSizeMB">
         /// Disk size for the sandbox in MiB
         /// </param>
-        /// <param name="metadata"></param>
         /// <param name="state">
         /// State of the sandbox
         /// </param>
         /// <param name="envdVersion">
         /// Version of the envd running in the sandbox
         /// </param>
+        /// <param name="alias">
+        /// Alias of the template
+        /// </param>
+        /// <param name="metadata"></param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -162,6 +162,7 @@ namespace E2B
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
+            this.Alias = alias;
             this.SandboxID = sandboxID ?? throw new global::System.ArgumentNullException(nameof(sandboxID));
             this.ClientID = clientID ?? throw new global::System.ArgumentNullException(nameof(clientID));
             this.StartedAt = startedAt;
@@ -169,10 +170,9 @@ namespace E2B
             this.CpuCount = cpuCount;
             this.MemoryMB = memoryMB;
             this.DiskSizeMB = diskSizeMB;
+            this.Metadata = metadata;
             this.State = state;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
-            this.Alias = alias;
-            this.Metadata = metadata;
             this.VolumeMounts = volumeMounts;
         }
 

@@ -60,11 +60,11 @@ namespace E2B
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateBuildRequest" /> class.
         /// </summary>
-        /// <param name="alias">
-        /// Alias of the template
-        /// </param>
         /// <param name="dockerfile">
         /// Dockerfile for the template
+        /// </param>
+        /// <param name="alias">
+        /// Alias of the template
         /// </param>
         /// <param name="teamID">
         /// Identifier of the team
@@ -93,8 +93,8 @@ namespace E2B
             int? cpuCount,
             int? memoryMB)
         {
-            this.Dockerfile = dockerfile ?? throw new global::System.ArgumentNullException(nameof(dockerfile));
             this.Alias = alias;
+            this.Dockerfile = dockerfile ?? throw new global::System.ArgumentNullException(nameof(dockerfile));
             this.TeamID = teamID;
             this.StartCmd = startCmd;
             this.ReadyCmd = readyCmd;

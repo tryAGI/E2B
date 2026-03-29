@@ -31,11 +31,11 @@ namespace E2B
         /// <summary>
         /// Initializes a new instance of the <see cref="NodeStatusChange" /> class.
         /// </summary>
-        /// <param name="clusterID">
-        /// Identifier of the cluster
-        /// </param>
         /// <param name="status">
         /// Status of the node
+        /// </param>
+        /// <param name="clusterID">
+        /// Identifier of the cluster
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -44,8 +44,8 @@ namespace E2B
             global::E2B.NodeStatus status,
             global::System.Guid? clusterID)
         {
-            this.Status = status;
             this.ClusterID = clusterID;
+            this.Status = status;
         }
 
         /// <summary>
