@@ -298,7 +298,6 @@ namespace E2B
             int timeout,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::E2B.CreateSandboxesTimeoutRequest
             {
                 Timeout = timeout,

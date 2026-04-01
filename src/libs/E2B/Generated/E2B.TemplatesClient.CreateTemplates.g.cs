@@ -319,7 +319,6 @@ namespace E2B
             int? memoryMB = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::E2B.TemplateBuildRequestV3
             {
                 Name = name,

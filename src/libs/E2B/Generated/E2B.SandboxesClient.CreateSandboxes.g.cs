@@ -339,7 +339,6 @@ namespace E2B
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::E2B.NewSandbox
             {
                 TemplateID = templateID,
