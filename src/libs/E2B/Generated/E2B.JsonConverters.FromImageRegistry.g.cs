@@ -68,19 +68,19 @@ namespace E2B.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::E2B.AWSRegistry), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::E2B.AWSRegistry?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::E2B.AWSRegistry).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Aws, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Aws!, typeInfo);
             }
             else if (value.IsGcp)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::E2B.GCPRegistry), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::E2B.GCPRegistry?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::E2B.GCPRegistry).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Gcp, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Gcp!, typeInfo);
             }
             else if (value.IsRegistry)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::E2B.GeneralRegistry), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::E2B.GeneralRegistry?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::E2B.GeneralRegistry).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Registry, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Registry!, typeInfo);
             }
         }
     }

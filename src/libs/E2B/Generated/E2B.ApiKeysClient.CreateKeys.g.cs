@@ -267,6 +267,7 @@ namespace E2B
             string name,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::E2B.NewTeamAPIKey
             {
                 Name = name,

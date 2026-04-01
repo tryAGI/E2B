@@ -302,6 +302,7 @@ namespace E2B
             global::System.Guid? clusterID = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::E2B.NodeStatusChange
             {
                 ClusterID = clusterID,
