@@ -292,6 +292,7 @@ namespace E2B
             string? readyCmd = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::E2B.TemplateBuildStartV2
             {
                 FromImage = fromImage,

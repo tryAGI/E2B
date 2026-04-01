@@ -260,6 +260,7 @@ namespace E2B
             int? duration = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::E2B.CreateSandboxesRefreshesRequest
             {
                 Duration = duration,

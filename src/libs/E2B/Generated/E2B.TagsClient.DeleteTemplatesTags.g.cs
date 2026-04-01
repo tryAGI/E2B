@@ -332,6 +332,7 @@ namespace E2B
             global::System.Collections.Generic.IList<string> tags,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::E2B.DeleteTemplateTagsRequest
             {
                 Name = name,
