@@ -313,7 +313,6 @@ namespace E2B
             bool? @public = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::E2B.TemplateUpdateRequest
             {
                 Public = @public,
