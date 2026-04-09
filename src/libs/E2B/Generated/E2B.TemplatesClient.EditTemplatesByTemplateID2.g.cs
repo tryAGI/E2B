@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class TemplatesClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_EditTemplatesByTemplateID2SecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_EditTemplatesByTemplateID2SecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_EditTemplatesByTemplateID2SecurityRequirement0,
+            };
         partial void PrepareEditTemplatesByTemplateID2Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string templateID,
@@ -45,9 +64,15 @@ namespace E2B
                 templateID: ref templateID,
                 request: request);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_EditTemplatesByTemplateID2SecurityRequirements,
+                operationName: "EditTemplatesByTemplateID2Async");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: $"/v2/templates/{templateID}",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: new global::System.Net.Http.HttpMethod("PATCH"),
@@ -57,7 +82,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class TagsClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_DeleteTemplatesTagsSecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_DeleteTemplatesTagsSecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_DeleteTemplatesTagsSecurityRequirement0,
+            };
         partial void PrepareDeleteTemplatesTagsArguments(
             global::System.Net.Http.HttpClient httpClient,
             global::E2B.DeleteTemplateTagsRequest request);
@@ -35,9 +54,15 @@ namespace E2B
                 httpClient: HttpClient,
                 request: request);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_DeleteTemplatesTagsSecurityRequirements,
+                operationName: "DeleteTemplatesTagsAsync");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: "/templates/tags",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Delete,
@@ -47,7 +72,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

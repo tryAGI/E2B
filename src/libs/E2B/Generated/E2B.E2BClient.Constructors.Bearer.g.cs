@@ -6,6 +6,7 @@ namespace E2B
     public sealed partial class E2BClient
     {
         /// <inheritdoc cref="E2BClient(global::System.Net.Http.HttpClient?, global::System.Uri?, global::System.Collections.Generic.List{global::E2B.EndPointAuthorization}?, bool)"/>
+
         public E2BClient(
             string apiKey,
             global::System.Net.Http.HttpClient? httpClient = null,

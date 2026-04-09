@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class SnapshotsClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetSnapshotsSecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetSnapshotsSecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_GetSnapshotsSecurityRequirement0,
+            };
         partial void PrepareGetSnapshotsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? sandboxID,
@@ -51,6 +70,12 @@ namespace E2B
                 limit: ref limit,
                 nextToken: ref nextToken);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetSnapshotsSecurityRequirements,
+                operationName: "GetSnapshotsAsync");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: "/snapshots",
                 baseUri: HttpClient.BaseAddress); 
@@ -58,7 +83,7 @@ namespace E2B
                 .AddOptionalParameter("sandboxID", sandboxID)
                 .AddOptionalParameter("limit", limit?.ToString())
                 .AddOptionalParameter("nextToken", nextToken) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -68,7 +93,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
