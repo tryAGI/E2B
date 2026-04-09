@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class SandboxesClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetSandboxesBySandboxIDLogs2SecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetSandboxesBySandboxIDLogs2SecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_GetSandboxesBySandboxIDLogs2SecurityRequirement0,
+            };
         partial void PrepareGetSandboxesBySandboxIDLogs2Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
@@ -68,6 +87,12 @@ namespace E2B
                 level: ref level,
                 search: ref search);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetSandboxesBySandboxIDLogs2SecurityRequirements,
+                operationName: "GetSandboxesBySandboxIDLogs2Async");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: $"/v2/sandboxes/{sandboxID}/logs",
                 baseUri: HttpClient.BaseAddress); 
@@ -77,7 +102,7 @@ namespace E2B
                 .AddOptionalParameter("direction", direction?.ToValueString())
                 .AddOptionalParameter("level", level?.ToValueString())
                 .AddOptionalParameter("search", search) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -87,7 +112,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

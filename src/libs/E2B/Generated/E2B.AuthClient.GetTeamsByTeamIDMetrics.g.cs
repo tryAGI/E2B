@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class AuthClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetTeamsByTeamIDMetricsSecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetTeamsByTeamIDMetricsSecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_GetTeamsByTeamIDMetricsSecurityRequirement0,
+            };
         partial void PrepareGetTeamsByTeamIDMetricsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string teamID,
@@ -49,13 +68,19 @@ namespace E2B
                 start: ref start,
                 end: ref end);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetTeamsByTeamIDMetricsSecurityRequirements,
+                operationName: "GetTeamsByTeamIDMetricsAsync");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: $"/teams/{teamID}/metrics",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddOptionalParameter("start", start?.ToString())
                 .AddOptionalParameter("end", end?.ToString()) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -65,7 +90,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

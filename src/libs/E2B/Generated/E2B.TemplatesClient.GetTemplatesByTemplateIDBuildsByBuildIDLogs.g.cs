@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class TemplatesClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetTemplatesByTemplateIDBuildsByBuildIDLogsSecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetTemplatesByTemplateIDBuildsByBuildIDLogsSecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_GetTemplatesByTemplateIDBuildsByBuildIDLogsSecurityRequirement0,
+            };
         partial void PrepareGetTemplatesByTemplateIDBuildsByBuildIDLogsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string templateID,
@@ -75,6 +94,12 @@ namespace E2B
                 level: ref level,
                 source: ref source);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetTemplatesByTemplateIDBuildsByBuildIDLogsSecurityRequirements,
+                operationName: "GetTemplatesByTemplateIDBuildsByBuildIDLogsAsync");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: $"/templates/{templateID}/builds/{buildID}/logs",
                 baseUri: HttpClient.BaseAddress); 
@@ -84,7 +109,7 @@ namespace E2B
                 .AddOptionalParameter("direction", direction?.ToValueString())
                 .AddOptionalParameter("level", level?.ToValueString())
                 .AddOptionalParameter("source", source?.ToValueString()) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -94,7 +119,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

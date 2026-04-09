@@ -5,6 +5,25 @@ namespace E2B
 {
     public partial class AuthClient
     {
+
+
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetTeamsSecurityRequirement0 =
+            new global::E2B.EndPointSecurityRequirement
+            {
+                Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
+                {                    new global::E2B.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetTeamsSecurityRequirements =
+            new global::E2B.EndPointSecurityRequirement[]
+            {                s_GetTeamsSecurityRequirement0,
+            };
         partial void PrepareGetTeamsArguments(
             global::System.Net.Http.HttpClient httpClient);
         partial void PrepareGetTeamsRequest(
@@ -32,9 +51,15 @@ namespace E2B
             PrepareGetTeamsArguments(
                 httpClient: HttpClient);
 
+
+            var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetTeamsSecurityRequirements,
+                operationName: "GetTeamsAsync");
+
             var __pathBuilder = new global::E2B.PathBuilder(
                 path: "/teams",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -44,7 +69,7 @@ namespace E2B
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
