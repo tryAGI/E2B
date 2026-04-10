@@ -10,6 +10,7 @@ namespace E2B
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
@@ -17,6 +18,7 @@ namespace E2B
             string buildID,
 
             global::E2B.TemplateBuildStartV2 request,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Start the build
@@ -44,6 +46,7 @@ namespace E2B
         /// <param name="readyCmd">
         /// Ready check command to execute in the template after the build
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
@@ -56,6 +59,7 @@ namespace E2B
             global::System.Collections.Generic.IList<global::E2B.TemplateStep>? steps = default,
             string? startCmd = default,
             string? readyCmd = default,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

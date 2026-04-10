@@ -13,6 +13,7 @@ namespace E2B
         /// Unix timestamp for the end of the interval, in seconds, for which the metrics
         /// </param>
         /// <param name="metric"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.MaxTeamMetric> GetTeamsByTeamIDMetricsMaxAsync(
@@ -20,6 +21,7 @@ namespace E2B
             global::E2B.GetTeamsMetricsMaxMetric metric,
             long? start = default,
             global::System.DateTimeOffset? end = default,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

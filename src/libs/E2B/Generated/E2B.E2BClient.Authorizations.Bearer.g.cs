@@ -25,6 +25,7 @@ namespace E2B
             Authorizations.Add(new global::E2B.EndPointAuthorization
             {
                 Type = "Http",
+                SchemeId = "HttpBearer",
                 Location = "Header",
                 Name = "Bearer",
                 Value = apiKey,

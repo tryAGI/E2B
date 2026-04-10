@@ -8,11 +8,13 @@ namespace E2B
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesAsync(
 
             global::E2B.NewSandbox request,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a sandbox from the template
@@ -44,6 +46,7 @@ namespace E2B
         /// MCP configuration for the sandbox
         /// </param>
         /// <param name="volumeMounts"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesAsync(
@@ -58,6 +61,7 @@ namespace E2B
             object? envVars = default,
             global::E2B.Mcp? mcp = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts = default,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
