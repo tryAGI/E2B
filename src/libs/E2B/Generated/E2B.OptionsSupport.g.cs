@@ -106,6 +106,7 @@ namespace E2B
         public global::System.TimeSpan? Delay { get; set; }
     }
 
+
     /// <summary>
     /// Runtime hook interface for generated SDK lifecycle events.
     /// </summary>
@@ -235,6 +236,7 @@ namespace E2B
         /// </summary>
         public global::System.Threading.CancellationToken CancellationToken { get; set; }
     }
+
 
     internal static class AutoSDKRequestOptionsSupport
     {
