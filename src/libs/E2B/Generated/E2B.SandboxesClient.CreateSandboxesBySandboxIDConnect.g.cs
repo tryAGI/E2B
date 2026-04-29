@@ -138,7 +138,7 @@ namespace E2B
                 PrepareCreateSandboxesBySandboxIDConnectRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID,
+                    sandboxID: sandboxID!,
                     request: request);
 
                 return __httpRequest;

@@ -124,7 +124,7 @@ namespace E2B
                 PrepareGetSandboxesBySandboxIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID);
+                    sandboxID: sandboxID!);
 
                 return __httpRequest;
             }

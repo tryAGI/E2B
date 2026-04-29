@@ -162,7 +162,7 @@ namespace E2B
                 PrepareGetSandboxesBySandboxIDLogs2Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID,
+                    sandboxID: sandboxID!,
                     cursor: cursor,
                     limit: limit,
                     direction: direction,

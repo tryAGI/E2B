@@ -119,7 +119,7 @@ namespace E2B
                 PrepareDeleteTemplatesByTemplateIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID);
+                    templateID: templateID!);
 
                 return __httpRequest;
             }

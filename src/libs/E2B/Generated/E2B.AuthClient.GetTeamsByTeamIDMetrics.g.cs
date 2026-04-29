@@ -140,7 +140,7 @@ namespace E2B
                 PrepareGetTeamsByTeamIDMetricsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    teamID: teamID,
+                    teamID: teamID!,
                     start: start,
                     end: end);
 

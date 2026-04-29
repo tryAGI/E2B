@@ -125,7 +125,7 @@ namespace E2B
                 PrepareCreateAdminTeamsByTeamIDSandboxesKillRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    teamID: teamID);
+                    teamID: teamID!);
 
                 return __httpRequest;
             }

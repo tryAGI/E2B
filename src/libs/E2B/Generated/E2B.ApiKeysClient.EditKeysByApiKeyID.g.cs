@@ -133,7 +133,7 @@ namespace E2B
                 PrepareEditKeysByApiKeyIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    apiKeyID: apiKeyID,
+                    apiKeyID: apiKeyID!,
                     request: request);
 
                 return __httpRequest;

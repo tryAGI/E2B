@@ -140,7 +140,7 @@ namespace E2B
                 PrepareGetTemplatesByTemplateIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID,
+                    templateID: templateID!,
                     nextToken: nextToken,
                     limit: limit);
 

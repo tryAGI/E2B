@@ -124,7 +124,7 @@ namespace E2B
                 PrepareGetTemplatesByTemplateIDTagsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID);
+                    templateID: templateID!);
 
                 return __httpRequest;
             }

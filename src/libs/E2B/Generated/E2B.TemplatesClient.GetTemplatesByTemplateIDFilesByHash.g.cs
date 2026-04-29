@@ -131,8 +131,8 @@ namespace E2B
                 PrepareGetTemplatesByTemplateIDFilesByHashRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID,
-                    hash: hash);
+                    templateID: templateID!,
+                    hash: hash!);
 
                 return __httpRequest;
             }
