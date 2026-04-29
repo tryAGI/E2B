@@ -138,8 +138,8 @@ namespace E2B
                 PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID,
-                    buildID: buildID,
+                    templateID: templateID!,
+                    buildID: buildID!,
                     request: request);
 
                 return __httpRequest;

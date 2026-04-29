@@ -119,7 +119,7 @@ namespace E2B
                 PrepareDeleteAccessTokensByAccessTokenIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    accessTokenID: accessTokenID);
+                    accessTokenID: accessTokenID!);
 
                 return __httpRequest;
             }

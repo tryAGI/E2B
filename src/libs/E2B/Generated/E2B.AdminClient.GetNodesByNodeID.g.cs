@@ -132,7 +132,7 @@ namespace E2B
                 PrepareGetNodesByNodeIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeID: nodeID,
+                    nodeID: nodeID!,
                     clusterID: clusterID);
 
                 return __httpRequest;

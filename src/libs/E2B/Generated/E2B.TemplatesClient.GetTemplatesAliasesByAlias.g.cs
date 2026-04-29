@@ -126,7 +126,7 @@ namespace E2B
                 PrepareGetTemplatesAliasesByAliasRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    alias: alias);
+                    alias: alias!);
 
                 return __httpRequest;
             }

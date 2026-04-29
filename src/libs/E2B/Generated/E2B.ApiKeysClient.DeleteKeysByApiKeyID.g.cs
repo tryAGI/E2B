@@ -119,7 +119,7 @@ namespace E2B
                 PrepareDeleteKeysByApiKeyIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    apiKeyID: apiKeyID);
+                    apiKeyID: apiKeyID!);
 
                 return __httpRequest;
             }

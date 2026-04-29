@@ -155,8 +155,8 @@ namespace E2B
                 PrepareGetTemplatesByTemplateIDBuildsByBuildIDStatusRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID,
-                    buildID: buildID,
+                    templateID: templateID!,
+                    buildID: buildID!,
                     logsOffset: logsOffset,
                     limit: limit,
                     level: level);

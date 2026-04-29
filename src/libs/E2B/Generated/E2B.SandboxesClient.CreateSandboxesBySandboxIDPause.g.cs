@@ -119,7 +119,7 @@ namespace E2B
                 PrepareCreateSandboxesBySandboxIDPauseRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID);
+                    sandboxID: sandboxID!);
 
                 return __httpRequest;
             }

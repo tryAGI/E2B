@@ -124,7 +124,7 @@ namespace E2B
                 PrepareGetVolumesByVolumeIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    volumeID: volumeID);
+                    volumeID: volumeID!);
 
                 return __httpRequest;
             }

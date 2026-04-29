@@ -146,10 +146,10 @@ namespace E2B
                 PrepareGetTeamsByTeamIDMetricsMaxRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    teamID: teamID,
+                    teamID: teamID!,
                     start: start,
                     end: end,
-                    metric: metric);
+                    metric: metric!);
 
                 return __httpRequest;
             }

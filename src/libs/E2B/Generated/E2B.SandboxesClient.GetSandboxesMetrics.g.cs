@@ -127,7 +127,7 @@ namespace E2B
                 PrepareGetSandboxesMetricsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxIds: sandboxIds);
+                    sandboxIds: sandboxIds!);
 
                 return __httpRequest;
             }

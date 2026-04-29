@@ -138,7 +138,7 @@ namespace E2B
                 PrepareEditTemplatesByTemplateID2Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateID: templateID,
+                    templateID: templateID!,
                     request: request);
 
                 return __httpRequest;

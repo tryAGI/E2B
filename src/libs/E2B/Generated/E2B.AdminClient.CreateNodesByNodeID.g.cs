@@ -133,7 +133,7 @@ namespace E2B
                 PrepareCreateNodesByNodeIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeID: nodeID,
+                    nodeID: nodeID!,
                     request: request);
 
                 return __httpRequest;

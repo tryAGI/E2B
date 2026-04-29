@@ -119,7 +119,7 @@ namespace E2B
                 PrepareDeleteSandboxesBySandboxIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID);
+                    sandboxID: sandboxID!);
 
                 return __httpRequest;
             }

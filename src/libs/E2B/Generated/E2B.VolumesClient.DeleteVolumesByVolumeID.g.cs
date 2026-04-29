@@ -119,7 +119,7 @@ namespace E2B
                 PrepareDeleteVolumesByVolumeIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    volumeID: volumeID);
+                    volumeID: volumeID!);
 
                 return __httpRequest;
             }
