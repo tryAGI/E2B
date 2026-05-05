@@ -25,6 +25,22 @@ namespace E2B
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::E2B.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateTemplatesByTemplateIDBuildsByBuildID2AsResponseAsync(
+            string templateID,
+            string buildID,
+
+            global::E2B.TemplateBuildStartV2 request,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Start the build
+        /// </summary>
+        /// <param name="templateID"></param>
+        /// <param name="buildID"></param>
         /// <param name="fromImage">
         /// Image to use as a base for the template build
         /// </param>

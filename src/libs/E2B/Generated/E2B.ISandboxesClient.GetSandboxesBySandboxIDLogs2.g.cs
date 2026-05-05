@@ -31,5 +31,32 @@ namespace E2B
             string? search = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get sandbox logs
+        /// </summary>
+        /// <param name="sandboxID"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 1000
+        /// </param>
+        /// <param name="direction">
+        /// Direction of the logs that should be returned
+        /// </param>
+        /// <param name="level">
+        /// State of the sandbox
+        /// </param>
+        /// <param name="search"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::E2B.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.SandboxLogsV2Response>> GetSandboxesBySandboxIDLogs2AsResponseAsync(
+            string sandboxID,
+            long? cursor = default,
+            int? limit = default,
+            global::E2B.LogsDirection? direction = default,
+            global::E2B.LogLevel? level = default,
+            string? search = default,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
