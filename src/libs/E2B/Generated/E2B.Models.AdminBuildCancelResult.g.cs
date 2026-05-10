@@ -54,5 +54,6 @@ namespace E2B
         public AdminBuildCancelResult()
         {
         }
+
     }
 }

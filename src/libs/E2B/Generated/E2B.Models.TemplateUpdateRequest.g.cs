@@ -41,5 +41,6 @@ namespace E2B
         public TemplateUpdateRequest()
         {
         }
+
     }
 }

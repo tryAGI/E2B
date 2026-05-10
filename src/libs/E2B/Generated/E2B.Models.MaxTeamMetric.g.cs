@@ -68,5 +68,6 @@ namespace E2B
         public MaxTeamMetric()
         {
         }
+
     }
 }

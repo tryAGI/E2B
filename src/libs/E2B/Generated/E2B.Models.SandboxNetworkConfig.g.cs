@@ -76,5 +76,6 @@ namespace E2B
         public SandboxNetworkConfig()
         {
         }
+
     }
 }
