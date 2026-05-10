@@ -173,5 +173,6 @@ namespace E2B
         public NodeDetail()
         {
         }
+
     }
 }

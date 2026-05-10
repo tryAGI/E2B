@@ -55,5 +55,6 @@ namespace E2B
         public SandboxLifecycle()
         {
         }
+
     }
 }

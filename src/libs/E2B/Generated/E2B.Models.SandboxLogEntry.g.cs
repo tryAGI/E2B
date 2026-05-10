@@ -77,5 +77,6 @@ namespace E2B
         public SandboxLogEntry()
         {
         }
+
     }
 }

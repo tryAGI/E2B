@@ -66,5 +66,6 @@ namespace E2B
         public TemplateTag()
         {
         }
+
     }
 }
