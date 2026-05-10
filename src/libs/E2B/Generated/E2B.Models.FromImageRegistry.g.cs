@@ -124,6 +124,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        public static FromImageRegistry FromAws(global::E2B.AWSRegistry? value) => new FromImageRegistry(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator FromImageRegistry(global::E2B.GCPRegistry value) => new FromImageRegistry((global::E2B.GCPRegistry?)value);
 
         /// <summary>
@@ -142,6 +147,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        public static FromImageRegistry FromGcp(global::E2B.GCPRegistry? value) => new FromImageRegistry(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator FromImageRegistry(global::E2B.GeneralRegistry value) => new FromImageRegistry((global::E2B.GeneralRegistry?)value);
 
         /// <summary>
@@ -156,6 +166,11 @@ namespace E2B
         {
             Registry = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static FromImageRegistry FromRegistry(global::E2B.GeneralRegistry? value) => new FromImageRegistry(value);
 
         /// <summary>
         /// 
