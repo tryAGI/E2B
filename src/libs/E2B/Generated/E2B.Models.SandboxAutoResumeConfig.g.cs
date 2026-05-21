@@ -44,5 +44,6 @@ namespace E2B
         public SandboxAutoResumeConfig()
         {
         }
+
     }
 }

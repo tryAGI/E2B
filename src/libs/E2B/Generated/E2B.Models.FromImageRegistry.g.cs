@@ -34,6 +34,26 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        public bool TryPickAws(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::E2B.AWSRegistry? value)
+        {
+            value = Aws;
+            return IsAws;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::E2B.AWSRegistry PickAws() => IsAws
+            ? Aws!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'Aws' but the value was {ToString()}.");
+
+        /// <summary>
+        /// 
+        /// </summary>
 #if NET6_0_OR_GREATER
         public global::E2B.GCPRegistry? Gcp { get; init; }
 #else
@@ -51,6 +71,26 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        public bool TryPickGcp(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::E2B.GCPRegistry? value)
+        {
+            value = Gcp;
+            return IsGcp;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::E2B.GCPRegistry PickGcp() => IsGcp
+            ? Gcp!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'Gcp' but the value was {ToString()}.");
+
+        /// <summary>
+        /// 
+        /// </summary>
 #if NET6_0_OR_GREATER
         public global::E2B.GeneralRegistry? Registry { get; init; }
 #else
@@ -64,6 +104,26 @@ namespace E2B
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Registry))]
 #endif
         public bool IsRegistry => Registry != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickRegistry(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::E2B.GeneralRegistry? value)
+        {
+            value = Registry;
+            return IsRegistry;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::E2B.GeneralRegistry PickRegistry() => IsRegistry
+            ? Registry!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'Registry' but the value was {ToString()}.");
         /// <summary>
         /// 
         /// </summary>
@@ -81,6 +141,11 @@ namespace E2B
         {
             Aws = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static FromImageRegistry FromAws(global::E2B.AWSRegistry? value) => new FromImageRegistry(value);
 
         /// <summary>
         /// 
@@ -103,6 +168,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        public static FromImageRegistry FromGcp(global::E2B.GCPRegistry? value) => new FromImageRegistry(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator FromImageRegistry(global::E2B.GeneralRegistry value) => new FromImageRegistry((global::E2B.GeneralRegistry?)value);
 
         /// <summary>
@@ -117,6 +187,11 @@ namespace E2B
         {
             Registry = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static FromImageRegistry FromRegistry(global::E2B.GeneralRegistry? value) => new FromImageRegistry(value);
 
         /// <summary>
         /// 
@@ -165,9 +240,9 @@ namespace E2B
         /// 
         /// </summary>
         public TResult? Match<TResult>(
-            global::System.Func<global::E2B.AWSRegistry?, TResult>? aws = null,
-            global::System.Func<global::E2B.GCPRegistry?, TResult>? gcp = null,
-            global::System.Func<global::E2B.GeneralRegistry?, TResult>? registry = null,
+            global::System.Func<global::E2B.AWSRegistry, TResult>? aws = null,
+            global::System.Func<global::E2B.GCPRegistry, TResult>? gcp = null,
+            global::System.Func<global::E2B.GeneralRegistry, TResult>? registry = null,
             bool validate = true)
         {
             if (validate)
@@ -195,9 +270,39 @@ namespace E2B
         /// 
         /// </summary>
         public void Match(
-            global::System.Action<global::E2B.AWSRegistry?>? aws = null,
-            global::System.Action<global::E2B.GCPRegistry?>? gcp = null,
-            global::System.Action<global::E2B.GeneralRegistry?>? registry = null,
+            global::System.Action<global::E2B.AWSRegistry>? aws = null,
+
+            global::System.Action<global::E2B.GCPRegistry>? gcp = null,
+
+            global::System.Action<global::E2B.GeneralRegistry>? registry = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (IsAws)
+            {
+                aws?.Invoke(Aws!);
+            }
+            else if (IsGcp)
+            {
+                gcp?.Invoke(Gcp!);
+            }
+            else if (IsRegistry)
+            {
+                registry?.Invoke(Registry!);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Switch(
+            global::System.Action<global::E2B.AWSRegistry>? aws = null,
+            global::System.Action<global::E2B.GCPRegistry>? gcp = null,
+            global::System.Action<global::E2B.GeneralRegistry>? registry = null,
             bool validate = true)
         {
             if (validate)

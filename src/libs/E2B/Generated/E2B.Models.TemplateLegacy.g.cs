@@ -194,5 +194,6 @@ namespace E2B
         public TemplateLegacy()
         {
         }
+
     }
 }

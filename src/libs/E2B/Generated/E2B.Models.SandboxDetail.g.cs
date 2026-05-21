@@ -235,5 +235,6 @@ namespace E2B
         public SandboxDetail()
         {
         }
+
     }
 }

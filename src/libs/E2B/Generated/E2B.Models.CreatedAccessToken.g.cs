@@ -88,5 +88,6 @@ namespace E2B
         public CreatedAccessToken()
         {
         }
+
     }
 }
