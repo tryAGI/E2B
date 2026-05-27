@@ -4,7 +4,9 @@
 namespace E2B
 {
     /// <summary>
-    /// Status of the node
+    /// Status of the node.<br/>
+    /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
+    /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
     /// </summary>
     public enum NodeStatus
     {
@@ -13,13 +15,17 @@ namespace E2B
         /// </summary>
         NodeStatusConnecting,
         /// <summary>
-        /// 
+        /// the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.
         /// </summary>
         NodeStatusDraining,
         /// <summary>
-        /// 
+        /// the node is not actively used, but it can return to ready and continue serving traffic.
         /// </summary>
         NodeStatusReady,
+        /// <summary>
+        /// the node is not actively used, but it can return to ready and continue serving traffic.
+        /// </summary>
+        NodeStatusStandby,
         /// <summary>
         /// 
         /// </summary>
@@ -41,6 +47,7 @@ namespace E2B
                 NodeStatus.NodeStatusConnecting => "connecting",
                 NodeStatus.NodeStatusDraining => "draining",
                 NodeStatus.NodeStatusReady => "ready",
+                NodeStatus.NodeStatusStandby => "standby",
                 NodeStatus.NodeStatusUnhealthy => "unhealthy",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -55,6 +62,7 @@ namespace E2B
                 "connecting" => NodeStatus.NodeStatusConnecting,
                 "draining" => NodeStatus.NodeStatusDraining,
                 "ready" => NodeStatus.NodeStatusReady,
+                "standby" => NodeStatus.NodeStatusStandby,
                 "unhealthy" => NodeStatus.NodeStatusUnhealthy,
                 _ => null,
             };

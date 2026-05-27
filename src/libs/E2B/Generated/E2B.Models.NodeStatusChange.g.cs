@@ -15,7 +15,9 @@ namespace E2B
         public global::System.Guid? ClusterID { get; set; }
 
         /// <summary>
-        /// Status of the node
+        /// Status of the node.<br/>
+        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
+        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.NodeStatusJsonConverter))]
@@ -32,7 +34,9 @@ namespace E2B
         /// Initializes a new instance of the <see cref="NodeStatusChange" /> class.
         /// </summary>
         /// <param name="status">
-        /// Status of the node
+        /// Status of the node.<br/>
+        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
+        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </param>
         /// <param name="clusterID">
         /// Identifier of the cluster

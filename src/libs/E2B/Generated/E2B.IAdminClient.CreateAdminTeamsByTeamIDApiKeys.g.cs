@@ -5,52 +5,49 @@ namespace E2B
     public partial interface IAdminClient
     {
         /// <summary>
-        /// Change status of a node
+        /// Create team API key as admin<br/>
+        /// Creates a team API key for internal service workflows.
         /// </summary>
-        /// <param name="nodeID"></param>
+        /// <param name="teamID"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task CreateNodesByNodeIDAsync(
-            string nodeID,
+        global::System.Threading.Tasks.Task<global::E2B.CreatedTeamAPIKey> CreateAdminTeamsByTeamIDApiKeysAsync(
+            global::System.Guid teamID,
 
-            global::E2B.NodeStatusChange request,
+            global::E2B.NewTeamAPIKey request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Change status of a node
+        /// Create team API key as admin<br/>
+        /// Creates a team API key for internal service workflows.
         /// </summary>
-        /// <param name="nodeID"></param>
+        /// <param name="teamID"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateNodesByNodeIDAsResponseAsync(
-            string nodeID,
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.CreatedTeamAPIKey>> CreateAdminTeamsByTeamIDApiKeysAsResponseAsync(
+            global::System.Guid teamID,
 
-            global::E2B.NodeStatusChange request,
+            global::E2B.NewTeamAPIKey request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Change status of a node
+        /// Create team API key as admin<br/>
+        /// Creates a team API key for internal service workflows.
         /// </summary>
-        /// <param name="nodeID"></param>
-        /// <param name="clusterID">
-        /// Identifier of the cluster
-        /// </param>
-        /// <param name="status">
-        /// Status of the node.<br/>
-        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
+        /// <param name="teamID"></param>
+        /// <param name="name">
+        /// Name of the API key
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task CreateNodesByNodeIDAsync(
-            string nodeID,
-            global::E2B.NodeStatus status,
-            global::System.Guid? clusterID = default,
+        global::System.Threading.Tasks.Task<global::E2B.CreatedTeamAPIKey> CreateAdminTeamsByTeamIDApiKeysAsync(
+            global::System.Guid teamID,
+            string name,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

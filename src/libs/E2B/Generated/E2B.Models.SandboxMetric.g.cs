@@ -53,6 +53,13 @@ namespace E2B
         public required long MemTotal { get; set; }
 
         /// <summary>
+        /// Cached memory (page cache) in bytes
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("memCache")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long MemCache { get; set; }
+
+        /// <summary>
         /// Disk used in bytes
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("diskUsed")]
@@ -93,6 +100,9 @@ namespace E2B
         /// <param name="memTotal">
         /// Total memory in bytes
         /// </param>
+        /// <param name="memCache">
+        /// Cached memory (page cache) in bytes
+        /// </param>
         /// <param name="diskUsed">
         /// Disk used in bytes
         /// </param>
@@ -109,6 +119,7 @@ namespace E2B
             float cpuUsedPct,
             long memUsed,
             long memTotal,
+            long memCache,
             long diskUsed,
             long diskTotal)
         {
@@ -118,6 +129,7 @@ namespace E2B
             this.CpuUsedPct = cpuUsedPct;
             this.MemUsed = memUsed;
             this.MemTotal = memTotal;
+            this.MemCache = memCache;
             this.DiskUsed = diskUsed;
             this.DiskTotal = diskTotal;
         }

@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace E2B
@@ -16,11 +18,12 @@ namespace E2B
         public required global::System.Guid Id { get; set; }
 
         /// <summary>
-        /// Email of the user
+        /// Email of the user<br/>
+        /// Default Value: openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("email")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Email { get; set; }
+        [global::System.Obsolete("This property marked as deprecated.")]
+        public string? Email { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -34,18 +37,13 @@ namespace E2B
         /// <param name="id">
         /// Identifier of the user
         /// </param>
-        /// <param name="email">
-        /// Email of the user
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public TeamUser(
-            global::System.Guid id,
-            string email)
+            global::System.Guid id)
         {
             this.Id = id;
-            this.Email = email ?? throw new global::System.ArgumentNullException(nameof(email));
         }
 
         /// <summary>

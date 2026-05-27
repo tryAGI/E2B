@@ -5,7 +5,7 @@ namespace E2B
     public partial interface ISandboxesClient
     {
         /// <summary>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting a field clears it.
+        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
         /// </summary>
         /// <param name="sandboxID"></param>
         /// <param name="request"></param>
@@ -19,7 +19,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting a field clears it.
+        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
         /// </summary>
         /// <param name="sandboxID"></param>
         /// <param name="request"></param>
@@ -33,7 +33,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting a field clears it.
+        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
         /// </summary>
         /// <param name="sandboxID"></param>
         /// <param name="allowOut">
