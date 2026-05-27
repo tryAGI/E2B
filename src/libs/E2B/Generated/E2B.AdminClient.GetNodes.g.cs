@@ -26,10 +26,12 @@ namespace E2B
             {                s_GetNodesSecurityRequirement0,
             };
         partial void PrepareGetNodesArguments(
-            global::System.Net.Http.HttpClient httpClient);
+            global::System.Net.Http.HttpClient httpClient,
+            ref global::System.Guid? clusterID);
         partial void PrepareGetNodesRequest(
             global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpRequestMessage httpRequestMessage);
+            global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            global::System.Guid? clusterID);
         partial void ProcessGetNodesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -42,14 +44,17 @@ namespace E2B
         /// <summary>
         /// List all nodes
         /// </summary>
+        /// <param name="clusterID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.Node>> GetNodesAsync(
+            global::System.Guid? clusterID = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetNodesAsResponseAsync(
+                clusterID: clusterID,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -59,17 +64,20 @@ namespace E2B
         /// <summary>
         /// List all nodes
         /// </summary>
+        /// <param name="clusterID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.Node>>> GetNodesAsResponseAsync(
+            global::System.Guid? clusterID = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
             PrepareGetNodesArguments(
-                httpClient: HttpClient);
+                httpClient: HttpClient,
+                clusterID: ref clusterID);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
@@ -97,6 +105,9 @@ namespace E2B
                             var __pathBuilder = new global::E2B.PathBuilder(
                                 path: "/nodes",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("clusterID", clusterID?.ToString())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -136,7 +147,8 @@ namespace E2B
                     request: __httpRequest);
                 PrepareGetNodesRequest(
                     httpClient: HttpClient,
-                    httpRequestMessage: __httpRequest);
+                    httpRequestMessage: __httpRequest,
+                    clusterID: clusterID);
 
                 return __httpRequest;
             }

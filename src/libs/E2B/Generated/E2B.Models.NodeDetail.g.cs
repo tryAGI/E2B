@@ -51,7 +51,9 @@ namespace E2B
         public required global::E2B.MachineInfo MachineInfo { get; set; }
 
         /// <summary>
-        /// Status of the node
+        /// Status of the node.<br/>
+        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
+        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.NodeStatusJsonConverter))]
@@ -119,7 +121,9 @@ namespace E2B
         /// </param>
         /// <param name="machineInfo"></param>
         /// <param name="status">
-        /// Status of the node
+        /// Status of the node.<br/>
+        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
+        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </param>
         /// <param name="sandboxCount">
         /// Number of sandboxes running on the node

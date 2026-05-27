@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class SandboxesClient
+    public partial class AdminClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_PutSandboxesBySandboxIDNetworkSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,75 +21,72 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_PutSandboxesBySandboxIDNetworkSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_PutSandboxesBySandboxIDNetworkSecurityRequirement0,
+            {                s_DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDSecurityRequirement0,
             };
-        partial void PreparePutSandboxesBySandboxIDNetworkArguments(
+        partial void PrepareDeleteAdminTeamsByTeamIDApiKeysByApiKeyIDArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string sandboxID,
-            global::E2B.SandboxNetworkUpdateConfig request);
-        partial void PreparePutSandboxesBySandboxIDNetworkRequest(
+            ref global::System.Guid teamID,
+            ref string apiKeyID);
+        partial void PrepareDeleteAdminTeamsByTeamIDApiKeysByApiKeyIDRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string sandboxID,
-            global::E2B.SandboxNetworkUpdateConfig request);
-        partial void ProcessPutSandboxesBySandboxIDNetworkResponse(
+            global::System.Guid teamID,
+            string apiKeyID);
+        partial void ProcessDeleteAdminTeamsByTeamIDApiKeysByApiKeyIDResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
+        /// Delete team API key as admin<br/>
+        /// Deletes a team API key for internal service workflows.
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="request"></param>
+        /// <param name="teamID"></param>
+        /// <param name="apiKeyID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task PutSandboxesBySandboxIDNetworkAsync(
-            string sandboxID,
-
-            global::E2B.SandboxNetworkUpdateConfig request,
+        public async global::System.Threading.Tasks.Task DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync(
+            global::System.Guid teamID,
+            string apiKeyID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            await PutSandboxesBySandboxIDNetworkAsResponseAsync(
-                sandboxID: sandboxID,
-
-                request: request,
+            await DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsResponseAsync(
+                teamID: teamID,
+                apiKeyID: apiKeyID,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
+        /// Delete team API key as admin<br/>
+        /// Deletes a team API key for internal service workflows.
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="request"></param>
+        /// <param name="teamID"></param>
+        /// <param name="apiKeyID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> PutSandboxesBySandboxIDNetworkAsResponseAsync(
-            string sandboxID,
-
-            global::E2B.SandboxNetworkUpdateConfig request,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsResponseAsync(
+            global::System.Guid teamID,
+            string apiKeyID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PreparePutSandboxesBySandboxIDNetworkArguments(
+            PrepareDeleteAdminTeamsByTeamIDApiKeysByApiKeyIDArguments(
                 httpClient: HttpClient,
-                sandboxID: ref sandboxID,
-                request: request);
+                teamID: ref teamID,
+                apiKeyID: ref apiKeyID);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PutSandboxesBySandboxIDNetworkSecurityRequirements,
-                operationName: "PutSandboxesBySandboxIDNetworkAsync");
+                securityRequirements: s_DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDSecurityRequirements,
+                operationName: "DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -109,7 +106,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/sandboxes/{sandboxID}/network",
+                                path: $"/admin/teams/{teamID}/api-keys/{apiKeyID}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -117,7 +114,7 @@ namespace E2B
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Put,
+                    method: global::System.Net.Http.HttpMethod.Delete,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -140,12 +137,6 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::E2B.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -154,11 +145,11 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePutSandboxesBySandboxIDNetworkRequest(
+                PrepareDeleteAdminTeamsByTeamIDApiKeysByApiKeyIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID!,
-                    request: request);
+                    teamID: teamID!,
+                    apiKeyID: apiKeyID!);
 
                 return __httpRequest;
             }
@@ -175,10 +166,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "deleteAdminTeamsByTeamIDApiKeysByApiKeyID",
+                                methodName: "DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync",
+                                pathTemplate: "$\"/admin/teams/{teamID}/api-keys/{apiKeyID}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -209,10 +200,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "deleteAdminTeamsByTeamIDApiKeysByApiKeyID",
+                                methodName: "DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync",
+                                pathTemplate: "$\"/admin/teams/{teamID}/api-keys/{apiKeyID}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -250,10 +241,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "deleteAdminTeamsByTeamIDApiKeysByApiKeyID",
+                                methodName: "DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync",
+                                pathTemplate: "$\"/admin/teams/{teamID}/api-keys/{apiKeyID}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -290,7 +281,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPutSandboxesBySandboxIDNetworkResponse(
+                ProcessDeleteAdminTeamsByTeamIDApiKeysByApiKeyIDResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -298,10 +289,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "deleteAdminTeamsByTeamIDApiKeysByApiKeyID",
+                                methodName: "DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync",
+                                pathTemplate: "$\"/admin/teams/{teamID}/api-keys/{apiKeyID}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -320,10 +311,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "deleteAdminTeamsByTeamIDApiKeysByApiKeyID",
+                                methodName: "DeleteAdminTeamsByTeamIDApiKeysByApiKeyIDAsync",
+                                pathTemplate: "$\"/admin/teams/{teamID}/api-keys/{apiKeyID}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -337,6 +328,43 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::E2B.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication error
                             if ((int)__response.StatusCode == 401)
                             {
@@ -406,43 +434,6 @@ namespace E2B
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Conflict
-                            if ((int)__response.StatusCode == 409)
-                            {
-                                string? __content_409 = null;
-                                global::System.Exception? __exception_409 = null;
-                                global::E2B.Error? __value_409 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_409 = global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_409 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_409,
-                                    responseBody: __content_409,
-                                    responseObject: __value_409,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -564,48 +555,6 @@ namespace E2B
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
-        /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="allowOut">
-        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries.
-        /// </param>
-        /// <param name="denyOut">
-        /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
-        /// </param>
-        /// <param name="rules">
-        /// Per-domain transform rules. Replaces all existing rules when provided.
-        /// </param>
-        /// <param name="allowInternetAccess">
-        /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task PutSandboxesBySandboxIDNetworkAsync(
-            string sandboxID,
-            global::System.Collections.Generic.IList<string>? allowOut = default,
-            global::System.Collections.Generic.IList<string>? denyOut = default,
-            global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules = default,
-            bool? allowInternetAccess = default,
-            global::E2B.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::E2B.SandboxNetworkUpdateConfig
-            {
-                AllowOut = allowOut,
-                DenyOut = denyOut,
-                Rules = rules,
-                AllowInternetAccess = allowInternetAccess,
-            };
-
-            await PutSandboxesBySandboxIDNetworkAsync(
-                sandboxID: sandboxID,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
