@@ -108,6 +108,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxesWithMetrics))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ResumedSandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxPauseRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ConnectSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamMetric))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.MaxTeamMetric))]
