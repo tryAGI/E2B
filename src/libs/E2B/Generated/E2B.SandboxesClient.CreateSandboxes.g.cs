@@ -556,6 +556,10 @@ namespace E2B
         /// Automatically pauses the sandbox after the timeout<br/>
         /// Default Value: false
         /// </param>
+        /// <param name="autoPauseMemory">
+        /// Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with autoResume. Defaults to true (full memory snapshot).<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
         /// </param>
@@ -579,6 +583,7 @@ namespace E2B
             string templateID,
             int? timeout = default,
             bool? autoPause = default,
+            bool? autoPauseMemory = default,
             global::E2B.SandboxAutoResumeConfig? autoResume = default,
             bool? secure = default,
             bool? allowInternetAccess = default,
@@ -595,6 +600,7 @@ namespace E2B
                 TemplateID = templateID,
                 Timeout = timeout,
                 AutoPause = autoPause,
+                AutoPauseMemory = autoPauseMemory,
                 AutoResume = autoResume,
                 Secure = secure,
                 AllowInternetAccess = allowInternetAccess,
