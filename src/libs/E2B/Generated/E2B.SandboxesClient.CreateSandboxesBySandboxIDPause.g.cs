@@ -27,11 +27,13 @@ namespace E2B
             };
         partial void PrepareCreateSandboxesBySandboxIDPauseArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string sandboxID);
+            ref string sandboxID,
+            global::E2B.SandboxPauseRequest request);
         partial void PrepareCreateSandboxesBySandboxIDPauseRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string sandboxID);
+            string sandboxID,
+            global::E2B.SandboxPauseRequest request);
         partial void ProcessCreateSandboxesBySandboxIDPauseResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -40,16 +42,21 @@ namespace E2B
         /// Pause the sandbox
         /// </summary>
         /// <param name="sandboxID"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDPauseAsync(
             string sandboxID,
+
+            global::E2B.SandboxPauseRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             await CreateSandboxesBySandboxIDPauseAsResponseAsync(
                 sandboxID: sandboxID,
+
+                request: request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -58,19 +65,25 @@ namespace E2B
         /// Pause the sandbox
         /// </summary>
         /// <param name="sandboxID"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateSandboxesBySandboxIDPauseAsResponseAsync(
             string sandboxID,
+
+            global::E2B.SandboxPauseRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
             PrepareCreateSandboxesBySandboxIDPauseArguments(
                 httpClient: HttpClient,
-                sandboxID: ref sandboxID);
+                sandboxID: ref sandboxID,
+                request: request);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
@@ -127,6 +140,12 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
                 global::E2B.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -138,7 +157,8 @@ namespace E2B
                 PrepareCreateSandboxesBySandboxIDPauseRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID!);
+                    sandboxID: sandboxID!,
+                    request: request);
 
                 return __httpRequest;
             }
@@ -544,6 +564,34 @@ namespace E2B
             {
                 __httpRequest?.Dispose();
             }
+        }
+        /// <summary>
+        /// Pause the sandbox
+        /// </summary>
+        /// <param name="sandboxID"></param>
+        /// <param name="memory">
+        /// Whether to capture a full memory snapshot. When false, only the filesystem is persisted and resuming the sandbox cold-boots (reboots) it from disk, losing in-memory state, running processes, and open connections. Resume it with an explicit request (connect or resume); auto-resume, which can be triggered by arbitrary traffic, refuses such a sandbox. Defaults to true.<br/>
+        /// Default Value: true
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDPauseAsync(
+            string sandboxID,
+            bool? memory = default,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::E2B.SandboxPauseRequest
+            {
+                Memory = memory,
+            };
+
+            await CreateSandboxesBySandboxIDPauseAsync(
+                sandboxID: sandboxID,
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
