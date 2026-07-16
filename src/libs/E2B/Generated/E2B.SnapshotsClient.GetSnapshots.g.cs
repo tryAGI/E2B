@@ -28,12 +28,14 @@ namespace E2B
         partial void PrepareGetSnapshotsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? sandboxID,
+            ref string? name,
             ref int? limit,
             ref string? nextToken);
         partial void PrepareGetSnapshotsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? sandboxID,
+            string? name,
             int? limit,
             string? nextToken);
         partial void ProcessGetSnapshotsResponse(
@@ -51,6 +53,9 @@ namespace E2B
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
+        /// <param name="name">
+        /// Filter snapshots by name or ID, optionally tag-qualified (e.g. "my-snapshot", "my-team/my-snapshot" or "my-snapshot:v1").
+        /// </param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -60,6 +65,7 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>> GetSnapshotsAsync(
             string? sandboxID = default,
+            string? name = default,
             int? limit = default,
             string? nextToken = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -67,6 +73,7 @@ namespace E2B
         {
             var __response = await GetSnapshotsAsResponseAsync(
                 sandboxID: sandboxID,
+                name: name,
                 limit: limit,
                 nextToken: nextToken,
                 requestOptions: requestOptions,
@@ -81,6 +88,9 @@ namespace E2B
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
+        /// <param name="name">
+        /// Filter snapshots by name or ID, optionally tag-qualified (e.g. "my-snapshot", "my-team/my-snapshot" or "my-snapshot:v1").
+        /// </param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -90,6 +100,7 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>>> GetSnapshotsAsResponseAsync(
             string? sandboxID = default,
+            string? name = default,
             int? limit = default,
             string? nextToken = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -100,6 +111,7 @@ namespace E2B
             PrepareGetSnapshotsArguments(
                 httpClient: HttpClient,
                 sandboxID: ref sandboxID,
+                name: ref name,
                 limit: ref limit,
                 nextToken: ref nextToken);
 
@@ -131,6 +143,7 @@ namespace E2B
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("sandboxID", sandboxID)
+                                .AddOptionalParameter("name", name)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 .AddOptionalParameter("nextToken", nextToken)
                                 ;
@@ -175,6 +188,7 @@ namespace E2B
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     sandboxID: sandboxID,
+                    name: name,
                     limit: limit,
                     nextToken: nextToken);
 
