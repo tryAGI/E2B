@@ -10,6 +10,9 @@ namespace E2B
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
+        /// <param name="name">
+        /// Filter snapshots by name or ID, optionally tag-qualified (e.g. "my-snapshot", "my-team/my-snapshot" or "my-snapshot:v1").
+        /// </param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -19,6 +22,7 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>> GetSnapshotsAsync(
             string? sandboxID = default,
+            string? name = default,
             int? limit = default,
             string? nextToken = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -29,6 +33,9 @@ namespace E2B
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
+        /// <param name="name">
+        /// Filter snapshots by name or ID, optionally tag-qualified (e.g. "my-snapshot", "my-team/my-snapshot" or "my-snapshot:v1").
+        /// </param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -38,6 +45,7 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>>> GetSnapshotsAsResponseAsync(
             string? sandboxID = default,
+            string? name = default,
             int? limit = default,
             string? nextToken = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
