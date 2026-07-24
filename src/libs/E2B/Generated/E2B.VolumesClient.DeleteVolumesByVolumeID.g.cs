@@ -37,6 +37,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Delete team volume<br/>
         /// Delete a team volume
         /// </summary>
         /// <param name="volumeID"></param>
@@ -55,6 +56,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Delete team volume<br/>
         /// Delete a team volume
         /// </summary>
         /// <param name="volumeID"></param>

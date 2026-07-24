@@ -61,6 +61,13 @@ namespace E2B
         public required global::E2B.NodeStatus Status { get; set; }
 
         /// <summary>
+        /// Time when the node status was last changed
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("statusChangedAt")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.DateTime StatusChangedAt { get; set; }
+
+        /// <summary>
         /// Number of sandboxes running on the node
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sandboxCount")]
@@ -125,6 +132,9 @@ namespace E2B
         /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
         /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </param>
+        /// <param name="statusChangedAt">
+        /// Time when the node status was last changed
+        /// </param>
         /// <param name="sandboxCount">
         /// Number of sandboxes running on the node
         /// </param>
@@ -151,6 +161,7 @@ namespace E2B
             string clusterID,
             global::E2B.MachineInfo machineInfo,
             global::E2B.NodeStatus status,
+            global::System.DateTime statusChangedAt,
             int sandboxCount,
             global::E2B.NodeMetrics metrics,
             int createSuccesses,
@@ -164,6 +175,7 @@ namespace E2B
             this.ClusterID = clusterID ?? throw new global::System.ArgumentNullException(nameof(clusterID));
             this.MachineInfo = machineInfo ?? throw new global::System.ArgumentNullException(nameof(machineInfo));
             this.Status = status;
+            this.StatusChangedAt = statusChangedAt;
             this.SandboxCount = sandboxCount;
             this.Metrics = metrics ?? throw new global::System.ArgumentNullException(nameof(metrics));
             this.CreateSuccesses = createSuccesses;

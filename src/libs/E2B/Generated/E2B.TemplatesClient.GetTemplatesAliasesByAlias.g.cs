@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Check template alias<br/>
         /// Check if template with given alias exists
         /// </summary>
         /// <param name="alias">
@@ -64,6 +65,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Check template alias<br/>
         /// Check if template with given alias exists
         /// </summary>
         /// <param name="alias">

@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ITemplatesClient
     {
         /// <summary>
+        /// Check template alias<br/>
         /// Check if template with given alias exists
         /// </summary>
         /// <param name="alias">
@@ -18,6 +19,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Check template alias<br/>
         /// Check if template with given alias exists
         /// </summary>
         /// <param name="alias">

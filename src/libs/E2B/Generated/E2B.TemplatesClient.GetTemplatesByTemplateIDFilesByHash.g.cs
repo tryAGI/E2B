@@ -44,6 +44,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Template build file upload URL<br/>
         /// Get an upload link for a tar file containing build layer files
         /// </summary>
         /// <param name="templateID"></param>
@@ -69,6 +70,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Template build file upload URL<br/>
         /// Get an upload link for a tar file containing build layer files
         /// </summary>
         /// <param name="templateID"></param>

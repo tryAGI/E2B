@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List template tags<br/>
         /// List all tags for a template
         /// </summary>
         /// <param name="templateID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List template tags<br/>
         /// List all tags for a template
         /// </summary>
         /// <param name="templateID"></param>

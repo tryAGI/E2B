@@ -44,6 +44,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Node info<br/>
         /// Get node info
         /// </summary>
         /// <param name="nodeID"></param>
@@ -67,6 +68,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Node info<br/>
         /// Get node info
         /// </summary>
         /// <param name="nodeID"></param>

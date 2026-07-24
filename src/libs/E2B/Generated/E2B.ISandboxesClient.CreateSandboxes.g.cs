@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ISandboxesClient
     {
         /// <summary>
+        /// Create sandbox<br/>
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="request"></param>
@@ -17,6 +18,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create sandbox<br/>
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="request"></param>
@@ -29,6 +31,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create sandbox<br/>
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="templateID">
@@ -61,6 +64,9 @@ namespace E2B
         /// <param name="mcp">
         /// MCP configuration for the sandbox
         /// </param>
+        /// <param name="iam">
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </param>
         /// <param name="volumeMounts"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -77,6 +83,7 @@ namespace E2B
             object? metadata = default,
             object? envVars = default,
             global::E2B.Mcp? mcp = default,
+            global::E2B.SandboxIam? iam = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

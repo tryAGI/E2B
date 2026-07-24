@@ -37,6 +37,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Delete template<br/>
         /// Delete a template
         /// </summary>
         /// <param name="templateID"></param>
@@ -55,6 +56,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Delete template<br/>
         /// Delete a template
         /// </summary>
         /// <param name="templateID"></param>

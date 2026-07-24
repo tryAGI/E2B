@@ -54,6 +54,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Template build logs<br/>
         /// Get template build logs
         /// </summary>
         /// <param name="templateID"></param>
@@ -100,6 +101,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Template build logs<br/>
         /// Get template build logs
         /// </summary>
         /// <param name="templateID"></param>

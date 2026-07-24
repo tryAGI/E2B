@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List sandbox metrics<br/>
         /// List metrics for given sandboxes
         /// </summary>
         /// <param name="sandboxIds"></param>
@@ -62,6 +63,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List sandbox metrics<br/>
         /// List metrics for given sandboxes
         /// </summary>
         /// <param name="sandboxIds"></param>

@@ -28,12 +28,12 @@ namespace E2B
         partial void PrepareCreateSandboxesBySandboxIDSnapshotsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
-            global::E2B.CreateSandboxesSnapshotsRequest request);
+            global::E2B.SandboxSnapshotRequest request);
         partial void PrepareCreateSandboxesBySandboxIDSnapshotsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string sandboxID,
-            global::E2B.CreateSandboxesSnapshotsRequest request);
+            global::E2B.SandboxSnapshotRequest request);
         partial void ProcessCreateSandboxesBySandboxIDSnapshotsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -44,6 +44,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Create snapshot<br/>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -54,7 +55,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.SnapshotInfo> CreateSandboxesBySandboxIDSnapshotsAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesSnapshotsRequest request,
+            global::E2B.SandboxSnapshotRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -69,6 +70,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Create snapshot<br/>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -79,7 +81,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.SnapshotInfo>> CreateSandboxesBySandboxIDSnapshotsAsResponseAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesSnapshotsRequest request,
+            global::E2B.SandboxSnapshotRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -589,6 +591,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Create snapshot<br/>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -604,7 +607,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.CreateSandboxesSnapshotsRequest
+            var __request = new global::E2B.SandboxSnapshotRequest
             {
                 Name = name,
             };

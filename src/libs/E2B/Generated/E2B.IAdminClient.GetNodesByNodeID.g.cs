@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IAdminClient
     {
         /// <summary>
+        /// Node info<br/>
         /// Get node info
         /// </summary>
         /// <param name="nodeID"></param>
@@ -18,6 +19,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Node info<br/>
         /// Get node info
         /// </summary>
         /// <param name="nodeID"></param>

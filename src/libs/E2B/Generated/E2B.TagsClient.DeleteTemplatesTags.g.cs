@@ -37,6 +37,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Delete template tags<br/>
         /// Delete multiple tags from templates
         /// </summary>
         /// <param name="request"></param>
@@ -57,6 +58,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Delete template tags<br/>
         /// Delete multiple tags from templates
         /// </summary>
         /// <param name="request"></param>
@@ -557,6 +559,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Delete template tags<br/>
         /// Delete multiple tags from templates
         /// </summary>
         /// <param name="name">

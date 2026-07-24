@@ -28,17 +28,18 @@ namespace E2B
         partial void PrepareCreateSandboxesBySandboxIDRefreshesArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
-            global::E2B.CreateSandboxesRefreshesRequest request);
+            global::E2B.SandboxRefreshRequest request);
         partial void PrepareCreateSandboxesBySandboxIDRefreshesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string sandboxID,
-            global::E2B.CreateSandboxesRefreshesRequest request);
+            global::E2B.SandboxRefreshRequest request);
         partial void ProcessCreateSandboxesBySandboxIDRefreshesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Refresh sandbox<br/>
         /// Refresh the sandbox extending its time to live
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -49,7 +50,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDRefreshesAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesRefreshesRequest request,
+            global::E2B.SandboxRefreshRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -62,6 +63,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Refresh sandbox<br/>
         /// Refresh the sandbox extending its time to live
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -72,7 +74,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateSandboxesBySandboxIDRefreshesAsResponseAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesRefreshesRequest request,
+            global::E2B.SandboxRefreshRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -492,6 +494,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Refresh sandbox<br/>
         /// Refresh the sandbox extending its time to live
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -507,7 +510,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.CreateSandboxesRefreshesRequest
+            var __request = new global::E2B.SandboxRefreshRequest
             {
                 Duration = duration,
             };

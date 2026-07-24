@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IAuthClient
     {
         /// <summary>
+        /// Team metrics<br/>
         /// Get metrics for the team
         /// </summary>
         /// <param name="teamID"></param>
@@ -22,6 +23,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Team metrics<br/>
         /// Get metrics for the team
         /// </summary>
         /// <param name="teamID"></param>

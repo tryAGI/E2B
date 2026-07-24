@@ -28,17 +28,18 @@ namespace E2B
         partial void PrepareCreateSandboxesBySandboxIDTimeoutArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string sandboxID,
-            global::E2B.CreateSandboxesTimeoutRequest request);
+            global::E2B.SandboxTimeoutRequest request);
         partial void PrepareCreateSandboxesBySandboxIDTimeoutRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string sandboxID,
-            global::E2B.CreateSandboxesTimeoutRequest request);
+            global::E2B.SandboxTimeoutRequest request);
         partial void ProcessCreateSandboxesBySandboxIDTimeoutResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Set sandbox timeout<br/>
         /// Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -49,7 +50,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDTimeoutAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesTimeoutRequest request,
+            global::E2B.SandboxTimeoutRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -62,6 +63,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Set sandbox timeout<br/>
         /// Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -72,7 +74,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateSandboxesBySandboxIDTimeoutAsResponseAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesTimeoutRequest request,
+            global::E2B.SandboxTimeoutRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -529,6 +531,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Set sandbox timeout<br/>
         /// Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -544,7 +547,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.CreateSandboxesTimeoutRequest
+            var __request = new global::E2B.SandboxTimeoutRequest
             {
                 Timeout = timeout,
             };

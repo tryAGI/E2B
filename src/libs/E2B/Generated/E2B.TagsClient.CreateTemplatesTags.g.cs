@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Assign template tags<br/>
         /// Assign tag(s) to a template build
         /// </summary>
         /// <param name="request"></param>
@@ -64,6 +65,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Assign template tags<br/>
         /// Assign tag(s) to a template build
         /// </summary>
         /// <param name="request"></param>
@@ -580,6 +582,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Assign template tags<br/>
         /// Assign tag(s) to a template build
         /// </summary>
         /// <param name="target">

@@ -79,6 +79,12 @@ namespace E2B
         public global::E2B.Mcp? Mcp { get; set; }
 
         /// <summary>
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("iam")]
+        public global::E2B.SandboxIam? Iam { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
@@ -123,6 +129,9 @@ namespace E2B
         /// <param name="mcp">
         /// MCP configuration for the sandbox
         /// </param>
+        /// <param name="iam">
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -139,6 +148,7 @@ namespace E2B
             object? metadata,
             object? envVars,
             global::E2B.Mcp? mcp,
+            global::E2B.SandboxIam? iam,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
@@ -152,6 +162,7 @@ namespace E2B
             this.Metadata = metadata;
             this.EnvVars = envVars;
             this.Mcp = mcp;
+            this.Iam = iam;
             this.VolumeMounts = volumeMounts;
         }
 
