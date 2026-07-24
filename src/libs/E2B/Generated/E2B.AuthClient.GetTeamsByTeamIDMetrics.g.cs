@@ -46,6 +46,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Team metrics<br/>
         /// Get metrics for the team
         /// </summary>
         /// <param name="teamID"></param>
@@ -74,6 +75,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Team metrics<br/>
         /// Get metrics for the team
         /// </summary>
         /// <param name="teamID"></param>

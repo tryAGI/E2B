@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ISandboxesClient
     {
         /// <summary>
+        /// Refresh sandbox<br/>
         /// Refresh the sandbox extending its time to live
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -15,10 +16,11 @@ namespace E2B
         global::System.Threading.Tasks.Task CreateSandboxesBySandboxIDRefreshesAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesRefreshesRequest request,
+            global::E2B.SandboxRefreshRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Refresh sandbox<br/>
         /// Refresh the sandbox extending its time to live
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -29,10 +31,11 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateSandboxesBySandboxIDRefreshesAsResponseAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesRefreshesRequest request,
+            global::E2B.SandboxRefreshRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Refresh sandbox<br/>
         /// Refresh the sandbox extending its time to live
         /// </summary>
         /// <param name="sandboxID"></param>

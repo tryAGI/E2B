@@ -39,6 +39,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Pause sandbox<br/>
         /// Pause the sandbox
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Pause sandbox<br/>
         /// Pause the sandbox
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -566,6 +568,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Pause sandbox<br/>
         /// Pause the sandbox
         /// </summary>
         /// <param name="sandboxID"></param>

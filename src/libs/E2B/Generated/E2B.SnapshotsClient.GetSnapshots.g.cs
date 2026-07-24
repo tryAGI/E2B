@@ -48,14 +48,13 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List snapshots<br/>
         /// List all snapshots for the team
         /// </summary>
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
-        /// <param name="name">
-        /// Filter snapshots by name or ID, optionally tag-qualified (e.g. "my-snapshot", "my-team/my-snapshot" or "my-snapshot:v1").
-        /// </param>
+        /// <param name="name"></param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -83,14 +82,13 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List snapshots<br/>
         /// List all snapshots for the team
         /// </summary>
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
-        /// <param name="name">
-        /// Filter snapshots by name or ID, optionally tag-qualified (e.g. "my-snapshot", "my-team/my-snapshot" or "my-snapshot:v1").
-        /// </param>
+        /// <param name="name"></param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>

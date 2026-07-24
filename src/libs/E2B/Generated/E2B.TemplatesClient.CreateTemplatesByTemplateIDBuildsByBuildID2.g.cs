@@ -41,6 +41,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Start template build (v2)<br/>
         /// Start the build
         /// </summary>
         /// <param name="templateID"></param>
@@ -67,6 +68,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Start template build (v2)<br/>
         /// Start the build
         /// </summary>
         /// <param name="templateID"></param>
@@ -501,6 +503,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Start template build (v2)<br/>
         /// Start the build
         /// </summary>
         /// <param name="templateID"></param>

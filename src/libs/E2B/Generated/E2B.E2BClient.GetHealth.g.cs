@@ -35,6 +35,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Health check<br/>
         /// Health check
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -50,6 +51,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Health check<br/>
         /// Health check
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

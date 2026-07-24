@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ISandboxesClient
     {
         /// <summary>
+        /// List sandbox metrics<br/>
         /// List metrics for given sandboxes
         /// </summary>
         /// <param name="sandboxIds"></param>
@@ -16,6 +17,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List sandbox metrics<br/>
         /// List metrics for given sandboxes
         /// </summary>
         /// <param name="sandboxIds"></param>

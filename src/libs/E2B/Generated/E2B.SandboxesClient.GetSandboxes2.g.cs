@@ -48,6 +48,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List sandboxes (v2)<br/>
         /// List all sandboxes
         /// </summary>
         /// <param name="metadata"></param>
@@ -79,6 +80,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List sandboxes (v2)<br/>
         /// List all sandboxes
         /// </summary>
         /// <param name="metadata"></param>

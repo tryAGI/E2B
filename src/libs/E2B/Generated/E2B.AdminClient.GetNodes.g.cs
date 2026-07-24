@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List nodes<br/>
         /// List all nodes
         /// </summary>
         /// <param name="clusterID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List nodes<br/>
         /// List all nodes
         /// </summary>
         /// <param name="clusterID"></param>

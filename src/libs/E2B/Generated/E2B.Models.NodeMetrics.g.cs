@@ -51,6 +51,34 @@ namespace E2B
         public required int MemoryTotalBytes { get; set; }
 
         /// <summary>
+        /// Total number of preallocated hugepages on the node
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("hugePagesTotal")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int HugePagesTotal { get; set; }
+
+        /// <summary>
+        /// Number of hugepages in use (total - free)
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("hugePagesUsed")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int HugePagesUsed { get; set; }
+
+        /// <summary>
+        /// Number of reserved hugepages (committed but not yet faulted)
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("hugePagesReserved")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int HugePagesReserved { get; set; }
+
+        /// <summary>
+        /// Size of a single hugepage in bytes
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("hugePageSizeBytes")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int HugePageSizeBytes { get; set; }
+
+        /// <summary>
         /// Detailed metrics for each disk/mount point
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("disks")]
@@ -84,6 +112,18 @@ namespace E2B
         /// <param name="memoryTotalBytes">
         /// Total node memory in bytes
         /// </param>
+        /// <param name="hugePagesTotal">
+        /// Total number of preallocated hugepages on the node
+        /// </param>
+        /// <param name="hugePagesUsed">
+        /// Number of hugepages in use (total - free)
+        /// </param>
+        /// <param name="hugePagesReserved">
+        /// Number of reserved hugepages (committed but not yet faulted)
+        /// </param>
+        /// <param name="hugePageSizeBytes">
+        /// Size of a single hugepage in bytes
+        /// </param>
         /// <param name="disks">
         /// Detailed metrics for each disk/mount point
         /// </param>
@@ -97,6 +137,10 @@ namespace E2B
             int allocatedMemoryBytes,
             int memoryUsedBytes,
             int memoryTotalBytes,
+            int hugePagesTotal,
+            int hugePagesUsed,
+            int hugePagesReserved,
+            int hugePageSizeBytes,
             global::System.Collections.Generic.IList<global::E2B.DiskMetrics> disks)
         {
             this.AllocatedCPU = allocatedCPU;
@@ -105,6 +149,10 @@ namespace E2B
             this.AllocatedMemoryBytes = allocatedMemoryBytes;
             this.MemoryUsedBytes = memoryUsedBytes;
             this.MemoryTotalBytes = memoryTotalBytes;
+            this.HugePagesTotal = hugePagesTotal;
+            this.HugePagesUsed = hugePagesUsed;
+            this.HugePagesReserved = hugePagesReserved;
+            this.HugePageSizeBytes = hugePageSizeBytes;
             this.Disks = disks ?? throw new global::System.ArgumentNullException(nameof(disks));
         }
 

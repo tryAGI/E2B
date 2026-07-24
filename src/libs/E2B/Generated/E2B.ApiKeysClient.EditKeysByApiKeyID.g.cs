@@ -39,6 +39,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Update team API key<br/>
         /// Update a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Update team API key<br/>
         /// Update a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>
@@ -529,6 +531,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Update team API key<br/>
         /// Update a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>

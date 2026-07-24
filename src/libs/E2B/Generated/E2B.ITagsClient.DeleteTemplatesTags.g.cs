@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ITagsClient
     {
         /// <summary>
+        /// Delete template tags<br/>
         /// Delete multiple tags from templates
         /// </summary>
         /// <param name="request"></param>
@@ -17,6 +18,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Delete template tags<br/>
         /// Delete multiple tags from templates
         /// </summary>
         /// <param name="request"></param>
@@ -29,6 +31,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Delete template tags<br/>
         /// Delete multiple tags from templates
         /// </summary>
         /// <param name="name">

@@ -28,6 +28,12 @@ namespace E2B
         public global::System.Collections.Generic.IList<string>? DenyOut { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("egressProxy")]
+        public global::E2B.SandboxEgressProxyConfig? EgressProxy { get; set; }
+
+        /// <summary>
         /// Specify host mask which will be used for all sandbox requests
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskRequestHost")]
@@ -58,6 +64,7 @@ namespace E2B
         /// <param name="denyOut">
         /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
         /// </param>
+        /// <param name="egressProxy"></param>
         /// <param name="maskRequestHost">
         /// Specify host mask which will be used for all sandbox requests
         /// </param>
@@ -71,12 +78,14 @@ namespace E2B
             bool? allowPublicTraffic,
             global::System.Collections.Generic.IList<string>? allowOut,
             global::System.Collections.Generic.IList<string>? denyOut,
+            global::E2B.SandboxEgressProxyConfig? egressProxy,
             string? maskRequestHost,
             global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules)
         {
             this.AllowPublicTraffic = allowPublicTraffic;
             this.AllowOut = allowOut;
             this.DenyOut = denyOut;
+            this.EgressProxy = egressProxy;
             this.MaskRequestHost = maskRequestHost;
             this.Rules = rules;
         }

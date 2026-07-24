@@ -44,6 +44,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Connect sandbox<br/>
         /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -69,6 +70,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Connect sandbox<br/>
         /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -589,6 +591,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Connect sandbox<br/>
         /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
         /// </summary>
         /// <param name="sandboxID"></param>

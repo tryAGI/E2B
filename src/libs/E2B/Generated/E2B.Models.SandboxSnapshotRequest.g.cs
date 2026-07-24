@@ -6,7 +6,7 @@ namespace E2B
     /// <summary>
     /// 
     /// </summary>
-    public sealed partial class CreateSandboxesSnapshotsRequest
+    public sealed partial class SandboxSnapshotRequest
     {
         /// <summary>
         /// Optional name for the snapshot template. If a snapshot template with this name already exists, a new build will be assigned to the existing template instead of creating a new one.
@@ -21,7 +21,7 @@ namespace E2B
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSandboxesSnapshotsRequest" /> class.
+        /// Initializes a new instance of the <see cref="SandboxSnapshotRequest" /> class.
         /// </summary>
         /// <param name="name">
         /// Optional name for the snapshot template. If a snapshot template with this name already exists, a new build will be assigned to the existing template instead of creating a new one.
@@ -29,16 +29,16 @@ namespace E2B
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public CreateSandboxesSnapshotsRequest(
+        public SandboxSnapshotRequest(
             string? name)
         {
             this.Name = name;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSandboxesSnapshotsRequest" /> class.
+        /// Initializes a new instance of the <see cref="SandboxSnapshotRequest" /> class.
         /// </summary>
-        public CreateSandboxesSnapshotsRequest()
+        public SandboxSnapshotRequest()
         {
         }
 

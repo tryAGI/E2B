@@ -37,6 +37,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Delete access token<br/>
         /// Delete an access token
         /// </summary>
         /// <param name="accessTokenID"></param>
@@ -55,6 +56,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Delete access token<br/>
         /// Delete an access token
         /// </summary>
         /// <param name="accessTokenID"></param>

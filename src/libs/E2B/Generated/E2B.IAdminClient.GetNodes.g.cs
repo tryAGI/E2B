@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IAdminClient
     {
         /// <summary>
+        /// List nodes<br/>
         /// List all nodes
         /// </summary>
         /// <param name="clusterID"></param>
@@ -16,6 +17,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List nodes<br/>
         /// List all nodes
         /// </summary>
         /// <param name="clusterID"></param>

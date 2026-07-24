@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IVolumesClient
     {
         /// <summary>
+        /// Team volume<br/>
         /// Get team volume info
         /// </summary>
         /// <param name="volumeID"></param>
@@ -16,6 +17,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Team volume<br/>
         /// Get team volume info
         /// </summary>
         /// <param name="volumeID"></param>

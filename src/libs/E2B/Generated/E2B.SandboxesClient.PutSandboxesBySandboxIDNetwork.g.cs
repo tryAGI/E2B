@@ -39,6 +39,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Update sandbox network<br/>
         /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Update sandbox network<br/>
         /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -566,6 +568,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Update sandbox network<br/>
         /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -575,6 +578,7 @@ namespace E2B
         /// <param name="denyOut">
         /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
         /// </param>
+        /// <param name="egressProxy"></param>
         /// <param name="rules">
         /// Per-domain transform rules. Replaces all existing rules when provided.
         /// </param>
@@ -588,6 +592,7 @@ namespace E2B
             string sandboxID,
             global::System.Collections.Generic.IList<string>? allowOut = default,
             global::System.Collections.Generic.IList<string>? denyOut = default,
+            global::E2B.SandboxEgressProxyConfig? egressProxy = default,
             global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules = default,
             bool? allowInternetAccess = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -597,6 +602,7 @@ namespace E2B
             {
                 AllowOut = allowOut,
                 DenyOut = denyOut,
+                EgressProxy = egressProxy,
                 Rules = rules,
                 AllowInternetAccess = allowInternetAccess,
             };

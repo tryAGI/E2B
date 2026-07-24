@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ISandboxesClient
     {
         /// <summary>
+        /// Create snapshot<br/>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -15,10 +16,11 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.SnapshotInfo> CreateSandboxesBySandboxIDSnapshotsAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesSnapshotsRequest request,
+            global::E2B.SandboxSnapshotRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create snapshot<br/>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -29,10 +31,11 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.SnapshotInfo>> CreateSandboxesBySandboxIDSnapshotsAsResponseAsync(
             string sandboxID,
 
-            global::E2B.CreateSandboxesSnapshotsRequest request,
+            global::E2B.SandboxSnapshotRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create snapshot<br/>
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>

@@ -37,6 +37,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Delete team API key<br/>
         /// Delete a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>
@@ -55,6 +56,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Delete team API key<br/>
         /// Delete a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>

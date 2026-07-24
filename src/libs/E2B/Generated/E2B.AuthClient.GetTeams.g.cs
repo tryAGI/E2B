@@ -40,6 +40,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List teams<br/>
         /// List all teams
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -57,6 +58,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List teams<br/>
         /// List all teams
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
