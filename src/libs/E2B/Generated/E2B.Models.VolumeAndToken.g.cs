@@ -30,6 +30,15 @@ namespace E2B
         public required string Token { get; set; }
 
         /// <summary>
+        /// Domain to use as the destination for volume content requests,<br/>
+        /// replacing the default `api.&lt;E2B_DOMAIN&gt;`. Only returned when the<br/>
+        /// team is connected to a custom (BYOC) cluster; absent otherwise, in<br/>
+        /// which case the default domain is used.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("domain")]
+        public string? Domain { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -47,17 +56,25 @@ namespace E2B
         /// <param name="token">
         /// Auth token to use for interacting with volume content
         /// </param>
+        /// <param name="domain">
+        /// Domain to use as the destination for volume content requests,<br/>
+        /// replacing the default `api.&lt;E2B_DOMAIN&gt;`. Only returned when the<br/>
+        /// team is connected to a custom (BYOC) cluster; absent otherwise, in<br/>
+        /// which case the default domain is used.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public VolumeAndToken(
             string volumeID,
             string name,
-            string token)
+            string token,
+            string? domain)
         {
             this.VolumeID = volumeID ?? throw new global::System.ArgumentNullException(nameof(volumeID));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Token = token ?? throw new global::System.ArgumentNullException(nameof(token));
+            this.Domain = domain;
         }
 
         /// <summary>

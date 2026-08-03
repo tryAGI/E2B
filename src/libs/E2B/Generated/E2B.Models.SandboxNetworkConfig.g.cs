@@ -28,7 +28,7 @@ namespace E2B
         public global::System.Collections.Generic.IList<string>? DenyOut { get; set; }
 
         /// <summary>
-        /// 
+        /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("egressProxy")]
         public global::E2B.SandboxEgressProxyConfig? EgressProxy { get; set; }
@@ -64,7 +64,9 @@ namespace E2B
         /// <param name="denyOut">
         /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
         /// </param>
-        /// <param name="egressProxy"></param>
+        /// <param name="egressProxy">
+        /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
+        /// </param>
         /// <param name="maskRequestHost">
         /// Specify host mask which will be used for all sandbox requests
         /// </param>
