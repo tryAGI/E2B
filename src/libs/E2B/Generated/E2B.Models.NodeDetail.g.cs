@@ -82,13 +82,6 @@ namespace E2B
         public required global::E2B.NodeMetrics Metrics { get; set; }
 
         /// <summary>
-        /// List of cached builds id on the node
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("cachedBuilds")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<string> CachedBuilds { get; set; }
-
-        /// <summary>
         /// Number of sandbox create successes
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("createSuccesses")]
@@ -141,9 +134,6 @@ namespace E2B
         /// <param name="metrics">
         /// Node metrics
         /// </param>
-        /// <param name="cachedBuilds">
-        /// List of cached builds id on the node
-        /// </param>
         /// <param name="createSuccesses">
         /// Number of sandbox create successes
         /// </param>
@@ -164,7 +154,6 @@ namespace E2B
             global::System.DateTime statusChangedAt,
             int sandboxCount,
             global::E2B.NodeMetrics metrics,
-            global::System.Collections.Generic.IList<string> cachedBuilds,
             int createSuccesses,
             int createFails)
         {
@@ -178,7 +167,6 @@ namespace E2B
             this.StatusChangedAt = statusChangedAt;
             this.SandboxCount = sandboxCount;
             this.Metrics = metrics ?? throw new global::System.ArgumentNullException(nameof(metrics));
-            this.CachedBuilds = cachedBuilds ?? throw new global::System.ArgumentNullException(nameof(cachedBuilds));
             this.CreateSuccesses = createSuccesses;
             this.CreateFails = createFails;
         }

@@ -124,6 +124,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.MaxTeamMetric))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxKillResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, long>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminBuildCancelResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.VolumeToken))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Template))]
