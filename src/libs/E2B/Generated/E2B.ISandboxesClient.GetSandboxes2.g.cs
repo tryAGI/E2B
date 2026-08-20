@@ -10,6 +10,12 @@ namespace E2B
         /// </summary>
         /// <param name="metadata"></param>
         /// <param name="state"></param>
+        /// <param name="order">
+        /// Sort direction<br/>
+        /// Default Value: desc
+        /// </param>
+        /// <param name="startedAfter"></param>
+        /// <param name="template"></param>
         /// <param name="nextToken"></param>
         /// <param name="limit">
         /// Default Value: 100
@@ -20,6 +26,9 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetSandboxes2Async(
             string? metadata = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
+            global::E2B.OrderDirection? order = default,
+            global::System.DateTime? startedAfter = default,
+            string? template = default,
             string? nextToken = default,
             int? limit = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -30,6 +39,12 @@ namespace E2B
         /// </summary>
         /// <param name="metadata"></param>
         /// <param name="state"></param>
+        /// <param name="order">
+        /// Sort direction<br/>
+        /// Default Value: desc
+        /// </param>
+        /// <param name="startedAfter"></param>
+        /// <param name="template"></param>
         /// <param name="nextToken"></param>
         /// <param name="limit">
         /// Default Value: 100
@@ -40,6 +55,9 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>>> GetSandboxes2AsResponseAsync(
             string? metadata = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
+            global::E2B.OrderDirection? order = default,
+            global::System.DateTime? startedAfter = default,
+            string? template = default,
             string? nextToken = default,
             int? limit = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
