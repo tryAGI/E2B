@@ -7,7 +7,7 @@ namespace E2B
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IE2BClient : global::System.IDisposable
+    public partial interface ISecretsClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.
@@ -43,56 +43,6 @@ namespace E2B
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AccessTokensClient AccessTokens { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AdminClient Admin { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ApiKeysClient ApiKeys { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AuthClient Auth { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SandboxesClient Sandboxes { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SecretsClient Secrets { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SnapshotsClient Snapshots { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TagsClient Tags { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TemplatesClient Templates { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public VolumesClient Volumes { get; }
 
     }
 }

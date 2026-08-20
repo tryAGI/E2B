@@ -29,6 +29,9 @@ namespace E2B
             global::System.Net.Http.HttpClient httpClient,
             ref string? metadata,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state,
+            ref global::E2B.OrderDirection? order,
+            ref global::System.DateTime? startedAfter,
+            ref string? template,
             ref string? nextToken,
             ref int? limit);
         partial void PrepareGetSandboxes2Request(
@@ -36,6 +39,9 @@ namespace E2B
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? metadata,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state,
+            global::E2B.OrderDirection? order,
+            global::System.DateTime? startedAfter,
+            string? template,
             string? nextToken,
             int? limit);
         partial void ProcessGetSandboxes2Response(
@@ -53,6 +59,12 @@ namespace E2B
         /// </summary>
         /// <param name="metadata"></param>
         /// <param name="state"></param>
+        /// <param name="order">
+        /// Sort direction<br/>
+        /// Default Value: desc
+        /// </param>
+        /// <param name="startedAfter"></param>
+        /// <param name="template"></param>
         /// <param name="nextToken"></param>
         /// <param name="limit">
         /// Default Value: 100
@@ -63,6 +75,9 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>> GetSandboxes2Async(
             string? metadata = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
+            global::E2B.OrderDirection? order = default,
+            global::System.DateTime? startedAfter = default,
+            string? template = default,
             string? nextToken = default,
             int? limit = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -71,6 +86,9 @@ namespace E2B
             var __response = await GetSandboxes2AsResponseAsync(
                 metadata: metadata,
                 state: state,
+                order: order,
+                startedAfter: startedAfter,
+                template: template,
                 nextToken: nextToken,
                 limit: limit,
                 requestOptions: requestOptions,
@@ -85,6 +103,12 @@ namespace E2B
         /// </summary>
         /// <param name="metadata"></param>
         /// <param name="state"></param>
+        /// <param name="order">
+        /// Sort direction<br/>
+        /// Default Value: desc
+        /// </param>
+        /// <param name="startedAfter"></param>
+        /// <param name="template"></param>
         /// <param name="nextToken"></param>
         /// <param name="limit">
         /// Default Value: 100
@@ -95,6 +119,9 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.ListedSandbox>>> GetSandboxes2AsResponseAsync(
             string? metadata = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxState>? state = default,
+            global::E2B.OrderDirection? order = default,
+            global::System.DateTime? startedAfter = default,
+            string? template = default,
             string? nextToken = default,
             int? limit = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -106,6 +133,9 @@ namespace E2B
                 httpClient: HttpClient,
                 metadata: ref metadata,
                 state: state,
+                order: ref order,
+                startedAfter: ref startedAfter,
+                template: ref template,
                 nextToken: ref nextToken,
                 limit: ref limit);
 
@@ -138,6 +168,9 @@ namespace E2B
                             __pathBuilder
                                 .AddOptionalParameter("metadata", metadata)
                                 .AddOptionalParameter("state", state, selector: static x => x.ToValueString(), delimiter: ",", explode: false)
+                                .AddOptionalParameter("order", order?.ToValueString())
+                                .AddOptionalParameter("startedAfter", startedAfter?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
+                                .AddOptionalParameter("template", template)
                                 .AddOptionalParameter("nextToken", nextToken)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 ;
@@ -183,6 +216,9 @@ namespace E2B
                     httpRequestMessage: __httpRequest,
                     metadata: metadata,
                     state: state,
+                    order: order,
+                    startedAfter: startedAfter,
+                    template: template,
                     nextToken: nextToken,
                     limit: limit);
 
