@@ -44,6 +44,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Create template (v3)<br/>
         /// Create a new template
         /// </summary>
         /// <param name="request"></param>
@@ -66,6 +67,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Create template (v3)<br/>
         /// Create a new template
         /// </summary>
         /// <param name="request"></param>
@@ -582,6 +584,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Create template (v3)<br/>
         /// Create a new template
         /// </summary>
         /// <param name="name">

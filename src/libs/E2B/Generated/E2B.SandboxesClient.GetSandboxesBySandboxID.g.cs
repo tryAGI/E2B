@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Sandbox<br/>
         /// Get a sandbox by id
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Sandbox<br/>
         /// Get a sandbox by id
         /// </summary>
         /// <param name="sandboxID"></param>

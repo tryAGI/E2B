@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Team volume<br/>
         /// Get team volume info
         /// </summary>
         /// <param name="volumeID"></param>
@@ -62,6 +63,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Team volume<br/>
         /// Get team volume info
         /// </summary>
         /// <param name="volumeID"></param>

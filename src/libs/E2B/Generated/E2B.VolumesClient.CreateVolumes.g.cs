@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Create team volume<br/>
         /// Create a new team volume
         /// </summary>
         /// <param name="request"></param>
@@ -64,6 +65,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Create team volume<br/>
         /// Create a new team volume
         /// </summary>
         /// <param name="request"></param>
@@ -543,6 +545,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Create team volume<br/>
         /// Create a new team volume
         /// </summary>
         /// <param name="name">

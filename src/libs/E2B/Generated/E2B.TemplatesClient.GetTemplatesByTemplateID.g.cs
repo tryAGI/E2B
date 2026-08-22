@@ -46,6 +46,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// List template builds<br/>
         /// List all builds for a template
         /// </summary>
         /// <param name="templateID"></param>
@@ -74,6 +75,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// List template builds<br/>
         /// List all builds for a template
         /// </summary>
         /// <param name="templateID"></param>

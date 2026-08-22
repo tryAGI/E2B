@@ -37,6 +37,7 @@ namespace E2B
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
+        /// Kill sandbox<br/>
         /// Kill a sandbox
         /// </summary>
         /// <param name="sandboxID"></param>
@@ -55,6 +56,7 @@ namespace E2B
             ).ConfigureAwait(false);
         }
         /// <summary>
+        /// Kill sandbox<br/>
         /// Kill a sandbox
         /// </summary>
         /// <param name="sandboxID"></param>

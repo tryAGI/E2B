@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Create sandbox<br/>
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="request"></param>
@@ -64,6 +65,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Create sandbox<br/>
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="request"></param>
@@ -446,6 +448,80 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Service unavailable
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::E2B.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Backend timeout
+                            if ((int)__response.StatusCode == 504)
+                            {
+                                string? __content_504 = null;
+                                global::System.Exception? __exception_504 = null;
+                                global::E2B.Error? __value_504 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_504 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_504 = global::E2B.Error.FromJson(__content_504, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_504 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_504 = global::E2B.Error.FromJson(__content_504, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_504 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_504 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_504,
+                                    responseBody: __content_504,
+                                    responseObject: __value_504,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -543,6 +619,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Create sandbox<br/>
         /// Create a sandbox from the template
         /// </summary>
         /// <param name="templateID">
@@ -555,6 +632,10 @@ namespace E2B
         /// <param name="autoPause">
         /// Automatically pauses the sandbox after the timeout<br/>
         /// Default Value: false
+        /// </param>
+        /// <param name="autoPauseMemory">
+        /// Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with autoResume. Defaults to true (full memory snapshot).<br/>
+        /// Default Value: true
         /// </param>
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
@@ -571,6 +652,9 @@ namespace E2B
         /// <param name="mcp">
         /// MCP configuration for the sandbox
         /// </param>
+        /// <param name="iam">
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </param>
         /// <param name="volumeMounts"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -579,6 +663,7 @@ namespace E2B
             string templateID,
             int? timeout = default,
             bool? autoPause = default,
+            bool? autoPauseMemory = default,
             global::E2B.SandboxAutoResumeConfig? autoResume = default,
             bool? secure = default,
             bool? allowInternetAccess = default,
@@ -586,6 +671,7 @@ namespace E2B
             object? metadata = default,
             object? envVars = default,
             global::E2B.Mcp? mcp = default,
+            global::E2B.SandboxIam? iam = default,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -595,6 +681,7 @@ namespace E2B
                 TemplateID = templateID,
                 Timeout = timeout,
                 AutoPause = autoPause,
+                AutoPauseMemory = autoPauseMemory,
                 AutoResume = autoResume,
                 Secure = secure,
                 AllowInternetAccess = allowInternetAccess,
@@ -602,6 +689,7 @@ namespace E2B
                 Metadata = metadata,
                 EnvVars = envVars,
                 Mcp = mcp,
+                Iam = iam,
                 VolumeMounts = volumeMounts,
             };
 

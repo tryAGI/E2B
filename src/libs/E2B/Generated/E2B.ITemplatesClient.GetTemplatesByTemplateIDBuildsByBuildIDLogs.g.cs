@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ITemplatesClient
     {
         /// <summary>
+        /// Template build logs<br/>
         /// Get template build logs
         /// </summary>
         /// <param name="templateID"></param>
@@ -36,6 +37,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Template build logs<br/>
         /// Get template build logs
         /// </summary>
         /// <param name="templateID"></param>

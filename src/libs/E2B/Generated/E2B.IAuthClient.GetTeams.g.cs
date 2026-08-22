@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IAuthClient
     {
         /// <summary>
+        /// List teams<br/>
         /// List all teams
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -14,6 +15,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List teams<br/>
         /// List all teams
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

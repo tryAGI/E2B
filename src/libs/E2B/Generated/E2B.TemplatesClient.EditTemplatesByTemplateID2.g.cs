@@ -44,6 +44,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Update template (v2)<br/>
         /// Update template
         /// </summary>
         /// <param name="templateID"></param>
@@ -69,6 +70,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Update template (v2)<br/>
         /// Update template
         /// </summary>
         /// <param name="templateID"></param>
@@ -552,6 +554,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Update template (v2)<br/>
         /// Update template
         /// </summary>
         /// <param name="templateID"></param>

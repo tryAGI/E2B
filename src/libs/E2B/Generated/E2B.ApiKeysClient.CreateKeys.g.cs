@@ -42,6 +42,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Create team API key<br/>
         /// Create a new team API key
         /// </summary>
         /// <param name="request"></param>
@@ -64,6 +65,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Create team API key<br/>
         /// Create a new team API key
         /// </summary>
         /// <param name="request"></param>
@@ -506,6 +508,7 @@ namespace E2B
             }
         }
         /// <summary>
+        /// Create team API key<br/>
         /// Create a new team API key
         /// </summary>
         /// <param name="name">

@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ITemplatesClient
     {
         /// <summary>
+        /// Update template (v2)<br/>
         /// Update template
         /// </summary>
         /// <param name="templateID"></param>
@@ -19,6 +20,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Update template (v2)<br/>
         /// Update template
         /// </summary>
         /// <param name="templateID"></param>
@@ -33,6 +35,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Update template (v2)<br/>
         /// Update template
         /// </summary>
         /// <param name="templateID"></param>

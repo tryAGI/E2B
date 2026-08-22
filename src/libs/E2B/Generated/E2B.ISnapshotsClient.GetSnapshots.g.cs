@@ -5,11 +5,13 @@ namespace E2B
     public partial interface ISnapshotsClient
     {
         /// <summary>
+        /// List snapshots<br/>
         /// List all snapshots for the team
         /// </summary>
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
+        /// <param name="name"></param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -19,16 +21,19 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>> GetSnapshotsAsync(
             string? sandboxID = default,
+            string? name = default,
             int? limit = default,
             string? nextToken = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List snapshots<br/>
         /// List all snapshots for the team
         /// </summary>
         /// <param name="sandboxID">
         /// Filter snapshots by source sandbox ID
         /// </param>
+        /// <param name="name"></param>
         /// <param name="limit">
         /// Default Value: 100
         /// </param>
@@ -38,6 +43,7 @@ namespace E2B
         /// <exception cref="global::E2B.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>>> GetSnapshotsAsResponseAsync(
             string? sandboxID = default,
+            string? name = default,
             int? limit = default,
             string? nextToken = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,

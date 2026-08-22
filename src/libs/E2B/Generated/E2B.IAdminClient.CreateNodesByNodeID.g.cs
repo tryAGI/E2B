@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IAdminClient
     {
         /// <summary>
+        /// Change node status<br/>
         /// Change status of a node
         /// </summary>
         /// <param name="nodeID"></param>
@@ -19,6 +20,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Change node status<br/>
         /// Change status of a node
         /// </summary>
         /// <param name="nodeID"></param>
@@ -33,6 +35,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Change node status<br/>
         /// Change status of a node
         /// </summary>
         /// <param name="nodeID"></param>

@@ -72,6 +72,11 @@ namespace E2B
         /// <summary>
         /// 
         /// </summary>
+        public SecretsClient Secrets { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SnapshotsClient Snapshots { get; }
 
         /// <summary>

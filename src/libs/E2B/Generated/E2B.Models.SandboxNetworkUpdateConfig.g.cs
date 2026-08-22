@@ -21,6 +21,12 @@ namespace E2B
         public global::System.Collections.Generic.IList<string>? DenyOut { get; set; }
 
         /// <summary>
+        /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("egressProxy")]
+        public global::E2B.SandboxEgressProxyConfig? EgressProxy { get; set; }
+
+        /// <summary>
         /// Per-domain transform rules. Replaces all existing rules when provided.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rules")]
@@ -47,6 +53,9 @@ namespace E2B
         /// <param name="denyOut">
         /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
         /// </param>
+        /// <param name="egressProxy">
+        /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
+        /// </param>
         /// <param name="rules">
         /// Per-domain transform rules. Replaces all existing rules when provided.
         /// </param>
@@ -59,11 +68,13 @@ namespace E2B
         public SandboxNetworkUpdateConfig(
             global::System.Collections.Generic.IList<string>? allowOut,
             global::System.Collections.Generic.IList<string>? denyOut,
+            global::E2B.SandboxEgressProxyConfig? egressProxy,
             global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules,
             bool? allowInternetAccess)
         {
             this.AllowOut = allowOut;
             this.DenyOut = denyOut;
+            this.EgressProxy = egressProxy;
             this.Rules = rules;
             this.AllowInternetAccess = allowInternetAccess;
         }

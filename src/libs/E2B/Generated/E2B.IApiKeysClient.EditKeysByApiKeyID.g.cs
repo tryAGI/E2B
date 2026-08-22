@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IApiKeysClient
     {
         /// <summary>
+        /// Update team API key<br/>
         /// Update a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>
@@ -19,6 +20,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Update team API key<br/>
         /// Update a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>
@@ -33,6 +35,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Update team API key<br/>
         /// Update a team API key
         /// </summary>
         /// <param name="apiKeyID"></param>

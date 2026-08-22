@@ -61,6 +61,13 @@ namespace E2B
         public required global::E2B.NodeStatus Status { get; set; }
 
         /// <summary>
+        /// Time when the node status was last changed
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("statusChangedAt")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.DateTime StatusChangedAt { get; set; }
+
+        /// <summary>
         /// Number of sandboxes running on the node
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sandboxCount")]
@@ -73,13 +80,6 @@ namespace E2B
         [global::System.Text.Json.Serialization.JsonPropertyName("metrics")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::E2B.NodeMetrics Metrics { get; set; }
-
-        /// <summary>
-        /// List of cached builds id on the node
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("cachedBuilds")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<string> CachedBuilds { get; set; }
 
         /// <summary>
         /// Number of sandbox create successes
@@ -125,14 +125,14 @@ namespace E2B
         /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
         /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </param>
+        /// <param name="statusChangedAt">
+        /// Time when the node status was last changed
+        /// </param>
         /// <param name="sandboxCount">
         /// Number of sandboxes running on the node
         /// </param>
         /// <param name="metrics">
         /// Node metrics
-        /// </param>
-        /// <param name="cachedBuilds">
-        /// List of cached builds id on the node
         /// </param>
         /// <param name="createSuccesses">
         /// Number of sandbox create successes
@@ -151,9 +151,9 @@ namespace E2B
             string serviceInstanceID,
             global::E2B.MachineInfo machineInfo,
             global::E2B.NodeStatus status,
+            global::System.DateTime statusChangedAt,
             int sandboxCount,
             global::E2B.NodeMetrics metrics,
-            global::System.Collections.Generic.IList<string> cachedBuilds,
             int createSuccesses,
             int createFails)
         {
@@ -164,9 +164,9 @@ namespace E2B
             this.ServiceInstanceID = serviceInstanceID ?? throw new global::System.ArgumentNullException(nameof(serviceInstanceID));
             this.MachineInfo = machineInfo ?? throw new global::System.ArgumentNullException(nameof(machineInfo));
             this.Status = status;
+            this.StatusChangedAt = statusChangedAt;
             this.SandboxCount = sandboxCount;
             this.Metrics = metrics ?? throw new global::System.ArgumentNullException(nameof(metrics));
-            this.CachedBuilds = cachedBuilds ?? throw new global::System.ArgumentNullException(nameof(cachedBuilds));
             this.CreateSuccesses = createSuccesses;
             this.CreateFails = createFails;
         }

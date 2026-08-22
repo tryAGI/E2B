@@ -5,6 +5,7 @@ namespace E2B
     public partial interface ITemplatesClient
     {
         /// <summary>
+        /// Template build file upload URL<br/>
         /// Get an upload link for a tar file containing build layer files
         /// </summary>
         /// <param name="templateID"></param>
@@ -20,6 +21,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Template build file upload URL<br/>
         /// Get an upload link for a tar file containing build layer files
         /// </summary>
         /// <param name="templateID"></param>

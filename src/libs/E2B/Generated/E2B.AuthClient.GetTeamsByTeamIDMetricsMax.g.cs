@@ -48,6 +48,7 @@ namespace E2B
             ref string content);
 
         /// <summary>
+        /// Maximum team metrics<br/>
         /// Get the maximum metrics for the team in the given interval
         /// </summary>
         /// <param name="teamID"></param>
@@ -79,6 +80,7 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
+        /// Maximum team metrics<br/>
         /// Get the maximum metrics for the team in the given interval
         /// </summary>
         /// <param name="teamID"></param>

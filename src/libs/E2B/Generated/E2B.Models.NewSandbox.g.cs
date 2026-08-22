@@ -30,6 +30,13 @@ namespace E2B
         public bool? AutoPause { get; set; }
 
         /// <summary>
+        /// Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with autoResume. Defaults to true (full memory snapshot).<br/>
+        /// Default Value: true
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("autoPauseMemory")]
+        public bool? AutoPauseMemory { get; set; }
+
+        /// <summary>
         /// Auto-resume configuration for paused sandboxes.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("autoResume")]
@@ -72,6 +79,12 @@ namespace E2B
         public global::E2B.Mcp? Mcp { get; set; }
 
         /// <summary>
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("iam")]
+        public global::E2B.SandboxIam? Iam { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
@@ -97,6 +110,10 @@ namespace E2B
         /// Automatically pauses the sandbox after the timeout<br/>
         /// Default Value: false
         /// </param>
+        /// <param name="autoPauseMemory">
+        /// Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with autoResume. Defaults to true (full memory snapshot).<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
         /// </param>
@@ -112,6 +129,9 @@ namespace E2B
         /// <param name="mcp">
         /// MCP configuration for the sandbox
         /// </param>
+        /// <param name="iam">
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -120,6 +140,7 @@ namespace E2B
             string templateID,
             int? timeout,
             bool? autoPause,
+            bool? autoPauseMemory,
             global::E2B.SandboxAutoResumeConfig? autoResume,
             bool? secure,
             bool? allowInternetAccess,
@@ -127,11 +148,13 @@ namespace E2B
             object? metadata,
             object? envVars,
             global::E2B.Mcp? mcp,
+            global::E2B.SandboxIam? iam,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.Timeout = timeout;
             this.AutoPause = autoPause;
+            this.AutoPauseMemory = autoPauseMemory;
             this.AutoResume = autoResume;
             this.Secure = secure;
             this.AllowInternetAccess = allowInternetAccess;
@@ -139,6 +162,7 @@ namespace E2B
             this.Metadata = metadata;
             this.EnvVars = envVars;
             this.Mcp = mcp;
+            this.Iam = iam;
             this.VolumeMounts = volumeMounts;
         }
 

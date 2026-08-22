@@ -5,6 +5,7 @@ namespace E2B
     public partial interface IAccessTokensClient
     {
         /// <summary>
+        /// Delete access token<br/>
         /// Delete an access token
         /// </summary>
         /// <param name="accessTokenID"></param>
@@ -16,6 +17,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Delete access token<br/>
         /// Delete an access token
         /// </summary>
         /// <param name="accessTokenID"></param>
