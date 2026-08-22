@@ -48,6 +48,19 @@ public sealed class SandboxCommandHandle : IAsyncDisposable
         : null;
 
     /// <summary>
+    /// Reads decoded standard-output and standard-error chunks in arrival order.
+    /// </summary>
+    /// <remarks>
+    /// Output can be consumed once. After enumeration starts, the configured bounded buffer applies
+    /// backpressure when the consumer is slower than the command stream.
+    /// </remarks>
+    public IAsyncEnumerable<SandboxCommandOutputChunk> ReadOutputAsync(
+        CancellationToken cancellationToken = default)
+    {
+        return execution.Output.ReadAllAsync(cancellationToken);
+    }
+
+    /// <summary>
     /// Waits for the command to finish and returns its result.
     /// </summary>
     /// <exception cref="SandboxCommandExitException">The command exited with a non-zero exit code.</exception>

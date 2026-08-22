@@ -2,9 +2,11 @@ using System.Buffers.Binary;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Channels;
 
 namespace E2B;
 
@@ -55,10 +57,71 @@ public sealed class SandboxCommandOptions
     public Action<string>? OnStderr { get; init; }
 
     /// <summary>
+    /// Maximum number of output chunks buffered after <see cref="SandboxCommandHandle.ReadOutputAsync(CancellationToken)"/>
+    /// is first consumed. Defaults to 32. A slow consumer applies backpressure to command event processing.
+    /// </summary>
+    public int OutputBufferCapacity { get; init; } = 32;
+
+    /// <summary>
     /// Maximum command duration. Defaults to 60 seconds. Use <see cref="TimeSpan.Zero"/> to disable the timeout.
     /// </summary>
     public TimeSpan Timeout { get; init; } = TimeSpan.FromSeconds(60);
 }
+
+/// <summary>
+/// Options for reconnecting to a running command.
+/// </summary>
+public sealed class SandboxCommandConnectOptions
+{
+    /// <summary>
+    /// Receives decoded standard-output chunks while the command is running.
+    /// </summary>
+    public Action<string>? OnStdout { get; init; }
+
+    /// <summary>
+    /// Receives decoded standard-error chunks while the command is running.
+    /// </summary>
+    public Action<string>? OnStderr { get; init; }
+
+    /// <summary>
+    /// Maximum number of output chunks buffered after <see cref="SandboxCommandHandle.ReadOutputAsync(CancellationToken)"/>
+    /// is first consumed. Defaults to 32. A slow consumer applies backpressure to command event processing.
+    /// </summary>
+    public int OutputBufferCapacity { get; init; } = 32;
+
+    /// <summary>
+    /// Maximum connection duration. Defaults to 60 seconds. Use <see cref="TimeSpan.Zero"/> to disable the timeout.
+    /// </summary>
+    public TimeSpan Timeout { get; init; } = TimeSpan.FromSeconds(60);
+}
+
+/// <summary>
+/// Standard stream that produced a command output chunk.
+/// </summary>
+public enum SandboxCommandOutputSource
+{
+    /// <summary>Standard output.</summary>
+    Stdout,
+
+    /// <summary>Standard error.</summary>
+    Stderr,
+}
+
+/// <summary>
+/// A decoded command output chunk.
+/// </summary>
+public sealed record SandboxCommandOutputChunk(SandboxCommandOutputSource Source, string Data);
+
+/// <summary>
+/// Information about a running sandbox process.
+/// </summary>
+public sealed record SandboxProcessInfo(
+    int ProcessId,
+    string Command,
+    IReadOnlyList<string> Arguments,
+    IReadOnlyDictionary<string, string> EnvironmentVariables,
+    string? WorkingDirectory,
+    string? Tag);
 
 /// <summary>
 /// Result of a completed sandbox command.
@@ -184,90 +247,77 @@ public sealed class SandboxCommandsClient
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(command);
         options ??= new SandboxCommandOptions();
+        ValidateExecutionOptions(options.Timeout, options.OutputBufferCapacity, nameof(options));
 
-        if (options.Timeout < TimeSpan.Zero)
+        using var request = CreateStartRequest(command, options);
+        return await OpenHandleAsync(
+                request,
+                options.OnStdout,
+                options.OnStderr,
+                options.OutputBufferCapacity,
+                options.Timeout,
+                expectedProcessId: null,
+                cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Reconnects to a running command by process ID and resumes receiving its events.
+    /// </summary>
+    /// <exception cref="SandboxCommandException">The process was not found or the command service returned an invalid response.</exception>
+    public async Task<SandboxCommandHandle> ConnectAsync(
+        int processId,
+        SandboxCommandConnectOptions? options = null,
+        CancellationToken cancellationToken = default)
+    {
+        ValidateProcessId(processId);
+        options ??= new SandboxCommandConnectOptions();
+        ValidateExecutionOptions(options.Timeout, options.OutputBufferCapacity, nameof(options));
+
+        using var request = CreateConnectRequest(processId, options.Timeout);
+        return await OpenHandleAsync(
+                request,
+                options.OnStdout,
+                options.OnStderr,
+                options.OutputBufferCapacity,
+                options.Timeout,
+                processId,
+                cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Lists commands and other processes currently running in this sandbox.
+    /// </summary>
+    public async Task<IReadOnlyList<SandboxProcessInfo>> ListAsync(
+        CancellationToken cancellationToken = default)
+    {
+        using var request = CreateUnaryRequest("/process.Process/List", "{}"u8.ToArray());
+        using var response = await httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
         {
-            throw new ArgumentOutOfRangeException(nameof(options), "Command timeout cannot be negative.");
+            await ThrowCommandRequestFailureAsync(response, cancellationToken).ConfigureAwait(false);
         }
 
-        CancellationTokenSource? executionCancellationTokenSource =
-            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-        if (options.Timeout > TimeSpan.Zero)
+        var responseStream = await response.Content
+            .ReadAsStreamAsync(cancellationToken)
+            .ConfigureAwait(false);
+        await using var configuredResponseStream = responseStream.ConfigureAwait(false);
+        using var document = await JsonDocument.ParseAsync(responseStream, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+        if (!document.RootElement.TryGetProperty("processes", out var processes) ||
+            processes.ValueKind != JsonValueKind.Array)
         {
-            executionCancellationTokenSource.CancelAfter(options.Timeout);
+            throw new SandboxCommandException("E2B process list response did not contain a processes array.");
         }
 
-        HttpResponseMessage? response = null;
-        Stream? responseStream = null;
-        SandboxCommandExecution? execution = null;
-        try
+        var result = new List<SandboxProcessInfo>();
+        foreach (var process in processes.EnumerateArray())
         {
-            using var request = CreateStartRequest(command, options);
-            response = await httpClient.SendAsync(
-                    request,
-                    HttpCompletionOption.ResponseHeadersRead,
-                    executionCancellationTokenSource.Token)
-                .ConfigureAwait(false);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                await ThrowCommandRequestFailureAsync(response, executionCancellationTokenSource.Token).ConfigureAwait(false);
-            }
-
-            responseStream = await response.Content
-                .ReadAsStreamAsync(executionCancellationTokenSource.Token)
-                .ConfigureAwait(false);
-            var started = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
-            var stdout = new SandboxCommandOutput(options.OnStdout);
-            var stderr = new SandboxCommandOutput(options.OnStderr);
-            var completion = ReadResultAsync(
-                responseStream,
-                stdout,
-                stderr,
-                started,
-                executionCancellationTokenSource.Token);
-            execution = new SandboxCommandExecution(
-                response,
-                responseStream,
-                executionCancellationTokenSource,
-                completion,
-                stdout,
-                stderr);
-            response = null;
-            responseStream = null;
-            executionCancellationTokenSource = null;
-
-            await Task.WhenAny(started.Task, completion).ConfigureAwait(false);
-            if (!started.Task.IsCompletedSuccessfully)
-            {
-                await completion.ConfigureAwait(false);
-                throw new SandboxCommandException("E2B command response ended without a process start event.");
-            }
-
-            var processId = await started.Task.ConfigureAwait(false);
-            var handle = new SandboxCommandHandle(processId, this, execution);
-            execution = null;
-            return handle;
+            result.Add(ReadProcessInfo(process));
         }
-        catch
-        {
-            if (execution is not null)
-            {
-                await execution.DisposeAsync().ConfigureAwait(false);
-            }
-            else
-            {
-                if (responseStream is not null)
-                {
-                    await responseStream.DisposeAsync().ConfigureAwait(false);
-                }
 
-                response?.Dispose();
-                executionCancellationTokenSource?.Dispose();
-            }
-
-            throw;
-        }
+        return result;
     }
 
     /// <summary>
@@ -375,6 +425,39 @@ public sealed class SandboxCommandsClient
         return request;
     }
 
+    private HttpRequestMessage CreateConnectRequest(int processId, TimeSpan timeout)
+    {
+        var request = CreateStreamingRequest(
+            "/process.Process/Connect",
+            CreateEnvelope(CreateProcessSelectorPayload(processId)));
+        AddStreamHeaders(request, timeout);
+        return request;
+    }
+
+    private HttpRequestMessage CreateStreamingRequest(string path, byte[] payload)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Post, new Uri(baseUri, path))
+        {
+            Content = new ByteArrayContent(payload),
+            Version = HttpVersion.Version11,
+            VersionPolicy = HttpVersionPolicy.RequestVersionOrHigher,
+        };
+        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/connect+json");
+        AddSandboxHeaders(request);
+        return request;
+    }
+
+    private static void AddStreamHeaders(HttpRequestMessage request, TimeSpan timeout)
+    {
+        request.Headers.TryAddWithoutValidation("Keepalive-Ping-Interval", "50");
+        if (timeout > TimeSpan.Zero)
+        {
+            request.Headers.TryAddWithoutValidation(
+                "Connect-Timeout-Ms",
+                Math.Ceiling(timeout.TotalMilliseconds).ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+    }
+
     private HttpRequestMessage CreateUnaryRequest(string path, byte[] payload)
     {
         var request = new HttpRequestMessage(HttpMethod.Post, new Uri(baseUri, path))
@@ -409,6 +492,106 @@ public sealed class SandboxCommandsClient
         if (!response.IsSuccessStatusCode)
         {
             await ThrowCommandRequestFailureAsync(response, cancellationToken).ConfigureAwait(false);
+        }
+    }
+
+    [SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Response, stream, and cancellation ownership transfers to the returned command handle.")]
+    [SuppressMessage("Reliability", "CA2025:Do not pass IDisposable instances into unawaited tasks", Justification = "The parser task and its stream are owned and awaited by the returned command handle.")]
+    [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "Nullable resource ownership changes across awaited operations and is intentionally checked during exception cleanup.")]
+    private async Task<SandboxCommandHandle> OpenHandleAsync(
+        HttpRequestMessage request,
+        Action<string>? onStdout,
+        Action<string>? onStderr,
+        int outputBufferCapacity,
+        TimeSpan timeout,
+        int? expectedProcessId,
+        CancellationToken cancellationToken)
+    {
+        CancellationTokenSource? executionCancellationTokenSource =
+            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        if (timeout > TimeSpan.Zero)
+        {
+            executionCancellationTokenSource.CancelAfter(timeout);
+        }
+
+        HttpResponseMessage? response = null;
+        Stream? responseStream = null;
+        SandboxCommandExecution? execution = null;
+        try
+        {
+            response = await httpClient.SendAsync(
+                    request,
+                    HttpCompletionOption.ResponseHeadersRead,
+                    executionCancellationTokenSource.Token)
+                .ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                await ThrowCommandRequestFailureAsync(response, executionCancellationTokenSource.Token).ConfigureAwait(false);
+            }
+
+            responseStream = await response.Content
+                .ReadAsStreamAsync(executionCancellationTokenSource.Token)
+                .ConfigureAwait(false);
+            var started = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
+            var stdout = new SandboxCommandOutput(onStdout);
+            var stderr = new SandboxCommandOutput(onStderr);
+            var output = new SandboxCommandOutputStream(outputBufferCapacity);
+            var completion = ReadResultAsync(
+                responseStream,
+                stdout,
+                stderr,
+                output,
+                started,
+                executionCancellationTokenSource.Token);
+            execution = new SandboxCommandExecution(
+                response,
+                responseStream,
+                executionCancellationTokenSource,
+                completion,
+                stdout,
+                stderr,
+                output);
+            response = null;
+            responseStream = null;
+            executionCancellationTokenSource = null;
+
+            await Task.WhenAny(started.Task, completion).ConfigureAwait(false);
+            if (!started.Task.IsCompletedSuccessfully)
+            {
+                await completion.ConfigureAwait(false);
+                throw new SandboxCommandException("E2B command response ended without a process start event.");
+            }
+
+            var processId = await started.Task.ConfigureAwait(false);
+            if (expectedProcessId is not null && processId != expectedProcessId)
+            {
+                throw new SandboxCommandException(
+                    $"E2B connected to process {processId} instead of requested process {expectedProcessId}.");
+            }
+
+            var handle = new SandboxCommandHandle(processId, this, execution);
+            execution = null;
+            return handle;
+        }
+        catch
+        {
+            if (execution is not null)
+            {
+                await execution.DisposeAsync().ConfigureAwait(false);
+            }
+            else
+            {
+                if (responseStream is not null)
+                {
+                    await responseStream.DisposeAsync().ConfigureAwait(false);
+                }
+
+                response?.Dispose();
+                executionCancellationTokenSource?.Dispose();
+            }
+
+            throw;
         }
     }
 
@@ -517,63 +700,88 @@ public sealed class SandboxCommandsClient
         Stream stream,
         SandboxCommandOutput stdout,
         SandboxCommandOutput stderr,
+        SandboxCommandOutputStream output,
         TaskCompletionSource<int> started,
         CancellationToken cancellationToken)
     {
-        CommandEnd? commandEnd = null;
-        var endStreamReceived = false;
-        var header = new byte[5];
-
-        while (await ReadEnvelopeHeaderAsync(stream, header, cancellationToken).ConfigureAwait(false))
+        try
         {
-            var flags = header[0];
-            var length = BinaryPrimitives.ReadUInt32BigEndian(header.AsSpan(1, 4));
-            if (length > MaximumEnvelopeSize)
-            {
-                throw new SandboxCommandException($"E2B command response envelope exceeded {MaximumEnvelopeSize} bytes.");
-            }
+            CommandEnd? commandEnd = null;
+            var endStreamReceived = false;
+            var header = new byte[5];
 
-            var payload = new byte[length];
-            await stream.ReadExactlyAsync(payload, cancellationToken).ConfigureAwait(false);
-
-            if ((flags & CompressedEnvelopeFlag) != 0)
+            while (await ReadEnvelopeHeaderAsync(stream, header, cancellationToken).ConfigureAwait(false))
             {
-                throw new SandboxCommandException("Compressed E2B command response envelopes are not supported.");
-            }
-
-            if ((flags & EndStreamEnvelopeFlag) != 0)
-            {
-                if (endStreamReceived)
+                var flags = header[0];
+                var length = BinaryPrimitives.ReadUInt32BigEndian(header.AsSpan(1, 4));
+                if (length > MaximumEnvelopeSize)
                 {
-                    throw new SandboxCommandException("E2B command response contained multiple end-stream envelopes.");
+                    throw new SandboxCommandException($"E2B command response envelope exceeded {MaximumEnvelopeSize} bytes.");
                 }
 
-                endStreamReceived = true;
-                ThrowIfEndStreamError(payload);
-                continue;
+                var payload = new byte[length];
+                await stream.ReadExactlyAsync(payload, cancellationToken).ConfigureAwait(false);
+
+                if ((flags & CompressedEnvelopeFlag) != 0)
+                {
+                    throw new SandboxCommandException("Compressed E2B command response envelopes are not supported.");
+                }
+
+                if ((flags & EndStreamEnvelopeFlag) != 0)
+                {
+                    if (endStreamReceived)
+                    {
+                        throw new SandboxCommandException("E2B command response contained multiple end-stream envelopes.");
+                    }
+
+                    endStreamReceived = true;
+                    ThrowIfEndStreamError(payload);
+                    continue;
+                }
+
+                if (endStreamReceived)
+                {
+                    throw new SandboxCommandException("E2B command response contained data after the end-stream envelope.");
+                }
+
+                commandEnd = await ReadProcessEventAsync(
+                        payload,
+                        stdout,
+                        stderr,
+                        output,
+                        started,
+                        commandEnd,
+                        cancellationToken)
+                    .ConfigureAwait(false);
             }
 
-            if (endStreamReceived)
+            if (!endStreamReceived)
             {
-                throw new SandboxCommandException("E2B command response contained data after the end-stream envelope.");
+                throw new SandboxCommandException("E2B command response ended without an end-stream envelope.");
             }
 
-            ReadProcessEvent(payload, stdout, stderr, started, ref commandEnd);
-        }
+            if (commandEnd is null)
+            {
+                throw new SandboxCommandException("E2B command response ended without a process result.");
+            }
 
-        if (!endStreamReceived)
+            await PublishDecodedOutputAsync(stdout.Complete(), SandboxCommandOutputSource.Stdout, output, cancellationToken)
+                .ConfigureAwait(false);
+            await PublishDecodedOutputAsync(stderr.Complete(), SandboxCommandOutputSource.Stderr, output, cancellationToken)
+                .ConfigureAwait(false);
+            output.Complete();
+            return new SandboxCommandResult(commandEnd.ExitCode, stdout.Text, stderr.Text, commandEnd.Error);
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
-            throw new SandboxCommandException("E2B command response ended without an end-stream envelope.");
+            output.Complete();
+            throw;
         }
-
-        if (commandEnd is null)
+        catch (Exception exception)
         {
-            throw new SandboxCommandException("E2B command response ended without a process result.");
+            output.Complete(exception);
+            throw;
         }
-
-        stdout.Complete();
-        stderr.Complete();
-        return new SandboxCommandResult(commandEnd.ExitCode, stdout.Text, stderr.Text, commandEnd.Error);
     }
 
     private static async Task<bool> ReadEnvelopeHeaderAsync(
@@ -601,17 +809,19 @@ public sealed class SandboxCommandsClient
         return true;
     }
 
-    private static void ReadProcessEvent(
+    private static async ValueTask<CommandEnd?> ReadProcessEventAsync(
         ReadOnlyMemory<byte> payload,
         SandboxCommandOutput stdout,
         SandboxCommandOutput stderr,
+        SandboxCommandOutputStream output,
         TaskCompletionSource<int> started,
-        ref CommandEnd? commandEnd)
+        CommandEnd? commandEnd,
+        CancellationToken cancellationToken)
     {
         using var document = JsonDocument.Parse(payload);
         if (!document.RootElement.TryGetProperty("event", out var processEvent))
         {
-            return;
+            return commandEnd;
         }
 
         if (processEvent.TryGetProperty("start", out var startEvent) &&
@@ -624,33 +834,65 @@ public sealed class SandboxCommandsClient
         {
             if (dataEvent.TryGetProperty("stdout", out var stdoutValue))
             {
-                WriteBase64(stdoutValue, stdout, "stdout");
+                await WriteBase64Async(
+                        stdoutValue,
+                        stdout,
+                        SandboxCommandOutputSource.Stdout,
+                        output,
+                        cancellationToken)
+                    .ConfigureAwait(false);
             }
 
             if (dataEvent.TryGetProperty("stderr", out var stderrValue))
             {
-                WriteBase64(stderrValue, stderr, "stderr");
+                await WriteBase64Async(
+                        stderrValue,
+                        stderr,
+                        SandboxCommandOutputSource.Stderr,
+                        output,
+                        cancellationToken)
+                    .ConfigureAwait(false);
             }
         }
 
         if (processEvent.TryGetProperty("end", out var endEvent))
         {
-            commandEnd = new CommandEnd(
+            return new CommandEnd(
                 endEvent.GetProperty("exitCode").GetInt32(),
                 endEvent.TryGetProperty("error", out var error) ? error.GetString() : null);
         }
+
+        return commandEnd;
     }
 
-    private static void WriteBase64(JsonElement value, SandboxCommandOutput destination, string streamName)
+    private static async ValueTask WriteBase64Async(
+        JsonElement value,
+        SandboxCommandOutput destination,
+        SandboxCommandOutputSource source,
+        SandboxCommandOutputStream output,
+        CancellationToken cancellationToken)
     {
         try
         {
-            destination.Write(value.GetBytesFromBase64());
+            await PublishDecodedOutputAsync(destination.Write(value.GetBytesFromBase64()), source, output, cancellationToken)
+                .ConfigureAwait(false);
         }
         catch (FormatException exception)
         {
+            var streamName = source == SandboxCommandOutputSource.Stdout ? "stdout" : "stderr";
             throw new SandboxCommandException($"E2B command response contained invalid {streamName} data.", exception);
         }
+    }
+
+    private static ValueTask PublishDecodedOutputAsync(
+        string? data,
+        SandboxCommandOutputSource source,
+        SandboxCommandOutputStream output,
+        CancellationToken cancellationToken)
+    {
+        return string.IsNullOrEmpty(data)
+            ? ValueTask.CompletedTask
+            : output.PublishAsync(new SandboxCommandOutputChunk(source, data), cancellationToken);
     }
 
     private static void ThrowIfEndStreamError(ReadOnlyMemory<byte> payload)
@@ -718,6 +960,49 @@ public sealed class SandboxCommandsClient
         return Version.TryParse(normalized, out var parsed) && parsed < new Version(major, minor, patch);
     }
 
+    private static SandboxProcessInfo ReadProcessInfo(JsonElement process)
+    {
+        if (!process.TryGetProperty("pid", out var processId) ||
+            !process.TryGetProperty("config", out var config) ||
+            !config.TryGetProperty("cmd", out var command))
+        {
+            throw new SandboxCommandException("E2B process list response contained an invalid process entry.");
+        }
+
+        var arguments = config.TryGetProperty("args", out var args) && args.ValueKind == JsonValueKind.Array
+            ? args.EnumerateArray().Select(static value => value.GetString() ?? string.Empty).ToArray()
+            : [];
+        var environmentVariables = new Dictionary<string, string>(StringComparer.Ordinal);
+        if (config.TryGetProperty("envs", out var envs) && envs.ValueKind == JsonValueKind.Object)
+        {
+            foreach (var environmentVariable in envs.EnumerateObject())
+            {
+                environmentVariables[environmentVariable.Name] = environmentVariable.Value.GetString() ?? string.Empty;
+            }
+        }
+
+        return new SandboxProcessInfo(
+            processId.GetInt32(),
+            command.GetString() ?? string.Empty,
+            arguments,
+            environmentVariables,
+            config.TryGetProperty("cwd", out var cwd) ? cwd.GetString() : null,
+            process.TryGetProperty("tag", out var tag) ? tag.GetString() : null);
+    }
+
+    private static void ValidateExecutionOptions(TimeSpan timeout, int outputBufferCapacity, string parameterName)
+    {
+        if (timeout < TimeSpan.Zero)
+        {
+            throw new ArgumentOutOfRangeException(parameterName, "Command timeout cannot be negative.");
+        }
+
+        if (outputBufferCapacity <= 0)
+        {
+            throw new ArgumentOutOfRangeException(parameterName, "Output buffer capacity must be positive.");
+        }
+    }
+
     private static void ValidateProcessId(int processId)
     {
         if (processId <= 0)
@@ -746,25 +1031,25 @@ internal sealed class SandboxCommandOutput(Action<string>? callback)
         }
     }
 
-    public void Write(ReadOnlySpan<byte> bytes)
+    public string? Write(ReadOnlySpan<byte> bytes)
     {
         var characters = new char[Encoding.UTF8.GetMaxCharCount(bytes.Length)];
         decoder.Convert(bytes, characters, flush: false, out _, out var charactersUsed, out _);
-        Publish(characters.AsSpan(0, charactersUsed));
+        return Publish(characters.AsSpan(0, charactersUsed));
     }
 
-    public void Complete()
+    public string? Complete()
     {
         var characters = new char[Encoding.UTF8.GetMaxCharCount(0)];
         decoder.Convert([], characters, flush: true, out _, out var charactersUsed, out _);
-        Publish(characters.AsSpan(0, charactersUsed));
+        return Publish(characters.AsSpan(0, charactersUsed));
     }
 
-    private void Publish(ReadOnlySpan<char> characters)
+    private string? Publish(ReadOnlySpan<char> characters)
     {
         if (characters.IsEmpty)
         {
-            return;
+            return null;
         }
 
         var chunk = new string(characters);
@@ -774,6 +1059,115 @@ internal sealed class SandboxCommandOutput(Action<string>? callback)
         }
 
         callback?.Invoke(chunk);
+        return chunk;
+    }
+}
+
+internal sealed class SandboxCommandOutputStream
+{
+    private readonly Channel<SandboxCommandOutputChunk> channel;
+    private readonly List<SandboxCommandOutputChunk> buffered = [];
+    private readonly object syncRoot = new();
+    private bool readerClaimed;
+    private bool completed;
+    private bool abandoned;
+
+    public SandboxCommandOutputStream(int capacity)
+    {
+        channel = Channel.CreateBounded<SandboxCommandOutputChunk>(new BoundedChannelOptions(capacity)
+        {
+            SingleReader = true,
+            SingleWriter = true,
+            FullMode = BoundedChannelFullMode.Wait,
+            AllowSynchronousContinuations = false,
+        });
+    }
+
+    public async ValueTask PublishAsync(
+        SandboxCommandOutputChunk chunk,
+        CancellationToken cancellationToken)
+    {
+        lock (syncRoot)
+        {
+            if (abandoned)
+            {
+                return;
+            }
+
+            if (!readerClaimed)
+            {
+                buffered.Add(chunk);
+                return;
+            }
+        }
+
+        try
+        {
+            await channel.Writer.WriteAsync(chunk, cancellationToken).ConfigureAwait(false);
+        }
+        catch (ChannelClosedException) when (IsAbandoned())
+        {
+            // A consumer that stops enumeration relinquishes backpressure so command completion can continue.
+        }
+    }
+
+    public async IAsyncEnumerable<SandboxCommandOutputChunk> ReadAllAsync(
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        SandboxCommandOutputChunk[] replay;
+        lock (syncRoot)
+        {
+            if (readerClaimed)
+            {
+                throw new InvalidOperationException("Command output can only be consumed once.");
+            }
+
+            readerClaimed = true;
+            replay = [.. buffered];
+            buffered.Clear();
+        }
+
+        try
+        {
+            foreach (var chunk in replay)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                yield return chunk;
+            }
+
+            await foreach (var chunk in channel.Reader.ReadAllAsync(cancellationToken).ConfigureAwait(false))
+            {
+                yield return chunk;
+            }
+        }
+        finally
+        {
+            lock (syncRoot)
+            {
+                if (!completed)
+                {
+                    abandoned = true;
+                    channel.Writer.TryComplete();
+                }
+            }
+        }
+    }
+
+    public void Complete(Exception? error = null)
+    {
+        lock (syncRoot)
+        {
+            completed = true;
+            channel.Writer.TryComplete(error);
+        }
+    }
+
+    private bool IsAbandoned()
+    {
+        lock (syncRoot)
+        {
+            return abandoned;
+        }
     }
 }
 
@@ -783,13 +1177,15 @@ internal sealed class SandboxCommandExecution(
     CancellationTokenSource cancellationTokenSource,
     Task<SandboxCommandResult> completion,
     SandboxCommandOutput stdout,
-    SandboxCommandOutput stderr) : IAsyncDisposable
+    SandboxCommandOutput stderr,
+    SandboxCommandOutputStream output) : IAsyncDisposable
 {
     private int disposed;
 
     public Task<SandboxCommandResult> Completion { get; } = completion;
     public SandboxCommandOutput Stdout { get; } = stdout;
     public SandboxCommandOutput Stderr { get; } = stderr;
+    public SandboxCommandOutputStream Output { get; } = output;
 
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Disposal must not mask command or callback failures already exposed by Completion.")]
     public async ValueTask DisposeAsync()

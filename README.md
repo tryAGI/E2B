@@ -60,14 +60,29 @@ try
         new SandboxCommandOptions
         {
             Stdin = true,
-            OnStdout = Console.Write,
+            OutputBufferCapacity = 8,
         });
 
     Console.WriteLine($"Background process ID: {handle.ProcessId}");
-    await handle.SendStdinAsync("hello\n");
-    await handle.CloseStdinAsync();
+    var process = (await sandbox.Commands.ListAsync())
+        .Single(process => process.ProcessId == handle.ProcessId);
+    Console.WriteLine($"Running command: {process.Command}");
 
-    var backgroundResult = await handle.WaitAsync();
+    // Disconnect without stopping the process, then reconnect by PID.
+    await handle.DisconnectAsync();
+    await using var reconnectedHandle = await sandbox.Commands.ConnectAsync(
+        handle.ProcessId,
+        new SandboxCommandConnectOptions { OutputBufferCapacity = 8 });
+    await reconnectedHandle.SendStdinAsync("hello\n");
+    await reconnectedHandle.CloseStdinAsync();
+
+    // Consume stdout and stderr asynchronously in arrival order.
+    await foreach (var chunk in reconnectedHandle.ReadOutputAsync())
+    {
+        Console.Write(chunk.Data);
+    }
+
+    var backgroundResult = await reconnectedHandle.WaitAsync();
 }
 finally
 {

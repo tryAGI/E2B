@@ -8,10 +8,12 @@ public partial class Tests
         var apiKey =
             Environment.GetEnvironmentVariable("E2B_API_KEY") is { Length: > 0 } apiKeyValue
                 ? apiKeyValue
+                : Environment.GetEnvironmentVariable("API_KEY") is { Length: > 0 } sharedApiKeyValue
+                    ? sharedApiKeyValue
                 : throw new AssertInconclusiveException("E2B_API_KEY environment variable is not found.");
 
         var client = new E2BClient(apiKey);
-        
+
         return client;
     }
 }

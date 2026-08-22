@@ -63,6 +63,88 @@ public partial class Tests
     }
 
     [TestMethod]
+    public async Task SandboxCommands_ReadOutputAsync_AppliesBoundedBackpressure()
+    {
+        var start = MessageEnvelope("{\"event\":{\"start\":{\"pid\":51}}}");
+        var remaining = new[]
+        {
+            MessageEnvelope("{\"event\":{\"data\":{\"stdout\":\"b25l\"}}}"),
+            MessageEnvelope("{\"event\":{\"data\":{\"stderr\":\"dHdv\"}}}"),
+            MessageEnvelope("{\"event\":{\"data\":{\"stdout\":\"dGhyZWU=\"}}}"),
+            MessageEnvelope("{\"event\":{\"end\":{\"exitCode\":0,\"exited\":true,\"status\":\"exited\"}}}"),
+            EndStreamEnvelope("{}"),
+        }.SelectMany(static envelope => envelope).ToArray();
+        var stream = new GatedReadStream(start, remaining);
+        var handler = new RecordingHandler(CreateCommandResponse(stream));
+        using var httpClient = new HttpClient(handler);
+        var commands = new SandboxCommandsClient(
+            CreateSandbox(envdVersion: "0.6.4"),
+            httpClient,
+            new Uri("https://sandbox.example"));
+
+        await using var handle = await commands.StartAsync(
+            "printf output",
+            new SandboxCommandOptions { OutputBufferCapacity = 1 });
+        await using var output = handle.ReadOutputAsync().GetAsyncEnumerator();
+        var firstMove = output.MoveNextAsync().AsTask();
+
+        stream.Release();
+        (await firstMove).Should().BeTrue();
+        output.Current.Should().Be(new SandboxCommandOutputChunk(SandboxCommandOutputSource.Stdout, "one"));
+        await Task.Delay(50);
+        handle.ExitCode.Should().BeNull("the third output chunk must wait for the capacity-one consumer");
+
+        (await output.MoveNextAsync()).Should().BeTrue();
+        output.Current.Should().Be(new SandboxCommandOutputChunk(SandboxCommandOutputSource.Stderr, "two"));
+        (await output.MoveNextAsync()).Should().BeTrue();
+        output.Current.Should().Be(new SandboxCommandOutputChunk(SandboxCommandOutputSource.Stdout, "three"));
+        (await output.MoveNextAsync()).Should().BeFalse();
+
+        var result = await handle.WaitAsync();
+        result.Stdout.Should().Be("onethree");
+        result.Stderr.Should().Be("two");
+    }
+
+    [TestMethod]
+    public async Task SandboxCommands_ListAndConnectAsync_UsesEnvdProcessProtocol()
+    {
+        var handler = new RecordingHandler(
+            CreateListResponse(),
+            CreateCommandResponse(
+                MessageEnvelope("{\"event\":{\"start\":{\"pid\":91}}}"),
+                MessageEnvelope("{\"event\":{\"data\":{\"stdout\":\"cmVjb25uZWN0ZWQK\"}}}"),
+                MessageEnvelope("{\"event\":{\"end\":{\"exitCode\":0,\"exited\":true,\"status\":\"exited\"}}}"),
+                EndStreamEnvelope("{}")));
+        using var httpClient = new HttpClient(handler);
+        var commands = new SandboxCommandsClient(
+            CreateSandbox(envdVersion: "0.6.4"),
+            httpClient,
+            new Uri("https://sandbox.example"));
+
+        var processes = await commands.ListAsync();
+        var process = processes.Should().ContainSingle().Which;
+        process.ProcessId.Should().Be(91);
+        process.Command.Should().Be("/bin/bash");
+        process.Arguments.Should().Equal("-l", "-c", "sleep 30");
+        process.EnvironmentVariables.Should().Contain("NAME", "value");
+        process.WorkingDirectory.Should().Be("/workspace");
+        process.Tag.Should().Be("worker");
+
+        await using var handle = await commands.ConnectAsync(91);
+        var output = await ReadOutputAsync(handle);
+        output.Should().ContainSingle()
+            .Which.Should().Be(new SandboxCommandOutputChunk(SandboxCommandOutputSource.Stdout, "reconnected\n"));
+        (await handle.WaitAsync()).Stdout.Should().Be("reconnected\n");
+
+        handler.Requests.Select(static request => request.RequestUri.AbsolutePath).Should().Equal(
+            "/process.Process/List",
+            "/process.Process/Connect");
+        Encoding.UTF8.GetString(handler.Requests[0].RequestBody).Should().Be("{}");
+        using var connectDocument = JsonDocument.Parse(ReadEnvelopePayload(handler.Requests[1].RequestBody));
+        connectDocument.RootElement.GetProperty("process").GetProperty("pid").GetInt32().Should().Be(91);
+    }
+
+    [TestMethod]
     public async Task SandboxCommands_StartAsync_ControlsBackgroundProcess()
     {
         var handler = new RecordingHandler(
@@ -159,6 +241,27 @@ public partial class Tests
         return response;
     }
 
+    private static HttpResponseMessage CreateCommandResponse(Stream stream)
+    {
+        var response = new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new StreamContent(stream),
+        };
+        response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/connect+json");
+        return response;
+    }
+
+    private static HttpResponseMessage CreateListResponse()
+    {
+        const string Json = """
+            {"processes":[{"pid":91,"tag":"worker","config":{"cmd":"/bin/bash","args":["-l","-c","sleep 30"],"envs":{"NAME":"value"},"cwd":"/workspace"}}]}
+            """;
+        return new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new StringContent(Json, Encoding.UTF8, "application/json"),
+        };
+    }
+
     private static HttpResponseMessage CreateUnaryResponse()
     {
         return new HttpResponseMessage(HttpStatusCode.OK)
@@ -187,6 +290,18 @@ public partial class Tests
         var length = BinaryPrimitives.ReadUInt32BigEndian(envelope.AsSpan(1, 4));
         length.Should().Be((uint)(envelope.Length - 5));
         return envelope.AsMemory(5, checked((int)length));
+    }
+
+    private static async Task<IReadOnlyList<SandboxCommandOutputChunk>> ReadOutputAsync(
+        SandboxCommandHandle handle)
+    {
+        var chunks = new List<SandboxCommandOutputChunk>();
+        await foreach (var chunk in handle.ReadOutputAsync())
+        {
+            chunks.Add(chunk);
+        }
+
+        return chunks;
     }
 
     private sealed record RecordedRequest(
@@ -231,5 +346,59 @@ public partial class Tests
 
             base.Dispose(disposing);
         }
+    }
+
+    private sealed class GatedReadStream(byte[] initial, byte[] remaining) : Stream
+    {
+        private readonly TaskCompletionSource release = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        private int initialOffset;
+        private int remainingOffset;
+
+        public override bool CanRead => true;
+        public override bool CanSeek => false;
+        public override bool CanWrite => false;
+        public override long Length => initial.Length + remaining.Length;
+        public override long Position
+        {
+            get => initialOffset + remainingOffset;
+            set => throw new NotSupportedException();
+        }
+
+        public void Release() => release.TrySetResult();
+
+        public override async ValueTask<int> ReadAsync(
+            Memory<byte> buffer,
+            CancellationToken cancellationToken = default)
+        {
+            if (initialOffset < initial.Length)
+            {
+                var count = Math.Min(buffer.Length, initial.Length - initialOffset);
+                initial.AsMemory(initialOffset, count).CopyTo(buffer);
+                initialOffset += count;
+                return count;
+            }
+
+            await release.Task.WaitAsync(cancellationToken);
+            if (remainingOffset >= remaining.Length)
+            {
+                return 0;
+            }
+
+            var remainingCount = Math.Min(buffer.Length, remaining.Length - remainingOffset);
+            remaining.AsMemory(remainingOffset, remainingCount).CopyTo(buffer);
+            remainingOffset += remainingCount;
+            return remainingCount;
+        }
+
+        public override int Read(byte[] buffer, int offset, int count) =>
+            throw new NotSupportedException();
+
+        public override void Flush()
+        {
+        }
+
+        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+        public override void SetLength(long value) => throw new NotSupportedException();
+        public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException();
     }
 }
