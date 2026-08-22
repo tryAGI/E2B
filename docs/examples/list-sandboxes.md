@@ -8,5 +8,5 @@ This example assumes `using E2B;` is in scope and `apiKey` contains your E2B API
 using var client = new E2BClient(apiKey);
 
 // List all currently running sandboxes.
-var sandboxes = await client.Sandboxes.GetSandboxesAsync();
+var sandboxes = await client.Sandboxes.GetSandboxes2Async();
 ```

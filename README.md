@@ -27,7 +27,7 @@ Basic example showing how to create a client and list running sandboxes.
 using var client = new E2BClient(apiKey);
 
 // List all currently running sandboxes.
-var sandboxes = await client.Sandboxes.GetSandboxesAsync();
+var sandboxes = await client.Sandboxes.GetSandboxes2Async();
 ```
 
 ### Run a Sandbox Command

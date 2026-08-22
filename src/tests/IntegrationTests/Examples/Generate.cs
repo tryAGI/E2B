@@ -16,7 +16,7 @@ public partial class Tests
         using var client = GetAuthenticatedClient();
 
         //// List all currently running sandboxes.
-        var sandboxes = await client.Sandboxes.GetSandboxesAsync();
+        var sandboxes = await client.Sandboxes.GetSandboxes2Async();
 
         Assert.IsNotNull(sandboxes);
     }
