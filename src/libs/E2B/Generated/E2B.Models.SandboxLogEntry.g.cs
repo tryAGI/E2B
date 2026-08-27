@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class SandboxLogEntry
     {
@@ -31,7 +31,7 @@ namespace E2B
         public required global::E2B.LogLevel Level { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("fields")]
         [global::System.Text.Json.Serialization.JsonRequired]

@@ -4,16 +4,16 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GetTeamsMetricsMaxMetric
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ConcurrentSandboxes,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SandboxStartRate,
     }

@@ -4,12 +4,12 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class FromImageRegistryDiscriminator
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.FromImageRegistryDiscriminatorTypeJsonConverter))]

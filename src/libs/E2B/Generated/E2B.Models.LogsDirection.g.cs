@@ -9,11 +9,11 @@ namespace E2B
     public enum LogsDirection
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LogsDirectionBackward,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LogsDirectionForward,
     }

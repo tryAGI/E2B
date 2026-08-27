@@ -6,7 +6,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ListedSandbox
     {
@@ -73,7 +73,7 @@ namespace E2B
         public required int DiskSizeMB { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public object? Metadata { get; set; }
@@ -94,7 +94,7 @@ namespace E2B
         public required string EnvdVersion { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
         public global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? VolumeMounts { get; set; }

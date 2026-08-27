@@ -20,7 +20,7 @@ namespace E2B.JsonConverters
                     {
                         return global::E2B.OrderDirectionExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

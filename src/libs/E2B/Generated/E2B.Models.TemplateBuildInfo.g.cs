@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class TemplateBuildInfo
     {
@@ -47,7 +47,7 @@ namespace E2B
         public required global::E2B.TemplateBuildStatus Status { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reason")]
         public global::E2B.BuildStatusReason? Reason { get; set; }

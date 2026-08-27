@@ -39,58 +39,58 @@ namespace E2B
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AccessTokensClient AccessTokens { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AdminClient Admin { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ApiKeysClient ApiKeys { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AuthClient Auth { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SandboxesClient Sandboxes { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SecretsClient Secrets { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SnapshotsClient Snapshots { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TagsClient Tags { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TemplatesClient Templates { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public VolumesClient Volumes { get; }
 

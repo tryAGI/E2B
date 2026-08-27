@@ -6,7 +6,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class SandboxDetail
     {
@@ -98,7 +98,7 @@ namespace E2B
         public required int DiskSizeMB { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public object? Metadata { get; set; }
@@ -112,7 +112,7 @@ namespace E2B
         public required global::E2B.SandboxState State { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("network")]
         public global::E2B.SandboxNetworkConfig? Network { get; set; }
@@ -124,7 +124,7 @@ namespace E2B
         public global::E2B.SandboxLifecycle? Lifecycle { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
         public global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? VolumeMounts { get; set; }

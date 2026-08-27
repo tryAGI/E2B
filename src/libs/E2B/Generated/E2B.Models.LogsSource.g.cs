@@ -9,11 +9,11 @@ namespace E2B
     public enum LogsSource
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LogsSourcePersistent,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LogsSourceTemporary,
     }

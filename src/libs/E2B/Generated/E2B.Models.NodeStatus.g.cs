@@ -11,7 +11,7 @@ namespace E2B
     public enum NodeStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NodeStatusConnecting,
         /// <summary>
@@ -27,7 +27,7 @@ namespace E2B
         /// </summary>
         NodeStatusStandby,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NodeStatusUnhealthy,
     }

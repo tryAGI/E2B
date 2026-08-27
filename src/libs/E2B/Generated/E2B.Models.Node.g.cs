@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class Node
     {
@@ -44,7 +44,7 @@ namespace E2B
         public required string ClusterID { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("machineInfo")]
         [global::System.Text.Json.Serialization.JsonRequired]

@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class NewSandbox
     {
@@ -55,19 +55,19 @@ namespace E2B
         public bool? AllowInternetAccess { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("network")]
         public global::E2B.SandboxNetworkConfig? Network { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public object? Metadata { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("envVars")]
         public object? EnvVars { get; set; }
@@ -85,7 +85,7 @@ namespace E2B
         public global::E2B.SandboxIam? Iam { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
         public global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? VolumeMounts { get; set; }

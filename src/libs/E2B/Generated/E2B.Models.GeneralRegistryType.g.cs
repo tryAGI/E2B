@@ -9,7 +9,7 @@ namespace E2B
     public enum GeneralRegistryType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Registry,
     }

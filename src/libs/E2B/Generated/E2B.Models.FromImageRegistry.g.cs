@@ -5,17 +5,17 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public readonly partial struct FromImageRegistry : global::System.IEquatable<FromImageRegistry>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::E2B.FromImageRegistryDiscriminatorType? Type { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::E2B.AWSRegistry? Aws { get; init; }
@@ -24,7 +24,7 @@ namespace E2B
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Aws))]
@@ -32,7 +32,7 @@ namespace E2B
         public bool IsAws => Aws != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickAws(
 #if NET6_0_OR_GREATER
@@ -45,14 +45,14 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::E2B.AWSRegistry PickAws() => IsAws
             ? Aws!
             : throw new global::System.InvalidOperationException($"Expected union variant 'Aws' but the value was {ToString()}.");
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::E2B.GCPRegistry? Gcp { get; init; }
@@ -61,7 +61,7 @@ namespace E2B
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Gcp))]
@@ -69,7 +69,7 @@ namespace E2B
         public bool IsGcp => Gcp != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickGcp(
 #if NET6_0_OR_GREATER
@@ -82,14 +82,14 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::E2B.GCPRegistry PickGcp() => IsGcp
             ? Gcp!
             : throw new global::System.InvalidOperationException($"Expected union variant 'Gcp' but the value was {ToString()}.");
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::E2B.GeneralRegistry? Registry { get; init; }
@@ -98,7 +98,7 @@ namespace E2B
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Registry))]
@@ -106,7 +106,7 @@ namespace E2B
         public bool IsRegistry => Registry != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickRegistry(
 #if NET6_0_OR_GREATER
@@ -119,23 +119,23 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::E2B.GeneralRegistry PickRegistry() => IsRegistry
             ? Registry!
             : throw new global::System.InvalidOperationException($"Expected union variant 'Registry' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator FromImageRegistry(global::E2B.AWSRegistry value) => new FromImageRegistry((global::E2B.AWSRegistry?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::E2B.AWSRegistry?(FromImageRegistry @this) => @this.Aws;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FromImageRegistry(global::E2B.AWSRegistry? value)
         {
@@ -143,22 +143,22 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static FromImageRegistry FromAws(global::E2B.AWSRegistry? value) => new FromImageRegistry(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator FromImageRegistry(global::E2B.GCPRegistry value) => new FromImageRegistry((global::E2B.GCPRegistry?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::E2B.GCPRegistry?(FromImageRegistry @this) => @this.Gcp;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FromImageRegistry(global::E2B.GCPRegistry? value)
         {
@@ -166,22 +166,22 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static FromImageRegistry FromGcp(global::E2B.GCPRegistry? value) => new FromImageRegistry(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator FromImageRegistry(global::E2B.GeneralRegistry value) => new FromImageRegistry((global::E2B.GeneralRegistry?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::E2B.GeneralRegistry?(FromImageRegistry @this) => @this.Registry;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FromImageRegistry(global::E2B.GeneralRegistry? value)
         {
@@ -189,12 +189,12 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static FromImageRegistry FromRegistry(global::E2B.GeneralRegistry? value) => new FromImageRegistry(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FromImageRegistry(
             global::E2B.FromImageRegistryDiscriminatorType? type,
@@ -211,25 +211,25 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             Registry as object ??
             Gcp as object ??
-            Aws as object 
+            Aws as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             Aws?.ToString() ??
             Gcp?.ToString() ??
-            Registry?.ToString() 
+            Registry?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -237,7 +237,7 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::E2B.AWSRegistry, TResult>? aws = null,
@@ -267,7 +267,7 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::E2B.AWSRegistry>? aws = null,
@@ -297,7 +297,7 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::E2B.AWSRegistry>? aws = null,
@@ -325,7 +325,7 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -348,19 +348,19 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(FromImageRegistry other)
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::E2B.AWSRegistry?>.Default.Equals(Aws, other.Aws) &&
                 global::System.Collections.Generic.EqualityComparer<global::E2B.GCPRegistry?>.Default.Equals(Gcp, other.Gcp) &&
-                global::System.Collections.Generic.EqualityComparer<global::E2B.GeneralRegistry?>.Default.Equals(Registry, other.Registry) 
+                global::System.Collections.Generic.EqualityComparer<global::E2B.GeneralRegistry?>.Default.Equals(Registry, other.Registry)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(FromImageRegistry obj1, FromImageRegistry obj2)
         {
@@ -368,7 +368,7 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(FromImageRegistry obj1, FromImageRegistry obj2)
         {
@@ -376,7 +376,7 @@ namespace E2B
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

@@ -9,11 +9,11 @@ namespace E2B
     public enum SandboxState
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Paused,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Running,
     }

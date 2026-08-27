@@ -172,7 +172,7 @@ namespace E2B
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
                 global::E2B.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,

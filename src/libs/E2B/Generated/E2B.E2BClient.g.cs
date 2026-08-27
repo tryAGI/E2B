@@ -10,7 +10,7 @@ namespace E2B
     public sealed partial class E2BClient : global::E2B.IE2BClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "https://api.e2b.app/";
 
@@ -37,7 +37,7 @@ namespace E2B
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::E2B.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
@@ -47,7 +47,7 @@ namespace E2B
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AccessTokensClient AccessTokens => new AccessTokensClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -56,7 +56,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AdminClient Admin => new AdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -65,7 +65,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ApiKeysClient ApiKeys => new ApiKeysClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -74,7 +74,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AuthClient Auth => new AuthClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -83,7 +83,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SandboxesClient Sandboxes => new SandboxesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -92,7 +92,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SecretsClient Secrets => new SecretsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -101,7 +101,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SnapshotsClient Snapshots => new SnapshotsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -110,7 +110,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TagsClient Tags => new TagsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -119,7 +119,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TemplatesClient Templates => new TemplatesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -128,7 +128,7 @@ namespace E2B
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public VolumesClient Volumes => new VolumesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
