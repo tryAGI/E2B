@@ -20,7 +20,7 @@ namespace E2B.JsonConverters
                     {
                         return global::E2B.SandboxStateExtensions.ToEnum(stringValue) ?? default;
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

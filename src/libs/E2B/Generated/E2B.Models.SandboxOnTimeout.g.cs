@@ -9,11 +9,11 @@ namespace E2B
     public enum SandboxOnTimeout
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Kill,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pause,
     }

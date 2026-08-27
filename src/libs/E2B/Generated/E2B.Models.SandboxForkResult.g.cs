@@ -9,13 +9,13 @@ namespace E2B
     public sealed partial class SandboxForkResult
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sandbox")]
         public global::E2B.Sandbox? Sandbox { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("error")]
         public global::E2B.Error? Error { get; set; }

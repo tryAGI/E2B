@@ -4,20 +4,20 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum FromImageRegistryDiscriminatorType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aws,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Gcp,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Registry,
     }

@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class TemplateBuildStartV2
     {
@@ -21,7 +21,7 @@ namespace E2B
         public string? FromTemplate { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("fromImageRegistry")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.FromImageRegistryJsonConverter))]

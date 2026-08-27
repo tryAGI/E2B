@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class NodeDetail
     {
@@ -44,7 +44,7 @@ namespace E2B
         public required string ServiceInstanceID { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("machineInfo")]
         [global::System.Text.Json.Serialization.JsonRequired]

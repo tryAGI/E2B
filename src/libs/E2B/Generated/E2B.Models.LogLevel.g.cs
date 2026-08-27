@@ -9,19 +9,19 @@ namespace E2B
     public enum LogLevel
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Debug,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Error,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Info,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Warn,
     }

@@ -9,7 +9,7 @@ namespace E2B
     public enum AWSRegistryType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aws,
     }
