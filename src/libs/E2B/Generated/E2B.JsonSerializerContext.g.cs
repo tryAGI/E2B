@@ -70,6 +70,7 @@ namespace E2B
             typeof(global::E2B.JsonConverters.UnixTimestampJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.JsonSerializerContextTypes))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Team))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
