@@ -47,11 +47,6 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public AccessTokensClient AccessTokens { get; }
-
-        /// <summary>
-        ///
-        /// </summary>
         public AdminClient Admin { get; }
 
         /// <summary>

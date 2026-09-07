@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class SandboxesClient
+    public partial class AdminClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_PutSandboxesBySandboxIDNetworkSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetClustersByClusterIDRigsByRigIDInstancesSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,77 +21,79 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_PutSandboxesBySandboxIDNetworkSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetClustersByClusterIDRigsByRigIDInstancesSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_PutSandboxesBySandboxIDNetworkSecurityRequirement0,
+            {                s_GetClustersByClusterIDRigsByRigIDInstancesSecurityRequirement0,
             };
-        partial void PreparePutSandboxesBySandboxIDNetworkArguments(
+        partial void PrepareGetClustersByClusterIDRigsByRigIDInstancesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string sandboxID,
-            global::E2B.SandboxNetworkUpdateConfig request);
-        partial void PreparePutSandboxesBySandboxIDNetworkRequest(
+            ref global::System.Guid clusterID,
+            ref string rigID);
+        partial void PrepareGetClustersByClusterIDRigsByRigIDInstancesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string sandboxID,
-            global::E2B.SandboxNetworkUpdateConfig request);
-        partial void ProcessPutSandboxesBySandboxIDNetworkResponse(
+            global::System.Guid clusterID,
+            string rigID);
+        partial void ProcessGetClustersByClusterIDRigsByRigIDInstancesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
+        partial void ProcessGetClustersByClusterIDRigsByRigIDInstancesResponseContent(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
+            ref string content);
+
         /// <summary>
-        /// Update sandbox network<br/>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
+        /// List the instances attached to a rig<br/>
+        /// List the instances attached to the rig's scaling group with their creation time and transition state, sorted by instance ID.
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="request"></param>
+        /// <param name="clusterID"></param>
+        /// <param name="rigID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task PutSandboxesBySandboxIDNetworkAsync(
-            string sandboxID,
-
-            global::E2B.SandboxNetworkUpdateConfig request,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.RigInstance>> GetClustersByClusterIDRigsByRigIDInstancesAsync(
+            global::System.Guid clusterID,
+            string rigID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            await PutSandboxesBySandboxIDNetworkAsResponseAsync(
-                sandboxID: sandboxID,
-
-                request: request,
+            var __response = await GetClustersByClusterIDRigsByRigIDInstancesAsResponseAsync(
+                clusterID: clusterID,
+                rigID: rigID,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
+
+            return __response.Body;
         }
         /// <summary>
-        /// Update sandbox network<br/>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
+        /// List the instances attached to a rig<br/>
+        /// List the instances attached to the rig's scaling group with their creation time and transition state, sorted by instance ID.
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="request"></param>
+        /// <param name="clusterID"></param>
+        /// <param name="rigID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> PutSandboxesBySandboxIDNetworkAsResponseAsync(
-            string sandboxID,
-
-            global::E2B.SandboxNetworkUpdateConfig request,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.RigInstance>>> GetClustersByClusterIDRigsByRigIDInstancesAsResponseAsync(
+            global::System.Guid clusterID,
+            string rigID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PreparePutSandboxesBySandboxIDNetworkArguments(
+            PrepareGetClustersByClusterIDRigsByRigIDInstancesArguments(
                 httpClient: HttpClient,
-                sandboxID: ref sandboxID,
-                request: request);
+                clusterID: ref clusterID,
+                rigID: ref rigID);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PutSandboxesBySandboxIDNetworkSecurityRequirements,
-                operationName: "PutSandboxesBySandboxIDNetworkAsync");
+                securityRequirements: s_GetClustersByClusterIDRigsByRigIDInstancesSecurityRequirements,
+                operationName: "GetClustersByClusterIDRigsByRigIDInstancesAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -111,7 +113,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/sandboxes/{sandboxID}/network",
+                                path: $"/clusters/{clusterID}/rigs/{rigID}/instances",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -119,7 +121,7 @@ namespace E2B
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Put,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -142,12 +144,6 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::E2B.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -156,11 +152,11 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePutSandboxesBySandboxIDNetworkRequest(
+                PrepareGetClustersByClusterIDRigsByRigIDInstancesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID!,
-                    request: request);
+                    clusterID: clusterID!,
+                    rigID: rigID!);
 
                 return __httpRequest;
             }
@@ -177,10 +173,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "getClustersByClusterIDRigsByRigIDInstances",
+                                methodName: "GetClustersByClusterIDRigsByRigIDInstancesAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -211,10 +207,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "getClustersByClusterIDRigsByRigIDInstances",
+                                methodName: "GetClustersByClusterIDRigsByRigIDInstancesAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -252,10 +248,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "getClustersByClusterIDRigsByRigIDInstances",
+                                methodName: "GetClustersByClusterIDRigsByRigIDInstancesAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -292,7 +288,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPutSandboxesBySandboxIDNetworkResponse(
+                ProcessGetClustersByClusterIDRigsByRigIDInstancesResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -300,10 +296,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "getClustersByClusterIDRigsByRigIDInstances",
+                                methodName: "GetClustersByClusterIDRigsByRigIDInstancesAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -322,10 +318,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putSandboxesBySandboxIDNetwork",
-                                methodName: "PutSandboxesBySandboxIDNetworkAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/network\"",
-                                httpMethod: "PUT",
+                                operationId: "getClustersByClusterIDRigsByRigIDInstances",
+                                methodName: "GetClustersByClusterIDRigsByRigIDInstancesAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -339,6 +335,43 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::E2B.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication error
                             if ((int)__response.StatusCode == 401)
                             {
@@ -413,43 +446,6 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Conflict
-                            if ((int)__response.StatusCode == 409)
-                            {
-                                string? __content_409 = null;
-                                global::System.Exception? __exception_409 = null;
-                                global::E2B.Error? __value_409 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_409 = global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_409 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_409,
-                                    responseBody: __content_409,
-                                    responseObject: __value_409,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Server error
                             if ((int)__response.StatusCode == 500)
                             {
@@ -487,6 +483,43 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Not implemented by this deployment
+                            if ((int)__response.StatusCode == 501)
+                            {
+                                string? __content_501 = null;
+                                global::System.Exception? __exception_501 = null;
+                                global::E2B.Error? __value_501 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_501 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_501 = global::E2B.Error.FromJson(__content_501, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_501 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_501 = global::E2B.Error.FromJson(__content_501, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_501 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_501 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_501,
+                                    responseBody: __content_501,
+                                    responseObject: __value_501,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -500,15 +533,22 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
+                                ProcessGetClustersByClusterIDRigsByRigIDInstancesResponseContent(
+                                    httpClient: HttpClient,
+                                    httpResponseMessage: __response,
+                                    content: ref __content);
 
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                return new global::E2B.AutoSDKHttpResponse(
+                                    var __value = (global::System.Collections.Generic.IList<global::E2B.RigInstance>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.RigInstance>), JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.RigInstance>>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri);
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -528,10 +568,19 @@ namespace E2B
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    return new global::E2B.AutoSDKHttpResponse(
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
+
+                                    var __value = (global::System.Collections.Generic.IList<global::E2B.RigInstance>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.RigInstance>), JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.RigInstance>>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri);
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -566,54 +615,6 @@ namespace E2B
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Update sandbox network<br/>
-        /// Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.
-        /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="allowOut">
-        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries.
-        /// </param>
-        /// <param name="denyOut">
-        /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
-        /// </param>
-        /// <param name="egressProxy">
-        /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
-        /// </param>
-        /// <param name="rules">
-        /// Per-domain transform rules applied to matching outbound HTTPS requests. Replaces all existing rules when provided. Keys may be exact DNS names or a single leading wildcard (for example, "*.example.com"), and are normalized to lowercase on write. Wildcards match subdomains at any depth but not the apex domain; a bare "*" is invalid. Exact rules take precedence, followed by the longest matching wildcard suffix, and matching rule sets are not merged. Broad wildcards such as "*.com" are allowed and may expose transformed credentials to every matching destination the sandbox contacts. Rules do not grant network access; configure allowOut separately to permit the destination.
-        /// </param>
-        /// <param name="allowInternetAccess">
-        /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task PutSandboxesBySandboxIDNetworkAsync(
-            string sandboxID,
-            global::System.Collections.Generic.IList<string>? allowOut = default,
-            global::System.Collections.Generic.IList<string>? denyOut = default,
-            global::E2B.SandboxEgressProxyConfig? egressProxy = default,
-            global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules = default,
-            bool? allowInternetAccess = default,
-            global::E2B.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::E2B.SandboxNetworkUpdateConfig
-            {
-                AllowOut = allowOut,
-                DenyOut = denyOut,
-                EgressProxy = egressProxy,
-                Rules = rules,
-                AllowInternetAccess = allowInternetAccess,
-            };
-
-            await PutSandboxesBySandboxIDNetworkAsync(
-                sandboxID: sandboxID,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

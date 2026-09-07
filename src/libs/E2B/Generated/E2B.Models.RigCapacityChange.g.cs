@@ -4,16 +4,16 @@
 namespace E2B
 {
     /// <summary>
-    ///
+    /// Desired capacity to set on the rig's scaling group
     /// </summary>
-    public sealed partial class NewAccessToken
+    public sealed partial class RigCapacityChange
     {
         /// <summary>
-        /// Name of the access token
+        /// Absolute desired number of instances in the rig
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("name")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("desired")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Name { get; set; }
+        public required int Desired { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -22,24 +22,24 @@ namespace E2B
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NewAccessToken" /> class.
+        /// Initializes a new instance of the <see cref="RigCapacityChange" /> class.
         /// </summary>
-        /// <param name="name">
-        /// Name of the access token
+        /// <param name="desired">
+        /// Absolute desired number of instances in the rig
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public NewAccessToken(
-            string name)
+        public RigCapacityChange(
+            int desired)
         {
-            this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
+            this.Desired = desired;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NewAccessToken" /> class.
+        /// Initializes a new instance of the <see cref="RigCapacityChange" /> class.
         /// </summary>
-        public NewAccessToken()
+        public RigCapacityChange()
         {
         }
 

@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class AccessTokensClient
+    public partial class AdminClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_DeleteAccessTokensByAccessTokenIDSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetClustersByClusterIDRigsByRigIDErrorsSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,64 +21,91 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_DeleteAccessTokensByAccessTokenIDSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetClustersByClusterIDRigsByRigIDErrorsSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_DeleteAccessTokensByAccessTokenIDSecurityRequirement0,
+            {                s_GetClustersByClusterIDRigsByRigIDErrorsSecurityRequirement0,
             };
-        partial void PrepareDeleteAccessTokensByAccessTokenIDArguments(
+        partial void PrepareGetClustersByClusterIDRigsByRigIDErrorsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string accessTokenID);
-        partial void PrepareDeleteAccessTokensByAccessTokenIDRequest(
+            ref global::System.Guid clusterID,
+            ref string rigID,
+            ref int? limit);
+        partial void PrepareGetClustersByClusterIDRigsByRigIDErrorsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string accessTokenID);
-        partial void ProcessDeleteAccessTokensByAccessTokenIDResponse(
+            global::System.Guid clusterID,
+            string rigID,
+            int? limit);
+        partial void ProcessGetClustersByClusterIDRigsByRigIDErrorsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
+        partial void ProcessGetClustersByClusterIDRigsByRigIDErrorsResponseContent(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
+            ref string content);
+
         /// <summary>
-        /// Delete access token<br/>
-        /// Delete an access token
+        /// List recent scaling errors of a rig<br/>
+        /// List recent scaling errors on the rig's scaling group (e.g. failed instance creations due to resource exhaustion), newest first.
         /// </summary>
-        /// <param name="accessTokenID"></param>
+        /// <param name="clusterID"></param>
+        /// <param name="rigID"></param>
+        /// <param name="limit">
+        /// Default Value: 20
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task DeleteAccessTokensByAccessTokenIDAsync(
-            string accessTokenID,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.RigError>> GetClustersByClusterIDRigsByRigIDErrorsAsync(
+            global::System.Guid clusterID,
+            string rigID,
+            int? limit = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            await DeleteAccessTokensByAccessTokenIDAsResponseAsync(
-                accessTokenID: accessTokenID,
+            var __response = await GetClustersByClusterIDRigsByRigIDErrorsAsResponseAsync(
+                clusterID: clusterID,
+                rigID: rigID,
+                limit: limit,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
+
+            return __response.Body;
         }
         /// <summary>
-        /// Delete access token<br/>
-        /// Delete an access token
+        /// List recent scaling errors of a rig<br/>
+        /// List recent scaling errors on the rig's scaling group (e.g. failed instance creations due to resource exhaustion), newest first.
         /// </summary>
-        /// <param name="accessTokenID"></param>
+        /// <param name="clusterID"></param>
+        /// <param name="rigID"></param>
+        /// <param name="limit">
+        /// Default Value: 20
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> DeleteAccessTokensByAccessTokenIDAsResponseAsync(
-            string accessTokenID,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.RigError>>> GetClustersByClusterIDRigsByRigIDErrorsAsResponseAsync(
+            global::System.Guid clusterID,
+            string rigID,
+            int? limit = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareDeleteAccessTokensByAccessTokenIDArguments(
+            PrepareGetClustersByClusterIDRigsByRigIDErrorsArguments(
                 httpClient: HttpClient,
-                accessTokenID: ref accessTokenID);
+                clusterID: ref clusterID,
+                rigID: ref rigID,
+                limit: ref limit);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_DeleteAccessTokensByAccessTokenIDSecurityRequirements,
-                operationName: "DeleteAccessTokensByAccessTokenIDAsync");
+                securityRequirements: s_GetClustersByClusterIDRigsByRigIDErrorsSecurityRequirements,
+                operationName: "GetClustersByClusterIDRigsByRigIDErrorsAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -98,15 +125,18 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/access-tokens/{accessTokenID}",
+                                path: $"/clusters/{clusterID}/rigs/{rigID}/errors",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Delete,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -137,10 +167,12 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareDeleteAccessTokensByAccessTokenIDRequest(
+                PrepareGetClustersByClusterIDRigsByRigIDErrorsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    accessTokenID: accessTokenID!);
+                    clusterID: clusterID!,
+                    rigID: rigID!,
+                    limit: limit);
 
                 return __httpRequest;
             }
@@ -157,10 +189,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "deleteAccessTokensByAccessTokenID",
-                                methodName: "DeleteAccessTokensByAccessTokenIDAsync",
-                                pathTemplate: "$\"/access-tokens/{accessTokenID}\"",
-                                httpMethod: "DELETE",
+                                operationId: "getClustersByClusterIDRigsByRigIDErrors",
+                                methodName: "GetClustersByClusterIDRigsByRigIDErrorsAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/errors\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -191,10 +223,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "deleteAccessTokensByAccessTokenID",
-                                methodName: "DeleteAccessTokensByAccessTokenIDAsync",
-                                pathTemplate: "$\"/access-tokens/{accessTokenID}\"",
-                                httpMethod: "DELETE",
+                                operationId: "getClustersByClusterIDRigsByRigIDErrors",
+                                methodName: "GetClustersByClusterIDRigsByRigIDErrorsAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/errors\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -232,10 +264,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "deleteAccessTokensByAccessTokenID",
-                                methodName: "DeleteAccessTokensByAccessTokenIDAsync",
-                                pathTemplate: "$\"/access-tokens/{accessTokenID}\"",
-                                httpMethod: "DELETE",
+                                operationId: "getClustersByClusterIDRigsByRigIDErrors",
+                                methodName: "GetClustersByClusterIDRigsByRigIDErrorsAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/errors\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -272,7 +304,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessDeleteAccessTokensByAccessTokenIDResponse(
+                ProcessGetClustersByClusterIDRigsByRigIDErrorsResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -280,10 +312,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "deleteAccessTokensByAccessTokenID",
-                                methodName: "DeleteAccessTokensByAccessTokenIDAsync",
-                                pathTemplate: "$\"/access-tokens/{accessTokenID}\"",
-                                httpMethod: "DELETE",
+                                operationId: "getClustersByClusterIDRigsByRigIDErrors",
+                                methodName: "GetClustersByClusterIDRigsByRigIDErrorsAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/errors\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -302,10 +334,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "deleteAccessTokensByAccessTokenID",
-                                methodName: "DeleteAccessTokensByAccessTokenIDAsync",
-                                pathTemplate: "$\"/access-tokens/{accessTokenID}\"",
-                                httpMethod: "DELETE",
+                                operationId: "getClustersByClusterIDRigsByRigIDErrors",
+                                methodName: "GetClustersByClusterIDRigsByRigIDErrorsAsync",
+                                pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/errors\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -319,6 +351,43 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::E2B.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication error
                             if ((int)__response.StatusCode == 401)
                             {
@@ -430,6 +499,43 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Not implemented by this deployment
+                            if ((int)__response.StatusCode == 501)
+                            {
+                                string? __content_501 = null;
+                                global::System.Exception? __exception_501 = null;
+                                global::E2B.Error? __value_501 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_501 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_501 = global::E2B.Error.FromJson(__content_501, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_501 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_501 = global::E2B.Error.FromJson(__content_501, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_501 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_501 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_501,
+                                    responseBody: __content_501,
+                                    responseObject: __value_501,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -443,15 +549,22 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
+                                ProcessGetClustersByClusterIDRigsByRigIDErrorsResponseContent(
+                                    httpClient: HttpClient,
+                                    httpResponseMessage: __response,
+                                    content: ref __content);
 
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                return new global::E2B.AutoSDKHttpResponse(
+                                    var __value = (global::System.Collections.Generic.IList<global::E2B.RigError>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.RigError>), JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.RigError>>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri);
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -471,10 +584,19 @@ namespace E2B
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    return new global::E2B.AutoSDKHttpResponse(
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
+
+                                    var __value = (global::System.Collections.Generic.IList<global::E2B.RigError>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.RigError>), JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.RigError>>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri);
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
