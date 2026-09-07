@@ -42,12 +42,16 @@ namespace E2B
         /// <param name="timeout">
         /// Timeout in seconds from the current time after which the sandbox should expire
         /// </param>
+        /// <param name="memory">
+        /// Defaults to true. When false and the sandbox is paused, resume from disk state only: the sandbox cold-boots fresh and any memory in the snapshot is ignored, never modified or deleted. Disk state has crash-recovery semantics — writes not flushed before the pause may be lost. A no-op for snapshots that contain no memory. Rejected with an error in environments where this capability is not enabled, never silently downgraded to a memory restore.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesBySandboxIDConnectAsync(
             string sandboxID,
             int timeout,
+            bool? memory = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

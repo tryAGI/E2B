@@ -49,15 +49,6 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public AccessTokensClient AccessTokens => new AccessTokensClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
         public AdminClient Admin => new AdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
