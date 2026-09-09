@@ -49,6 +49,12 @@ namespace E2B
         public int? MemoryMB { get; set; }
 
         /// <summary>
+        /// Requested minimum free space after the template's build steps, in MiB. Omit to use the team's default. Set to 0 to request no minimum free-disk growth. The filesystem is never shrunk, including inherited or already-larger filesystems. Growth is best effort, so filesystem metadata can leave the available space slightly below the requested minimum.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("minFreeDiskMb")]
+        public int? MinFreeDiskMb { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -69,6 +75,9 @@ namespace E2B
         /// <param name="memoryMB">
         /// Memory for the sandbox in MiB
         /// </param>
+        /// <param name="minFreeDiskMb">
+        /// Requested minimum free space after the template's build steps, in MiB. Omit to use the team's default. Set to 0 to request no minimum free-disk growth. The filesystem is never shrunk, including inherited or already-larger filesystems. Growth is best effort, so filesystem metadata can leave the available space slightly below the requested minimum.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -76,12 +85,14 @@ namespace E2B
             string? name,
             global::System.Collections.Generic.IList<string>? tags,
             int? cpuCount,
-            int? memoryMB)
+            int? memoryMB,
+            int? minFreeDiskMb)
         {
             this.Name = name;
             this.Tags = tags;
             this.CpuCount = cpuCount;
             this.MemoryMB = memoryMB;
+            this.MinFreeDiskMb = minFreeDiskMb;
         }
 
         /// <summary>
