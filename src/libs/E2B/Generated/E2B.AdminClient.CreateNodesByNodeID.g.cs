@@ -577,7 +577,6 @@ namespace E2B
         /// </param>
         /// <param name="status">
         /// Status of the node.<br/>
-        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
         /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

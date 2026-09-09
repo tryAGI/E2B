@@ -16,7 +16,6 @@ namespace E2B
 
         /// <summary>
         /// Status of the node.<br/>
-        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
         /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
@@ -35,7 +34,6 @@ namespace E2B
         /// </summary>
         /// <param name="status">
         /// Status of the node.<br/>
-        /// - draining: the node is bound to be shut down. It will not accept new sandboxes and will stop once all existing sandboxes are done.<br/>
         /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
         /// </param>
         /// <param name="clusterID">
