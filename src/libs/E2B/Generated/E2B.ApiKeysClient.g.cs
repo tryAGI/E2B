@@ -34,7 +34,7 @@ namespace E2B
         /// <inheritdoc/>
         public global::E2B.AutoSDKClientOptions Options { get; }
 
-        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::E2B.SourceGenerationContext.Default);
+        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::E2B.ApiKeysSourceGenerationContext.Default);
 
         /// <summary>
         ///
