@@ -74,6 +74,18 @@ namespace E2B
         public required int SandboxCount { get; set; }
 
         /// <summary>
+        /// Node-scoped configured sandbox admission limit. Nonpositive values reject creation. Omitted when unknown or not an orchestrator.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxSandboxes")]
+        public long? MaxSandboxes { get; set; }
+
+        /// <summary>
+        /// Observed work holds on the node. Omitted when unknown; zero does not authorize deletion.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("outstandingWork")]
+        public int? OutstandingWork { get; set; }
+
+        /// <summary>
         /// Node metrics
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metrics")]
@@ -138,6 +150,12 @@ namespace E2B
         /// <param name="createFails">
         /// Number of sandbox create fails
         /// </param>
+        /// <param name="maxSandboxes">
+        /// Node-scoped configured sandbox admission limit. Nonpositive values reject creation. Omitted when unknown or not an orchestrator.
+        /// </param>
+        /// <param name="outstandingWork">
+        /// Observed work holds on the node. Omitted when unknown; zero does not authorize deletion.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -153,7 +171,9 @@ namespace E2B
             int sandboxCount,
             global::E2B.NodeMetrics metrics,
             int createSuccesses,
-            int createFails)
+            int createFails,
+            long? maxSandboxes,
+            int? outstandingWork)
         {
             this.ClusterID = clusterID ?? throw new global::System.ArgumentNullException(nameof(clusterID));
             this.Version = version ?? throw new global::System.ArgumentNullException(nameof(version));
@@ -164,6 +184,8 @@ namespace E2B
             this.Status = status;
             this.StatusChangedAt = statusChangedAt;
             this.SandboxCount = sandboxCount;
+            this.MaxSandboxes = maxSandboxes;
+            this.OutstandingWork = outstandingWork;
             this.Metrics = metrics ?? throw new global::System.ArgumentNullException(nameof(metrics));
             this.CreateSuccesses = createSuccesses;
             this.CreateFails = createFails;

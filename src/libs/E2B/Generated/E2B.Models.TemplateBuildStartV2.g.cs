@@ -4,7 +4,7 @@
 namespace E2B
 {
     /// <summary>
-    ///
+    /// Exactly one of fromImage or fromTemplate must be given and non-empty.
     /// </summary>
     public sealed partial class TemplateBuildStartV2
     {
