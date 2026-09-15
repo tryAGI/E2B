@@ -7,7 +7,7 @@ namespace E2B
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_CreateTemplatesByTemplateIDBuildsByBuildID2SecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_CreateTemplatesByTemplateIDBuildsByBuildIDSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,22 +21,22 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateTemplatesByTemplateIDBuildsByBuildID2SecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateTemplatesByTemplateIDBuildsByBuildIDSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_CreateTemplatesByTemplateIDBuildsByBuildID2SecurityRequirement0,
+            {                s_CreateTemplatesByTemplateIDBuildsByBuildIDSecurityRequirement0,
             };
-        partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Arguments(
+        partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildIDArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string templateID,
             ref string buildID,
             global::E2B.TemplateBuildStartV2 request);
-        partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Request(
+        partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildIDRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string templateID,
             string buildID,
             global::E2B.TemplateBuildStartV2 request);
-        partial void ProcessCreateTemplatesByTemplateIDBuildsByBuildID2Response(
+        partial void ProcessCreateTemplatesByTemplateIDBuildsByBuildIDResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
@@ -50,7 +50,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
+        public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildIDAsync(
             string templateID,
             string buildID,
 
@@ -58,7 +58,7 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            await CreateTemplatesByTemplateIDBuildsByBuildID2AsResponseAsync(
+            await CreateTemplatesByTemplateIDBuildsByBuildIDAsResponseAsync(
                 templateID: templateID,
                 buildID: buildID,
 
@@ -77,7 +77,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateTemplatesByTemplateIDBuildsByBuildID2AsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> CreateTemplatesByTemplateIDBuildsByBuildIDAsResponseAsync(
             string templateID,
             string buildID,
 
@@ -89,7 +89,7 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Arguments(
+            PrepareCreateTemplatesByTemplateIDBuildsByBuildIDArguments(
                 httpClient: HttpClient,
                 templateID: ref templateID,
                 buildID: ref buildID,
@@ -98,8 +98,8 @@ namespace E2B
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateTemplatesByTemplateIDBuildsByBuildID2SecurityRequirements,
-                operationName: "CreateTemplatesByTemplateIDBuildsByBuildID2Async");
+                securityRequirements: s_CreateTemplatesByTemplateIDBuildsByBuildIDSecurityRequirements,
+                operationName: "CreateTemplatesByTemplateIDBuildsByBuildIDAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -164,7 +164,7 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateTemplatesByTemplateIDBuildsByBuildID2Request(
+                PrepareCreateTemplatesByTemplateIDBuildsByBuildIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     templateID: templateID!,
@@ -186,8 +186,8 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createTemplatesByTemplateIDBuildsByBuildID2",
-                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildID2Async",
+                                operationId: "createTemplatesByTemplateIDBuildsByBuildID",
+                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildIDAsync",
                                 pathTemplate: "$\"/v2/templates/{templateID}/builds/{buildID}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
@@ -220,8 +220,8 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createTemplatesByTemplateIDBuildsByBuildID2",
-                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildID2Async",
+                                operationId: "createTemplatesByTemplateIDBuildsByBuildID",
+                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildIDAsync",
                                 pathTemplate: "$\"/v2/templates/{templateID}/builds/{buildID}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
@@ -261,8 +261,8 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createTemplatesByTemplateIDBuildsByBuildID2",
-                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildID2Async",
+                                operationId: "createTemplatesByTemplateIDBuildsByBuildID",
+                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildIDAsync",
                                 pathTemplate: "$\"/v2/templates/{templateID}/builds/{buildID}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
@@ -301,7 +301,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateTemplatesByTemplateIDBuildsByBuildID2Response(
+                ProcessCreateTemplatesByTemplateIDBuildsByBuildIDResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -309,8 +309,8 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createTemplatesByTemplateIDBuildsByBuildID2",
-                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildID2Async",
+                                operationId: "createTemplatesByTemplateIDBuildsByBuildID",
+                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildIDAsync",
                                 pathTemplate: "$\"/v2/templates/{templateID}/builds/{buildID}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
@@ -331,8 +331,8 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createTemplatesByTemplateIDBuildsByBuildID2",
-                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildID2Async",
+                                operationId: "createTemplatesByTemplateIDBuildsByBuildID",
+                                methodName: "CreateTemplatesByTemplateIDBuildsByBuildIDAsync",
                                 pathTemplate: "$\"/v2/templates/{templateID}/builds/{buildID}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
@@ -348,6 +348,43 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::E2B.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication error
                             if ((int)__response.StatusCode == 401)
                             {
@@ -380,6 +417,43 @@ namespace E2B
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Too many requests
+                            if ((int)__response.StatusCode == 429)
+                            {
+                                string? __content_429 = null;
+                                global::System.Exception? __exception_429 = null;
+                                global::E2B.Error? __value_429 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::E2B.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::E2B.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_429 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_429,
+                                    responseBody: __content_429,
+                                    responseObject: __value_429,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -532,7 +606,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildID2Async(
+        public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildIDAsync(
             string templateID,
             string buildID,
             string? fromImage = default,
@@ -556,7 +630,7 @@ namespace E2B
                 ReadyCmd = readyCmd,
             };
 
-            await CreateTemplatesByTemplateIDBuildsByBuildID2Async(
+            await CreateTemplatesByTemplateIDBuildsByBuildIDAsync(
                 templateID: templateID,
                 buildID: buildID,
                 request: __request,

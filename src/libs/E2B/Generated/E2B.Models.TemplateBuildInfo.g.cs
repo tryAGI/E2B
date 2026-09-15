@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace E2B
@@ -9,7 +11,7 @@ namespace E2B
     public sealed partial class TemplateBuildInfo
     {
         /// <summary>
-        /// Build logs<br/>
+        /// Build logs (always empty since the V1 build path was removed, use logEntries)<br/>
         /// Default Value: []
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("logs")]
@@ -62,7 +64,7 @@ namespace E2B
         /// Initializes a new instance of the <see cref="TemplateBuildInfo" /> class.
         /// </summary>
         /// <param name="logs">
-        /// Build logs<br/>
+        /// Build logs (always empty since the V1 build path was removed, use logEntries)<br/>
         /// Default Value: []
         /// </param>
         /// <param name="logEntries">
