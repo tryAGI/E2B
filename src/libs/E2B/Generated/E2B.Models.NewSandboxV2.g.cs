@@ -1,0 +1,166 @@
+
+#nullable enable
+
+namespace E2B
+{
+    /// <summary>
+    /// Sandbox creation request. All system communication with the sandbox is always secured; the template's envd version must support secured access.
+    /// </summary>
+    public sealed partial class NewSandboxV2
+    {
+        /// <summary>
+        /// Identifier of the required template
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("templateID")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string TemplateID { get; set; }
+
+        /// <summary>
+        /// Time to live for the sandbox in seconds.<br/>
+        /// Default Value: 300
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("timeout")]
+        public int? Timeout { get; set; }
+
+        /// <summary>
+        /// Automatically pauses the sandbox after the timeout<br/>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("autoPause")]
+        public bool? AutoPause { get; set; }
+
+        /// <summary>
+        /// Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with autoResume. Defaults to true (full memory snapshot).<br/>
+        /// Default Value: true
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("autoPauseMemory")]
+        public bool? AutoPauseMemory { get; set; }
+
+        /// <summary>
+        /// Auto-resume configuration for paused sandboxes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("autoResume")]
+        public global::E2B.SandboxAutoResumeConfig? AutoResume { get; set; }
+
+        /// <summary>
+        /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("allow_internet_access")]
+        public bool? AllowInternetAccess { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("network")]
+        public global::E2B.SandboxNetworkConfig? Network { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public object? Metadata { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("envVars")]
+        public object? EnvVars { get; set; }
+
+        /// <summary>
+        /// MCP configuration for the sandbox
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mcp")]
+        public global::E2B.Mcp? Mcp { get; set; }
+
+        /// <summary>
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("iam")]
+        public global::E2B.SandboxIam? Iam { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
+        public global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? VolumeMounts { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewSandboxV2" /> class.
+        /// </summary>
+        /// <param name="templateID">
+        /// Identifier of the required template
+        /// </param>
+        /// <param name="timeout">
+        /// Time to live for the sandbox in seconds.<br/>
+        /// Default Value: 300
+        /// </param>
+        /// <param name="autoPause">
+        /// Automatically pauses the sandbox after the timeout<br/>
+        /// Default Value: false
+        /// </param>
+        /// <param name="autoPauseMemory">
+        /// Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with autoResume. Defaults to true (full memory snapshot).<br/>
+        /// Default Value: true
+        /// </param>
+        /// <param name="autoResume">
+        /// Auto-resume configuration for paused sandboxes.
+        /// </param>
+        /// <param name="allowInternetAccess">
+        /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
+        /// </param>
+        /// <param name="network"></param>
+        /// <param name="metadata"></param>
+        /// <param name="envVars"></param>
+        /// <param name="mcp">
+        /// MCP configuration for the sandbox
+        /// </param>
+        /// <param name="iam">
+        /// Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox.
+        /// </param>
+        /// <param name="volumeMounts"></param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public NewSandboxV2(
+            string templateID,
+            int? timeout,
+            bool? autoPause,
+            bool? autoPauseMemory,
+            global::E2B.SandboxAutoResumeConfig? autoResume,
+            bool? allowInternetAccess,
+            global::E2B.SandboxNetworkConfig? network,
+            object? metadata,
+            object? envVars,
+            global::E2B.Mcp? mcp,
+            global::E2B.SandboxIam? iam,
+            global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
+        {
+            this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
+            this.Timeout = timeout;
+            this.AutoPause = autoPause;
+            this.AutoPauseMemory = autoPauseMemory;
+            this.AutoResume = autoResume;
+            this.AllowInternetAccess = allowInternetAccess;
+            this.Network = network;
+            this.Metadata = metadata;
+            this.EnvVars = envVars;
+            this.Mcp = mcp;
+            this.Iam = iam;
+            this.VolumeMounts = volumeMounts;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewSandboxV2" /> class.
+        /// </summary>
+        public NewSandboxV2()
+        {
+        }
+
+    }
+}
