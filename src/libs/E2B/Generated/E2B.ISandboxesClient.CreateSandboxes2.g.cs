@@ -5,41 +5,41 @@ namespace E2B
     public partial interface ISandboxesClient
     {
         /// <summary>
-        /// Create sandbox<br/>
-        /// Create a sandbox from the template
+        /// Create sandbox (v2)<br/>
+        /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesAsync(
+        global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxes2Async(
 
-            global::E2B.NewSandbox request,
+            global::E2B.NewSandboxV2 request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create sandbox<br/>
-        /// Create a sandbox from the template
+        /// Create sandbox (v2)<br/>
+        /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>> CreateSandboxesAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>> CreateSandboxes2AsResponseAsync(
 
-            global::E2B.NewSandbox request,
+            global::E2B.NewSandboxV2 request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create sandbox<br/>
-        /// Create a sandbox from the template
+        /// Create sandbox (v2)<br/>
+        /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
         /// <param name="templateID">
         /// Identifier of the required template
         /// </param>
         /// <param name="timeout">
         /// Time to live for the sandbox in seconds.<br/>
-        /// Default Value: 15
+        /// Default Value: 300
         /// </param>
         /// <param name="autoPause">
         /// Automatically pauses the sandbox after the timeout<br/>
@@ -51,9 +51,6 @@ namespace E2B
         /// </param>
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
-        /// </param>
-        /// <param name="secure">
-        /// Secure all system communication with sandbox
         /// </param>
         /// <param name="allowInternetAccess">
         /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
@@ -71,13 +68,12 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesAsync(
+        global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxes2Async(
             string templateID,
             int? timeout = default,
             bool? autoPause = default,
             bool? autoPauseMemory = default,
             global::E2B.SandboxAutoResumeConfig? autoResume = default,
-            bool? secure = default,
             bool? allowInternetAccess = default,
             global::E2B.SandboxNetworkConfig? network = default,
             object? metadata = default,
