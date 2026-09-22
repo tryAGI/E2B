@@ -15,7 +15,7 @@ public partial class Tests
     {
         using var client = GetAuthenticatedClient();
         var sandbox = await client.Sandboxes.CreateSandboxes2Async(
-            new NewSandbox
+            new NewSandboxV2
             {
                 TemplateID = "base",
                 Timeout = 300,
