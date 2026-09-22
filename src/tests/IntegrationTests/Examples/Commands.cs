@@ -19,7 +19,6 @@ public partial class Tests
             {
                 TemplateID = "base",
                 Timeout = 300,
-                Secure = true,
             });
 
         try
