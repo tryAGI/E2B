@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class SandboxesClient
+    public partial class WebhooksClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_CreateSandboxesBySandboxIDConnectSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_EditEventsWebhooksByWebhookIDSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,46 +21,45 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateSandboxesBySandboxIDConnectSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_EditEventsWebhooksByWebhookIDSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_CreateSandboxesBySandboxIDConnectSecurityRequirement0,
+            {                s_EditEventsWebhooksByWebhookIDSecurityRequirement0,
             };
-        partial void PrepareCreateSandboxesBySandboxIDConnectArguments(
+        partial void PrepareEditEventsWebhooksByWebhookIDArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string sandboxID,
-            global::E2B.ConnectSandbox request);
-        partial void PrepareCreateSandboxesBySandboxIDConnectRequest(
+            ref global::System.Guid webhookID,
+            global::E2B.WebhookConfiguration request);
+        partial void PrepareEditEventsWebhooksByWebhookIDRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string sandboxID,
-            global::E2B.ConnectSandbox request);
-        partial void ProcessCreateSandboxesBySandboxIDConnectResponse(
+            global::System.Guid webhookID,
+            global::E2B.WebhookConfiguration request);
+        partial void ProcessEditEventsWebhooksByWebhookIDResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateSandboxesBySandboxIDConnectResponseContent(
+        partial void ProcessEditEventsWebhooksByWebhookIDResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Connect sandbox<br/>
-        /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
+        /// Update a registered webhook configuration.
         /// </summary>
-        /// <param name="sandboxID"></param>
+        /// <param name="webhookID"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesBySandboxIDConnectAsync(
-            string sandboxID,
+        public async global::System.Threading.Tasks.Task<global::E2B.WebhookDetail> EditEventsWebhooksByWebhookIDAsync(
+            global::System.Guid webhookID,
 
-            global::E2B.ConnectSandbox request,
+            global::E2B.WebhookConfiguration request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateSandboxesBySandboxIDConnectAsResponseAsync(
-                sandboxID: sandboxID,
+            var __response = await EditEventsWebhooksByWebhookIDAsResponseAsync(
+                webhookID: webhookID,
 
                 request: request,
                 requestOptions: requestOptions,
@@ -70,18 +69,17 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
-        /// Connect sandbox<br/>
-        /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
+        /// Update a registered webhook configuration.
         /// </summary>
-        /// <param name="sandboxID"></param>
+        /// <param name="webhookID"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>> CreateSandboxesBySandboxIDConnectAsResponseAsync(
-            string sandboxID,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.WebhookDetail>> EditEventsWebhooksByWebhookIDAsResponseAsync(
+            global::System.Guid webhookID,
 
-            global::E2B.ConnectSandbox request,
+            global::E2B.WebhookConfiguration request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -89,16 +87,16 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateSandboxesBySandboxIDConnectArguments(
+            PrepareEditEventsWebhooksByWebhookIDArguments(
                 httpClient: HttpClient,
-                sandboxID: ref sandboxID,
+                webhookID: ref webhookID,
                 request: request);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateSandboxesBySandboxIDConnectSecurityRequirements,
-                operationName: "CreateSandboxesBySandboxIDConnectAsync");
+                securityRequirements: s_EditEventsWebhooksByWebhookIDSecurityRequirements,
+                operationName: "EditEventsWebhooksByWebhookIDAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +116,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/sandboxes/{sandboxID}/connect",
+                                path: $"/events/webhooks/{webhookID}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -126,7 +124,7 @@ namespace E2B
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: new global::System.Net.Http.HttpMethod("PATCH"),
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -163,10 +161,10 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateSandboxesBySandboxIDConnectRequest(
+                PrepareEditEventsWebhooksByWebhookIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sandboxID: sandboxID!,
+                    webhookID: webhookID!,
                     request: request);
 
                 return __httpRequest;
@@ -184,10 +182,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxesBySandboxIDConnect",
-                                methodName: "CreateSandboxesBySandboxIDConnectAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/connect\"",
-                                httpMethod: "POST",
+                                operationId: "editEventsWebhooksByWebhookID",
+                                methodName: "EditEventsWebhooksByWebhookIDAsync",
+                                pathTemplate: "$\"/events/webhooks/{webhookID}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -218,10 +216,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxesBySandboxIDConnect",
-                                methodName: "CreateSandboxesBySandboxIDConnectAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/connect\"",
-                                httpMethod: "POST",
+                                operationId: "editEventsWebhooksByWebhookID",
+                                methodName: "EditEventsWebhooksByWebhookIDAsync",
+                                pathTemplate: "$\"/events/webhooks/{webhookID}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -259,10 +257,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxesBySandboxIDConnect",
-                                methodName: "CreateSandboxesBySandboxIDConnectAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/connect\"",
-                                httpMethod: "POST",
+                                operationId: "editEventsWebhooksByWebhookID",
+                                methodName: "EditEventsWebhooksByWebhookIDAsync",
+                                pathTemplate: "$\"/events/webhooks/{webhookID}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -299,7 +297,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateSandboxesBySandboxIDConnectResponse(
+                ProcessEditEventsWebhooksByWebhookIDResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,10 +305,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxesBySandboxIDConnect",
-                                methodName: "CreateSandboxesBySandboxIDConnectAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/connect\"",
-                                httpMethod: "POST",
+                                operationId: "editEventsWebhooksByWebhookID",
+                                methodName: "EditEventsWebhooksByWebhookIDAsync",
+                                pathTemplate: "$\"/events/webhooks/{webhookID}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -329,10 +327,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxesBySandboxIDConnect",
-                                methodName: "CreateSandboxesBySandboxIDConnectAsync",
-                                pathTemplate: "$\"/sandboxes/{sandboxID}/connect\"",
-                                httpMethod: "POST",
+                                operationId: "editEventsWebhooksByWebhookID",
+                                methodName: "EditEventsWebhooksByWebhookIDAsync",
+                                pathTemplate: "$\"/events/webhooks/{webhookID}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -383,43 +381,6 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication error
-                            if ((int)__response.StatusCode == 401)
-                            {
-                                string? __content_401 = null;
-                                global::System.Exception? __exception_401 = null;
-                                global::E2B.Error? __value_401 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = global::E2B.Error.FromJson(__content_401, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_401 = global::E2B.Error.FromJson(__content_401, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_401 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_401,
-                                    responseBody: __content_401,
-                                    responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Not found
                             if ((int)__response.StatusCode == 404)
                             {
@@ -457,75 +418,38 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Conflict
-                            if ((int)__response.StatusCode == 409)
+                            // Authentication error
+                            if ((int)__response.StatusCode == 401)
                             {
-                                string? __content_409 = null;
-                                global::System.Exception? __exception_409 = null;
-                                global::E2B.Error? __value_409 = null;
+                                string? __content_401 = null;
+                                global::System.Exception? __exception_401 = null;
+                                global::E2B.Error? __value_401 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_401 = global::E2B.Error.FromJson(__content_401, JsonSerializerContext);
                                     }
                                     else
                                     {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_409 = global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
+                                        __value_401 = global::E2B.Error.FromJson(__content_401, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_409 = __ex;
+                                    __exception_401 = __ex;
                                 }
 
 
                                 throw global::E2B.ApiException<global::E2B.Error>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_409,
-                                    responseBody: __content_409,
-                                    responseObject: __value_409,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Too many requests
-                            if ((int)__response.StatusCode == 429)
-                            {
-                                string? __content_429 = null;
-                                global::System.Exception? __exception_429 = null;
-                                global::E2B.Error? __value_429 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::E2B.Error.FromJson(__content_429, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_429 = global::E2B.Error.FromJson(__content_429, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_429 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_429,
-                                    responseBody: __content_429,
-                                    responseObject: __value_429,
+                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_401,
+                                    responseBody: __content_401,
+                                    responseObject: __value_401,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -568,80 +492,6 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Service unavailable
-                            if ((int)__response.StatusCode == 503)
-                            {
-                                string? __content_503 = null;
-                                global::System.Exception? __exception_503 = null;
-                                global::E2B.Error? __value_503 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_503 = global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_503 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_503,
-                                    responseBody: __content_503,
-                                    responseObject: __value_503,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Backend timeout
-                            if ((int)__response.StatusCode == 504)
-                            {
-                                string? __content_504 = null;
-                                global::System.Exception? __exception_504 = null;
-                                global::E2B.Error? __value_504 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_504 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_504 = global::E2B.Error.FromJson(__content_504, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_504 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_504 = global::E2B.Error.FromJson(__content_504, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_504 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_504 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_504,
-                                    responseBody: __content_504,
-                                    responseObject: __value_504,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -655,7 +505,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateSandboxesBySandboxIDConnectResponseContent(
+                                ProcessEditEventsWebhooksByWebhookIDResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -664,9 +514,9 @@ namespace E2B
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::E2B.Sandbox.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::E2B.WebhookDetail.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.WebhookDetail>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -696,9 +546,9 @@ namespace E2B
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::E2B.Sandbox.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::E2B.WebhookDetail.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.WebhookDetail>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -739,34 +589,42 @@ namespace E2B
             }
         }
         /// <summary>
-        /// Connect sandbox<br/>
-        /// Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended.
+        /// Update a registered webhook configuration.
         /// </summary>
-        /// <param name="sandboxID"></param>
-        /// <param name="timeout">
-        /// Timeout in seconds from the current time after which the sandbox should expire
+        /// <param name="webhookID"></param>
+        /// <param name="enabled"></param>
+        /// <param name="name">
+        /// Webhook user friendly name
         /// </param>
-        /// <param name="memory">
-        /// Defaults to true. When false and the sandbox is paused, resume from disk state only: the sandbox cold-boots fresh and any memory in the snapshot is ignored, never modified or deleted. Disk state has crash-recovery semantics — writes not flushed before the pause may be lost. A no-op for snapshots that contain no memory. Rejected with an error in environments where this capability is not enabled, never silently downgraded to a memory restore.
+        /// <param name="url"></param>
+        /// <param name="events"></param>
+        /// <param name="signatureSecret">
+        /// Secret used to sign the webhook payloads
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesBySandboxIDConnectAsync(
-            string sandboxID,
-            int timeout,
-            bool? memory = default,
+        public async global::System.Threading.Tasks.Task<global::E2B.WebhookDetail> EditEventsWebhooksByWebhookIDAsync(
+            global::System.Guid webhookID,
+            bool? enabled = default,
+            string? name = default,
+            string? url = default,
+            global::System.Collections.Generic.IList<string>? events = default,
+            string? signatureSecret = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.ConnectSandbox
+            var __request = new global::E2B.WebhookConfiguration
             {
-                Timeout = timeout,
-                Memory = memory,
+                Enabled = enabled,
+                Name = name,
+                Url = url,
+                Events = events,
+                SignatureSecret = signatureSecret,
             };
 
-            return await CreateSandboxesBySandboxIDConnectAsync(
-                sandboxID: sandboxID,
+            return await EditEventsWebhooksByWebhookIDAsync(
+                webhookID: webhookID,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

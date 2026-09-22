@@ -7,7 +7,7 @@ namespace E2B
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_CreateSandboxesSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_CreateSandboxes2SecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,41 +21,41 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateSandboxesSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateSandboxes2SecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_CreateSandboxesSecurityRequirement0,
+            {                s_CreateSandboxes2SecurityRequirement0,
             };
-        partial void PrepareCreateSandboxesArguments(
+        partial void PrepareCreateSandboxes2Arguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::E2B.NewSandbox request);
-        partial void PrepareCreateSandboxesRequest(
+            global::E2B.NewSandboxV2 request);
+        partial void PrepareCreateSandboxes2Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::E2B.NewSandbox request);
-        partial void ProcessCreateSandboxesResponse(
+            global::E2B.NewSandboxV2 request);
+        partial void ProcessCreateSandboxes2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateSandboxesResponseContent(
+        partial void ProcessCreateSandboxes2ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create sandbox<br/>
-        /// Create a sandbox from the template
+        /// Create sandbox (v2)<br/>
+        /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxes2Async(
 
-            global::E2B.NewSandbox request,
+            global::E2B.NewSandboxV2 request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateSandboxesAsResponseAsync(
+            var __response = await CreateSandboxes2AsResponseAsync(
 
                 request: request,
                 requestOptions: requestOptions,
@@ -65,16 +65,16 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
-        /// Create sandbox<br/>
-        /// Create a sandbox from the template
+        /// Create sandbox (v2)<br/>
+        /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>> CreateSandboxesAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>> CreateSandboxes2AsResponseAsync(
 
-            global::E2B.NewSandbox request,
+            global::E2B.NewSandboxV2 request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -82,15 +82,15 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateSandboxesArguments(
+            PrepareCreateSandboxes2Arguments(
                 httpClient: HttpClient,
                 request: request);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateSandboxesSecurityRequirements,
-                operationName: "CreateSandboxesAsync");
+                securityRequirements: s_CreateSandboxes2SecurityRequirements,
+                operationName: "CreateSandboxes2Async");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -110,7 +110,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: "/sandboxes",
+                                path: "/v2/sandboxes",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -155,7 +155,7 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateSandboxesRequest(
+                PrepareCreateSandboxes2Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     request: request);
@@ -175,9 +175,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxes",
-                                methodName: "CreateSandboxesAsync",
-                                pathTemplate: "\"/sandboxes\"",
+                                operationId: "createSandboxes2",
+                                methodName: "CreateSandboxes2Async",
+                                pathTemplate: "\"/v2/sandboxes\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -209,9 +209,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxes",
-                                methodName: "CreateSandboxesAsync",
-                                pathTemplate: "\"/sandboxes\"",
+                                operationId: "createSandboxes2",
+                                methodName: "CreateSandboxes2Async",
+                                pathTemplate: "\"/v2/sandboxes\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -250,9 +250,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxes",
-                                methodName: "CreateSandboxesAsync",
-                                pathTemplate: "\"/sandboxes\"",
+                                operationId: "createSandboxes2",
+                                methodName: "CreateSandboxes2Async",
+                                pathTemplate: "\"/v2/sandboxes\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -290,7 +290,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateSandboxesResponse(
+                ProcessCreateSandboxes2Response(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -298,9 +298,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxes",
-                                methodName: "CreateSandboxesAsync",
-                                pathTemplate: "\"/sandboxes\"",
+                                operationId: "createSandboxes2",
+                                methodName: "CreateSandboxes2Async",
+                                pathTemplate: "\"/v2/sandboxes\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -320,9 +320,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createSandboxes",
-                                methodName: "CreateSandboxesAsync",
-                                pathTemplate: "\"/sandboxes\"",
+                                operationId: "createSandboxes2",
+                                methodName: "CreateSandboxes2Async",
+                                pathTemplate: "\"/v2/sandboxes\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -572,7 +572,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateSandboxesResponseContent(
+                                ProcessCreateSandboxes2ResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -656,15 +656,15 @@ namespace E2B
             }
         }
         /// <summary>
-        /// Create sandbox<br/>
-        /// Create a sandbox from the template
+        /// Create sandbox (v2)<br/>
+        /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
         /// <param name="templateID">
         /// Identifier of the required template
         /// </param>
         /// <param name="timeout">
         /// Time to live for the sandbox in seconds.<br/>
-        /// Default Value: 15
+        /// Default Value: 300
         /// </param>
         /// <param name="autoPause">
         /// Automatically pauses the sandbox after the timeout<br/>
@@ -676,9 +676,6 @@ namespace E2B
         /// </param>
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
-        /// </param>
-        /// <param name="secure">
-        /// Secure all system communication with sandbox
         /// </param>
         /// <param name="allowInternetAccess">
         /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
@@ -696,13 +693,12 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxesAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxes2Async(
             string templateID,
             int? timeout = default,
             bool? autoPause = default,
             bool? autoPauseMemory = default,
             global::E2B.SandboxAutoResumeConfig? autoResume = default,
-            bool? secure = default,
             bool? allowInternetAccess = default,
             global::E2B.SandboxNetworkConfig? network = default,
             object? metadata = default,
@@ -713,14 +709,13 @@ namespace E2B
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::E2B.NewSandbox
+            var __request = new global::E2B.NewSandboxV2
             {
                 TemplateID = templateID,
                 Timeout = timeout,
                 AutoPause = autoPause,
                 AutoPauseMemory = autoPauseMemory,
                 AutoResume = autoResume,
-                Secure = secure,
                 AllowInternetAccess = allowInternetAccess,
                 Network = network,
                 Metadata = metadata,
@@ -730,7 +725,7 @@ namespace E2B
                 VolumeMounts = volumeMounts,
             };
 
-            return await CreateSandboxesAsync(
+            return await CreateSandboxes2Async(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

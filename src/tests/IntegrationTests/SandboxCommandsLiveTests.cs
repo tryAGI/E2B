@@ -7,12 +7,11 @@ public partial class Tests
     public async Task SandboxCommands_LiveBackgroundStreamAndReconnectLifecycle()
     {
         using var client = GetAuthenticatedClient();
-        var sandbox = await client.Sandboxes.CreateSandboxesAsync(
-            new NewSandbox
+        var sandbox = await client.Sandboxes.CreateSandboxes2Async(
+            new NewSandboxV2
             {
                 TemplateID = "base",
                 Timeout = 300,
-                Secure = true,
             });
 
         try
