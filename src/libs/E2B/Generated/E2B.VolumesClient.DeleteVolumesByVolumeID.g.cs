@@ -140,7 +140,7 @@ namespace E2B
                 PrepareDeleteVolumesByVolumeIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    volumeID: volumeID!);
+                    volumeID: volumeID);
 
                 return __httpRequest;
             }
@@ -162,7 +162,7 @@ namespace E2B
                                 pathTemplate: "$\"/volumes/{volumeID}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -196,7 +196,7 @@ namespace E2B
                                 pathTemplate: "$\"/volumes/{volumeID}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -237,7 +237,7 @@ namespace E2B
                                 pathTemplate: "$\"/volumes/{volumeID}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -285,7 +285,7 @@ namespace E2B
                                 pathTemplate: "$\"/volumes/{volumeID}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -307,7 +307,7 @@ namespace E2B
                                 pathTemplate: "$\"/volumes/{volumeID}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,

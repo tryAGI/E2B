@@ -155,8 +155,8 @@ namespace E2B
                 PrepareGetClustersByClusterIDRigsByRigIDInstancesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    clusterID: clusterID!,
-                    rigID: rigID!);
+                    clusterID: clusterID,
+                    rigID: rigID);
 
                 return __httpRequest;
             }
@@ -178,7 +178,7 @@ namespace E2B
                                 pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -212,7 +212,7 @@ namespace E2B
                                 pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -253,7 +253,7 @@ namespace E2B
                                 pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -301,7 +301,7 @@ namespace E2B
                                 pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -323,7 +323,7 @@ namespace E2B
                                 pathTemplate: "$\"/clusters/{clusterID}/rigs/{rigID}/instances\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,

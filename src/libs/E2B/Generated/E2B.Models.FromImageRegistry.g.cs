@@ -47,8 +47,8 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.AWSRegistry PickAws() => IsAws
-            ? Aws!
+        public global::E2B.AWSRegistry PickAws() => Aws is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Aws' but the value was {ToString()}.");
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GCPRegistry PickGcp() => IsGcp
-            ? Gcp!
+        public global::E2B.GCPRegistry PickGcp() => Gcp is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Gcp' but the value was {ToString()}.");
 
         /// <summary>
@@ -121,8 +121,8 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GeneralRegistry PickRegistry() => IsRegistry
-            ? Registry!
+        public global::E2B.GeneralRegistry PickRegistry() => Registry is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Registry' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -250,17 +250,17 @@ namespace E2B
                 Validate();
             }
 
-            if (IsAws && aws != null)
+            if (Aws is { } __value0 && aws != null)
             {
-                return aws(Aws!);
+                return aws(__value0);
             }
-            else if (IsGcp && gcp != null)
+            else if (Gcp is { } __value1 && gcp != null)
             {
-                return gcp(Gcp!);
+                return gcp(__value1);
             }
-            else if (IsRegistry && registry != null)
+            else if (Registry is { } __value2 && registry != null)
             {
-                return registry(Registry!);
+                return registry(__value2);
             }
 
             return default(TResult);
@@ -282,17 +282,17 @@ namespace E2B
                 Validate();
             }
 
-            if (IsAws)
+            if (Aws is { } __value0)
             {
-                aws?.Invoke(Aws!);
+                aws?.Invoke(__value0);
             }
-            else if (IsGcp)
+            else if (Gcp is { } __value1)
             {
-                gcp?.Invoke(Gcp!);
+                gcp?.Invoke(__value1);
             }
-            else if (IsRegistry)
+            else if (Registry is { } __value2)
             {
-                registry?.Invoke(Registry!);
+                registry?.Invoke(__value2);
             }
         }
 
@@ -310,17 +310,17 @@ namespace E2B
                 Validate();
             }
 
-            if (IsAws)
+            if (Aws is { } __value0)
             {
-                aws?.Invoke(Aws!);
+                aws?.Invoke(__value0);
             }
-            else if (IsGcp)
+            else if (Gcp is { } __value1)
             {
-                gcp?.Invoke(Gcp!);
+                gcp?.Invoke(__value1);
             }
-            else if (IsRegistry)
+            else if (Registry is { } __value2)
             {
-                registry?.Invoke(Registry!);
+                registry?.Invoke(__value2);
             }
         }
 

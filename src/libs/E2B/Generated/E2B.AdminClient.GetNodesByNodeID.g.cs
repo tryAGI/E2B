@@ -158,7 +158,7 @@ namespace E2B
                 PrepareGetNodesByNodeIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeID: nodeID!,
+                    nodeID: nodeID,
                     clusterID: clusterID);
 
                 return __httpRequest;
@@ -181,7 +181,7 @@ namespace E2B
                                 pathTemplate: "$\"/nodes/{nodeID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -215,7 +215,7 @@ namespace E2B
                                 pathTemplate: "$\"/nodes/{nodeID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -256,7 +256,7 @@ namespace E2B
                                 pathTemplate: "$\"/nodes/{nodeID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -304,7 +304,7 @@ namespace E2B
                                 pathTemplate: "$\"/nodes/{nodeID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -326,7 +326,7 @@ namespace E2B
                                 pathTemplate: "$\"/nodes/{nodeID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
