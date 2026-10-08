@@ -50,7 +50,7 @@ namespace E2B
         /// List all templates
         /// </summary>
         /// <param name="teamID">
-        /// Identifier of the team
+        /// Identifier of the team, as its UUID or its public project ID (prj_)
         /// </param>
         /// <param name="nextToken"></param>
         /// <param name="limit">
@@ -81,7 +81,7 @@ namespace E2B
         /// List all templates
         /// </summary>
         /// <param name="teamID">
-        /// Identifier of the team
+        /// Identifier of the team, as its UUID or its public project ID (prj_)
         /// </param>
         /// <param name="nextToken"></param>
         /// <param name="limit">

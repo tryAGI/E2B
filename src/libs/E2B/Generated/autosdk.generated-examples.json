@@ -1,0 +1,15 @@
+{
+  "Examples": [
+    {
+      "Order": 1,
+      "Title": "Create a secret",
+      "Slug": "create-a-secret",
+      "Description": "Create a secret by storing a runtime marker as its first version. The response carries metadata only.",
+      "Language": "http",
+      "Code": "### Create a secret\nPOST {{host}}/secrets\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022name\u0022: \u0022string\u0022,\n  \u0022value\u0022: \u0022string\u0022,\n  \u0022metadata\u0022: {}\n}\n\n## Responses\n# 201\n# Description: Successfully created the secret\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# Content-Type: application/json\n# 401\n# Description: Authentication error\n# Content-Type: application/json\n# 403\n# Description: Forbidden\n# Content-Type: application/json\n# 404\n# Description: Not found\n# Content-Type: application/json\n# 409\n# Description: Secret name conflict or project live-secret limit reached. A quota response has error_code secret_limit_reached and, when reported by the backend, the effective cap in message.\n# Content-Type: application/json\n# 429\n# Description: Too many requests\n# Content-Type: application/json\n# 500\n# Description: Server error\n# Content-Type: application/json\n# 502\n# Description: Backend error\n# Content-Type: application/json\n# 504\n# Description: Backend timeout\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "createSecrets",
+      "Setup": null
+    }
+  ]
+}

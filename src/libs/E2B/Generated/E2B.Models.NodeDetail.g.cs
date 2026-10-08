@@ -74,16 +74,18 @@ namespace E2B
         public required int SandboxCount { get; set; }
 
         /// <summary>
-        /// Node-scoped configured sandbox admission limit. Nonpositive values reject creation. Omitted when unknown or not an orchestrator.
+        /// Cached node-scoped sandbox admission limit. Nonpositive values reject creation.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maxSandboxes")]
-        public long? MaxSandboxes { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long MaxSandboxes { get; set; }
 
         /// <summary>
-        /// Observed work holds on the node. Omitted when unknown; zero does not authorize deletion.
+        /// Cached count of work holds on the node. Zero means idle or not yet reported; it does not by itself authorize deletion.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("outstandingWork")]
-        public int? OutstandingWork { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int OutstandingWork { get; set; }
 
         /// <summary>
         /// Node metrics
@@ -141,6 +143,12 @@ namespace E2B
         /// <param name="sandboxCount">
         /// Number of sandboxes running on the node
         /// </param>
+        /// <param name="maxSandboxes">
+        /// Cached node-scoped sandbox admission limit. Nonpositive values reject creation.
+        /// </param>
+        /// <param name="outstandingWork">
+        /// Cached count of work holds on the node. Zero means idle or not yet reported; it does not by itself authorize deletion.
+        /// </param>
         /// <param name="metrics">
         /// Node metrics
         /// </param>
@@ -149,12 +157,6 @@ namespace E2B
         /// </param>
         /// <param name="createFails">
         /// Number of sandbox create fails
-        /// </param>
-        /// <param name="maxSandboxes">
-        /// Node-scoped configured sandbox admission limit. Nonpositive values reject creation. Omitted when unknown or not an orchestrator.
-        /// </param>
-        /// <param name="outstandingWork">
-        /// Observed work holds on the node. Omitted when unknown; zero does not authorize deletion.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -169,11 +171,11 @@ namespace E2B
             global::E2B.NodeStatus status,
             global::System.DateTime statusChangedAt,
             int sandboxCount,
+            long maxSandboxes,
+            int outstandingWork,
             global::E2B.NodeMetrics metrics,
             int createSuccesses,
-            int createFails,
-            long? maxSandboxes,
-            int? outstandingWork)
+            int createFails)
         {
             this.ClusterID = clusterID ?? throw new global::System.ArgumentNullException(nameof(clusterID));
             this.Version = version ?? throw new global::System.ArgumentNullException(nameof(version));

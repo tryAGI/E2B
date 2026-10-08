@@ -485,7 +485,7 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Conflict
+                            // Secret name conflict or project live-secret limit reached. A quota response has error_code secret_limit_reached and, when reported by the backend, the effective cap in message.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
