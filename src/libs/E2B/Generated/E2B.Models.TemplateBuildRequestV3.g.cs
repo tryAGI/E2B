@@ -30,7 +30,7 @@ namespace E2B
         public string? Alias { get; set; }
 
         /// <summary>
-        /// Identifier of the team
+        /// Identifier of the team, as its UUID or its public project ID (prj_)
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("teamID")]
         [global::System.Obsolete("This property marked as deprecated.")]

@@ -16,7 +16,7 @@ namespace E2B
         public required int Code { get; set; }
 
         /// <summary>
-        /// Machine-readable semantic error code. Not a closed set; initial values: sandbox_capacity_unavailable, sandbox_placement_timeout, sandbox_no_compatible_node, sandbox_create_failed, internal_server_error.
+        /// Machine-readable semantic error code. Not a closed set; initial values: sandbox_capacity_unavailable, sandbox_placement_timeout, sandbox_no_compatible_node, sandbox_create_failed, internal_server_error, secret_limit_reached.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("error_code")]
         public string? ErrorCode { get; set; }
@@ -44,7 +44,7 @@ namespace E2B
         /// Error
         /// </param>
         /// <param name="errorCode">
-        /// Machine-readable semantic error code. Not a closed set; initial values: sandbox_capacity_unavailable, sandbox_placement_timeout, sandbox_no_compatible_node, sandbox_create_failed, internal_server_error.
+        /// Machine-readable semantic error code. Not a closed set; initial values: sandbox_capacity_unavailable, sandbox_placement_timeout, sandbox_no_compatible_node, sandbox_create_failed, internal_server_error, secret_limit_reached.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
