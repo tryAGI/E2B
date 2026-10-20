@@ -110,6 +110,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxNetworkUpdateConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxNetworkTransform))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxEgressProxyTLSConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxAutoResumeConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxOnTimeout), TypeInfoPropertyName = "SandboxOnTimeout2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxLifecycle))]

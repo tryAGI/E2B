@@ -49,7 +49,7 @@ namespace E2B
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="hash">
-        /// Hash of the files
+        /// Hash of the files (lowercase hex SHA-256)
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -75,7 +75,7 @@ namespace E2B
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="hash">
-        /// Hash of the files
+        /// Hash of the files (lowercase hex SHA-256)
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

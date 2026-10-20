@@ -28,6 +28,12 @@ namespace E2B
         public string? Password { get; set; }
 
         /// <summary>
+        /// TLS for the connection to the SOCKS5 proxy. The SOCKS5 negotiation and the tunneled traffic both run inside the TLS session, so the proxy credentials are not sent in the clear. This secures only the hop to the proxy; what the proxy does onward is its own concern. A half-close from the sandbox reaches the proxy as a TLS close_notify, not a TCP FIN, and a proxy that treats close_notify as a full close cuts the reply short.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("tls")]
+        public global::E2B.SandboxEgressProxyTLSConfig? Tls { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -45,17 +51,22 @@ namespace E2B
         /// <param name="password">
         /// Optional SOCKS5 password (RFC 1929), max 255 bytes.
         /// </param>
+        /// <param name="tls">
+        /// TLS for the connection to the SOCKS5 proxy. The SOCKS5 negotiation and the tunneled traffic both run inside the TLS session, so the proxy credentials are not sent in the clear. This secures only the hop to the proxy; what the proxy does onward is its own concern. A half-close from the sandbox reaches the proxy as a TLS close_notify, not a TCP FIN, and a proxy that treats close_notify as a full close cuts the reply short.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public SandboxEgressProxyConfig(
             string address,
             string? username,
-            string? password)
+            string? password,
+            global::E2B.SandboxEgressProxyTLSConfig? tls)
         {
             this.Address = address ?? throw new global::System.ArgumentNullException(nameof(address));
             this.Username = username;
             this.Password = password;
+            this.Tls = tls;
         }
 
         /// <summary>
