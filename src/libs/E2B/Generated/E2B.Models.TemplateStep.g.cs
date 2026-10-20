@@ -23,7 +23,7 @@ namespace E2B
         public global::System.Collections.Generic.IList<string>? Args { get; set; }
 
         /// <summary>
-        /// Hash of the files used in the step
+        /// Hash of the files used in the step (lowercase hex SHA-256)
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("filesHash")]
         public string? FilesHash { get; set; }
@@ -52,7 +52,7 @@ namespace E2B
         /// Default Value: []
         /// </param>
         /// <param name="filesHash">
-        /// Hash of the files used in the step
+        /// Hash of the files used in the step (lowercase hex SHA-256)
         /// </param>
         /// <param name="force">
         /// Whether the step should be forced to run regardless of the cache<br/>
