@@ -8,6 +8,9 @@ namespace E2B
         /// Create sandbox (v2)<br/>
         /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,12 +18,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxes2Async(
 
             global::E2B.NewSandboxV2 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create sandbox (v2)<br/>
         /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,12 +35,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Sandbox>> CreateSandboxes2AsResponseAsync(
 
             global::E2B.NewSandboxV2 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create sandbox (v2)<br/>
         /// Create a sandbox from the template. All system communication with the sandbox is secured.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="templateID">
         /// Identifier of the required template
         /// </param>
@@ -70,6 +81,7 @@ namespace E2B
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.Sandbox> CreateSandboxes2Async(
             string templateID,
+            string? idempotencyKey = default,
             int? timeout = default,
             bool? autoPause = default,
             bool? autoPauseMemory = default,

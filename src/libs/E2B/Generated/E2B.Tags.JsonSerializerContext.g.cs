@@ -16,18 +16,34 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AssignedTemplateTags))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTag))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTagAssignment))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTagGroup))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTagAssignment>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTagGroupsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTagGroup>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTagsCountResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTagExistsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateTagAssignmentsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AssignTemplateTagsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.DeleteTemplateTagsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTemplatesTagsGroupsSort), TypeInfoPropertyName = "GetTemplatesTagsGroupsSort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTemplatesTagsGroupsSort?), TypeInfoPropertyName = "NullableGetTemplatesTagsGroupsSort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTagAssignment>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTagGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTag>))]
     internal sealed partial class TagsSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
@@ -77,6 +93,7 @@ namespace E2B
         public static void AddConverters(global::System.Text.Json.JsonSerializerOptions options)
         {
             options.Converters.Add(new global::E2B.JsonConverters.UnixTimestampJsonConverter());
+            options.Converters.Add(new LazyEnumJsonConverterFactory());
         }
 
         private static global::System.Text.Json.JsonSerializerOptions CreateDefaultOptions()
@@ -89,6 +106,34 @@ namespace E2B
             AddConverters(options);
 
             return options;
+        }
+
+
+        private sealed class LazyEnumJsonConverterFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+        {
+            public override bool CanConvert(global::System.Type typeToConvert)
+            {
+                return
+                    typeToConvert == typeof(global::E2B.GetTemplatesTagsGroupsSort)
+
+                    || typeToConvert == typeof(global::E2B.GetTemplatesTagsGroupsSort?);
+            }
+
+            public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
+                global::System.Type typeToConvert,
+                global::System.Text.Json.JsonSerializerOptions options)
+            {
+                if (typeToConvert == typeof(global::E2B.GetTemplatesTagsGroupsSort))
+                {
+                    return new global::E2B.JsonConverters.GetTemplatesTagsGroupsSortJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.GetTemplatesTagsGroupsSort?))
+                {
+                    return new global::E2B.JsonConverters.GetTemplatesTagsGroupsSortNullableJsonConverter();
+                }
+                throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
+            }
         }
 
         private sealed class LazyChunkResolver : global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver

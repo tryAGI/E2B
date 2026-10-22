@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace E2B
@@ -43,9 +45,10 @@ namespace E2B
         public global::E2B.SandboxAutoResumeConfig? AutoResume { get; set; }
 
         /// <summary>
-        /// Secure all system communication with sandbox
+        /// Ignored. All system communication with the sandbox is always secured; the template's envd version must support secured access.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("secure")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public bool? Secure { get; set; }
 
         /// <summary>
@@ -117,9 +120,6 @@ namespace E2B
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
         /// </param>
-        /// <param name="secure">
-        /// Secure all system communication with sandbox
-        /// </param>
         /// <param name="allowInternetAccess">
         /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
         /// </param>
@@ -142,7 +142,6 @@ namespace E2B
             bool? autoPause,
             bool? autoPauseMemory,
             global::E2B.SandboxAutoResumeConfig? autoResume,
-            bool? secure,
             bool? allowInternetAccess,
             global::E2B.SandboxNetworkConfig? network,
             object? metadata,
@@ -156,7 +155,6 @@ namespace E2B
             this.AutoPause = autoPause;
             this.AutoPauseMemory = autoPauseMemory;
             this.AutoResume = autoResume;
-            this.Secure = secure;
             this.AllowInternetAccess = allowInternetAccess;
             this.Network = network;
             this.Metadata = metadata;

@@ -124,6 +124,13 @@ namespace E2B
         public global::E2B.SandboxLifecycle? Lifecycle { get; set; }
 
         /// <summary>
+        /// What the sandbox's latest pause saved. `full` saved the filesystem and the memory, and resuming restores the sandbox where it left off. `filesystem` saved only the filesystem, and resuming reboots the sandbox from disk. Returned for a paused sandbox once its pause has finished, and omitted while it is still pausing.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("pauseMode")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.SandboxPauseModeJsonConverter))]
+        public global::E2B.SandboxPauseMode? PauseMode { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
@@ -185,6 +192,9 @@ namespace E2B
         /// <param name="lifecycle">
         /// Sandbox lifecycle policy returned by sandbox info.
         /// </param>
+        /// <param name="pauseMode">
+        /// What the sandbox's latest pause saved. `full` saved the filesystem and the memory, and resuming restores the sandbox where it left off. `filesystem` saved only the filesystem, and resuming reboots the sandbox from disk. Returned for a paused sandbox once its pause has finished, and omitted while it is still pausing.
+        /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -207,6 +217,7 @@ namespace E2B
             object? metadata,
             global::E2B.SandboxNetworkConfig? network,
             global::E2B.SandboxLifecycle? lifecycle,
+            global::E2B.SandboxPauseMode? pauseMode,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
@@ -226,6 +237,7 @@ namespace E2B
             this.State = state;
             this.Network = network;
             this.Lifecycle = lifecycle;
+            this.PauseMode = pauseMode;
             this.VolumeMounts = volumeMounts;
         }
 

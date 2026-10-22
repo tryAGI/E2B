@@ -16,7 +16,7 @@ namespace E2B
         public bool? AllowPublicTraffic { get; set; }
 
         /// <summary>
-        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries.
+        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowOut")]
         public global::System.Collections.Generic.IList<string>? AllowOut { get; set; }
@@ -26,6 +26,12 @@ namespace E2B
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("denyOut")]
         public global::System.Collections.Generic.IList<string>? DenyOut { get; set; }
+
+        /// <summary>
+        /// DNS servers the sandbox can reach when allowOut contains a domain. Each entry must be an IPv4 address, and all traffic to it is allowed. Omit it to allow the default nameserver 8.8.8.8, or pass an empty list to allow none. This does not change the sandbox's /etc/resolv.conf.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("dnsServers")]
+        public global::System.Collections.Generic.IList<string>? DnsServers { get; set; }
 
         /// <summary>
         /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
@@ -65,10 +71,13 @@ namespace E2B
         /// Default Value: true
         /// </param>
         /// <param name="allowOut">
-        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries.
+        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed.
         /// </param>
         /// <param name="denyOut">
         /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
+        /// </param>
+        /// <param name="dnsServers">
+        /// DNS servers the sandbox can reach when allowOut contains a domain. Each entry must be an IPv4 address, and all traffic to it is allowed. Omit it to allow the default nameserver 8.8.8.8, or pass an empty list to allow none. This does not change the sandbox's /etc/resolv.conf.
         /// </param>
         /// <param name="egressProxy">
         /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
@@ -89,6 +98,7 @@ namespace E2B
             bool? allowPublicTraffic,
             global::System.Collections.Generic.IList<string>? allowOut,
             global::System.Collections.Generic.IList<string>? denyOut,
+            global::System.Collections.Generic.IList<string>? dnsServers,
             global::E2B.SandboxEgressProxyConfig? egressProxy,
             string? maskRequestHost,
             global::System.Collections.Generic.IList<int>? httpsPorts,
@@ -97,6 +107,7 @@ namespace E2B
             this.AllowPublicTraffic = allowPublicTraffic;
             this.AllowOut = allowOut;
             this.DenyOut = denyOut;
+            this.DnsServers = dnsServers;
             this.EgressProxy = egressProxy;
             this.MaskRequestHost = maskRequestHost;
             this.HttpsPorts = httpsPorts;

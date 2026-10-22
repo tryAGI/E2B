@@ -2,7 +2,7 @@
 
 namespace E2B
 {
-    public sealed partial class TemplateWithBuilds
+    public readonly partial struct TemplateWithBuilds
     {
         /// <summary>
         /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
@@ -54,7 +54,7 @@ namespace E2B
             return global::System.Text.Json.JsonSerializer.Deserialize(
                 json,
                 typeof(global::E2B.TemplateWithBuilds),
-                jsonSerializerContext) as global::E2B.TemplateWithBuilds;
+                jsonSerializerContext) as global::E2B.TemplateWithBuilds?;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace E2B
             return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
                 jsonStream,
                 typeof(global::E2B.TemplateWithBuilds),
-                jsonSerializerContext).ConfigureAwait(false)) as global::E2B.TemplateWithBuilds;
+                jsonSerializerContext).ConfigureAwait(false)) as global::E2B.TemplateWithBuilds?;
         }
 
         /// <summary>

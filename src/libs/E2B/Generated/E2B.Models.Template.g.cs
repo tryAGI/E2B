@@ -122,6 +122,18 @@ namespace E2B
         public required global::E2B.TemplateBuildStatus BuildStatus { get; set; }
 
         /// <summary>
+        /// Whether the template is one of the platform's default templates. A default template owned by another team carries zero or null usage fields (`spawnCount`, `buildCount`, `lastSpawnedAt`, `createdBy`).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("isDefault")]
+        public bool? IsDefault { get; set; }
+
+        /// <summary>
+        /// Description of the template
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -176,6 +188,12 @@ namespace E2B
         /// <param name="lastSpawnedAt">
         /// Time when the template was last used
         /// </param>
+        /// <param name="isDefault">
+        /// Whether the template is one of the platform's default templates. A default template owned by another team carries zero or null usage fields (`spawnCount`, `buildCount`, `lastSpawnedAt`, `createdBy`).
+        /// </param>
+        /// <param name="description">
+        /// Description of the template
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -195,7 +213,9 @@ namespace E2B
             string envdVersion,
             global::E2B.TemplateBuildStatus buildStatus,
             global::E2B.TeamUser? createdBy,
-            global::System.DateTime? lastSpawnedAt)
+            global::System.DateTime? lastSpawnedAt,
+            bool? isDefault,
+            string? description)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.BuildID = buildID ?? throw new global::System.ArgumentNullException(nameof(buildID));
@@ -213,6 +233,8 @@ namespace E2B
             this.BuildCount = buildCount;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
             this.BuildStatus = buildStatus;
+            this.IsDefault = isDefault;
+            this.Description = description;
         }
 
         /// <summary>

@@ -23,11 +23,23 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.RigError))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamUser))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.OrderDirection), TypeInfoPropertyName = "OrderDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxKillResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandbox))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxState), TypeInfoPropertyName = "AdminSandboxState2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, long>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminBuildCancelResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamListRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::System.Guid>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamListSortField), TypeInfoPropertyName = "AdminTeamListSortField2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamList))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.AdminTeamListItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamListItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeam))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamSchedulingLabels))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeStatus), TypeInfoPropertyName = "NodeStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeStatusChange))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.DiskMetrics))]
@@ -36,10 +48,12 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.MachineInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Node))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeDetail))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.IdentifierMaskingDetails))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.CreatedTeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewTeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Node>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Rig>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.RigInstance>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.RigError>))]
@@ -47,10 +61,17 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.OrderDirection?), TypeInfoPropertyName = "NullableOrderDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxState?), TypeInfoPropertyName = "NullableAdminSandboxState2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamListSortField?), TypeInfoPropertyName = "NullableAdminTeamListSortField2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeStatus?), TypeInfoPropertyName = "NullableNodeStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::System.Guid>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.AdminTeamListItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.DiskMetrics>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Node>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamAPIKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Rig>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.RigInstance>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.RigError>))]
@@ -123,7 +144,19 @@ namespace E2B
             public override bool CanConvert(global::System.Type typeToConvert)
             {
                 return
-                    typeToConvert == typeof(global::E2B.NodeStatus)
+                    typeToConvert == typeof(global::E2B.OrderDirection)
+
+                    || typeToConvert == typeof(global::E2B.OrderDirection?)
+
+                    || typeToConvert == typeof(global::E2B.AdminSandboxState)
+
+                    || typeToConvert == typeof(global::E2B.AdminSandboxState?)
+
+                    || typeToConvert == typeof(global::E2B.AdminTeamListSortField)
+
+                    || typeToConvert == typeof(global::E2B.AdminTeamListSortField?)
+
+                    || typeToConvert == typeof(global::E2B.NodeStatus)
 
                     || typeToConvert == typeof(global::E2B.NodeStatus?);
             }
@@ -132,6 +165,36 @@ namespace E2B
                 global::System.Type typeToConvert,
                 global::System.Text.Json.JsonSerializerOptions options)
             {
+                if (typeToConvert == typeof(global::E2B.OrderDirection))
+                {
+                    return new global::E2B.JsonConverters.OrderDirectionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.OrderDirection?))
+                {
+                    return new global::E2B.JsonConverters.OrderDirectionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.AdminSandboxState))
+                {
+                    return new global::E2B.JsonConverters.AdminSandboxStateJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.AdminSandboxState?))
+                {
+                    return new global::E2B.JsonConverters.AdminSandboxStateNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.AdminTeamListSortField))
+                {
+                    return new global::E2B.JsonConverters.AdminTeamListSortFieldJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.AdminTeamListSortField?))
+                {
+                    return new global::E2B.JsonConverters.AdminTeamListSortFieldNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::E2B.NodeStatus))
                 {
                     return new global::E2B.JsonConverters.NodeStatusJsonConverter();
