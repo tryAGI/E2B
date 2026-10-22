@@ -29,7 +29,8 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStatus), TypeInfoPropertyName = "TemplateBuildStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateRequestResponseV3))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuild))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuilds))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuilds), TypeInfoPropertyName = "TemplateWithBuilds2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuildsVariant2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateBuild>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateAliasResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateStep))]
@@ -61,6 +62,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogLevel?), TypeInfoPropertyName = "NullableLogLevel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStatus?), TypeInfoPropertyName = "NullableTemplateBuildStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuilds?), TypeInfoPropertyName = "NullableTemplateWithBuilds2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.FromImageRegistry?), TypeInfoPropertyName = "NullableFromImageRegistry2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.FromImageRegistryDiscriminatorType?), TypeInfoPropertyName = "NullableFromImageRegistryDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AWSRegistryType?), TypeInfoPropertyName = "NullableAWSRegistryType2")]
@@ -120,6 +122,7 @@ namespace E2B
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public static void AddConverters(global::System.Text.Json.JsonSerializerOptions options)
         {
+            options.Converters.Add(new global::E2B.JsonConverters.TemplateWithBuildsJsonConverter());
             options.Converters.Add(new global::E2B.JsonConverters.FromImageRegistryJsonConverter());
             options.Converters.Add(new global::E2B.JsonConverters.UnixTimestampJsonConverter());
             options.Converters.Add(new LazyEnumJsonConverterFactory());

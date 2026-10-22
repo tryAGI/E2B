@@ -1,4 +1,3 @@
-
 #pragma warning disable CS0618 // Type or member is obsolete
 
 #nullable enable
@@ -8,137 +7,289 @@ namespace E2B
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class TemplateWithBuilds
+    public readonly partial struct TemplateWithBuilds : global::System.IEquatable<TemplateWithBuilds>
     {
         /// <summary>
-        /// Identifier of the template
+        ///
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("templateID")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string TemplateID { get; set; }
-
-        /// <summary>
-        /// Whether the template is public or only accessible by the team
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("public")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool Public { get; set; }
-
-        /// <summary>
-        /// Aliases of the template
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("aliases")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<string> Aliases { get; set; }
-
-        /// <summary>
-        /// Names of the template (namespace/alias format when namespaced)
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("names")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<string> Names { get; set; }
-
-        /// <summary>
-        /// Time when the template was created
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime CreatedAt { get; set; }
-
-        /// <summary>
-        /// Time when the template was last updated
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime UpdatedAt { get; set; }
-
-        /// <summary>
-        /// Time when the template was last used
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("lastSpawnedAt")]
-        public global::System.DateTime? LastSpawnedAt { get; set; }
-
-        /// <summary>
-        /// Number of times the template was used
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("spawnCount")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required long SpawnCount { get; set; }
-
-        /// <summary>
-        /// List of builds for the template
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("builds")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::E2B.TemplateBuild> Builds { get; set; }
-
-        /// <summary>
-        /// Additional properties that are not explicitly defined in the schema
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonExtensionData]
-        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateWithBuilds" /> class.
-        /// </summary>
-        /// <param name="templateID">
-        /// Identifier of the template
-        /// </param>
-        /// <param name="public">
-        /// Whether the template is public or only accessible by the team
-        /// </param>
-        /// <param name="aliases">
-        /// Aliases of the template
-        /// </param>
-        /// <param name="names">
-        /// Names of the template (namespace/alias format when namespaced)
-        /// </param>
-        /// <param name="createdAt">
-        /// Time when the template was created
-        /// </param>
-        /// <param name="updatedAt">
-        /// Time when the template was last updated
-        /// </param>
-        /// <param name="spawnCount">
-        /// Number of times the template was used
-        /// </param>
-        /// <param name="builds">
-        /// List of builds for the template
-        /// </param>
-        /// <param name="lastSpawnedAt">
-        /// Time when the template was last used
-        /// </param>
-#if NET7_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#if NET6_0_OR_GREATER
+        public global::E2B.Template? Template { get; init; }
+#else
+        public global::E2B.Template? Template { get; }
 #endif
-        public TemplateWithBuilds(
-            string templateID,
-            bool @public,
-            global::System.Collections.Generic.IList<string> aliases,
-            global::System.Collections.Generic.IList<string> names,
-            global::System.DateTime createdAt,
-            global::System.DateTime updatedAt,
-            long spawnCount,
-            global::System.Collections.Generic.IList<global::E2B.TemplateBuild> builds,
-            global::System.DateTime? lastSpawnedAt)
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Template))]
+#endif
+        public bool IsTemplate => Template != null;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool TryPickTemplate(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::E2B.Template? value)
         {
-            this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
-            this.Public = @public;
-            this.Aliases = aliases ?? throw new global::System.ArgumentNullException(nameof(aliases));
-            this.Names = names ?? throw new global::System.ArgumentNullException(nameof(names));
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.LastSpawnedAt = lastSpawnedAt;
-            this.SpawnCount = spawnCount;
-            this.Builds = builds ?? throw new global::System.ArgumentNullException(nameof(builds));
+            value = Template;
+            return IsTemplate;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateWithBuilds" /> class.
+        ///
         /// </summary>
-        public TemplateWithBuilds()
+        public global::E2B.Template PickTemplate() => Template is { } value
+            ? value
+            : throw new global::System.InvalidOperationException($"Expected union variant 'Template' but the value was {ToString()}.");
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public global::E2B.TemplateWithBuildsVariant2? TemplateWithBuildsVariant2 { get; init; }
+#else
+        public global::E2B.TemplateWithBuildsVariant2? TemplateWithBuildsVariant2 { get; }
+#endif
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(TemplateWithBuildsVariant2))]
+#endif
+        public bool IsTemplateWithBuildsVariant2 => TemplateWithBuildsVariant2 != null;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool TryPickTemplateWithBuildsVariant2(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::E2B.TemplateWithBuildsVariant2? value)
         {
+            value = TemplateWithBuildsVariant2;
+            return IsTemplateWithBuildsVariant2;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public global::E2B.TemplateWithBuildsVariant2 PickTemplateWithBuildsVariant2() => TemplateWithBuildsVariant2 is { } value
+            ? value
+            : throw new global::System.InvalidOperationException($"Expected union variant 'TemplateWithBuildsVariant2' but the value was {ToString()}.");
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator TemplateWithBuilds(global::E2B.Template value) => new TemplateWithBuilds((global::E2B.Template?)value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator global::E2B.Template?(TemplateWithBuilds @this) => @this.Template;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public TemplateWithBuilds(global::E2B.Template? value)
+        {
+            Template = value;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static TemplateWithBuilds FromTemplate(global::E2B.Template? value) => new TemplateWithBuilds(value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator TemplateWithBuilds(global::E2B.TemplateWithBuildsVariant2 value) => new TemplateWithBuilds((global::E2B.TemplateWithBuildsVariant2?)value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator global::E2B.TemplateWithBuildsVariant2?(TemplateWithBuilds @this) => @this.TemplateWithBuildsVariant2;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public TemplateWithBuilds(global::E2B.TemplateWithBuildsVariant2? value)
+        {
+            TemplateWithBuildsVariant2 = value;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static TemplateWithBuilds FromTemplateWithBuildsVariant2(global::E2B.TemplateWithBuildsVariant2? value) => new TemplateWithBuilds(value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public TemplateWithBuilds(
+            global::E2B.Template? template,
+            global::E2B.TemplateWithBuildsVariant2? templateWithBuildsVariant2
+            )
+        {
+            Template = template;
+            TemplateWithBuildsVariant2 = templateWithBuildsVariant2;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public object? Object =>
+            TemplateWithBuildsVariant2 as object ??
+            Template as object
+            ;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override string? ToString() =>
+            Template?.ToString() ??
+            TemplateWithBuildsVariant2?.ToString()
+            ;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool Validate()
+        {
+            return IsTemplate && IsTemplateWithBuildsVariant2;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public TResult? Match<TResult>(
+            global::System.Func<global::E2B.Template, TResult>? template = null,
+            global::System.Func<global::E2B.TemplateWithBuildsVariant2, TResult>? templateWithBuildsVariant2 = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (Template is { } __value0 && template != null)
+            {
+                return template(__value0);
+            }
+            else if (TemplateWithBuildsVariant2 is { } __value1 && templateWithBuildsVariant2 != null)
+            {
+                return templateWithBuildsVariant2(__value1);
+            }
+
+            return default(TResult);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void Match(
+            global::System.Action<global::E2B.Template>? template = null,
+
+            global::System.Action<global::E2B.TemplateWithBuildsVariant2>? templateWithBuildsVariant2 = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (Template is { } __value0)
+            {
+                template?.Invoke(__value0);
+            }
+            else if (TemplateWithBuildsVariant2 is { } __value1)
+            {
+                templateWithBuildsVariant2?.Invoke(__value1);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void Switch(
+            global::System.Action<global::E2B.Template>? template = null,
+            global::System.Action<global::E2B.TemplateWithBuildsVariant2>? templateWithBuildsVariant2 = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (Template is { } __value0)
+            {
+                template?.Invoke(__value0);
+            }
+            else if (TemplateWithBuildsVariant2 is { } __value1)
+            {
+                templateWithBuildsVariant2?.Invoke(__value1);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override int GetHashCode()
+        {
+            var fields = new object?[]
+            {
+                Template,
+                typeof(global::E2B.Template),
+                TemplateWithBuildsVariant2,
+                typeof(global::E2B.TemplateWithBuildsVariant2),
+            };
+            const int offset = unchecked((int)2166136261);
+            const int prime = 16777619;
+            static int HashCodeAggregator(int hashCode, object? value) => value == null
+                ? (hashCode ^ 0) * prime
+                : (hashCode ^ value.GetHashCode()) * prime;
+
+            return global::System.Linq.Enumerable.Aggregate(fields, offset, HashCodeAggregator);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool Equals(TemplateWithBuilds other)
+        {
+            return
+                global::System.Collections.Generic.EqualityComparer<global::E2B.Template?>.Default.Equals(Template, other.Template) &&
+                global::System.Collections.Generic.EqualityComparer<global::E2B.TemplateWithBuildsVariant2?>.Default.Equals(TemplateWithBuildsVariant2, other.TemplateWithBuildsVariant2)
+                ;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static bool operator ==(TemplateWithBuilds obj1, TemplateWithBuilds obj2)
+        {
+            return global::System.Collections.Generic.EqualityComparer<TemplateWithBuilds>.Default.Equals(obj1, obj2);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static bool operator !=(TemplateWithBuilds obj1, TemplateWithBuilds obj2)
+        {
+            return !(obj1 == obj2);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public override bool Equals(object? obj)
+        {
+            return obj is TemplateWithBuilds o && Equals(o);
+        }
     }
 }

@@ -34,6 +34,10 @@ namespace E2B
         /// <inheritdoc/>
         public global::E2B.AutoSDKClientOptions Options { get; }
 
+
+        /// <inheritdoc/>
+        public global::System.Func<string> CreateIdempotencyKey { get; set; } = () => global::System.Guid.NewGuid().ToString("D");
+
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext>? JsonSerializerContextProvider { get; set; }
 
         /// <summary>

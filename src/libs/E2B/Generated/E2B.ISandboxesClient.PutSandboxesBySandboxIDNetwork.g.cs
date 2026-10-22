@@ -40,10 +40,13 @@ namespace E2B
         /// </summary>
         /// <param name="sandboxID"></param>
         /// <param name="allowOut">
-        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries.
+        /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed.
         /// </param>
         /// <param name="denyOut">
         /// List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules.
+        /// </param>
+        /// <param name="dnsServers">
+        /// DNS servers the sandbox can reach when allowOut contains a domain. Each entry must be an IPv4 address, and all traffic to it is allowed. Omit it to reset to the default nameserver 8.8.8.8, or pass an empty list to allow none. This does not change the sandbox's /etc/resolv.conf.
         /// </param>
         /// <param name="egressProxy">
         /// SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain).
@@ -61,6 +64,7 @@ namespace E2B
             string sandboxID,
             global::System.Collections.Generic.IList<string>? allowOut = default,
             global::System.Collections.Generic.IList<string>? denyOut = default,
+            global::System.Collections.Generic.IList<string>? dnsServers = default,
             global::E2B.SandboxEgressProxyConfig? egressProxy = default,
             global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules = default,
             bool? allowInternetAccess = default,
