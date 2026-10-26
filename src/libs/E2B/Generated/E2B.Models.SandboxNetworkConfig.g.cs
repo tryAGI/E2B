@@ -9,8 +9,7 @@ namespace E2B
     public sealed partial class SandboxNetworkConfig
     {
         /// <summary>
-        /// Specify if the sandbox URLs should be accessible only with authentication.<br/>
-        /// Default Value: true
+        /// Whether sandbox URLs accept traffic without the sandbox's traffic access token. When omitted or null on create, the project's default applies, which is true unless the project changed it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowPublicTraffic")]
         public bool? AllowPublicTraffic { get; set; }
@@ -67,8 +66,7 @@ namespace E2B
         /// Initializes a new instance of the <see cref="SandboxNetworkConfig" /> class.
         /// </summary>
         /// <param name="allowPublicTraffic">
-        /// Specify if the sandbox URLs should be accessible only with authentication.<br/>
-        /// Default Value: true
+        /// Whether sandbox URLs accept traffic without the sandbox's traffic access token. When omitted or null on create, the project's default applies, which is true unless the project changed it.
         /// </param>
         /// <param name="allowOut">
         /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed.

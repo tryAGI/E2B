@@ -382,391 +382,411 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateRequestResponseV3? Type86 { get; set; }
+        public global::E2B.TemplateSearchResponse? Type86 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateBuild? Type87 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.Template>? Type87 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateWithBuilds? Type88 { get; set; }
+        public global::E2B.TemplateRequestResponseV3? Type88 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateWithBuildsVariant2? Type89 { get; set; }
+        public global::E2B.TemplateBuild? Type89 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TemplateBuild>? Type90 { get; set; }
+        public global::E2B.TemplateWithBuilds? Type90 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateAliasResponse? Type91 { get; set; }
+        public global::E2B.TemplateWithBuildsVariant2? Type91 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateStep? Type92 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TemplateBuild>? Type92 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateBuildRequestV3? Type93 { get; set; }
+        public global::E2B.TemplateAliasResponse? Type93 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.FromImageRegistry? Type94 { get; set; }
+        public global::E2B.TemplateStep? Type94 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.AWSRegistry? Type95 { get; set; }
+        public global::E2B.TemplateBuildRequestV3? Type95 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GCPRegistry? Type96 { get; set; }
+        public global::E2B.FromImageRegistry? Type96 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GeneralRegistry? Type97 { get; set; }
+        public global::E2B.AWSRegistry? Type97 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.FromImageRegistryDiscriminator? Type98 { get; set; }
+        public global::E2B.GCPRegistry? Type98 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.FromImageRegistryDiscriminatorType? Type99 { get; set; }
+        public global::E2B.GeneralRegistry? Type99 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.AWSRegistryType? Type100 { get; set; }
+        public global::E2B.FromImageRegistryDiscriminator? Type100 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GCPRegistryType? Type101 { get; set; }
+        public global::E2B.FromImageRegistryDiscriminatorType? Type101 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GeneralRegistryType? Type102 { get; set; }
+        public global::E2B.AWSRegistryType? Type102 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateBuildStartV2? Type103 { get; set; }
+        public global::E2B.GCPRegistryType? Type103 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TemplateStep>? Type104 { get; set; }
+        public global::E2B.GeneralRegistryType? Type104 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateBuildFileUpload? Type105 { get; set; }
+        public global::E2B.TemplateBuildStartV2? Type105 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.BuildLogEntry? Type106 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TemplateStep>? Type106 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.BuildStatusReason? Type107 { get; set; }
+        public global::E2B.TemplateBuildFileUpload? Type107 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.BuildLogEntry>? Type108 { get; set; }
+        public global::E2B.BuildLogEntry? Type108 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateBuildInfo? Type109 { get; set; }
+        public global::E2B.BuildStatusReason? Type109 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateBuildLogsResponse? Type110 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.BuildLogEntry>? Type110 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.LogsDirection? Type111 { get; set; }
+        public global::E2B.TemplateBuildInfo? Type111 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.LogsSource? Type112 { get; set; }
+        public global::E2B.TemplateBuildLogsResponse? Type112 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NodeStatus? Type113 { get; set; }
+        public global::E2B.LogsDirection? Type113 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NodeStatusChange? Type114 { get; set; }
+        public global::E2B.LogsSource? Type114 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.DiskMetrics? Type115 { get; set; }
+        public global::E2B.NodeStatus? Type115 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NodeMetrics? Type116 { get; set; }
+        public global::E2B.NodeStatusChange? Type116 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.DiskMetrics>? Type117 { get; set; }
+        public global::E2B.DiskMetrics? Type117 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.MachineInfo? Type118 { get; set; }
+        public global::E2B.NodeMetrics? Type118 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.Node? Type119 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.DiskMetrics>? Type119 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NodeDetail? Type120 { get; set; }
+        public global::E2B.MachineInfo? Type120 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TeamAPIKey? Type121 { get; set; }
+        public global::E2B.Node? Type121 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.IdentifierMaskingDetails? Type122 { get; set; }
+        public global::E2B.NodeDetail? Type122 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.CreatedTeamAPIKey? Type123 { get; set; }
+        public global::E2B.TeamAPIKey? Type123 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NewTeamAPIKey? Type124 { get; set; }
+        public global::E2B.IdentifierMaskingDetails? Type124 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.UpdateTeamAPIKey? Type125 { get; set; }
+        public global::E2B.CreatedTeamAPIKey? Type125 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.AssignedTemplateTags? Type126 { get; set; }
+        public global::E2B.NewTeamAPIKey? Type126 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTag? Type127 { get; set; }
+        public global::E2B.UpdateTeamAPIKey? Type127 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTagAssignment? Type128 { get; set; }
+        public global::E2B.AssignedTemplateTags? Type128 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTagGroup? Type129 { get; set; }
+        public global::E2B.TemplateTag? Type129 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TemplateTagAssignment>? Type130 { get; set; }
+        public global::E2B.TemplateTagAssignment? Type130 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTagGroupsResponse? Type131 { get; set; }
+        public global::E2B.TemplateTagGroup? Type131 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TemplateTagGroup>? Type132 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TemplateTagAssignment>? Type132 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTagsCountResponse? Type133 { get; set; }
+        public global::E2B.TemplateTagGroupsResponse? Type133 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTagExistsResponse? Type134 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TemplateTagGroup>? Type134 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.TemplateTagAssignmentsResponse? Type135 { get; set; }
+        public global::E2B.TemplateTagsCountResponse? Type135 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.AssignTemplateTagsRequest? Type136 { get; set; }
+        public global::E2B.TemplateTagExistsResponse? Type136 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.DeleteTemplateTagsRequest? Type137 { get; set; }
+        public global::E2B.TemplateTagAssignmentsResponse? Type137 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.Volume? Type138 { get; set; }
+        public global::E2B.AssignTemplateTagsRequest? Type138 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.VolumeAndToken? Type139 { get; set; }
+        public global::E2B.DeleteTemplateTagsRequest? Type139 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NewVolume? Type140 { get; set; }
+        public global::E2B.Volume? Type140 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.Secret? Type141 { get; set; }
+        public global::E2B.VolumeAndToken? Type141 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.NewSecret? Type142 { get; set; }
+        public global::E2B.NewVolume? Type142 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SecretUpdate? Type143 { get; set; }
+        public global::E2B.Secret? Type143 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxEvent? Type144 { get; set; }
+        public global::E2B.NewSecret? Type144 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookCreate? Type145 { get; set; }
+        public global::E2B.SecretUpdate? Type145 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookCreation? Type146 { get; set; }
+        public global::E2B.SandboxEvent? Type146 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDetail? Type147 { get; set; }
+        public global::E2B.WebhookCreate? Type147 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookConfiguration? Type148 { get; set; }
+        public global::E2B.WebhookCreation? Type148 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDelivery? Type149 { get; set; }
+        public global::E2B.WebhookDetail? Type149 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveryStatus? Type150 { get; set; }
+        public global::E2B.WebhookConfiguration? Type150 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveryErrorClass? Type151 { get; set; }
+        public global::E2B.WebhookDelivery? Type151 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveryStats? Type152 { get; set; }
+        public global::E2B.WebhookDeliveryStatus? Type152 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.WebhookDeliveryStatsBucket>? Type153 { get; set; }
+        public global::E2B.WebhookDeliveryErrorClass? Type153 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveryStatsBucket? Type154 { get; set; }
+        public global::E2B.WebhookDeliveryStats? Type154 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveryDurationStats? Type155 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.WebhookDeliveryStatsBucket>? Type155 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveryGroup? Type156 { get; set; }
+        public global::E2B.WebhookDeliveryStatsBucket? Type156 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.WebhookDelivery>? Type157 { get; set; }
+        public global::E2B.WebhookDeliveryDurationStats? Type157 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.WebhookDeliveriesListPayload? Type158 { get; set; }
+        public global::E2B.WebhookDeliveryGroup? Type158 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.WebhookDeliveryGroup>? Type159 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.WebhookDelivery>? Type159 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.DateTimeOffset? Type160 { get; set; }
+        public global::E2B.WebhookDeliveriesListPayload? Type160 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GetTeamsMetricsMaxMetric? Type161 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.WebhookDeliveryGroup>? Type161 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxState>? Type162 { get; set; }
+        public global::E2B.ManagementProjectSettingsRequest? Type162 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GetTemplatesTagsGroupsSort? Type163 { get; set; }
+        public global::E2B.ProjectSettings? Type163 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>? Type164 { get; set; }
+        public global::E2B.SandboxSettings? Type164 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu? Type165 { get; set; }
+        public global::System.DateTimeOffset? Type165 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.Team>? Type166 { get; set; }
+        public global::E2B.GetTeamsMetricsMaxMetric? Type166 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TeamMetric>? Type167 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SandboxState>? Type167 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.ListedSandbox>? Type168 { get; set; }
+        public global::E2B.GetUnstableTemplatesSearchSort? Type168 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxMetric>? Type169 { get; set; }
+        public global::E2B.GetTemplatesTagsGroupsSort? Type169 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxForkResult>? Type170 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>? Type170 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>? Type171 { get; set; }
+        public global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu? Type171 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.Template>? Type172 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.Team>? Type172 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TemplateTag>? Type173 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TeamMetric>? Type173 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.Node>? Type174 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.ListedSandbox>? Type174 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>? Type175 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SandboxMetric>? Type175 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.Volume>? Type176 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SandboxForkResult>? Type176 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.Secret>? Type177 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>? Type177 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.Rig>? Type178 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TemplateTag>? Type178 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.RigInstance>? Type179 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.Node>? Type179 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.RigError>? Type180 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>? Type180 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxEvent>? Type181 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.Volume>? Type181 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.WebhookDetail>? Type182 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.Secret>? Type182 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::E2B.Rig>? Type183 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::E2B.RigInstance>? Type184 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::E2B.RigError>? Type185 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::E2B.SandboxEvent>? Type186 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::E2B.WebhookDetail>? Type187 { get; set; }
 
         /// <summary>
         ///
@@ -807,75 +827,75 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.TemplateBuild>? ListType9 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.Template>? ListType9 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.TemplateStep>? ListType10 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.TemplateBuild>? ListType10 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.BuildLogEntry>? ListType11 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.TemplateStep>? ListType11 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.DiskMetrics>? ListType12 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.BuildLogEntry>? ListType12 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.TemplateTagAssignment>? ListType13 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.DiskMetrics>? ListType13 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.TemplateTagGroup>? ListType14 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.TemplateTagAssignment>? ListType14 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.WebhookDeliveryStatsBucket>? ListType15 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.TemplateTagGroup>? ListType15 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.WebhookDelivery>? ListType16 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.WebhookDeliveryStatsBucket>? ListType16 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.WebhookDeliveryGroup>? ListType17 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.WebhookDelivery>? ListType17 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.SandboxState>? ListType18 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.WebhookDeliveryGroup>? ListType18 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>? ListType19 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.SandboxState>? ListType19 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.Team>? ListType20 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>? ListType20 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.TeamMetric>? ListType21 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.Team>? ListType21 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.ListedSandbox>? ListType22 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.TeamMetric>? ListType22 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.SandboxMetric>? ListType23 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.ListedSandbox>? ListType23 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.SandboxForkResult>? ListType24 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.SandboxMetric>? ListType24 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.SnapshotInfo>? ListType25 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.SandboxForkResult>? ListType25 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::E2B.Template>? ListType26 { get; set; }
+        public global::System.Collections.Generic.List<global::E2B.SnapshotInfo>? ListType26 { get; set; }
         /// <summary>
         ///
         /// </summary>

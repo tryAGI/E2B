@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class AuthClient
+    public partial class AdminClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_GetTeamsByTeamIDLimitsSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetUnstableAdminTeamsByTeamIDSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,40 +21,40 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetTeamsByTeamIDLimitsSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetUnstableAdminTeamsByTeamIDSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_GetTeamsByTeamIDLimitsSecurityRequirement0,
+            {                s_GetUnstableAdminTeamsByTeamIDSecurityRequirement0,
             };
-        partial void PrepareGetTeamsByTeamIDLimitsArguments(
+        partial void PrepareGetUnstableAdminTeamsByTeamIDArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string teamID);
-        partial void PrepareGetTeamsByTeamIDLimitsRequest(
+            ref global::System.Guid teamID);
+        partial void PrepareGetUnstableAdminTeamsByTeamIDRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string teamID);
-        partial void ProcessGetTeamsByTeamIDLimitsResponse(
+            global::System.Guid teamID);
+        partial void ProcessGetUnstableAdminTeamsByTeamIDResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetTeamsByTeamIDLimitsResponseContent(
+        partial void ProcessGetUnstableAdminTeamsByTeamIDResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get team limits<br/>
-        /// Returns the team's effective resource limits. A team-authenticated request may read only its own team.
+        /// Team as admin<br/>
+        /// Returns a team with its sandbox scheduling labels and cluster. It also answers for a banned or blocked team.
         /// </summary>
         /// <param name="teamID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.TeamLimitsResponse> GetTeamsByTeamIDLimitsAsync(
-            string teamID,
+        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeam> GetUnstableAdminTeamsByTeamIDAsync(
+            global::System.Guid teamID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetTeamsByTeamIDLimitsAsResponseAsync(
+            var __response = await GetUnstableAdminTeamsByTeamIDAsResponseAsync(
                 teamID: teamID,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -63,29 +63,29 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
-        /// Get team limits<br/>
-        /// Returns the team's effective resource limits. A team-authenticated request may read only its own team.
+        /// Team as admin<br/>
+        /// Returns a team with its sandbox scheduling labels and cluster. It also answers for a banned or blocked team.
         /// </summary>
         /// <param name="teamID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.TeamLimitsResponse>> GetTeamsByTeamIDLimitsAsResponseAsync(
-            string teamID,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeam>> GetUnstableAdminTeamsByTeamIDAsResponseAsync(
+            global::System.Guid teamID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetTeamsByTeamIDLimitsArguments(
+            PrepareGetUnstableAdminTeamsByTeamIDArguments(
                 httpClient: HttpClient,
                 teamID: ref teamID);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetTeamsByTeamIDLimitsSecurityRequirements,
-                operationName: "GetTeamsByTeamIDLimitsAsync");
+                securityRequirements: s_GetUnstableAdminTeamsByTeamIDSecurityRequirements,
+                operationName: "GetUnstableAdminTeamsByTeamIDAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -105,7 +105,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/teams/{teamID}/limits",
+                                path: $"/unstable/admin/teams/{teamID}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -144,7 +144,7 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetTeamsByTeamIDLimitsRequest(
+                PrepareGetUnstableAdminTeamsByTeamIDRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     teamID: teamID);
@@ -164,9 +164,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeamsByTeamIDLimits",
-                                methodName: "GetTeamsByTeamIDLimitsAsync",
-                                pathTemplate: "$\"/teams/{teamID}/limits\"",
+                                operationId: "getUnstableAdminTeamsByTeamID",
+                                methodName: "GetUnstableAdminTeamsByTeamIDAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -198,9 +198,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeamsByTeamIDLimits",
-                                methodName: "GetTeamsByTeamIDLimitsAsync",
-                                pathTemplate: "$\"/teams/{teamID}/limits\"",
+                                operationId: "getUnstableAdminTeamsByTeamID",
+                                methodName: "GetUnstableAdminTeamsByTeamIDAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -239,9 +239,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeamsByTeamIDLimits",
-                                methodName: "GetTeamsByTeamIDLimitsAsync",
-                                pathTemplate: "$\"/teams/{teamID}/limits\"",
+                                operationId: "getUnstableAdminTeamsByTeamID",
+                                methodName: "GetUnstableAdminTeamsByTeamIDAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -279,7 +279,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetTeamsByTeamIDLimitsResponse(
+                ProcessGetUnstableAdminTeamsByTeamIDResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -287,9 +287,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeamsByTeamIDLimits",
-                                methodName: "GetTeamsByTeamIDLimitsAsync",
-                                pathTemplate: "$\"/teams/{teamID}/limits\"",
+                                operationId: "getUnstableAdminTeamsByTeamID",
+                                methodName: "GetUnstableAdminTeamsByTeamIDAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -309,9 +309,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeamsByTeamIDLimits",
-                                methodName: "GetTeamsByTeamIDLimitsAsync",
-                                pathTemplate: "$\"/teams/{teamID}/limits\"",
+                                operationId: "getUnstableAdminTeamsByTeamID",
+                                methodName: "GetUnstableAdminTeamsByTeamIDAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -395,43 +395,6 @@ namespace E2B
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Forbidden
-                            if ((int)__response.StatusCode == 403)
-                            {
-                                string? __content_403 = null;
-                                global::System.Exception? __exception_403 = null;
-                                global::E2B.Error? __value_403 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_403 = global::E2B.Error.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_403 = global::E2B.Error.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_403 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_403,
-                                    responseBody: __content_403,
-                                    responseObject: __value_403,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -561,7 +524,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetTeamsByTeamIDLimitsResponseContent(
+                                ProcessGetUnstableAdminTeamsByTeamIDResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -570,9 +533,9 @@ namespace E2B
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::E2B.TeamLimitsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::E2B.AdminTeam.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.TeamLimitsResponse>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeam>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -602,9 +565,9 @@ namespace E2B
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::E2B.TeamLimitsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::E2B.AdminTeam.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.TeamLimitsResponse>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeam>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
