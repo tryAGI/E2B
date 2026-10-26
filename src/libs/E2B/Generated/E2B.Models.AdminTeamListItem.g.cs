@@ -32,13 +32,6 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tier")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Tier { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("isBanned")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required bool IsBanned { get; set; }
@@ -82,7 +75,6 @@ namespace E2B
         /// <param name="id"></param>
         /// <param name="email"></param>
         /// <param name="name"></param>
-        /// <param name="tier"></param>
         /// <param name="isBanned"></param>
         /// <param name="isBlocked"></param>
         /// <param name="createdAt"></param>
@@ -99,7 +91,6 @@ namespace E2B
             global::System.Guid id,
             string email,
             string name,
-            string tier,
             bool isBanned,
             bool isBlocked,
             global::System.DateTime createdAt,
@@ -109,7 +100,6 @@ namespace E2B
             this.Id = id;
             this.Email = email ?? throw new global::System.ArgumentNullException(nameof(email));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
-            this.Tier = tier ?? throw new global::System.ArgumentNullException(nameof(tier));
             this.IsBanned = isBanned;
             this.IsBlocked = isBlocked;
             this.CreatedAt = createdAt;

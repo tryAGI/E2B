@@ -28,6 +28,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Template))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStatus), TypeInfoPropertyName = "TemplateBuildStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Template>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateRequestResponseV3))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuild))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuilds), TypeInfoPropertyName = "TemplateWithBuilds2")]
@@ -55,7 +56,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildLogsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogsDirection), TypeInfoPropertyName = "LogsDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogsSource), TypeInfoPropertyName = "LogsSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Template>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
@@ -72,10 +72,10 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogsDirection?), TypeInfoPropertyName = "NullableLogsDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.LogsSource?), TypeInfoPropertyName = "NullableLogsSource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Template>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateBuild>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateStep>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.BuildLogEntry>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Template>))]
     internal sealed partial class TemplatesSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }

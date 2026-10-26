@@ -15,7 +15,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateAdminTeamsQueryAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateUnstableAdminTeamsQueryAsync(
 
             global::E2B.AdminTeamListRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -31,7 +31,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamList>> CreateAdminTeamsQueryAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamList>> CreateUnstableAdminTeamsQueryAsResponseAsync(
 
             global::E2B.AdminTeamListRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -65,8 +65,7 @@ namespace E2B
         /// </param>
         /// <param name="sortBy">
         /// Column to order by, with newer teams first among equal values. Omit it<br/>
-        /// to list enterprise tiers first, then pro tiers, then the rest, each<br/>
-        /// newest first.
+        /// to list the newest teams first.
         /// </param>
         /// <param name="sortOrder">
         /// Ignored when `sortBy` is omitted.
@@ -82,7 +81,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateAdminTeamsQueryAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateUnstableAdminTeamsQueryAsync(
             global::System.Collections.Generic.IList<global::System.Guid>? projectIds = default,
             string? search = default,
             bool? hideBanned = default,

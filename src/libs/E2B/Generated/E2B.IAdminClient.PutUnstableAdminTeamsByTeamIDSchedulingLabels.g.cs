@@ -14,7 +14,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutAdminTeamsByTeamIDSchedulingLabelsAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync(
             global::System.Guid teamID,
 
             global::E2B.AdminTeamSchedulingLabels request,
@@ -30,7 +30,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamSchedulingLabels>> PutAdminTeamsByTeamIDSchedulingLabelsAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamSchedulingLabels>> PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsResponseAsync(
             global::System.Guid teamID,
 
             global::E2B.AdminTeamSchedulingLabels request,
@@ -48,7 +48,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutAdminTeamsByTeamIDSchedulingLabelsAsync(
+        global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync(
             global::System.Guid teamID,
             global::System.Collections.Generic.IList<string> labels,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,

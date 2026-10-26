@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class AdminClient
+    public partial class UnstableClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_GetAdminTeamsByTeamIDSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetUnstableTemplatesSearchSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,41 +21,65 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetAdminTeamsByTeamIDSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetUnstableTemplatesSearchSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_GetAdminTeamsByTeamIDSecurityRequirement0,
+            {                s_GetUnstableTemplatesSearchSecurityRequirement0,
             };
-        partial void PrepareGetAdminTeamsByTeamIDArguments(
+        partial void PrepareGetUnstableTemplatesSearchArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref global::System.Guid teamID);
-        partial void PrepareGetAdminTeamsByTeamIDRequest(
+            ref string? search,
+            ref global::E2B.GetUnstableTemplatesSearchSort? sort,
+            ref bool? @public,
+            ref int? limit,
+            ref string? cursor);
+        partial void PrepareGetUnstableTemplatesSearchRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::System.Guid teamID);
-        partial void ProcessGetAdminTeamsByTeamIDResponse(
+            string? search,
+            global::E2B.GetUnstableTemplatesSearchSort? sort,
+            bool? @public,
+            int? limit,
+            string? cursor);
+        partial void ProcessGetUnstableTemplatesSearchResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetAdminTeamsByTeamIDResponseContent(
+        partial void ProcessGetUnstableTemplatesSearchResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get a team as admin<br/>
-        /// Returns a team with its sandbox scheduling labels and cluster. It also answers for a banned or blocked team.
+        /// Search templates<br/>
+        /// Lists the team's templates together with the platform's public default templates, which carry `isDefault: true`, with search, a visibility filter and sorts. Default templates are not listed to teams on a dedicated cluster, and those owned by another team carry zero or null usage fields. Results are newest first unless `sort` says otherwise; `nextCursor` continues the listing and is only valid with the same `sort`. For E2B's own clients: it may change or disappear without notice.
         /// </summary>
-        /// <param name="teamID"></param>
+        /// <param name="search"></param>
+        /// <param name="sort">
+        /// Default Value: created_at_desc
+        /// </param>
+        /// <param name="public"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
+        /// <param name="cursor"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeam> GetAdminTeamsByTeamIDAsync(
-            global::System.Guid teamID,
+        public async global::System.Threading.Tasks.Task<global::E2B.TemplateSearchResponse> GetUnstableTemplatesSearchAsync(
+            string? search = default,
+            global::E2B.GetUnstableTemplatesSearchSort? sort = default,
+            bool? @public = default,
+            int? limit = default,
+            string? cursor = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetAdminTeamsByTeamIDAsResponseAsync(
-                teamID: teamID,
+            var __response = await GetUnstableTemplatesSearchAsResponseAsync(
+                search: search,
+                sort: sort,
+                @public: @public,
+                limit: limit,
+                cursor: cursor,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -63,29 +87,45 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
-        /// Get a team as admin<br/>
-        /// Returns a team with its sandbox scheduling labels and cluster. It also answers for a banned or blocked team.
+        /// Search templates<br/>
+        /// Lists the team's templates together with the platform's public default templates, which carry `isDefault: true`, with search, a visibility filter and sorts. Default templates are not listed to teams on a dedicated cluster, and those owned by another team carry zero or null usage fields. Results are newest first unless `sort` says otherwise; `nextCursor` continues the listing and is only valid with the same `sort`. For E2B's own clients: it may change or disappear without notice.
         /// </summary>
-        /// <param name="teamID"></param>
+        /// <param name="search"></param>
+        /// <param name="sort">
+        /// Default Value: created_at_desc
+        /// </param>
+        /// <param name="public"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
+        /// <param name="cursor"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeam>> GetAdminTeamsByTeamIDAsResponseAsync(
-            global::System.Guid teamID,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.TemplateSearchResponse>> GetUnstableTemplatesSearchAsResponseAsync(
+            string? search = default,
+            global::E2B.GetUnstableTemplatesSearchSort? sort = default,
+            bool? @public = default,
+            int? limit = default,
+            string? cursor = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetAdminTeamsByTeamIDArguments(
+            PrepareGetUnstableTemplatesSearchArguments(
                 httpClient: HttpClient,
-                teamID: ref teamID);
+                search: ref search,
+                sort: ref sort,
+                @public: ref @public,
+                limit: ref limit,
+                cursor: ref cursor);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetAdminTeamsByTeamIDSecurityRequirements,
-                operationName: "GetAdminTeamsByTeamIDAsync");
+                securityRequirements: s_GetUnstableTemplatesSearchSecurityRequirements,
+                operationName: "GetUnstableTemplatesSearchAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -105,8 +145,15 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/admin/teams/{teamID}",
+                                path: "/unstable/templates/search",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("search", search)
+                                .AddOptionalParameter("sort", sort?.ToValueString())
+                                .AddOptionalParameter("public", @public?.ToString().ToLowerInvariant())
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                .AddOptionalParameter("cursor", cursor)
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -144,10 +191,14 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetAdminTeamsByTeamIDRequest(
+                PrepareGetUnstableTemplatesSearchRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    teamID: teamID);
+                    search: search,
+                    sort: sort,
+                    @public: @public,
+                    limit: limit,
+                    cursor: cursor);
 
                 return __httpRequest;
             }
@@ -164,9 +215,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getAdminTeamsByTeamID",
-                                methodName: "GetAdminTeamsByTeamIDAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}\"",
+                                operationId: "getUnstableTemplatesSearch",
+                                methodName: "GetUnstableTemplatesSearchAsync",
+                                pathTemplate: "\"/unstable/templates/search\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -198,9 +249,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getAdminTeamsByTeamID",
-                                methodName: "GetAdminTeamsByTeamIDAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}\"",
+                                operationId: "getUnstableTemplatesSearch",
+                                methodName: "GetUnstableTemplatesSearchAsync",
+                                pathTemplate: "\"/unstable/templates/search\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -239,9 +290,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getAdminTeamsByTeamID",
-                                methodName: "GetAdminTeamsByTeamIDAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}\"",
+                                operationId: "getUnstableTemplatesSearch",
+                                methodName: "GetUnstableTemplatesSearchAsync",
+                                pathTemplate: "\"/unstable/templates/search\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -279,7 +330,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetAdminTeamsByTeamIDResponse(
+                ProcessGetUnstableTemplatesSearchResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -287,9 +338,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getAdminTeamsByTeamID",
-                                methodName: "GetAdminTeamsByTeamIDAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}\"",
+                                operationId: "getUnstableTemplatesSearch",
+                                methodName: "GetUnstableTemplatesSearchAsync",
+                                pathTemplate: "\"/unstable/templates/search\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -309,9 +360,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getAdminTeamsByTeamID",
-                                methodName: "GetAdminTeamsByTeamIDAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}\"",
+                                operationId: "getUnstableTemplatesSearch",
+                                methodName: "GetUnstableTemplatesSearchAsync",
+                                pathTemplate: "\"/unstable/templates/search\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -395,43 +446,6 @@ namespace E2B
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Not found
-                            if ((int)__response.StatusCode == 404)
-                            {
-                                string? __content_404 = null;
-                                global::System.Exception? __exception_404 = null;
-                                global::E2B.Error? __value_404 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_404 = global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_404 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_404,
-                                    responseBody: __content_404,
-                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -524,7 +538,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetAdminTeamsByTeamIDResponseContent(
+                                ProcessGetUnstableTemplatesSearchResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -533,9 +547,9 @@ namespace E2B
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::E2B.AdminTeam.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::E2B.TemplateSearchResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeam>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.TemplateSearchResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -565,9 +579,9 @@ namespace E2B
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::E2B.AdminTeam.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::E2B.TemplateSearchResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeam>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.TemplateSearchResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

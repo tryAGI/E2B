@@ -7,7 +7,7 @@ namespace E2B
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_PutAdminTeamsByTeamIDSchedulingLabelsSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_PutUnstableAdminTeamsByTeamIDSchedulingLabelsSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,24 +21,24 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_PutAdminTeamsByTeamIDSchedulingLabelsSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_PutUnstableAdminTeamsByTeamIDSchedulingLabelsSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_PutAdminTeamsByTeamIDSchedulingLabelsSecurityRequirement0,
+            {                s_PutUnstableAdminTeamsByTeamIDSchedulingLabelsSecurityRequirement0,
             };
-        partial void PreparePutAdminTeamsByTeamIDSchedulingLabelsArguments(
+        partial void PreparePutUnstableAdminTeamsByTeamIDSchedulingLabelsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref global::System.Guid teamID,
             global::E2B.AdminTeamSchedulingLabels request);
-        partial void PreparePutAdminTeamsByTeamIDSchedulingLabelsRequest(
+        partial void PreparePutUnstableAdminTeamsByTeamIDSchedulingLabelsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             global::System.Guid teamID,
             global::E2B.AdminTeamSchedulingLabels request);
-        partial void ProcessPutAdminTeamsByTeamIDSchedulingLabelsResponse(
+        partial void ProcessPutUnstableAdminTeamsByTeamIDSchedulingLabelsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPutAdminTeamsByTeamIDSchedulingLabelsResponseContent(
+        partial void ProcessPutUnstableAdminTeamsByTeamIDSchedulingLabelsResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
@@ -53,14 +53,14 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutAdminTeamsByTeamIDSchedulingLabelsAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync(
             global::System.Guid teamID,
 
             global::E2B.AdminTeamSchedulingLabels request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PutAdminTeamsByTeamIDSchedulingLabelsAsResponseAsync(
+            var __response = await PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsResponseAsync(
                 teamID: teamID,
 
                 request: request,
@@ -80,7 +80,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamSchedulingLabels>> PutAdminTeamsByTeamIDSchedulingLabelsAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamSchedulingLabels>> PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsResponseAsync(
             global::System.Guid teamID,
 
             global::E2B.AdminTeamSchedulingLabels request,
@@ -91,7 +91,7 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePutAdminTeamsByTeamIDSchedulingLabelsArguments(
+            PreparePutUnstableAdminTeamsByTeamIDSchedulingLabelsArguments(
                 httpClient: HttpClient,
                 teamID: ref teamID,
                 request: request);
@@ -99,8 +99,8 @@ namespace E2B
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PutAdminTeamsByTeamIDSchedulingLabelsSecurityRequirements,
-                operationName: "PutAdminTeamsByTeamIDSchedulingLabelsAsync");
+                securityRequirements: s_PutUnstableAdminTeamsByTeamIDSchedulingLabelsSecurityRequirements,
+                operationName: "PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -120,7 +120,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/admin/teams/{teamID}/scheduling-labels",
+                                path: $"/unstable/admin/teams/{teamID}/scheduling-labels",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -165,7 +165,7 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePutAdminTeamsByTeamIDSchedulingLabelsRequest(
+                PreparePutUnstableAdminTeamsByTeamIDSchedulingLabelsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     teamID: teamID,
@@ -186,9 +186,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putAdminTeamsByTeamIDSchedulingLabels",
-                                methodName: "PutAdminTeamsByTeamIDSchedulingLabelsAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}/scheduling-labels\"",
+                                operationId: "putUnstableAdminTeamsByTeamIDSchedulingLabels",
+                                methodName: "PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}/scheduling-labels\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -220,9 +220,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putAdminTeamsByTeamIDSchedulingLabels",
-                                methodName: "PutAdminTeamsByTeamIDSchedulingLabelsAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}/scheduling-labels\"",
+                                operationId: "putUnstableAdminTeamsByTeamIDSchedulingLabels",
+                                methodName: "PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}/scheduling-labels\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -261,9 +261,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putAdminTeamsByTeamIDSchedulingLabels",
-                                methodName: "PutAdminTeamsByTeamIDSchedulingLabelsAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}/scheduling-labels\"",
+                                operationId: "putUnstableAdminTeamsByTeamIDSchedulingLabels",
+                                methodName: "PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}/scheduling-labels\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -301,7 +301,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPutAdminTeamsByTeamIDSchedulingLabelsResponse(
+                ProcessPutUnstableAdminTeamsByTeamIDSchedulingLabelsResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -309,9 +309,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putAdminTeamsByTeamIDSchedulingLabels",
-                                methodName: "PutAdminTeamsByTeamIDSchedulingLabelsAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}/scheduling-labels\"",
+                                operationId: "putUnstableAdminTeamsByTeamIDSchedulingLabels",
+                                methodName: "PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}/scheduling-labels\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -331,9 +331,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "putAdminTeamsByTeamIDSchedulingLabels",
-                                methodName: "PutAdminTeamsByTeamIDSchedulingLabelsAsync",
-                                pathTemplate: "$\"/admin/teams/{teamID}/scheduling-labels\"",
+                                operationId: "putUnstableAdminTeamsByTeamIDSchedulingLabels",
+                                methodName: "PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync",
+                                pathTemplate: "$\"/unstable/admin/teams/{teamID}/scheduling-labels\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -546,7 +546,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPutAdminTeamsByTeamIDSchedulingLabelsResponseContent(
+                                ProcessPutUnstableAdminTeamsByTeamIDSchedulingLabelsResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -641,7 +641,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutAdminTeamsByTeamIDSchedulingLabelsAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamSchedulingLabels> PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync(
             global::System.Guid teamID,
             global::System.Collections.Generic.IList<string> labels,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -652,7 +652,7 @@ namespace E2B
                 Labels = labels,
             };
 
-            return await PutAdminTeamsByTeamIDSchedulingLabelsAsync(
+            return await PutUnstableAdminTeamsByTeamIDSchedulingLabelsAsync(
                 teamID: teamID,
                 request: __request,
                 requestOptions: requestOptions,

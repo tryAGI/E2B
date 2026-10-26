@@ -48,8 +48,7 @@ namespace E2B
 
         /// <summary>
         /// Column to order by, with newer teams first among equal values. Omit it<br/>
-        /// to list enterprise tiers first, then pro tiers, then the rest, each<br/>
-        /// newest first.
+        /// to list the newest teams first.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sortBy")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.AdminTeamListSortFieldJsonConverter))]
@@ -107,8 +106,7 @@ namespace E2B
         /// </param>
         /// <param name="sortBy">
         /// Column to order by, with newer teams first among equal values. Omit it<br/>
-        /// to list enterprise tiers first, then pro tiers, then the rest, each<br/>
-        /// newest first.
+        /// to list the newest teams first.
         /// </param>
         /// <param name="sortOrder">
         /// Ignored when `sortBy` is omitted.

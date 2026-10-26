@@ -96,6 +96,11 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
+        public UnstableClient Unstable { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public VolumesClient Volumes { get; }
 
         /// <summary>

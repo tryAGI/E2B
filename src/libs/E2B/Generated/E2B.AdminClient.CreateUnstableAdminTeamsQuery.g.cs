@@ -7,7 +7,7 @@ namespace E2B
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_CreateAdminTeamsQuerySecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_CreateUnstableAdminTeamsQuerySecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,22 +21,22 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateAdminTeamsQuerySecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_CreateUnstableAdminTeamsQuerySecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_CreateAdminTeamsQuerySecurityRequirement0,
+            {                s_CreateUnstableAdminTeamsQuerySecurityRequirement0,
             };
-        partial void PrepareCreateAdminTeamsQueryArguments(
+        partial void PrepareCreateUnstableAdminTeamsQueryArguments(
             global::System.Net.Http.HttpClient httpClient,
             global::E2B.AdminTeamListRequest request);
-        partial void PrepareCreateAdminTeamsQueryRequest(
+        partial void PrepareCreateUnstableAdminTeamsQueryRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             global::E2B.AdminTeamListRequest request);
-        partial void ProcessCreateAdminTeamsQueryResponse(
+        partial void ProcessCreateUnstableAdminTeamsQueryResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateAdminTeamsQueryResponseContent(
+        partial void ProcessCreateUnstableAdminTeamsQueryResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
@@ -52,13 +52,13 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateAdminTeamsQueryAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateUnstableAdminTeamsQueryAsync(
 
             global::E2B.AdminTeamListRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateAdminTeamsQueryAsResponseAsync(
+            var __response = await CreateUnstableAdminTeamsQueryAsResponseAsync(
 
                 request: request,
                 requestOptions: requestOptions,
@@ -78,7 +78,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamList>> CreateAdminTeamsQueryAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamList>> CreateUnstableAdminTeamsQueryAsResponseAsync(
 
             global::E2B.AdminTeamListRequest request,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
@@ -88,15 +88,15 @@ namespace E2B
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateAdminTeamsQueryArguments(
+            PrepareCreateUnstableAdminTeamsQueryArguments(
                 httpClient: HttpClient,
                 request: request);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateAdminTeamsQuerySecurityRequirements,
-                operationName: "CreateAdminTeamsQueryAsync");
+                securityRequirements: s_CreateUnstableAdminTeamsQuerySecurityRequirements,
+                operationName: "CreateUnstableAdminTeamsQueryAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -116,7 +116,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: "/admin/teams/query",
+                                path: "/unstable/admin/teams/query",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -161,7 +161,7 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateAdminTeamsQueryRequest(
+                PrepareCreateUnstableAdminTeamsQueryRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     request: request);
@@ -181,9 +181,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createAdminTeamsQuery",
-                                methodName: "CreateAdminTeamsQueryAsync",
-                                pathTemplate: "\"/admin/teams/query\"",
+                                operationId: "createUnstableAdminTeamsQuery",
+                                methodName: "CreateUnstableAdminTeamsQueryAsync",
+                                pathTemplate: "\"/unstable/admin/teams/query\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -215,9 +215,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createAdminTeamsQuery",
-                                methodName: "CreateAdminTeamsQueryAsync",
-                                pathTemplate: "\"/admin/teams/query\"",
+                                operationId: "createUnstableAdminTeamsQuery",
+                                methodName: "CreateUnstableAdminTeamsQueryAsync",
+                                pathTemplate: "\"/unstable/admin/teams/query\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -256,9 +256,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createAdminTeamsQuery",
-                                methodName: "CreateAdminTeamsQueryAsync",
-                                pathTemplate: "\"/admin/teams/query\"",
+                                operationId: "createUnstableAdminTeamsQuery",
+                                methodName: "CreateUnstableAdminTeamsQueryAsync",
+                                pathTemplate: "\"/unstable/admin/teams/query\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -296,7 +296,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateAdminTeamsQueryResponse(
+                ProcessCreateUnstableAdminTeamsQueryResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -304,9 +304,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createAdminTeamsQuery",
-                                methodName: "CreateAdminTeamsQueryAsync",
-                                pathTemplate: "\"/admin/teams/query\"",
+                                operationId: "createUnstableAdminTeamsQuery",
+                                methodName: "CreateUnstableAdminTeamsQueryAsync",
+                                pathTemplate: "\"/unstable/admin/teams/query\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -326,9 +326,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "createAdminTeamsQuery",
-                                methodName: "CreateAdminTeamsQueryAsync",
-                                pathTemplate: "\"/admin/teams/query\"",
+                                operationId: "createUnstableAdminTeamsQuery",
+                                methodName: "CreateUnstableAdminTeamsQueryAsync",
+                                pathTemplate: "\"/unstable/admin/teams/query\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -504,7 +504,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateAdminTeamsQueryResponseContent(
+                                ProcessCreateUnstableAdminTeamsQueryResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -616,8 +616,7 @@ namespace E2B
         /// </param>
         /// <param name="sortBy">
         /// Column to order by, with newer teams first among equal values. Omit it<br/>
-        /// to list enterprise tiers first, then pro tiers, then the rest, each<br/>
-        /// newest first.
+        /// to list the newest teams first.
         /// </param>
         /// <param name="sortOrder">
         /// Ignored when `sortBy` is omitted.
@@ -633,7 +632,7 @@ namespace E2B
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateAdminTeamsQueryAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AdminTeamList> CreateUnstableAdminTeamsQueryAsync(
             global::System.Collections.Generic.IList<global::System.Guid>? projectIds = default,
             string? search = default,
             bool? hideBanned = default,
@@ -661,7 +660,7 @@ namespace E2B
                 Offset = offset,
             };
 
-            return await CreateAdminTeamsQueryAsync(
+            return await CreateUnstableAdminTeamsQueryAsync(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

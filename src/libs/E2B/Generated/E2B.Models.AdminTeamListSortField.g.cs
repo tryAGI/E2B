@@ -5,8 +5,7 @@ namespace E2B
 {
     /// <summary>
     /// Column to order by, with newer teams first among equal values. Omit it<br/>
-    /// to list enterprise tiers first, then pro tiers, then the rest, each<br/>
-    /// newest first.
+    /// to list the newest teams first.
     /// </summary>
     public enum AdminTeamListSortField
     {
