@@ -5,7 +5,8 @@ namespace E2B
 {
     /// <summary>
     /// Status of the node.<br/>
-    /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
+    /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+    /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
     /// </summary>
     public enum NodeStatus
     {
@@ -17,6 +18,10 @@ namespace E2B
         ///
         /// </summary>
         NodeStatusDraining,
+        /// <summary>
+        /// the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
+        /// </summary>
+        NodeStatusNotReady,
         /// <summary>
         /// the node is not actively used, but it can return to ready and continue serving traffic.
         /// </summary>
@@ -49,6 +54,7 @@ namespace E2B
             {
                 NodeStatus.NodeStatusConnecting => "connecting",
                 NodeStatus.NodeStatusDraining => "draining",
+                NodeStatus.NodeStatusNotReady => "not_ready",
                 NodeStatus.NodeStatusReady => "ready",
                 NodeStatus.NodeStatusShuttingDown => "shutting_down",
                 NodeStatus.NodeStatusStandby => "standby",
@@ -65,6 +71,7 @@ namespace E2B
             {
                 "connecting" => NodeStatus.NodeStatusConnecting,
                 "draining" => NodeStatus.NodeStatusDraining,
+                "not_ready" => NodeStatus.NodeStatusNotReady,
                 "ready" => NodeStatus.NodeStatusReady,
                 "shutting_down" => NodeStatus.NodeStatusShuttingDown,
                 "standby" => NodeStatus.NodeStatusStandby,

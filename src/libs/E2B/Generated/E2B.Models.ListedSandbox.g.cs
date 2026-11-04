@@ -94,6 +94,12 @@ namespace E2B
         public required string EnvdVersion { get; set; }
 
         /// <summary>
+        /// True when the snapshot a paused sandbox would resume from was taken while the sandbox guest agent was not responding. A plain resume of it is refused with 409 and error_code sandbox_snapshot_guest_agent_unresponsive, because restoring that memory would bring the unresponsive agent back; resume it without memory (`memory: false`), which cold-boots the sandbox from its disk. Omitted for a running sandbox and for a snapshot whose agent answered.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("envdUnresponsiveAtPause")]
+        public bool? EnvdUnresponsiveAtPause { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
@@ -142,6 +148,9 @@ namespace E2B
         /// Alias of the template
         /// </param>
         /// <param name="metadata"></param>
+        /// <param name="envdUnresponsiveAtPause">
+        /// True when the snapshot a paused sandbox would resume from was taken while the sandbox guest agent was not responding. A plain resume of it is refused with 409 and error_code sandbox_snapshot_guest_agent_unresponsive, because restoring that memory would bring the unresponsive agent back; resume it without memory (`memory: false`), which cold-boots the sandbox from its disk. Omitted for a running sandbox and for a snapshot whose agent answered.
+        /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -159,6 +168,7 @@ namespace E2B
             string envdVersion,
             string? alias,
             object? metadata,
+            bool? envdUnresponsiveAtPause,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
@@ -173,6 +183,7 @@ namespace E2B
             this.Metadata = metadata;
             this.State = state;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
+            this.EnvdUnresponsiveAtPause = envdUnresponsiveAtPause;
             this.VolumeMounts = volumeMounts;
         }
 

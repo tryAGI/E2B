@@ -1,0 +1,44 @@
+#nullable enable
+
+namespace E2B
+{
+    public partial interface IAdminClient
+    {
+        /// <summary>
+        /// Ban a team<br/>
+        /// Marks the team as banned so its API keys stop authenticating, then<br/>
+        /// kills its sandboxes and cancels its builds. The ban is stored first:<br/>
+        /// a failure to kill or cancel is reported in the result and does not<br/>
+        /// undo it. Killing and cancelling stop after a fixed time budget, and a<br/>
+        /// step cut short is reported as failed. Banning an already banned team<br/>
+        /// repeats the kill and cancel. The work continues if the caller<br/>
+        /// disconnects.
+        /// </summary>
+        /// <param name="teamID"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::E2B.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::E2B.AdminTeamBanResult> AdminBanTeamAsync(
+            string teamID,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Ban a team<br/>
+        /// Marks the team as banned so its API keys stop authenticating, then<br/>
+        /// kills its sandboxes and cancels its builds. The ban is stored first:<br/>
+        /// a failure to kill or cancel is reported in the result and does not<br/>
+        /// undo it. Killing and cancelling stop after a fixed time budget, and a<br/>
+        /// step cut short is reported as failed. Banning an already banned team<br/>
+        /// repeats the kill and cancel. The work continues if the caller<br/>
+        /// disconnects.
+        /// </summary>
+        /// <param name="teamID"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::E2B.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AdminTeamBanResult>> AdminBanTeamAsResponseAsync(
+            string teamID,
+            global::E2B.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}
