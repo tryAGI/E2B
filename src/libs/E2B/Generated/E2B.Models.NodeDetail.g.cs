@@ -52,7 +52,8 @@ namespace E2B
 
         /// <summary>
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
+        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.NodeStatusJsonConverter))]
@@ -135,7 +136,8 @@ namespace E2B
         /// <param name="machineInfo"></param>
         /// <param name="status">
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.
+        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
         /// </param>
         /// <param name="statusChangedAt">
         /// Time when the node status was last changed

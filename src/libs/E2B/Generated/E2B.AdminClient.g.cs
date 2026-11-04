@@ -45,7 +45,7 @@ namespace E2B
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
-            get => JsonSerializerContextProvider?.Value ?? global::E2B.AdminSourceGenerationContext.Default;
+            get => JsonSerializerContextProvider?.Value ?? global::E2B.SourceGenerationContext.Default;
             set => JsonSerializerContextProvider = new(() => value);
         }
 

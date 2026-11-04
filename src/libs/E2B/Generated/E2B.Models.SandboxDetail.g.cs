@@ -59,6 +59,12 @@ namespace E2B
         public required string EnvdVersion { get; set; }
 
         /// <summary>
+        /// True when the snapshot a paused sandbox would resume from was taken while the sandbox guest agent was not responding. A plain resume of it is refused with 409 and error_code sandbox_snapshot_guest_agent_unresponsive, because restoring that memory would bring the unresponsive agent back; resume it without memory (`memory: false`), which cold-boots the sandbox from its disk. Omitted for a running sandbox and for a snapshot whose agent answered.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("envdUnresponsiveAtPause")]
+        public bool? EnvdUnresponsiveAtPause { get; set; }
+
+        /// <summary>
         /// Access token used for envd communication
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("envdAccessToken")]
@@ -178,6 +184,9 @@ namespace E2B
         /// <param name="alias">
         /// Alias of the template
         /// </param>
+        /// <param name="envdUnresponsiveAtPause">
+        /// True when the snapshot a paused sandbox would resume from was taken while the sandbox guest agent was not responding. A plain resume of it is refused with 409 and error_code sandbox_snapshot_guest_agent_unresponsive, because restoring that memory would bring the unresponsive agent back; resume it without memory (`memory: false`), which cold-boots the sandbox from its disk. Omitted for a running sandbox and for a snapshot whose agent answered.
+        /// </param>
         /// <param name="envdAccessToken">
         /// Access token used for envd communication
         /// </param>
@@ -211,6 +220,7 @@ namespace E2B
             int diskSizeMB,
             global::E2B.SandboxState state,
             string? alias,
+            bool? envdUnresponsiveAtPause,
             string? envdAccessToken,
             bool? allowInternetAccess,
             string? domain,
@@ -227,6 +237,7 @@ namespace E2B
             this.StartedAt = startedAt;
             this.EndAt = endAt;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
+            this.EnvdUnresponsiveAtPause = envdUnresponsiveAtPause;
             this.EnvdAccessToken = envdAccessToken;
             this.AllowInternetAccess = allowInternetAccess;
             this.Domain = domain;

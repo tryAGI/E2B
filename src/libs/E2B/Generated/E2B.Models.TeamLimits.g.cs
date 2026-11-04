@@ -86,6 +86,13 @@ namespace E2B
         public required long ApiTeamRpsDelete { get; set; }
 
         /// <summary>
+        /// Maximum number of secrets the team may store
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxSecrets")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long MaxSecrets { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -127,6 +134,9 @@ namespace E2B
         /// <param name="apiTeamRpsDelete">
         /// Requests per second the team may make to delete endpoints
         /// </param>
+        /// <param name="maxSecrets">
+        /// Maximum number of secrets the team may store
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -141,7 +151,8 @@ namespace E2B
             long defaultFreeDiskSizeMb,
             long maxFreeDiskSizeMb,
             long apiTeamRpsList,
-            long apiTeamRpsDelete)
+            long apiTeamRpsDelete,
+            long maxSecrets)
         {
             this.MaxLengthHours = maxLengthHours;
             this.ConcurrentSandboxes = concurrentSandboxes;
@@ -154,6 +165,7 @@ namespace E2B
             this.MaxFreeDiskSizeMb = maxFreeDiskSizeMb;
             this.ApiTeamRpsList = apiTeamRpsList;
             this.ApiTeamRpsDelete = apiTeamRpsDelete;
+            this.MaxSecrets = maxSecrets;
         }
 
         /// <summary>

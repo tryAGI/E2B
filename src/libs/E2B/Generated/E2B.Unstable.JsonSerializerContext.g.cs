@@ -23,20 +23,35 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::System.Guid>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Template))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStatus), TypeInfoPropertyName = "TemplateBuildStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateSearchResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Template>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildStatus), TypeInfoPropertyName = "BuildStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ListedBuild))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildsListResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ListedBuild>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildStatusItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildsStatusesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.BuildStatusItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetUnstableTemplatesSearchSort), TypeInfoPropertyName = "GetUnstableTemplatesSearchSort2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.BuildStatus>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildStatus?), TypeInfoPropertyName = "NullableTemplateBuildStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildStatus?), TypeInfoPropertyName = "NullableBuildStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetUnstableTemplatesSearchSort?), TypeInfoPropertyName = "NullableGetUnstableTemplatesSearchSort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::System.Guid>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Template>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ListedBuild>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.BuildStatusItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.BuildStatus>))]
     internal sealed partial class UnstableSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -106,7 +121,11 @@ namespace E2B
             public override bool CanConvert(global::System.Type typeToConvert)
             {
                 return
-                    typeToConvert == typeof(global::E2B.TemplateBuildStatus)
+                    typeToConvert == typeof(global::E2B.BuildStatus)
+
+                    || typeToConvert == typeof(global::E2B.BuildStatus?)
+
+                    || typeToConvert == typeof(global::E2B.TemplateBuildStatus)
 
                     || typeToConvert == typeof(global::E2B.TemplateBuildStatus?)
 
@@ -119,6 +138,16 @@ namespace E2B
                 global::System.Type typeToConvert,
                 global::System.Text.Json.JsonSerializerOptions options)
             {
+                if (typeToConvert == typeof(global::E2B.BuildStatus))
+                {
+                    return new global::E2B.JsonConverters.BuildStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::E2B.BuildStatus?))
+                {
+                    return new global::E2B.JsonConverters.BuildStatusNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::E2B.TemplateBuildStatus))
                 {
                     return new global::E2B.JsonConverters.TemplateBuildStatusJsonConverter();
