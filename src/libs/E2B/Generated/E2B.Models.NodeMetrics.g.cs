@@ -13,70 +13,70 @@ namespace E2B
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allocatedCPU")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int AllocatedCPU { get; set; }
+        public required long AllocatedCPU { get; set; }
 
         /// <summary>
         /// Node CPU usage percentage
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("cpuPercent")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int CpuPercent { get; set; }
+        public required long CpuPercent { get; set; }
 
         /// <summary>
         /// Total number of CPU cores on the node
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("cpuCount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int CpuCount { get; set; }
+        public required long CpuCount { get; set; }
 
         /// <summary>
         /// Amount of allocated memory in bytes
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allocatedMemoryBytes")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int AllocatedMemoryBytes { get; set; }
+        public required long AllocatedMemoryBytes { get; set; }
 
         /// <summary>
         /// Node memory used in bytes
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryUsedBytes")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int MemoryUsedBytes { get; set; }
+        public required long MemoryUsedBytes { get; set; }
 
         /// <summary>
         /// Total node memory in bytes
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryTotalBytes")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int MemoryTotalBytes { get; set; }
+        public required long MemoryTotalBytes { get; set; }
 
         /// <summary>
         /// Total number of preallocated hugepages on the node
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hugePagesTotal")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int HugePagesTotal { get; set; }
+        public required long HugePagesTotal { get; set; }
 
         /// <summary>
         /// Number of hugepages in use (total - free)
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hugePagesUsed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int HugePagesUsed { get; set; }
+        public required long HugePagesUsed { get; set; }
 
         /// <summary>
         /// Number of reserved hugepages (committed but not yet faulted)
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hugePagesReserved")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int HugePagesReserved { get; set; }
+        public required long HugePagesReserved { get; set; }
 
         /// <summary>
         /// Size of a single hugepage in bytes
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hugePageSizeBytes")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int HugePageSizeBytes { get; set; }
+        public required long HugePageSizeBytes { get; set; }
 
         /// <summary>
         /// Detailed metrics for each disk/mount point
@@ -131,16 +131,16 @@ namespace E2B
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public NodeMetrics(
-            int allocatedCPU,
-            int cpuPercent,
-            int cpuCount,
-            int allocatedMemoryBytes,
-            int memoryUsedBytes,
-            int memoryTotalBytes,
-            int hugePagesTotal,
-            int hugePagesUsed,
-            int hugePagesReserved,
-            int hugePageSizeBytes,
+            long allocatedCPU,
+            long cpuPercent,
+            long cpuCount,
+            long allocatedMemoryBytes,
+            long memoryUsedBytes,
+            long memoryTotalBytes,
+            long hugePagesTotal,
+            long hugePagesUsed,
+            long hugePagesReserved,
+            long hugePageSizeBytes,
             global::System.Collections.Generic.IList<global::E2B.DiskMetrics> disks)
         {
             this.AllocatedCPU = allocatedCPU;
