@@ -122,87 +122,87 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<int>? Type21 { get; set; }
+        public global::System.Collections.Generic.IList<long>? Type21 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? Type22 { get; set; }
+        public long? Type22 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>? Type23 { get; set; }
+        public global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? Type23 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxNetworkRule? Type24 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>? Type24 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxNetworkUpdateConfig? Type25 { get; set; }
+        public global::E2B.SandboxNetworkRule? Type25 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxNetworkTransform? Type26 { get; set; }
+        public global::E2B.SandboxNetworkUpdateConfig? Type26 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.Dictionary<string, string>? Type27 { get; set; }
+        public global::E2B.SandboxNetworkTransform? Type27 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxEgressProxyTLSConfig? Type28 { get; set; }
+        public global::System.Collections.Generic.Dictionary<string, string>? Type28 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxAutoResumeConfig? Type29 { get; set; }
+        public global::E2B.SandboxEgressProxyTLSConfig? Type29 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxOnTimeout? Type30 { get; set; }
+        public global::E2B.SandboxAutoResumeConfig? Type30 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxLifecycle? Type31 { get; set; }
+        public global::E2B.SandboxOnTimeout? Type31 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxPauseMode? Type32 { get; set; }
+        public global::E2B.SandboxLifecycle? Type32 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxLog? Type33 { get; set; }
+        public global::E2B.SandboxPauseMode? Type33 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxLogEntry? Type34 { get; set; }
+        public global::E2B.SandboxLog? Type34 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.LogLevel? Type35 { get; set; }
+        public global::E2B.SandboxLogEntry? Type35 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxLogs? Type36 { get; set; }
+        public global::E2B.LogLevel? Type36 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxLog>? Type37 { get; set; }
+        public global::E2B.SandboxLogs? Type37 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::E2B.SandboxLogEntry>? Type38 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SandboxLog>? Type38 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxLogsV2Response? Type39 { get; set; }
+        public global::System.Collections.Generic.IList<global::E2B.SandboxLogEntry>? Type39 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::E2B.SandboxMetric? Type40 { get; set; }
+        public global::E2B.SandboxLogsV2Response? Type40 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public long? Type41 { get; set; }
+        public global::E2B.SandboxMetric? Type41 { get; set; }
         /// <summary>
         ///
         /// </summary>
@@ -1031,7 +1031,7 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<int>? ListType1 { get; set; }
+        public global::System.Collections.Generic.List<long>? ListType1 { get; set; }
         /// <summary>
         ///
         /// </summary>

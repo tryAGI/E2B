@@ -48,7 +48,7 @@ namespace E2B
         /// Sandbox ports that serve HTTPS rather than plaintext HTTP. Affects how the proxy reaches the service inside the sandbox; the public URL is HTTPS either way. Certificates are not verified, so self-signed ones work. The envd port (49983) cannot be listed.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("httpsPorts")]
-        public global::System.Collections.Generic.IList<int>? HttpsPorts { get; set; }
+        public global::System.Collections.Generic.IList<long>? HttpsPorts { get; set; }
 
         /// <summary>
         /// Per-domain transform rules applied to matching outbound HTTPS requests. Keys may be exact DNS names (for example, "api.example.com") or a leading wildcard (for example, "*.example.com"), and are normalized to lowercase on write. Wildcards match subdomains at any depth but not the apex domain; a bare "*" is invalid. Exact rules take precedence, followed by the longest matching wildcard suffix, and matching rule sets are not merged. Broad wildcards such as "*.com" are allowed and may expose transformed credentials to every matching destination the sandbox contacts. Rules do not grant network access; configure allowOut separately to permit the destination.
@@ -99,7 +99,7 @@ namespace E2B
             global::System.Collections.Generic.IList<string>? dnsServers,
             global::E2B.SandboxEgressProxyConfig? egressProxy,
             string? maskRequestHost,
-            global::System.Collections.Generic.IList<int>? httpsPorts,
+            global::System.Collections.Generic.IList<long>? httpsPorts,
             global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules)
         {
             this.AllowPublicTraffic = allowPublicTraffic;

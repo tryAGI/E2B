@@ -72,7 +72,7 @@ namespace E2B
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sandboxCount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int SandboxCount { get; set; }
+        public required long SandboxCount { get; set; }
 
         /// <summary>
         /// Cached node-scoped sandbox admission limit. Nonpositive values reject creation.
@@ -86,7 +86,7 @@ namespace E2B
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("outstandingWork")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int OutstandingWork { get; set; }
+        public required long OutstandingWork { get; set; }
 
         /// <summary>
         /// Node metrics
@@ -100,14 +100,14 @@ namespace E2B
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("createSuccesses")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int CreateSuccesses { get; set; }
+        public required long CreateSuccesses { get; set; }
 
         /// <summary>
         /// Number of sandbox create fails
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("createFails")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int CreateFails { get; set; }
+        public required long CreateFails { get; set; }
 
         /// <summary>
         /// Number of starting Sandboxes
@@ -182,12 +182,12 @@ namespace E2B
             global::E2B.MachineInfo machineInfo,
             global::E2B.NodeStatus status,
             global::System.DateTime statusChangedAt,
-            int sandboxCount,
+            long sandboxCount,
             long maxSandboxes,
-            int outstandingWork,
+            long outstandingWork,
             global::E2B.NodeMetrics metrics,
-            int createSuccesses,
-            int createFails,
+            long createSuccesses,
+            long createFails,
             int sandboxStartingCount)
         {
             this.Version = version ?? throw new global::System.ArgumentNullException(nameof(version));
