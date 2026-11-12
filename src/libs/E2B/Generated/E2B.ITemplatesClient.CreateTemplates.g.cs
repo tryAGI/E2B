@@ -45,6 +45,9 @@ namespace E2B
         /// <param name="cpuCount">
         /// CPU cores for the sandbox
         /// </param>
+        /// <param name="maxCpuCount">
+        /// Maximum CPU count the template's sandboxes can be resized to; makes the template resizable. Must be at least cpuCount.
+        /// </param>
         /// <param name="memoryMB">
         /// Memory for the sandbox in MiB
         /// </param>
@@ -58,6 +61,7 @@ namespace E2B
             string? name = default,
             global::System.Collections.Generic.IList<string>? tags = default,
             int? cpuCount = default,
+            int? maxCpuCount = default,
             int? memoryMB = default,
             int? minFreeDiskMb = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,

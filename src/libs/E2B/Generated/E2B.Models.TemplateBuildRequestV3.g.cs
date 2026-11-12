@@ -43,6 +43,12 @@ namespace E2B
         public int? CpuCount { get; set; }
 
         /// <summary>
+        /// Maximum CPU count the template's sandboxes can be resized to; makes the template resizable. Must be at least cpuCount.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxCpuCount")]
+        public int? MaxCpuCount { get; set; }
+
+        /// <summary>
         /// Memory for the sandbox in MiB
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
@@ -72,6 +78,9 @@ namespace E2B
         /// <param name="cpuCount">
         /// CPU cores for the sandbox
         /// </param>
+        /// <param name="maxCpuCount">
+        /// Maximum CPU count the template's sandboxes can be resized to; makes the template resizable. Must be at least cpuCount.
+        /// </param>
         /// <param name="memoryMB">
         /// Memory for the sandbox in MiB
         /// </param>
@@ -85,12 +94,14 @@ namespace E2B
             string? name,
             global::System.Collections.Generic.IList<string>? tags,
             int? cpuCount,
+            int? maxCpuCount,
             int? memoryMB,
             int? minFreeDiskMb)
         {
             this.Name = name;
             this.Tags = tags;
             this.CpuCount = cpuCount;
+            this.MaxCpuCount = maxCpuCount;
             this.MemoryMB = memoryMB;
             this.MinFreeDiskMb = minFreeDiskMb;
         }

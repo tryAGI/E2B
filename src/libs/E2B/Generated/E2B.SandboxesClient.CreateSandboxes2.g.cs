@@ -836,6 +836,9 @@ namespace E2B
         /// Time to live for the sandbox in seconds.<br/>
         /// Default Value: 300
         /// </param>
+        /// <param name="cpuCount">
+        /// Online vCPU target for the sandbox. Defaults to the template's cpuCount; at most its maxCpuCount (fixed-size templates accept only their cpuCount).
+        /// </param>
         /// <param name="autoPause">
         /// Automatically pauses the sandbox after the timeout<br/>
         /// Default Value: false
@@ -867,6 +870,7 @@ namespace E2B
             string templateID,
             string? idempotencyKey = default,
             int? timeout = default,
+            int? cpuCount = default,
             bool? autoPause = default,
             bool? autoPauseMemory = default,
             global::E2B.SandboxAutoResumeConfig? autoResume = default,
@@ -884,6 +888,7 @@ namespace E2B
             {
                 TemplateID = templateID,
                 Timeout = timeout,
+                CpuCount = cpuCount,
                 AutoPause = autoPause,
                 AutoPauseMemory = autoPauseMemory,
                 AutoResume = autoResume,

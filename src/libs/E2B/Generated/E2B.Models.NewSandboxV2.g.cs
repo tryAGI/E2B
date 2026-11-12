@@ -23,6 +23,12 @@ namespace E2B
         public int? Timeout { get; set; }
 
         /// <summary>
+        /// Online vCPU target for the sandbox. Defaults to the template's cpuCount; at most its maxCpuCount (fixed-size templates accept only their cpuCount).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("cpuCount")]
+        public int? CpuCount { get; set; }
+
+        /// <summary>
         /// Automatically pauses the sandbox after the timeout<br/>
         /// Default Value: false
         /// </summary>
@@ -100,6 +106,9 @@ namespace E2B
         /// Time to live for the sandbox in seconds.<br/>
         /// Default Value: 300
         /// </param>
+        /// <param name="cpuCount">
+        /// Online vCPU target for the sandbox. Defaults to the template's cpuCount; at most its maxCpuCount (fixed-size templates accept only their cpuCount).
+        /// </param>
         /// <param name="autoPause">
         /// Automatically pauses the sandbox after the timeout<br/>
         /// Default Value: false
@@ -130,6 +139,7 @@ namespace E2B
         public NewSandboxV2(
             string templateID,
             int? timeout,
+            int? cpuCount,
             bool? autoPause,
             bool? autoPauseMemory,
             global::E2B.SandboxAutoResumeConfig? autoResume,
@@ -143,6 +153,7 @@ namespace E2B
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.Timeout = timeout;
+            this.CpuCount = cpuCount;
             this.AutoPause = autoPause;
             this.AutoPauseMemory = autoPauseMemory;
             this.AutoResume = autoResume;

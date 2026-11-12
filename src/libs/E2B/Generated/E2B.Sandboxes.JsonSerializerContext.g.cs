@@ -51,6 +51,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Sandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxDetail))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxRecord))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ListedSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxesWithMetrics))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewSandbox))]

@@ -35,6 +35,10 @@ namespace E2B
 
             typeof(global::E2B.JsonConverters.AdminSandboxBuildStatusGroupNullableJsonConverter),
 
+            typeof(global::E2B.JsonConverters.AdminSandboxPauseKindJsonConverter),
+
+            typeof(global::E2B.JsonConverters.AdminSandboxPauseKindNullableJsonConverter),
+
             typeof(global::E2B.JsonConverters.AdminTeamListSortFieldJsonConverter),
 
             typeof(global::E2B.JsonConverters.AdminTeamListSortFieldNullableJsonConverter),
@@ -178,6 +182,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Sandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxDetail))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxRecord))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ListedSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxesWithMetrics))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewSandbox))]
@@ -221,6 +226,11 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.AdminSandboxBuild>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxBuildRestoreRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxBuildRestoreResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxOverview))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxOverviewTeam))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxLastPause))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxOverviewBuild))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxPauseKind), TypeInfoPropertyName = "AdminSandboxPauseKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, long>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminBuildCancelResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminTeamListRequest))]
