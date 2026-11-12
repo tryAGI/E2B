@@ -32,6 +32,12 @@ namespace E2B
         public required int CpuCount { get; set; }
 
         /// <summary>
+        /// Maximum CPU count for resizable templates; absent for fixed-size templates.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxCpuCount")]
+        public int? MaxCpuCount { get; set; }
+
+        /// <summary>
         /// Memory for the sandbox in MiB
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
@@ -184,6 +190,9 @@ namespace E2B
         /// <param name="buildStatus">
         /// Status of the template build
         /// </param>
+        /// <param name="maxCpuCount">
+        /// Maximum CPU count for resizable templates; absent for fixed-size templates.
+        /// </param>
         /// <param name="createdBy"></param>
         /// <param name="lastSpawnedAt">
         /// Time when the template was last used
@@ -212,6 +221,7 @@ namespace E2B
             int buildCount,
             string envdVersion,
             global::E2B.TemplateBuildStatus buildStatus,
+            int? maxCpuCount,
             global::E2B.TeamUser? createdBy,
             global::System.DateTime? lastSpawnedAt,
             bool? isDefault,
@@ -220,6 +230,7 @@ namespace E2B
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.BuildID = buildID ?? throw new global::System.ArgumentNullException(nameof(buildID));
             this.CpuCount = cpuCount;
+            this.MaxCpuCount = maxCpuCount;
             this.MemoryMB = memoryMB;
             this.DiskSizeMB = diskSizeMB;
             this.Public = @public;

@@ -51,6 +51,12 @@ namespace E2B
         public required int CpuCount { get; set; }
 
         /// <summary>
+        /// Maximum CPU count for resizable templates; absent for fixed-size templates.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxCpuCount")]
+        public int? MaxCpuCount { get; set; }
+
+        /// <summary>
         /// Memory for the sandbox in MiB
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
@@ -99,6 +105,9 @@ namespace E2B
         /// <param name="finishedAt">
         /// Time when the build was finished
         /// </param>
+        /// <param name="maxCpuCount">
+        /// Maximum CPU count for resizable templates; absent for fixed-size templates.
+        /// </param>
         /// <param name="diskSizeMB">
         /// Disk size for the sandbox in MiB
         /// </param>
@@ -116,6 +125,7 @@ namespace E2B
             int cpuCount,
             int memoryMB,
             global::System.DateTime? finishedAt,
+            int? maxCpuCount,
             int? diskSizeMB,
             string? envdVersion)
         {
@@ -125,6 +135,7 @@ namespace E2B
             this.UpdatedAt = updatedAt;
             this.FinishedAt = finishedAt;
             this.CpuCount = cpuCount;
+            this.MaxCpuCount = maxCpuCount;
             this.MemoryMB = memoryMB;
             this.DiskSizeMB = diskSizeMB;
             this.EnvdVersion = envdVersion;
