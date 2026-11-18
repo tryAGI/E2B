@@ -40,7 +40,7 @@ namespace E2B
 
         /// <summary>
         /// Register a cluster.<br/>
-        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same name and auth organization updates its endpoint, TLS setting, sandbox proxy domain and token and keeps its stored deletion protection; a different name or auth organization returns a conflict with error_code cluster_registration_conflict. An invalid registration returns 400 with error_code cluster_registration_invalid.
+        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same auth organization updates its endpoint, TLS setting, sandbox proxy domain and token, while preserving its regional display name and deletion protection, then sets a telemetry client ID the cluster does not have yet. An omitted telemetry client ID preserves the stored one. A different auth organization returns a conflict with error_code cluster_registration_conflict, and so does a telemetry client ID different from the stored one, after the endpoint, TLS setting, sandbox proxy domain and token are updated. An invalid registration returns 400 with error_code cluster_registration_invalid.
         /// </summary>
         /// <param name="clusterID"></param>
         /// <param name="request"></param>
@@ -64,7 +64,7 @@ namespace E2B
         }
         /// <summary>
         /// Register a cluster.<br/>
-        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same name and auth organization updates its endpoint, TLS setting, sandbox proxy domain and token and keeps its stored deletion protection; a different name or auth organization returns a conflict with error_code cluster_registration_conflict. An invalid registration returns 400 with error_code cluster_registration_invalid.
+        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same auth organization updates its endpoint, TLS setting, sandbox proxy domain and token, while preserving its regional display name and deletion protection, then sets a telemetry client ID the cluster does not have yet. An omitted telemetry client ID preserves the stored one. A different auth organization returns a conflict with error_code cluster_registration_conflict, and so does a telemetry client ID different from the stored one, after the endpoint, TLS setting, sandbox proxy domain and token are updated. An invalid registration returns 400 with error_code cluster_registration_invalid.
         /// </summary>
         /// <param name="clusterID"></param>
         /// <param name="request"></param>
@@ -487,6 +487,43 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Service unavailable
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::E2B.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -569,7 +606,7 @@ namespace E2B
         }
         /// <summary>
         /// Register a cluster.<br/>
-        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same name and auth organization updates its endpoint, TLS setting, sandbox proxy domain and token and keeps its stored deletion protection; a different name or auth organization returns a conflict with error_code cluster_registration_conflict. An invalid registration returns 400 with error_code cluster_registration_invalid.
+        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same auth organization updates its endpoint, TLS setting, sandbox proxy domain and token, while preserving its regional display name and deletion protection, then sets a telemetry client ID the cluster does not have yet. An omitted telemetry client ID preserves the stored one. A different auth organization returns a conflict with error_code cluster_registration_conflict, and so does a telemetry client ID different from the stored one, after the endpoint, TLS setting, sandbox proxy domain and token are updated. An invalid registration returns 400 with error_code cluster_registration_invalid.
         /// </summary>
         /// <param name="clusterID"></param>
         /// <param name="name"></param>
@@ -578,6 +615,7 @@ namespace E2B
         /// <param name="token"></param>
         /// <param name="sandboxProxyDomain"></param>
         /// <param name="authOrgId"></param>
+        /// <param name="telemetryClientId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -589,6 +627,7 @@ namespace E2B
             string token,
             string? sandboxProxyDomain = default,
             string? authOrgId = default,
+            string? telemetryClientId = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -600,6 +639,7 @@ namespace E2B
                 Token = token,
                 SandboxProxyDomain = sandboxProxyDomain,
                 AuthOrgId = authOrgId,
+                TelemetryClientId = telemetryClientId,
             };
 
             await ManagementRegisterClusterAsync(

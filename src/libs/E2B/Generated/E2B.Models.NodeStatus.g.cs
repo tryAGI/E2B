@@ -5,7 +5,7 @@ namespace E2B
 {
     /// <summary>
     /// Status of the node.<br/>
-    /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+    /// - standby: the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.<br/>
     /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
     /// </summary>
     public enum NodeStatus
@@ -23,7 +23,7 @@ namespace E2B
         /// </summary>
         NodeStatusNotReady,
         /// <summary>
-        /// the node is not actively used, but it can return to ready and continue serving traffic.
+        /// the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.
         /// </summary>
         NodeStatusReady,
         /// <summary>
@@ -31,7 +31,7 @@ namespace E2B
         /// </summary>
         NodeStatusShuttingDown,
         /// <summary>
-        /// the node is not actively used, but it can return to ready and continue serving traffic.
+        /// the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.
         /// </summary>
         NodeStatusStandby,
         /// <summary>

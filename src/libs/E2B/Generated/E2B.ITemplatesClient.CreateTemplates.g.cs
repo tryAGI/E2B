@@ -8,8 +8,11 @@ namespace E2B
     {
         /// <summary>
         /// Create template (v3)<br/>
-        /// Create a new template
+        /// Create a new template.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,12 +20,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
 
             global::E2B.TemplateBuildRequestV3 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create template (v3)<br/>
-        /// Create a new template
+        /// Create a new template.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -30,12 +37,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.TemplateRequestResponseV3>> CreateTemplatesAsResponseAsync(
 
             global::E2B.TemplateBuildRequestV3 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create template (v3)<br/>
-        /// Create a new template
+        /// Create a new template.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Name of the template. Can include a tag with colon separator (e.g. "my-template" or "my-template:v1"). If tag is included, it will be treated as if the tag was provided in the tags array.
         /// </param>
@@ -58,6 +69,7 @@ namespace E2B
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
+            string? idempotencyKey = default,
             string? name = default,
             global::System.Collections.Generic.IList<string>? tags = default,
             int? cpuCount = default,

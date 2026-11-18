@@ -91,6 +91,10 @@ namespace E2B
 
             typeof(global::E2B.JsonConverters.WebhookDeliveryErrorClassNullableJsonConverter),
 
+            typeof(global::E2B.JsonConverters.ManagementProjectMemberApplyRequestRoleJsonConverter),
+
+            typeof(global::E2B.JsonConverters.ManagementProjectMemberApplyRequestRoleNullableJsonConverter),
+
             typeof(global::E2B.JsonConverters.GetTeamsMetricsMaxMetricJsonConverter),
 
             typeof(global::E2B.JsonConverters.GetTeamsMetricsMaxMetricNullableJsonConverter),
@@ -123,6 +127,8 @@ namespace E2B
 
             typeof(global::E2B.JsonConverters.GetEventsWebhooksDeliveriesDeliveryStatuNullableJsonConverter),
 
+            typeof(global::E2B.JsonConverters.TemplateBuildWithTagsJsonConverter),
+
             typeof(global::E2B.JsonConverters.TemplateWithBuildsJsonConverter),
 
             typeof(global::E2B.JsonConverters.FromImageRegistryJsonConverter),
@@ -135,17 +141,21 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.JsonSerializerContextTypes))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string[]))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Rig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TelemetryNames))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, global::E2B.TelemetryTeamName>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TelemetryTeamName))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TelemetryClusterName>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TelemetryClusterName))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Rig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.RigCapacityChange))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.RigInstance))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.RigError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Team))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamUser))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateUpdateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateUpdateResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
@@ -273,6 +283,9 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.BuildStatusItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.BuildInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateRequestResponseV3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildWithTags), TypeInfoPropertyName = "TemplateBuildWithTags2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateBuildWithTagsVariant2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateV2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuilds), TypeInfoPropertyName = "TemplateWithBuilds2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateWithBuildsVariant2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TemplateAliasResponse))]
@@ -304,6 +317,9 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.DiskMetrics>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.MachineInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Node))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeSandboxes))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.NodeSandbox>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NodeDetail))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.IdentifierMaskingDetails))]
@@ -354,15 +370,18 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectVariant2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectMemberIdentity))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectMemberApplyRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectMemberApplyRequestRole), TypeInfoPropertyName = "ManagementProjectMemberApplyRequestRole2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ManagementProjectMemberIdentity>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectBlockRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectBanRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectLimits))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementUpdateClusterTelemetryRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTeamsMetricsMaxMetric), TypeInfoPropertyName = "GetTeamsMetricsMaxMetric2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxState>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetUnstableTemplatesSearchSort), TypeInfoPropertyName = "GetUnstableTemplatesSearchSort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.BuildStatus>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateBuildStatus>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTemplatesTagsGroupsSort), TypeInfoPropertyName = "GetTemplatesTagsGroupsSort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.AdminSandboxBuildStatusGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminListClustersSortBy), TypeInfoPropertyName = "AdminListClustersSortBy2")]
@@ -371,12 +390,12 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminListClusterTeamsSortOrder), TypeInfoPropertyName = "AdminListClusterTeamsSortOrder2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu), TypeInfoPropertyName = "GetEventsWebhooksDeliveriesDeliveryStatu2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Team>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ListedSandbox>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxForkResult>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SnapshotInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateBuildWithTags>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateTag>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Node>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>))]
@@ -388,6 +407,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.RigError>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxEvent>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.WebhookDetail>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TelemetryClusterName>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<long>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<global::E2B.SandboxNetworkRule>>))]
@@ -410,6 +430,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateStep>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.BuildLogEntry>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.DiskMetrics>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.NodeSandbox>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTagAssignment>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTagGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.WebhookDeliveryStatsBucket>))]
@@ -418,14 +439,15 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ManagementProjectMemberIdentity>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxState>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.BuildStatus>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateBuildStatus>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.AdminSandboxBuildStatusGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Team>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ListedSandbox>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxForkResult>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SnapshotInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateBuildWithTags>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TemplateTag>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Node>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamAPIKey>))]

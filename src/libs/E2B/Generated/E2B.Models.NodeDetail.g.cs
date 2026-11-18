@@ -52,7 +52,7 @@ namespace E2B
 
         /// <summary>
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - standby: the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.<br/>
         /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
@@ -66,6 +66,18 @@ namespace E2B
         [global::System.Text.Json.Serialization.JsonPropertyName("statusChangedAt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime StatusChangedAt { get; set; }
+
+        /// <summary>
+        /// Owner recorded by the current standby override
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("statusOwner")]
+        public string? StatusOwner { get; set; }
+
+        /// <summary>
+        /// Capabilities of the orchestrator build, for example park-owner
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("capabilities")]
+        public global::System.Collections.Generic.IList<string>? Capabilities { get; set; }
 
         /// <summary>
         /// Number of sandboxes running on the node
@@ -136,7 +148,7 @@ namespace E2B
         /// <param name="machineInfo"></param>
         /// <param name="status">
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - standby: the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.<br/>
         /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
         /// </param>
         /// <param name="statusChangedAt">
@@ -160,6 +172,12 @@ namespace E2B
         /// <param name="createFails">
         /// Number of sandbox create fails
         /// </param>
+        /// <param name="statusOwner">
+        /// Owner recorded by the current standby override
+        /// </param>
+        /// <param name="capabilities">
+        /// Capabilities of the orchestrator build, for example park-owner
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -177,7 +195,9 @@ namespace E2B
             long outstandingWork,
             global::E2B.NodeMetrics metrics,
             long createSuccesses,
-            long createFails)
+            long createFails,
+            string? statusOwner,
+            global::System.Collections.Generic.IList<string>? capabilities)
         {
             this.ClusterID = clusterID ?? throw new global::System.ArgumentNullException(nameof(clusterID));
             this.Version = version ?? throw new global::System.ArgumentNullException(nameof(version));
@@ -187,6 +207,8 @@ namespace E2B
             this.MachineInfo = machineInfo ?? throw new global::System.ArgumentNullException(nameof(machineInfo));
             this.Status = status;
             this.StatusChangedAt = statusChangedAt;
+            this.StatusOwner = statusOwner;
+            this.Capabilities = capabilities;
             this.SandboxCount = sandboxCount;
             this.MaxSandboxes = maxSandboxes;
             this.OutstandingWork = outstandingWork;

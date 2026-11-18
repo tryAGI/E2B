@@ -3,11 +3,11 @@
 
 namespace E2B
 {
-    public partial class AuthClient
+    public partial class TemplatesClient
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_GetTeamsSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_GetTemplatesByTemplateID2SecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,36 +21,41 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetTeamsSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_GetTemplatesByTemplateID2SecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_GetTeamsSecurityRequirement0,
+            {                s_GetTemplatesByTemplateID2SecurityRequirement0,
             };
-        partial void PrepareGetTeamsArguments(
-            global::System.Net.Http.HttpClient httpClient);
-        partial void PrepareGetTeamsRequest(
+        partial void PrepareGetTemplatesByTemplateID2Arguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpRequestMessage httpRequestMessage);
-        partial void ProcessGetTeamsResponse(
+            ref string templateID);
+        partial void PrepareGetTemplatesByTemplateID2Request(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string templateID);
+        partial void ProcessGetTemplatesByTemplateID2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetTeamsResponseContent(
+        partial void ProcessGetTemplatesByTemplateID2ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List teams<br/>
-        /// List all teams
+        /// Template info (v2)<br/>
+        /// Get a template by its ID or name, with its default build and without its other builds.
         /// </summary>
+        /// <param name="templateID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::E2B.Team>> GetTeamsAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.TemplateV2> GetTemplatesByTemplateID2Async(
+            string templateID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetTeamsAsResponseAsync(
+            var __response = await GetTemplatesByTemplateID2AsResponseAsync(
+                templateID: templateID,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -58,26 +63,29 @@ namespace E2B
             return __response.Body;
         }
         /// <summary>
-        /// List teams<br/>
-        /// List all teams
+        /// Template info (v2)<br/>
+        /// Get a template by its ID or name, with its default build and without its other builds.
         /// </summary>
+        /// <param name="templateID"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.Team>>> GetTeamsAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.TemplateV2>> GetTemplatesByTemplateID2AsResponseAsync(
+            string templateID,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetTeamsArguments(
-                httpClient: HttpClient);
+            PrepareGetTemplatesByTemplateID2Arguments(
+                httpClient: HttpClient,
+                templateID: ref templateID);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetTeamsSecurityRequirements,
-                operationName: "GetTeamsAsync");
+                securityRequirements: s_GetTemplatesByTemplateID2SecurityRequirements,
+                operationName: "GetTemplatesByTemplateID2Async");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -97,7 +105,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: "/teams",
+                                path: $"/v2/templates/{templateID}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -136,9 +144,10 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetTeamsRequest(
+                PrepareGetTemplatesByTemplateID2Request(
                     httpClient: HttpClient,
-                    httpRequestMessage: __httpRequest);
+                    httpRequestMessage: __httpRequest,
+                    templateID: templateID);
 
                 return __httpRequest;
             }
@@ -155,9 +164,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeams",
-                                methodName: "GetTeamsAsync",
-                                pathTemplate: "\"/teams\"",
+                                operationId: "getTemplatesByTemplateID2",
+                                methodName: "GetTemplatesByTemplateID2Async",
+                                pathTemplate: "$\"/v2/templates/{templateID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -189,9 +198,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeams",
-                                methodName: "GetTeamsAsync",
-                                pathTemplate: "\"/teams\"",
+                                operationId: "getTemplatesByTemplateID2",
+                                methodName: "GetTemplatesByTemplateID2Async",
+                                pathTemplate: "$\"/v2/templates/{templateID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -230,9 +239,9 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeams",
-                                methodName: "GetTeamsAsync",
-                                pathTemplate: "\"/teams\"",
+                                operationId: "getTemplatesByTemplateID2",
+                                methodName: "GetTemplatesByTemplateID2Async",
+                                pathTemplate: "$\"/v2/templates/{templateID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -270,7 +279,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetTeamsResponse(
+                ProcessGetTemplatesByTemplateID2Response(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -278,9 +287,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeams",
-                                methodName: "GetTeamsAsync",
-                                pathTemplate: "\"/teams\"",
+                                operationId: "getTemplatesByTemplateID2",
+                                methodName: "GetTemplatesByTemplateID2Async",
+                                pathTemplate: "$\"/v2/templates/{templateID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -300,9 +309,9 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "getTeams",
-                                methodName: "GetTeamsAsync",
-                                pathTemplate: "\"/teams\"",
+                                operationId: "getTemplatesByTemplateID2",
+                                methodName: "GetTemplatesByTemplateID2Async",
+                                pathTemplate: "$\"/v2/templates/{templateID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -317,6 +326,43 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::E2B.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 is { Length: > 0 } ? __content_400 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication error
                             if ((int)__response.StatusCode == 401)
                             {
@@ -349,6 +395,80 @@ namespace E2B
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::E2B.Error? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = __content_403 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = __content_403 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 is { Length: > 0 } ? __content_403 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Not found
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::E2B.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 is { Length: > 0 } ? __content_404 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -441,7 +561,7 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetTeamsResponseContent(
+                                ProcessGetTemplatesByTemplateID2ResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -450,9 +570,9 @@ namespace E2B
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = (global::System.Collections.Generic.IList<global::E2B.Team>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::E2B.Team>), JsonSerializerContext) ??
+                                    var __value = global::E2B.TemplateV2.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.Team>>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.TemplateV2>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -482,9 +602,9 @@ namespace E2B
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = (global::System.Collections.Generic.IList<global::E2B.Team>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::E2B.Team>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::E2B.TemplateV2.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::E2B.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::E2B.Team>>(
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.TemplateV2>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

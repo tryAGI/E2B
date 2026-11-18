@@ -339,6 +339,43 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::E2B.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 is { Length: > 0 } ? __content_400 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Conflict
                             if ((int)__response.StatusCode == 409)
                             {
@@ -614,8 +651,14 @@ namespace E2B
         /// </param>
         /// <param name="status">
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - standby: the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.<br/>
         /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
+        /// </param>
+        /// <param name="owner">
+        /// Owner of a standby override; required to release a standby that carries one
+        /// </param>
+        /// <param name="force">
+        /// Apply the status and owner regardless of the recorded owner
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -624,6 +667,8 @@ namespace E2B
             string nodeID,
             global::E2B.NodeStatus status,
             global::System.Guid? clusterID = default,
+            string? owner = default,
+            bool? force = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -631,6 +676,8 @@ namespace E2B
             {
                 ClusterID = clusterID,
                 Status = status,
+                Owner = owner,
+                Force = force,
             };
 
             await CreateNodesByNodeIDAsync(

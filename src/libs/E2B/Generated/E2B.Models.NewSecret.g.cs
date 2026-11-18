@@ -55,7 +55,7 @@ namespace E2B
             global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
-            this.Value = value ?? throw new global::System.ArgumentNullException(nameof(value));
+            this.Value = value;
             this.Metadata = metadata;
         }
 

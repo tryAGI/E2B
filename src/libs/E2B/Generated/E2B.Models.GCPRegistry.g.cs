@@ -45,7 +45,7 @@ namespace E2B
             global::E2B.GCPRegistryType type)
         {
             this.Type = type;
-            this.ServiceAccountJson = serviceAccountJson ?? throw new global::System.ArgumentNullException(nameof(serviceAccountJson));
+            this.ServiceAccountJson = serviceAccountJson;
         }
 
         /// <summary>

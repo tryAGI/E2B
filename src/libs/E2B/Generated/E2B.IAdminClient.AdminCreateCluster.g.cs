@@ -43,6 +43,7 @@ namespace E2B
         /// <param name="token"></param>
         /// <param name="sandboxProxyDomain"></param>
         /// <param name="authOrgId"></param>
+        /// <param name="telemetryClientId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -54,6 +55,7 @@ namespace E2B
             global::System.Guid? clusterId = default,
             string? sandboxProxyDomain = default,
             string? authOrgId = default,
+            string? telemetryClientId = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

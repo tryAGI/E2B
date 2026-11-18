@@ -57,7 +57,7 @@ namespace E2B
         {
             this.Type = type;
             this.Username = username ?? throw new global::System.ArgumentNullException(nameof(username));
-            this.Password = password ?? throw new global::System.ArgumentNullException(nameof(password));
+            this.Password = password;
         }
 
         /// <summary>

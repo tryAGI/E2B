@@ -68,7 +68,7 @@ namespace E2B
         {
             this.Type = type;
             this.AwsAccessKeyId = awsAccessKeyId ?? throw new global::System.ArgumentNullException(nameof(awsAccessKeyId));
-            this.AwsSecretAccessKey = awsSecretAccessKey ?? throw new global::System.ArgumentNullException(nameof(awsSecretAccessKey));
+            this.AwsSecretAccessKey = awsSecretAccessKey;
             this.AwsRegion = awsRegion ?? throw new global::System.ArgumentNullException(nameof(awsRegion));
         }
 

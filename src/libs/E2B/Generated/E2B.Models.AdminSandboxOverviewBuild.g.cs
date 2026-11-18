@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace E2B
@@ -30,7 +32,7 @@ namespace E2B
         public required string Tag { get; set; }
 
         /// <summary>
-        /// Build status as stored, for example ready, snapshotting or waiting
+        /// Same value as statusGroup
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -89,7 +91,7 @@ namespace E2B
         /// Tag the build is assigned under
         /// </param>
         /// <param name="status">
-        /// Build status as stored, for example ready, snapshotting or waiting
+        /// Same value as statusGroup
         /// </param>
         /// <param name="assignedAt">
         /// When the build was assigned to the template under the tag

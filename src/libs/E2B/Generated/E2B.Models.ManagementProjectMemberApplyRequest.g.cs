@@ -30,6 +30,13 @@ namespace E2B
         public bool? IsDefault { get; set; }
 
         /// <summary>
+        /// The member's effective role on the project. A viewer may only read. An omitted role keeps the stored one, and a new member without one is stored as member.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("role")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.ManagementProjectMemberApplyRequestRoleJsonConverter))]
+        public global::E2B.ManagementProjectMemberApplyRequestRole? Role { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("identities")]
@@ -50,6 +57,9 @@ namespace E2B
         /// Whether this membership is the user's default team. Omitted requests from older sources remain non-default.<br/>
         /// Default Value: false
         /// </param>
+        /// <param name="role">
+        /// The member's effective role on the project. A viewer may only read. An omitted role keeps the stored one, and a new member without one is stored as member.
+        /// </param>
         /// <param name="identities"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -58,11 +68,13 @@ namespace E2B
             long revision,
             bool present,
             bool? isDefault,
+            global::E2B.ManagementProjectMemberApplyRequestRole? role,
             global::System.Collections.Generic.IList<global::E2B.ManagementProjectMemberIdentity>? identities)
         {
             this.Revision = revision;
             this.Present = present;
             this.IsDefault = isDefault;
+            this.Role = role;
             this.Identities = identities;
         }
 

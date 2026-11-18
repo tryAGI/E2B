@@ -6,7 +6,7 @@ namespace E2B
     {
         /// <summary>
         /// Register a cluster.<br/>
-        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same name and auth organization updates its endpoint, TLS setting, sandbox proxy domain and token and keeps its stored deletion protection; a different name or auth organization returns a conflict with error_code cluster_registration_conflict. An invalid registration returns 400 with error_code cluster_registration_invalid.
+        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same auth organization updates its endpoint, TLS setting, sandbox proxy domain and token, while preserving its regional display name and deletion protection, then sets a telemetry client ID the cluster does not have yet. An omitted telemetry client ID preserves the stored one. A different auth organization returns a conflict with error_code cluster_registration_conflict, and so does a telemetry client ID different from the stored one, after the endpoint, TLS setting, sandbox proxy domain and token are updated. An invalid registration returns 400 with error_code cluster_registration_invalid.
         /// </summary>
         /// <param name="clusterID"></param>
         /// <param name="request"></param>
@@ -21,7 +21,7 @@ namespace E2B
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Register a cluster.<br/>
-        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same name and auth organization updates its endpoint, TLS setting, sandbox proxy domain and token and keeps its stored deletion protection; a different name or auth organization returns a conflict with error_code cluster_registration_conflict. An invalid registration returns 400 with error_code cluster_registration_invalid.
+        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same auth organization updates its endpoint, TLS setting, sandbox proxy domain and token, while preserving its regional display name and deletion protection, then sets a telemetry client ID the cluster does not have yet. An omitted telemetry client ID preserves the stored one. A different auth organization returns a conflict with error_code cluster_registration_conflict, and so does a telemetry client ID different from the stored one, after the endpoint, TLS setting, sandbox proxy domain and token are updated. An invalid registration returns 400 with error_code cluster_registration_invalid.
         /// </summary>
         /// <param name="clusterID"></param>
         /// <param name="request"></param>
@@ -36,7 +36,7 @@ namespace E2B
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Register a cluster.<br/>
-        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same name and auth organization updates its endpoint, TLS setting, sandbox proxy domain and token and keeps its stored deletion protection; a different name or auth organization returns a conflict with error_code cluster_registration_conflict. An invalid registration returns 400 with error_code cluster_registration_invalid.
+        /// A cluster registered here for the first time starts with deletion protection turned off. Registering an existing cluster again with the same auth organization updates its endpoint, TLS setting, sandbox proxy domain and token, while preserving its regional display name and deletion protection, then sets a telemetry client ID the cluster does not have yet. An omitted telemetry client ID preserves the stored one. A different auth organization returns a conflict with error_code cluster_registration_conflict, and so does a telemetry client ID different from the stored one, after the endpoint, TLS setting, sandbox proxy domain and token are updated. An invalid registration returns 400 with error_code cluster_registration_invalid.
         /// </summary>
         /// <param name="clusterID"></param>
         /// <param name="name"></param>
@@ -45,6 +45,7 @@ namespace E2B
         /// <param name="token"></param>
         /// <param name="sandboxProxyDomain"></param>
         /// <param name="authOrgId"></param>
+        /// <param name="telemetryClientId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -56,6 +57,7 @@ namespace E2B
             string token,
             string? sandboxProxyDomain = default,
             string? authOrgId = default,
+            string? telemetryClientId = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

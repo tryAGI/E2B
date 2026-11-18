@@ -9,6 +9,9 @@ namespace E2B
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,6 +20,7 @@ namespace E2B
             string sandboxID,
 
             global::E2B.SandboxSnapshotRequest request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -24,6 +28,9 @@ namespace E2B
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -32,6 +39,7 @@ namespace E2B
             string sandboxID,
 
             global::E2B.SandboxSnapshotRequest request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -39,6 +47,9 @@ namespace E2B
         /// Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.
         /// </summary>
         /// <param name="sandboxID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Optional name for the snapshot template. If a snapshot template with this name already exists, a new build will be assigned to the existing template instead of creating a new one.
         /// </param>
@@ -50,6 +61,7 @@ namespace E2B
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::E2B.SnapshotInfo> CreateSandboxesBySandboxIDSnapshotsAsync(
             string sandboxID,
+            string? idempotencyKey = default,
             string? name = default,
             bool? memory = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,

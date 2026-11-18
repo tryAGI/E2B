@@ -43,7 +43,7 @@ namespace E2B
             string value,
             global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
-            this.Value = value ?? throw new global::System.ArgumentNullException(nameof(value));
+            this.Value = value;
             this.Metadata = metadata;
         }
 

@@ -15,10 +15,10 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string[]))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Text.Json.JsonElement?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamUser))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.IdentifierMaskingDetails))]
@@ -26,9 +26,9 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.NewTeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.UpdateTeamAPIKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamAPIKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Guid?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamAPIKey>))]
     internal sealed partial class ApiKeysSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
