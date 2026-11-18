@@ -16,13 +16,25 @@ namespace E2B
 
         /// <summary>
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - standby: the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.<br/>
         /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::E2B.JsonConverters.NodeStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::E2B.NodeStatus Status { get; set; }
+
+        /// <summary>
+        /// Owner of a standby override; required to release a standby that carries one
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("owner")]
+        public string? Owner { get; set; }
+
+        /// <summary>
+        /// Apply the status and owner regardless of the recorded owner
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("force")]
+        public bool? Force { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -35,21 +47,31 @@ namespace E2B
         /// </summary>
         /// <param name="status">
         /// Status of the node.<br/>
-        /// - standby: the node is not actively used, but it can return to ready and continue serving traffic.<br/>
+        /// - standby: the node refuses new sandboxes and keeps serving the ones it holds; it can return to ready.<br/>
         /// - not_ready: the node is starting and cannot take new work yet. It becomes ready by itself and cannot be set through the API.
         /// </param>
         /// <param name="clusterID">
         /// Identifier of the cluster
+        /// </param>
+        /// <param name="owner">
+        /// Owner of a standby override; required to release a standby that carries one
+        /// </param>
+        /// <param name="force">
+        /// Apply the status and owner regardless of the recorded owner
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public NodeStatusChange(
             global::E2B.NodeStatus status,
-            global::System.Guid? clusterID)
+            global::System.Guid? clusterID,
+            string? owner,
+            bool? force)
         {
             this.ClusterID = clusterID;
             this.Status = status;
+            this.Owner = owner;
+            this.Force = force;
         }
 
         /// <summary>

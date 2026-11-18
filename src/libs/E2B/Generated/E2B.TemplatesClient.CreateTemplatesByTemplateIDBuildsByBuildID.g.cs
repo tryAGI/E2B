@@ -29,12 +29,14 @@ namespace E2B
             global::System.Net.Http.HttpClient httpClient,
             ref string templateID,
             ref string buildID,
+            ref string? idempotencyKey,
             global::E2B.TemplateBuildStartV2 request);
         partial void PrepareCreateTemplatesByTemplateIDBuildsByBuildIDRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string templateID,
             string buildID,
+            string? idempotencyKey,
             global::E2B.TemplateBuildStartV2 request);
         partial void ProcessCreateTemplatesByTemplateIDBuildsByBuildIDResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -42,10 +44,13 @@ namespace E2B
 
         /// <summary>
         /// Start template build (v2)<br/>
-        /// Start the build
+        /// Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -55,6 +60,7 @@ namespace E2B
             string buildID,
 
             global::E2B.TemplateBuildStartV2 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -63,16 +69,20 @@ namespace E2B
                 buildID: buildID,
 
                 request: request,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
         }
         /// <summary>
         /// Start template build (v2)<br/>
-        /// Start the build
+        /// Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -82,6 +92,7 @@ namespace E2B
             string buildID,
 
             global::E2B.TemplateBuildStartV2 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -93,6 +104,7 @@ namespace E2B
                 httpClient: HttpClient,
                 templateID: ref templateID,
                 buildID: ref buildID,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
@@ -150,6 +162,12 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
+
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -169,6 +187,7 @@ namespace E2B
                     httpRequestMessage: __httpRequest,
                     templateID: templateID,
                     buildID: buildID,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -422,6 +441,154 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::E2B.Error? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = __content_403 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = __content_403 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 is { Length: > 0 } ? __content_403 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Not found
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::E2B.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 is { Length: > 0 } ? __content_404 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The Idempotency-Key conflicts with a different request (error_code idempotency_request_mismatch), or the matching original request has no recorded response yet and is within its expected response window (error_code idempotency_in_progress); this request was not executed again
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::E2B.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = __content_409 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = __content_409 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 is { Length: > 0 } ? __content_409 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The matching original request has no recorded response and its expected response deadline has passed or is unknown (error_code idempotency_outcome_unknown); this request was not executed again
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                global::E2B.Error? __value_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 is { Length: > 0 } ? __content_422 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseObject: __value_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Too many requests
                             if ((int)__response.StatusCode == 429)
                             {
@@ -491,6 +658,43 @@ namespace E2B
                                     innerException: __exception_500,
                                     responseBody: __content_500,
                                     responseObject: __value_500,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Service unavailable
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::E2B.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -578,10 +782,13 @@ namespace E2B
         }
         /// <summary>
         /// Start template build (v2)<br/>
-        /// Start the build
+        /// Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="fromImage">
         /// Image to use as a base for the template build
         /// </param>
@@ -609,6 +816,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildIDAsync(
             string templateID,
             string buildID,
+            string? idempotencyKey = default,
             string? fromImage = default,
             string? fromTemplate = default,
             global::E2B.FromImageRegistry? fromImageRegistry = default,
@@ -633,6 +841,7 @@ namespace E2B
             await CreateTemplatesByTemplateIDBuildsByBuildIDAsync(
                 templateID: templateID,
                 buildID: buildID,
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

@@ -74,7 +74,7 @@ namespace E2B
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.Events = events ?? throw new global::System.ArgumentNullException(nameof(events));
             this.Enabled = enabled;
-            this.SignatureSecret = signatureSecret ?? throw new global::System.ArgumentNullException(nameof(signatureSecret));
+            this.SignatureSecret = signatureSecret;
         }
 
         /// <summary>

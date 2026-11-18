@@ -29,10 +29,12 @@ namespace E2B
             };
         partial void PrepareCreateTemplatesArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? idempotencyKey,
             global::E2B.TemplateBuildRequestV3 request);
         partial void PrepareCreateTemplatesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? idempotencyKey,
             global::E2B.TemplateBuildRequestV3 request);
         partial void ProcessCreateTemplatesResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -45,8 +47,11 @@ namespace E2B
 
         /// <summary>
         /// Create template (v3)<br/>
-        /// Create a new template
+        /// Create a new template.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -54,12 +59,14 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
 
             global::E2B.TemplateBuildRequestV3 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateTemplatesAsResponseAsync(
 
                 request: request,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -68,8 +75,11 @@ namespace E2B
         }
         /// <summary>
         /// Create template (v3)<br/>
-        /// Create a new template
+        /// Create a new template.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -77,6 +87,7 @@ namespace E2B
         public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.TemplateRequestResponseV3>> CreateTemplatesAsResponseAsync(
 
             global::E2B.TemplateBuildRequestV3 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -86,6 +97,7 @@ namespace E2B
                 client: HttpClient);
             PrepareCreateTemplatesArguments(
                 httpClient: HttpClient,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
@@ -143,6 +155,12 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
+
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -160,6 +178,7 @@ namespace E2B
                 PrepareCreateTemplatesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -487,6 +506,43 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Unprocessable request
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                global::E2B.Error? __value_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 is { Length: > 0 } ? __content_422 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseObject: __value_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Too many requests
                             if ((int)__response.StatusCode == 429)
                             {
@@ -556,6 +612,43 @@ namespace E2B
                                     innerException: __exception_500,
                                     responseBody: __content_500,
                                     responseObject: __value_500,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Service unavailable
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::E2B.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -659,8 +752,11 @@ namespace E2B
         }
         /// <summary>
         /// Create template (v3)<br/>
-        /// Create a new template
+        /// Create a new template.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Name of the template. Can include a tag with colon separator (e.g. "my-template" or "my-template:v1"). If tag is included, it will be treated as if the tag was provided in the tags array.
         /// </param>
@@ -683,6 +779,7 @@ namespace E2B
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::E2B.TemplateRequestResponseV3> CreateTemplatesAsync(
+            string? idempotencyKey = default,
             string? name = default,
             global::System.Collections.Generic.IList<string>? tags = default,
             int? cpuCount = default,
@@ -703,6 +800,7 @@ namespace E2B
             };
 
             return await CreateTemplatesAsync(
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

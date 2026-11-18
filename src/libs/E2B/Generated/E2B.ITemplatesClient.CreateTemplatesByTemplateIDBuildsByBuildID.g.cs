@@ -6,10 +6,13 @@ namespace E2B
     {
         /// <summary>
         /// Start template build (v2)<br/>
-        /// Start the build
+        /// Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -19,14 +22,18 @@ namespace E2B
             string buildID,
 
             global::E2B.TemplateBuildStartV2 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Start template build (v2)<br/>
-        /// Start the build
+        /// Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -36,14 +43,18 @@ namespace E2B
             string buildID,
 
             global::E2B.TemplateBuildStartV2 request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Start template build (v2)<br/>
-        /// Start the build
+        /// Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.
         /// </summary>
         /// <param name="templateID"></param>
         /// <param name="buildID"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="fromImage">
         /// Image to use as a base for the template build
         /// </param>
@@ -71,6 +82,7 @@ namespace E2B
         global::System.Threading.Tasks.Task CreateTemplatesByTemplateIDBuildsByBuildIDAsync(
             string templateID,
             string buildID,
+            string? idempotencyKey = default,
             string? fromImage = default,
             string? fromTemplate = default,
             global::E2B.FromImageRegistry? fromImageRegistry = default,

@@ -6,8 +6,11 @@ namespace E2B
     {
         /// <summary>
         /// Assign template tags<br/>
-        /// Assign tag(s) to a template build
+        /// Assign tag(s) to a template build.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,12 +18,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AssignedTemplateTags> CreateTemplatesTagsAsync(
 
             global::E2B.AssignTemplateTagsRequest request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Assign template tags<br/>
-        /// Assign tag(s) to a template build
+        /// Assign tag(s) to a template build.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,12 +35,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.AssignedTemplateTags>> CreateTemplatesTagsAsResponseAsync(
 
             global::E2B.AssignTemplateTagsRequest request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Assign template tags<br/>
-        /// Assign tag(s) to a template build
+        /// Assign tag(s) to a template build.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="target">
         /// Target template in "name:tag" format
         /// </param>
@@ -46,6 +57,7 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AssignedTemplateTags> CreateTemplatesTagsAsync(
             string target,
             global::System.Collections.Generic.IList<string> tags,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

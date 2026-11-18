@@ -18,7 +18,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Team))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(float))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.Error))]
@@ -30,7 +29,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamLimitsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTeamsMetricsMaxMetric), TypeInfoPropertyName = "GetTeamsMetricsMaxMetric2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.Team>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TeamMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
@@ -40,7 +38,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTeamsMetricsMaxMetric?), TypeInfoPropertyName = "NullableGetTeamsMetricsMaxMetric2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.Team>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.TeamMetric>))]
     internal sealed partial class AuthSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {

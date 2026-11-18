@@ -55,6 +55,12 @@ namespace E2B
         public string? AuthOrgId { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("telemetry_client_id")]
+        public string? TelemetryClientId { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -72,6 +78,7 @@ namespace E2B
         /// </param>
         /// <param name="sandboxProxyDomain"></param>
         /// <param name="authOrgId"></param>
+        /// <param name="telemetryClientId"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -82,7 +89,8 @@ namespace E2B
             string token,
             global::System.Guid? clusterId,
             string? sandboxProxyDomain,
-            string? authOrgId)
+            string? authOrgId,
+            string? telemetryClientId)
         {
             this.ClusterId = clusterId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -91,6 +99,7 @@ namespace E2B
             this.Token = token ?? throw new global::System.ArgumentNullException(nameof(token));
             this.SandboxProxyDomain = sandboxProxyDomain;
             this.AuthOrgId = authOrgId;
+            this.TelemetryClientId = telemetryClientId;
         }
 
         /// <summary>

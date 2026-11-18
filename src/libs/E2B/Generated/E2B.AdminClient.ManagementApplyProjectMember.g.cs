@@ -625,6 +625,9 @@ namespace E2B
         /// Whether this membership is the user's default team. Omitted requests from older sources remain non-default.<br/>
         /// Default Value: false
         /// </param>
+        /// <param name="role">
+        /// The member's effective role on the project. A viewer may only read. An omitted role keeps the stored one, and a new member without one is stored as member.
+        /// </param>
         /// <param name="identities"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -635,6 +638,7 @@ namespace E2B
             long revision,
             bool present,
             bool? isDefault = default,
+            global::E2B.ManagementProjectMemberApplyRequestRole? role = default,
             global::System.Collections.Generic.IList<global::E2B.ManagementProjectMemberIdentity>? identities = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -644,6 +648,7 @@ namespace E2B
                 Revision = revision,
                 Present = present,
                 IsDefault = isDefault,
+                Role = role,
                 Identities = identities,
             };
 

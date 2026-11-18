@@ -485,6 +485,43 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Service unavailable
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::E2B.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::E2B.ApiException<global::E2B.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -594,6 +631,7 @@ namespace E2B
         /// <param name="token"></param>
         /// <param name="sandboxProxyDomain"></param>
         /// <param name="authOrgId"></param>
+        /// <param name="telemetryClientId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -605,6 +643,7 @@ namespace E2B
             global::System.Guid? clusterId = default,
             string? sandboxProxyDomain = default,
             string? authOrgId = default,
+            string? telemetryClientId = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -617,6 +656,7 @@ namespace E2B
                 Token = token,
                 SandboxProxyDomain = sandboxProxyDomain,
                 AuthOrgId = authOrgId,
+                TelemetryClientId = telemetryClientId,
             };
 
             return await AdminCreateClusterAsync(
