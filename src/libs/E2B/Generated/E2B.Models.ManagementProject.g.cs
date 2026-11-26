@@ -10,7 +10,7 @@ namespace E2B
     public readonly partial struct ManagementProject : global::System.IEquatable<ManagementProject>
     {
         /// <summary>
-        /// The properties of a project this side stores. Name, slug and email are synchronized on every push. The optional cluster assignment is preserved when omitted.<br/>
+        /// The properties of a project this side stores. Name, slug and email are synchronized on every accepted push. The cluster is fixed at creation.<br/>
         /// A project's tier is not among them, and this side assigns none. Limits arrive separately and in full through managementUpsertProjectLimits.
         /// </summary>
 #if NET6_0_OR_GREATER

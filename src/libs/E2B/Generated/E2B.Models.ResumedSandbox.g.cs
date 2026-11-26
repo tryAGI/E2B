@@ -24,6 +24,12 @@ namespace E2B
         public int? CpuCount { get; set; }
 
         /// <summary>
+        /// Memory for the resumed sandbox in MiB. Defaults to the memory the sandbox had when it was paused; at least that, and at most the template's maxMemoryMB, in steps of 128 MiB above its memoryMB.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
+        public int? MemoryMB { get; set; }
+
+        /// <summary>
         /// Automatically pauses the sandbox after the timeout
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("autoPause")]
@@ -52,6 +58,9 @@ namespace E2B
         /// <param name="cpuCount">
         /// Online vCPU target for the resumed sandbox. Defaults to the snapshot's cpuCount; at most the template's maxCpuCount (fixed-size templates accept only their cpuCount).
         /// </param>
+        /// <param name="memoryMB">
+        /// Memory for the resumed sandbox in MiB. Defaults to the memory the sandbox had when it was paused; at least that, and at most the template's maxMemoryMB, in steps of 128 MiB above its memoryMB.
+        /// </param>
         /// <param name="memory">
         /// Defaults to true. When false, resume from disk state only: the sandbox cold-boots fresh and any memory in the snapshot is ignored, never modified or deleted. Disk state has crash-recovery semantics — writes not flushed before the pause may be lost. A no-op for snapshots that contain no memory. Rejected with an error in environments where this capability is not enabled, never silently downgraded to a memory restore. A snapshot taken while the sandbox guest agent was not responding (envdUnresponsiveAtPause) can only be resumed this way, and needs no enablement.
         /// </param>
@@ -61,10 +70,12 @@ namespace E2B
         public ResumedSandbox(
             int? timeout,
             int? cpuCount,
+            int? memoryMB,
             bool? memory)
         {
             this.Timeout = timeout;
             this.CpuCount = cpuCount;
+            this.MemoryMB = memoryMB;
             this.Memory = memory;
         }
 

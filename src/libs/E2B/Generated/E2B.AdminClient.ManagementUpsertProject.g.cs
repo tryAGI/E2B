@@ -529,7 +529,7 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Service unavailable
+                            // Cluster admission is unavailable. The project upsert can be retried.
                             if ((int)__response.StatusCode == 503)
                             {
                                 string? __content_503 = null;
@@ -667,7 +667,7 @@ namespace E2B
         /// </summary>
         /// <param name="projectID"></param>
         /// <param name="clusterId">
-        /// Cluster assignment to synchronize. Omission preserves the existing assignment.
+        /// Remote cluster fixed at creation. Omit to create a local project or to preserve an existing project's cluster. A different cluster returns 409. The response reports the stored cluster; local projects omit it.
         /// </param>
         /// <param name="name"></param>
         /// <param name="slug">

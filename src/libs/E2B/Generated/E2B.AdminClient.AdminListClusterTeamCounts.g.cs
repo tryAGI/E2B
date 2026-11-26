@@ -7,7 +7,7 @@ namespace E2B
     {
 
 
-        private static readonly global::E2B.EndPointSecurityRequirement s_AdminRotateClusterTokenSecurityRequirement0 =
+        private static readonly global::E2B.EndPointSecurityRequirement s_AdminListClusterTeamCountsSecurityRequirement0 =
             new global::E2B.EndPointSecurityRequirement
             {
                 Authorizations = new global::E2B.EndPointAuthorizationRequirement[]
@@ -21,77 +21,63 @@ namespace E2B
                     },
                 },
             };
-        private static readonly global::E2B.EndPointSecurityRequirement[] s_AdminRotateClusterTokenSecurityRequirements =
+        private static readonly global::E2B.EndPointSecurityRequirement[] s_AdminListClusterTeamCountsSecurityRequirements =
             new global::E2B.EndPointSecurityRequirement[]
-            {                s_AdminRotateClusterTokenSecurityRequirement0,
+            {                s_AdminListClusterTeamCountsSecurityRequirement0,
             };
-        partial void PrepareAdminRotateClusterTokenArguments(
+        partial void PrepareAdminListClusterTeamCountsArguments(
+            global::System.Net.Http.HttpClient httpClient);
+        partial void PrepareAdminListClusterTeamCountsRequest(
             global::System.Net.Http.HttpClient httpClient,
-            ref string clusterID,
-            global::E2B.ClusterTokenRotateRequest request);
-        partial void PrepareAdminRotateClusterTokenRequest(
-            global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string clusterID,
-            global::E2B.ClusterTokenRotateRequest request);
-        partial void ProcessAdminRotateClusterTokenResponse(
+            global::System.Net.Http.HttpRequestMessage httpRequestMessage);
+        partial void ProcessAdminListClusterTeamCountsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
+        partial void ProcessAdminListClusterTeamCountsResponseContent(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
+            ref string content);
+
         /// <summary>
-        /// Rotate a cluster's token as admin<br/>
-        /// Replaces the token used to reach the cluster. The previous token stops working at once. No route returns a cluster's token.
+        /// Count each cluster's teams as admin<br/>
+        /// Returns the number of live teams assigned to each remote cluster. A cluster no live team is assigned to is absent. It reads only the teams, so it answers without a cluster service.
         /// </summary>
-        /// <param name="clusterID"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task AdminRotateClusterTokenAsync(
-            string clusterID,
-
-            global::E2B.ClusterTokenRotateRequest request,
+        public async global::System.Threading.Tasks.Task<global::E2B.ClusterTeamCountList> AdminListClusterTeamCountsAsync(
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            await AdminRotateClusterTokenAsResponseAsync(
-                clusterID: clusterID,
-
-                request: request,
+            var __response = await AdminListClusterTeamCountsAsResponseAsync(
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
+
+            return __response.Body;
         }
         /// <summary>
-        /// Rotate a cluster's token as admin<br/>
-        /// Replaces the token used to reach the cluster. The previous token stops working at once. No route returns a cluster's token.
+        /// Count each cluster's teams as admin<br/>
+        /// Returns the number of live teams assigned to each remote cluster. A cluster no live team is assigned to is absent. It reads only the teams, so it answers without a cluster service.
         /// </summary>
-        /// <param name="clusterID"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::E2B.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse> AdminRotateClusterTokenAsResponseAsync(
-            string clusterID,
-
-            global::E2B.ClusterTokenRotateRequest request,
+        public async global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.ClusterTeamCountList>> AdminListClusterTeamCountsAsResponseAsync(
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareAdminRotateClusterTokenArguments(
-                httpClient: HttpClient,
-                clusterID: ref clusterID,
-                request: request);
+            PrepareAdminListClusterTeamCountsArguments(
+                httpClient: HttpClient);
 
 
             var __authorizations = global::E2B.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_AdminRotateClusterTokenSecurityRequirements,
-                operationName: "AdminRotateClusterTokenAsync");
+                securityRequirements: s_AdminListClusterTeamCountsSecurityRequirements,
+                operationName: "AdminListClusterTeamCountsAsync");
 
             using var __timeoutCancellationTokenSource = global::E2B.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -111,7 +97,7 @@ namespace E2B
             {
 
                             var __pathBuilder = new global::E2B.PathBuilder(
-                                path: $"/unstable/admin/clusters/{clusterID}/token",
+                                path: "/unstable/admin/clusters/team-counts",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::E2B.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -119,7 +105,7 @@ namespace E2B
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Put,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -142,12 +128,6 @@ namespace E2B
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::E2B.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -156,11 +136,9 @@ namespace E2B
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareAdminRotateClusterTokenRequest(
+                PrepareAdminListClusterTeamCountsRequest(
                     httpClient: HttpClient,
-                    httpRequestMessage: __httpRequest,
-                    clusterID: clusterID,
-                    request: request);
+                    httpRequestMessage: __httpRequest);
 
                 return __httpRequest;
             }
@@ -177,10 +155,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AdminRotateClusterToken",
-                                methodName: "AdminRotateClusterTokenAsync",
-                                pathTemplate: "$\"/unstable/admin/clusters/{clusterID}/token\"",
-                                httpMethod: "PUT",
+                                operationId: "AdminListClusterTeamCounts",
+                                methodName: "AdminListClusterTeamCountsAsync",
+                                pathTemplate: "\"/unstable/admin/clusters/team-counts\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
@@ -211,10 +189,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AdminRotateClusterToken",
-                                methodName: "AdminRotateClusterTokenAsync",
-                                pathTemplate: "$\"/unstable/admin/clusters/{clusterID}/token\"",
-                                httpMethod: "PUT",
+                                operationId: "AdminListClusterTeamCounts",
+                                methodName: "AdminListClusterTeamCountsAsync",
+                                pathTemplate: "\"/unstable/admin/clusters/team-counts\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
@@ -252,10 +230,10 @@ namespace E2B
                         await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AdminRotateClusterToken",
-                                methodName: "AdminRotateClusterTokenAsync",
-                                pathTemplate: "$\"/unstable/admin/clusters/{clusterID}/token\"",
-                                httpMethod: "PUT",
+                                operationId: "AdminListClusterTeamCounts",
+                                methodName: "AdminListClusterTeamCountsAsync",
+                                pathTemplate: "\"/unstable/admin/clusters/team-counts\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
@@ -292,7 +270,7 @@ namespace E2B
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessAdminRotateClusterTokenResponse(
+                ProcessAdminListClusterTeamCountsResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -300,10 +278,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AdminRotateClusterToken",
-                                methodName: "AdminRotateClusterTokenAsync",
-                                pathTemplate: "$\"/unstable/admin/clusters/{clusterID}/token\"",
-                                httpMethod: "PUT",
+                                operationId: "AdminListClusterTeamCounts",
+                                methodName: "AdminListClusterTeamCountsAsync",
+                                pathTemplate: "\"/unstable/admin/clusters/team-counts\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
@@ -322,10 +300,10 @@ namespace E2B
                     await global::E2B.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::E2B.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AdminRotateClusterToken",
-                                methodName: "AdminRotateClusterTokenAsync",
-                                pathTemplate: "$\"/unstable/admin/clusters/{clusterID}/token\"",
-                                httpMethod: "PUT",
+                                operationId: "AdminListClusterTeamCounts",
+                                methodName: "AdminListClusterTeamCountsAsync",
+                                pathTemplate: "\"/unstable/admin/clusters/team-counts\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
@@ -339,43 +317,6 @@ namespace E2B
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Bad request
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::E2B.Error? __value_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = __content_400 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_400 = __content_400 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_400 is { Length: > 0 } ? __content_400 : __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Authentication error
                             if ((int)__response.StatusCode == 401)
                             {
@@ -408,43 +349,6 @@ namespace E2B
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Not found
-                            if ((int)__response.StatusCode == 404)
-                            {
-                                string? __content_404 = null;
-                                global::System.Exception? __exception_404 = null;
-                                global::E2B.Error? __value_404 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = __content_404 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_404 = __content_404 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_404 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_404 is { Length: > 0 } ? __content_404 : __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_404,
-                                    responseBody: __content_404,
-                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -487,43 +391,6 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Service unavailable
-                            if ((int)__response.StatusCode == 503)
-                            {
-                                string? __content_503 = null;
-                                global::System.Exception? __exception_503 = null;
-                                global::E2B.Error? __value_503 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_503 = __content_503 is not { Length: > 0 } ? null : global::E2B.Error.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_503 = __ex;
-                                }
-
-
-                                throw global::E2B.ApiException<global::E2B.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_503,
-                                    responseBody: __content_503,
-                                    responseObject: __value_503,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -537,15 +404,22 @@ namespace E2B
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
+                                ProcessAdminListClusterTeamCountsResponseContent(
+                                    httpClient: HttpClient,
+                                    httpResponseMessage: __response,
+                                    content: ref __content);
 
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                return new global::E2B.AutoSDKHttpResponse(
+                                    var __value = global::E2B.ClusterTeamCountList.FromJson(__content, JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.ClusterTeamCountList>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri);
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -565,10 +439,19 @@ namespace E2B
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    return new global::E2B.AutoSDKHttpResponse(
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
+
+                                    var __value = await global::E2B.ClusterTeamCountList.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::E2B.AutoSDKHttpResponse<global::E2B.ClusterTeamCountList>(
                                         statusCode: __response.StatusCode,
                                         headers: global::E2B.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri);
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -603,34 +486,6 @@ namespace E2B
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Rotate a cluster's token as admin<br/>
-        /// Replaces the token used to reach the cluster. The previous token stops working at once. No route returns a cluster's token.
-        /// </summary>
-        /// <param name="clusterID"></param>
-        /// <param name="token">
-        /// New cluster access token. Write-only.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task AdminRotateClusterTokenAsync(
-            string clusterID,
-            string token,
-            global::E2B.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::E2B.ClusterTokenRotateRequest
-            {
-                Token = token,
-            };
-
-            await AdminRotateClusterTokenAsync(
-                clusterID: clusterID,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -62,6 +62,9 @@ namespace E2B
         /// <param name="memoryMB">
         /// Memory for the sandbox in MiB
         /// </param>
+        /// <param name="maxMemoryMB">
+        /// Memory the template's sandboxes can grow to, in MiB. memoryMB is what they boot with; the rest is added when a sandbox asks for it. Must be at least memoryMB, and the difference a multiple of 128 MiB.
+        /// </param>
         /// <param name="minFreeDiskMb">
         /// Requested minimum free space after the template's build steps, in MiB. Omit to use the team's default. Set to 0 to request no minimum free-disk growth. The filesystem is never shrunk, including inherited or already-larger filesystems. Growth is best effort, so filesystem metadata can leave the available space slightly below the requested minimum.
         /// </param>
@@ -75,6 +78,7 @@ namespace E2B
             int? cpuCount = default,
             int? maxCpuCount = default,
             int? memoryMB = default,
+            int? maxMemoryMB = default,
             int? minFreeDiskMb = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -2,7 +2,7 @@
 
 namespace E2B
 {
-    public sealed partial class ClusterListItem
+    public sealed partial class ClusterTeamCount
     {
         /// <summary>
         /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
@@ -47,20 +47,20 @@ namespace E2B
         /// <summary>
         /// Deserializes a JSON string using the provided JsonSerializerContext.
         /// </summary>
-        public static global::E2B.ClusterListItem? FromJson(
+        public static global::E2B.ClusterTeamCount? FromJson(
             string json,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return global::System.Text.Json.JsonSerializer.Deserialize(
                 json,
-                typeof(global::E2B.ClusterListItem),
-                jsonSerializerContext) as global::E2B.ClusterListItem;
+                typeof(global::E2B.ClusterTeamCount),
+                jsonSerializerContext) as global::E2B.ClusterTeamCount;
         }
 
         /// <summary>
         /// Deserializes a JSON string using the generated default JsonSerializerContext.
         /// </summary>
-        public static global::E2B.ClusterListItem? FromJson(
+        public static global::E2B.ClusterTeamCount? FromJson(
             string json)
         {
             return FromJson(
@@ -75,7 +75,7 @@ namespace E2B
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::E2B.ClusterListItem? FromJson(
+        public static global::E2B.ClusterTeamCount? FromJson(
             string json,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
@@ -86,7 +86,7 @@ namespace E2B
                     global::E2B.SourceGenerationContext.Default);
             }
 
-            return global::System.Text.Json.JsonSerializer.Deserialize<global::E2B.ClusterListItem>(
+            return global::System.Text.Json.JsonSerializer.Deserialize<global::E2B.ClusterTeamCount>(
                 json,
                 jsonSerializerOptions);
         }
@@ -94,20 +94,20 @@ namespace E2B
         /// <summary>
         /// Deserializes a JSON stream using the provided JsonSerializerContext.
         /// </summary>
-        public static async global::System.Threading.Tasks.ValueTask<global::E2B.ClusterListItem?> FromJsonStreamAsync(
+        public static async global::System.Threading.Tasks.ValueTask<global::E2B.ClusterTeamCount?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
                 jsonStream,
-                typeof(global::E2B.ClusterListItem),
-                jsonSerializerContext).ConfigureAwait(false)) as global::E2B.ClusterListItem;
+                typeof(global::E2B.ClusterTeamCount),
+                jsonSerializerContext).ConfigureAwait(false)) as global::E2B.ClusterTeamCount;
         }
 
         /// <summary>
         /// Deserializes a JSON stream using the generated default JsonSerializerContext.
         /// </summary>
-        public static global::System.Threading.Tasks.ValueTask<global::E2B.ClusterListItem?> FromJsonStreamAsync(
+        public static global::System.Threading.Tasks.ValueTask<global::E2B.ClusterTeamCount?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream)
         {
             return FromJsonStreamAsync(
@@ -122,7 +122,7 @@ namespace E2B
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::System.Threading.Tasks.ValueTask<global::E2B.ClusterListItem?> FromJsonStreamAsync(
+        public static global::System.Threading.Tasks.ValueTask<global::E2B.ClusterTeamCount?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
@@ -133,7 +133,7 @@ namespace E2B
                     global::E2B.SourceGenerationContext.Default);
             }
 
-            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::E2B.ClusterListItem?>(
+            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::E2B.ClusterTeamCount?>(
                 jsonStream,
                 jsonSerializerOptions);
         }

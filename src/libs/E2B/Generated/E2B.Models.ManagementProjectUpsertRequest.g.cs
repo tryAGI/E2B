@@ -4,13 +4,13 @@
 namespace E2B
 {
     /// <summary>
-    /// The properties of a project this side stores. Name, slug and email are synchronized on every push. The optional cluster assignment is preserved when omitted.<br/>
+    /// The properties of a project this side stores. Name, slug and email are synchronized on every accepted push. The cluster is fixed at creation.<br/>
     /// A project's tier is not among them, and this side assigns none. Limits arrive separately and in full through managementUpsertProjectLimits.
     /// </summary>
     public sealed partial class ManagementProjectUpsertRequest
     {
         /// <summary>
-        /// Cluster assignment to synchronize. Omission preserves the existing assignment.
+        /// Remote cluster fixed at creation. Omit to create a local project or to preserve an existing project's cluster. A different cluster returns 409. The response reports the stored cluster; local projects omit it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("cluster_id")]
         public global::System.Guid? ClusterId { get; set; }
@@ -53,7 +53,7 @@ namespace E2B
         /// Contact address recorded on the project.
         /// </param>
         /// <param name="clusterId">
-        /// Cluster assignment to synchronize. Omission preserves the existing assignment.
+        /// Remote cluster fixed at creation. Omit to create a local project or to preserve an existing project's cluster. A different cluster returns 409. The response reports the stored cluster; local projects omit it.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

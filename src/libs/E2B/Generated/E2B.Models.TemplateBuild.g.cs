@@ -57,11 +57,17 @@ namespace E2B
         public int? MaxCpuCount { get; set; }
 
         /// <summary>
-        /// Memory for the sandbox in MiB
+        /// Memory in MiB a sandbox created from this build starts with: the build's memory, or for a snapshot of a grown sandbox the size it was taken at. A create that names no memoryMB starts at this size.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int MemoryMB { get; set; }
+
+        /// <summary>
+        /// Memory the template's sandboxes can grow to, in MiB; absent for templates whose memory cannot grow.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxMemoryMB")]
+        public int? MaxMemoryMB { get; set; }
 
         /// <summary>
         /// Disk size for the sandbox in MiB
@@ -100,13 +106,16 @@ namespace E2B
         /// CPU cores for the sandbox
         /// </param>
         /// <param name="memoryMB">
-        /// Memory for the sandbox in MiB
+        /// Memory in MiB a sandbox created from this build starts with: the build's memory, or for a snapshot of a grown sandbox the size it was taken at. A create that names no memoryMB starts at this size.
         /// </param>
         /// <param name="finishedAt">
         /// Time when the build was finished
         /// </param>
         /// <param name="maxCpuCount">
         /// Maximum CPU count for resizable templates; absent for fixed-size templates.
+        /// </param>
+        /// <param name="maxMemoryMB">
+        /// Memory the template's sandboxes can grow to, in MiB; absent for templates whose memory cannot grow.
         /// </param>
         /// <param name="diskSizeMB">
         /// Disk size for the sandbox in MiB
@@ -126,6 +135,7 @@ namespace E2B
             int memoryMB,
             global::System.DateTime? finishedAt,
             int? maxCpuCount,
+            int? maxMemoryMB,
             int? diskSizeMB,
             string? envdVersion)
         {
@@ -137,6 +147,7 @@ namespace E2B
             this.CpuCount = cpuCount;
             this.MaxCpuCount = maxCpuCount;
             this.MemoryMB = memoryMB;
+            this.MaxMemoryMB = maxMemoryMB;
             this.DiskSizeMB = diskSizeMB;
             this.EnvdVersion = envdVersion;
         }
