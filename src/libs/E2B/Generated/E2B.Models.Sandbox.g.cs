@@ -63,6 +63,18 @@ namespace E2B
         public string? Domain { get; set; }
 
         /// <summary>
+        /// Online vCPUs the sandbox runs with. A connect reports the count of the sandbox it returns, which differs from a requested cpuCount when the request was ignored. Absent from older API versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("cpuCount")]
+        public int? CpuCount { get; set; }
+
+        /// <summary>
+        /// Memory the sandbox runs with in MiB. A connect reports the size of the sandbox it returns, which differs from a requested memoryMB when the request was ignored. While the API does not know a sandbox's size (it was started by an older API version, for example), this reports its boot RAM. Absent from older API versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
+        public int? MemoryMB { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -95,6 +107,12 @@ namespace E2B
         /// <param name="domain">
         /// Base domain where the sandbox traffic is accessible
         /// </param>
+        /// <param name="cpuCount">
+        /// Online vCPUs the sandbox runs with. A connect reports the count of the sandbox it returns, which differs from a requested cpuCount when the request was ignored. Absent from older API versions.
+        /// </param>
+        /// <param name="memoryMB">
+        /// Memory the sandbox runs with in MiB. A connect reports the size of the sandbox it returns, which differs from a requested memoryMB when the request was ignored. While the API does not know a sandbox's size (it was started by an older API version, for example), this reports its boot RAM. Absent from older API versions.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -106,7 +124,9 @@ namespace E2B
             string? alias,
             string? envdAccessToken,
             string? trafficAccessToken,
-            string? domain)
+            string? domain,
+            int? cpuCount,
+            int? memoryMB)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.SandboxID = sandboxID ?? throw new global::System.ArgumentNullException(nameof(sandboxID));
@@ -116,6 +136,8 @@ namespace E2B
             this.EnvdAccessToken = envdAccessToken;
             this.TrafficAccessToken = trafficAccessToken;
             this.Domain = domain;
+            this.CpuCount = cpuCount;
+            this.MemoryMB = memoryMB;
         }
 
         /// <summary>

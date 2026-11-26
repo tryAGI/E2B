@@ -6,8 +6,11 @@ namespace E2B
     {
         /// <summary>
         /// Create a secret<br/>
-        /// Create a secret by storing a runtime marker as its first version. The response carries metadata only.
+        /// Create a secret by storing a runtime marker as its first version. The response carries metadata only. The value is not part of the Idempotency-Key comparison: reusing a key with a different value replays the first result.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,12 +18,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.Secret> CreateSecretsAsync(
 
             global::E2B.NewSecret request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a secret<br/>
-        /// Create a secret by storing a runtime marker as its first version. The response carries metadata only.
+        /// Create a secret by storing a runtime marker as its first version. The response carries metadata only. The value is not part of the Idempotency-Key comparison: reusing a key with a different value replays the first result.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,12 +35,16 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.AutoSDKHttpResponse<global::E2B.Secret>> CreateSecretsAsResponseAsync(
 
             global::E2B.NewSecret request,
+            string? idempotencyKey = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a secret<br/>
-        /// Create a secret by storing a runtime marker as its first version. The response carries metadata only.
+        /// Create a secret by storing a runtime marker as its first version. The response carries metadata only. The value is not part of the Idempotency-Key comparison: reusing a key with a different value replays the first result.
         /// </summary>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Name of the secret, unique within the project. Names are lower-cased before storage and returned in that canonical form; the sec_ prefix is reserved for secret identifiers.
         /// </param>
@@ -49,6 +60,7 @@ namespace E2B
         global::System.Threading.Tasks.Task<global::E2B.Secret> CreateSecretsAsync(
             string name,
             string value,
+            string? idempotencyKey = default,
             global::System.Collections.Generic.Dictionary<string, string>? metadata = default,
             global::E2B.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

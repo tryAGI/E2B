@@ -107,14 +107,6 @@ namespace E2B
 
             typeof(global::E2B.JsonConverters.GetTemplatesTagsGroupsSortNullableJsonConverter),
 
-            typeof(global::E2B.JsonConverters.AdminListClustersSortByJsonConverter),
-
-            typeof(global::E2B.JsonConverters.AdminListClustersSortByNullableJsonConverter),
-
-            typeof(global::E2B.JsonConverters.AdminListClustersSortOrderJsonConverter),
-
-            typeof(global::E2B.JsonConverters.AdminListClustersSortOrderNullableJsonConverter),
-
             typeof(global::E2B.JsonConverters.AdminListClusterTeamsSortByJsonConverter),
 
             typeof(global::E2B.JsonConverters.AdminListClusterTeamsSortByNullableJsonConverter),
@@ -216,17 +208,12 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamStatusResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamLimits))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.TeamLimitsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterDetail))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterDetailWithTeams))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterTeamListResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterListItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterListResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ClusterListItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterTeamListItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterTeamCount))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterTeamCountList))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ClusterTeamCount>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterTeamListResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.ClusterTeamListItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminClusterCreateRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterUpdateRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ClusterTokenRotateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxKillResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminSandboxState), TypeInfoPropertyName = "AdminSandboxState2")]
@@ -360,7 +347,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.WebhookDelivery>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.WebhookDeliveriesListPayload))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.WebhookDeliveryGroup>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementClusterRegistrationRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementClusterProjects))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectSettingsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ProjectSettings))]
@@ -375,7 +361,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectBlockRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectBanRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementProjectLimits))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ManagementUpdateClusterTelemetryRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTeamsMetricsMaxMetric), TypeInfoPropertyName = "GetTeamsMetricsMaxMetric2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.SandboxState>))]
@@ -384,8 +369,6 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.TemplateBuildStatus>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.GetTemplatesTagsGroupsSort), TypeInfoPropertyName = "GetTemplatesTagsGroupsSort2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.AdminSandboxBuildStatusGroup>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminListClustersSortBy), TypeInfoPropertyName = "AdminListClustersSortBy2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminListClustersSortOrder), TypeInfoPropertyName = "AdminListClustersSortOrder2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminListClusterTeamsSortBy), TypeInfoPropertyName = "AdminListClusterTeamsSortBy2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.AdminListClusterTeamsSortOrder), TypeInfoPropertyName = "AdminListClusterTeamsSortOrder2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::E2B.GetEventsWebhooksDeliveriesDeliveryStatu>))]
@@ -415,7 +398,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxLog>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxLogEntry>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.SandboxVolumeMount>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ClusterListItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ClusterTeamCount>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.ClusterTeamListItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::E2B.AdminSandboxBuild>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::System.Guid>))]

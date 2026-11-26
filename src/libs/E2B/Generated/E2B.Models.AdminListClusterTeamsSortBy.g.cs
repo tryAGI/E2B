@@ -11,11 +11,11 @@ namespace E2B
         /// <summary>
         ///
         /// </summary>
-        CreatedAt,
+        AdminListClusterTeamsParamsSortByCreatedAt,
         /// <summary>
         ///
         /// </summary>
-        Name,
+        AdminListClusterTeamsParamsSortByName,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace E2B
         {
             return value switch
             {
-                AdminListClusterTeamsSortBy.CreatedAt => "createdAt",
-                AdminListClusterTeamsSortBy.Name => "name",
+                AdminListClusterTeamsSortBy.AdminListClusterTeamsParamsSortByCreatedAt => "createdAt",
+                AdminListClusterTeamsSortBy.AdminListClusterTeamsParamsSortByName => "name",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace E2B
         {
             return value switch
             {
-                "createdAt" => AdminListClusterTeamsSortBy.CreatedAt,
-                "name" => AdminListClusterTeamsSortBy.Name,
+                "createdAt" => AdminListClusterTeamsSortBy.AdminListClusterTeamsParamsSortByCreatedAt,
+                "name" => AdminListClusterTeamsSortBy.AdminListClusterTeamsParamsSortByName,
                 _ => null,
             };
         }

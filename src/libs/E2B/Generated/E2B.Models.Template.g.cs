@@ -38,11 +38,17 @@ namespace E2B
         public int? MaxCpuCount { get; set; }
 
         /// <summary>
-        /// Memory for the sandbox in MiB
+        /// Memory in MiB a sandbox created from this template starts with: the build's memory, or for a snapshot template of a grown sandbox the size it was taken at. A create that names no memoryMB starts at this size.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memoryMB")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int MemoryMB { get; set; }
+
+        /// <summary>
+        /// Memory the template's sandboxes can grow to, in MiB; absent for templates whose memory cannot grow.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maxMemoryMB")]
+        public int? MaxMemoryMB { get; set; }
 
         /// <summary>
         /// Disk size for the sandbox in MiB
@@ -158,7 +164,7 @@ namespace E2B
         /// CPU cores for the sandbox
         /// </param>
         /// <param name="memoryMB">
-        /// Memory for the sandbox in MiB
+        /// Memory in MiB a sandbox created from this template starts with: the build's memory, or for a snapshot template of a grown sandbox the size it was taken at. A create that names no memoryMB starts at this size.
         /// </param>
         /// <param name="diskSizeMB">
         /// Disk size for the sandbox in MiB
@@ -193,6 +199,9 @@ namespace E2B
         /// <param name="maxCpuCount">
         /// Maximum CPU count for resizable templates; absent for fixed-size templates.
         /// </param>
+        /// <param name="maxMemoryMB">
+        /// Memory the template's sandboxes can grow to, in MiB; absent for templates whose memory cannot grow.
+        /// </param>
         /// <param name="createdBy"></param>
         /// <param name="lastSpawnedAt">
         /// Time when the template was last used
@@ -222,6 +231,7 @@ namespace E2B
             string envdVersion,
             global::E2B.TemplateBuildStatus buildStatus,
             int? maxCpuCount,
+            int? maxMemoryMB,
             global::E2B.TeamUser? createdBy,
             global::System.DateTime? lastSpawnedAt,
             bool? isDefault,
@@ -232,6 +242,7 @@ namespace E2B
             this.CpuCount = cpuCount;
             this.MaxCpuCount = maxCpuCount;
             this.MemoryMB = memoryMB;
+            this.MaxMemoryMB = maxMemoryMB;
             this.DiskSizeMB = diskSizeMB;
             this.Public = @public;
             this.Aliases = aliases ?? throw new global::System.ArgumentNullException(nameof(aliases));

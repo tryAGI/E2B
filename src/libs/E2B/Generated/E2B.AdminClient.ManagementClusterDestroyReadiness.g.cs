@@ -393,7 +393,7 @@ namespace E2B
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The cluster has deletion protection turned on, or more than one team uses it and the other teams and their templates must move off it before destroying the cluster.
+                            // The cluster has deletion protection turned on, or more than one team still uses it.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
