@@ -62,6 +62,7 @@ namespace E2B
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ResumedSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ConnectSandbox))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.ConnectSandboxV2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxPausedRetentionRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxTimeoutRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxRefreshRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::E2B.SandboxSnapshotRequest))]

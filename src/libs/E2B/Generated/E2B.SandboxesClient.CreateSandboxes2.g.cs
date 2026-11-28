@@ -853,6 +853,9 @@ namespace E2B
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
         /// </param>
+        /// <param name="pausedRetentionSeconds">
+        /// Seconds a paused sandbox may stay unused before it is deleted, from 1 hour to 100 years. The clock restarts every time a run of the sandbox ends, by pause or by kill. Null means the sandbox is never deleted automatically.
+        /// </param>
         /// <param name="allowInternetAccess">
         /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
         /// </param>
@@ -878,6 +881,7 @@ namespace E2B
             bool? autoPause = default,
             bool? autoPauseMemory = default,
             global::E2B.SandboxAutoResumeConfig? autoResume = default,
+            long? pausedRetentionSeconds = default,
             bool? allowInternetAccess = default,
             global::E2B.SandboxNetworkConfig? network = default,
             object? metadata = default,
@@ -897,6 +901,7 @@ namespace E2B
                 AutoPause = autoPause,
                 AutoPauseMemory = autoPauseMemory,
                 AutoResume = autoResume,
+                PausedRetentionSeconds = pausedRetentionSeconds,
                 AllowInternetAccess = allowInternetAccess,
                 Network = network,
                 Metadata = metadata,

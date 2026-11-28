@@ -55,6 +55,12 @@ namespace E2B
         public global::E2B.SandboxAutoResumeConfig? AutoResume { get; set; }
 
         /// <summary>
+        /// Seconds a paused sandbox may stay unused before it is deleted, from 1 hour to 100 years. The clock restarts every time a run of the sandbox ends, by pause or by kill. Null means the sandbox is never deleted automatically.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("pausedRetentionSeconds")]
+        public long? PausedRetentionSeconds { get; set; }
+
+        /// <summary>
         /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allow_internet_access")]
@@ -129,6 +135,9 @@ namespace E2B
         /// <param name="autoResume">
         /// Auto-resume configuration for paused sandboxes.
         /// </param>
+        /// <param name="pausedRetentionSeconds">
+        /// Seconds a paused sandbox may stay unused before it is deleted, from 1 hour to 100 years. The clock restarts every time a run of the sandbox ends, by pause or by kill. Null means the sandbox is never deleted automatically.
+        /// </param>
         /// <param name="allowInternetAccess">
         /// Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config.
         /// </param>
@@ -153,6 +162,7 @@ namespace E2B
             bool? autoPause,
             bool? autoPauseMemory,
             global::E2B.SandboxAutoResumeConfig? autoResume,
+            long? pausedRetentionSeconds,
             bool? allowInternetAccess,
             global::E2B.SandboxNetworkConfig? network,
             object? metadata,
@@ -168,6 +178,7 @@ namespace E2B
             this.AutoPause = autoPause;
             this.AutoPauseMemory = autoPauseMemory;
             this.AutoResume = autoResume;
+            this.PausedRetentionSeconds = pausedRetentionSeconds;
             this.AllowInternetAccess = allowInternetAccess;
             this.Network = network;
             this.Metadata = metadata;

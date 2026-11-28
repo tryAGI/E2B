@@ -100,6 +100,18 @@ namespace E2B
         public bool? EnvdUnresponsiveAtPause { get; set; }
 
         /// <summary>
+        /// Seconds the sandbox may stay paused and unused before it is deleted. Null when no retention is set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("pausedRetentionSeconds")]
+        public long? PausedRetentionSeconds { get; set; }
+
+        /// <summary>
+        /// When the paused sandbox will be deleted. Null while the sandbox is running or pausing, and when no retention is set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("expiresAt")]
+        public global::System.DateTime? ExpiresAt { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
@@ -151,6 +163,12 @@ namespace E2B
         /// <param name="envdUnresponsiveAtPause">
         /// True when the snapshot a paused sandbox would resume from was taken while the sandbox guest agent was not responding. A plain resume of it is refused with 409 and error_code sandbox_snapshot_guest_agent_unresponsive, because restoring that memory would bring the unresponsive agent back; resume it without memory (`memory: false`), which cold-boots the sandbox from its disk. Omitted for a running sandbox and for a snapshot whose agent answered.
         /// </param>
+        /// <param name="pausedRetentionSeconds">
+        /// Seconds the sandbox may stay paused and unused before it is deleted. Null when no retention is set.
+        /// </param>
+        /// <param name="expiresAt">
+        /// When the paused sandbox will be deleted. Null while the sandbox is running or pausing, and when no retention is set.
+        /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -169,6 +187,8 @@ namespace E2B
             string? alias,
             object? metadata,
             bool? envdUnresponsiveAtPause,
+            long? pausedRetentionSeconds,
+            global::System.DateTime? expiresAt,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
@@ -184,6 +204,8 @@ namespace E2B
             this.State = state;
             this.EnvdVersion = envdVersion ?? throw new global::System.ArgumentNullException(nameof(envdVersion));
             this.EnvdUnresponsiveAtPause = envdUnresponsiveAtPause;
+            this.PausedRetentionSeconds = pausedRetentionSeconds;
+            this.ExpiresAt = expiresAt;
             this.VolumeMounts = volumeMounts;
         }
 

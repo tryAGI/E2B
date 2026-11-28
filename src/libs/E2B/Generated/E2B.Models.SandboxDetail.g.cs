@@ -137,6 +137,18 @@ namespace E2B
         public global::E2B.SandboxPauseMode? PauseMode { get; set; }
 
         /// <summary>
+        /// Seconds the sandbox may stay paused and unused before it is deleted. Null when no retention is set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("pausedRetentionSeconds")]
+        public long? PausedRetentionSeconds { get; set; }
+
+        /// <summary>
+        /// When the paused sandbox will be deleted. Null while the sandbox is running or pausing, and when no retention is set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("expiresAt")]
+        public global::System.DateTime? ExpiresAt { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volumeMounts")]
@@ -204,6 +216,12 @@ namespace E2B
         /// <param name="pauseMode">
         /// What the sandbox's latest pause saved. `full` saved the filesystem and the memory, and resuming restores the sandbox where it left off. `filesystem` saved only the filesystem, and resuming reboots the sandbox from disk. Returned for a paused sandbox once its pause has finished, and omitted while it is still pausing.
         /// </param>
+        /// <param name="pausedRetentionSeconds">
+        /// Seconds the sandbox may stay paused and unused before it is deleted. Null when no retention is set.
+        /// </param>
+        /// <param name="expiresAt">
+        /// When the paused sandbox will be deleted. Null while the sandbox is running or pausing, and when no retention is set.
+        /// </param>
         /// <param name="volumeMounts"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -228,6 +246,8 @@ namespace E2B
             global::E2B.SandboxNetworkConfig? network,
             global::E2B.SandboxLifecycle? lifecycle,
             global::E2B.SandboxPauseMode? pauseMode,
+            long? pausedRetentionSeconds,
+            global::System.DateTime? expiresAt,
             global::System.Collections.Generic.IList<global::E2B.SandboxVolumeMount>? volumeMounts)
         {
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
@@ -249,6 +269,8 @@ namespace E2B
             this.Network = network;
             this.Lifecycle = lifecycle;
             this.PauseMode = pauseMode;
+            this.PausedRetentionSeconds = pausedRetentionSeconds;
+            this.ExpiresAt = expiresAt;
             this.VolumeMounts = volumeMounts;
         }
 
