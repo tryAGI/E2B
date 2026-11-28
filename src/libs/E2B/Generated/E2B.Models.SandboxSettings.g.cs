@@ -15,6 +15,12 @@ namespace E2B
         public bool? DefaultAllowPublicTraffic { get; set; }
 
         /// <summary>
+        /// Whether new sandboxes without an explicit network.exposeLocalhostPorts make services listening only on loopback reachable through sandbox URLs. Omission exposes them. Existing sandboxes, resumes and forks keep their settings.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("defaultExposeLocalhostPorts")]
+        public bool? DefaultExposeLocalhostPorts { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -26,13 +32,18 @@ namespace E2B
         /// <param name="defaultAllowPublicTraffic">
         /// Whether new sandboxes without an explicit network.allowPublicTraffic accept traffic without a traffic access token. Omission uses the public default. Existing sandboxes, resumes and forks keep their settings.
         /// </param>
+        /// <param name="defaultExposeLocalhostPorts">
+        /// Whether new sandboxes without an explicit network.exposeLocalhostPorts make services listening only on loopback reachable through sandbox URLs. Omission exposes them. Existing sandboxes, resumes and forks keep their settings.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public SandboxSettings(
-            bool? defaultAllowPublicTraffic)
+            bool? defaultAllowPublicTraffic,
+            bool? defaultExposeLocalhostPorts)
         {
             this.DefaultAllowPublicTraffic = defaultAllowPublicTraffic;
+            this.DefaultExposeLocalhostPorts = defaultExposeLocalhostPorts;
         }
 
         /// <summary>

@@ -15,6 +15,12 @@ namespace E2B
         public bool? AllowPublicTraffic { get; set; }
 
         /// <summary>
+        /// Whether services listening only on loopback (127.0.0.1, localhost, ::1) inside the sandbox are reachable through sandbox URLs. Services listening on all interfaces are reachable either way. When omitted or null on create, the project's default applies, which is true unless the project changed it. A sandbox keeps the value it was created with through pause and resume. Setting it to false needs a template built with a recent envd: for an older template the create is refused until the template is rebuilt, and a project default of false does not apply, so its sandboxes keep exposing them.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("exposeLocalhostPorts")]
+        public bool? ExposeLocalhostPorts { get; set; }
+
+        /// <summary>
         /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowOut")]
@@ -68,6 +74,9 @@ namespace E2B
         /// <param name="allowPublicTraffic">
         /// Whether sandbox URLs accept traffic without the sandbox's traffic access token. When omitted or null on create, the project's default applies, which is true unless the project changed it.
         /// </param>
+        /// <param name="exposeLocalhostPorts">
+        /// Whether services listening only on loopback (127.0.0.1, localhost, ::1) inside the sandbox are reachable through sandbox URLs. Services listening on all interfaces are reachable either way. When omitted or null on create, the project's default applies, which is true unless the project changed it. A sandbox keeps the value it was created with through pause and resume. Setting it to false needs a template built with a recent envd: for an older template the create is refused until the template is rebuilt, and a project default of false does not apply, so its sandboxes keep exposing them.
+        /// </param>
         /// <param name="allowOut">
         /// List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. "8.8.8.8/32"), a bare IP address (e.g. "8.8.8.8"), or a domain name (e.g. "example.com", "*.example.com"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed.
         /// </param>
@@ -94,6 +103,7 @@ namespace E2B
 #endif
         public SandboxNetworkConfig(
             bool? allowPublicTraffic,
+            bool? exposeLocalhostPorts,
             global::System.Collections.Generic.IList<string>? allowOut,
             global::System.Collections.Generic.IList<string>? denyOut,
             global::System.Collections.Generic.IList<string>? dnsServers,
@@ -103,6 +113,7 @@ namespace E2B
             global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IList<global::E2B.SandboxNetworkRule>>? rules)
         {
             this.AllowPublicTraffic = allowPublicTraffic;
+            this.ExposeLocalhostPorts = exposeLocalhostPorts;
             this.AllowOut = allowOut;
             this.DenyOut = denyOut;
             this.DnsServers = dnsServers;

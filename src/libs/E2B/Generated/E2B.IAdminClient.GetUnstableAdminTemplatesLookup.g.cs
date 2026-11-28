@@ -6,7 +6,7 @@ namespace E2B
     {
         /// <summary>
         /// Look up a template as admin<br/>
-        /// Resolves `query` as, in order: a build ID (a UUID, matched to the template of the build's newest assignment, with no fallback), a template ID, or a template name (`namespace/alias`, or an alias without a namespace). Returns the template with its owning team and its newest builds. Deleted templates are not found.
+        /// Resolves `query` as, in order: a build ID (a UUID, matched to the template of the build's newest assignment, with no fallback), a template ID, or a template name (`namespace/alias`, or an alias without a namespace). Returns the template with its owning team, its aliases and its newest builds. Deleted templates are not found.
         /// </summary>
         /// <param name="query"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace E2B
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Look up a template as admin<br/>
-        /// Resolves `query` as, in order: a build ID (a UUID, matched to the template of the build's newest assignment, with no fallback), a template ID, or a template name (`namespace/alias`, or an alias without a namespace). Returns the template with its owning team and its newest builds. Deleted templates are not found.
+        /// Resolves `query` as, in order: a build ID (a UUID, matched to the template of the build's newest assignment, with no fallback), a template ID, or a template name (`namespace/alias`, or an alias without a namespace). Returns the template with its owning team, its aliases and its newest builds. Deleted templates are not found.
         /// </summary>
         /// <param name="query"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

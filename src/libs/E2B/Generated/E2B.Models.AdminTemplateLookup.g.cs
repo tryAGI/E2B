@@ -30,6 +30,13 @@ namespace E2B
         public required global::System.Collections.Generic.IList<string> Names { get; set; }
 
         /// <summary>
+        /// The template's aliases, those without a namespace first, then by namespace and alias
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("aliases")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<global::E2B.AdminTemplateAlias> Aliases { get; set; }
+
+        /// <summary>
         /// Whether the template is public
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("public")]
@@ -98,6 +105,9 @@ namespace E2B
         /// <param name="names">
         /// Names of the template (namespace/alias format when namespaced)
         /// </param>
+        /// <param name="aliases">
+        /// The template's aliases, those without a namespace first, then by namespace and alias
+        /// </param>
         /// <param name="public">
         /// Whether the template is public
         /// </param>
@@ -129,6 +139,7 @@ namespace E2B
             string templateID,
             global::E2B.AdminTemplateTeam team,
             global::System.Collections.Generic.IList<string> names,
+            global::System.Collections.Generic.IList<global::E2B.AdminTemplateAlias> aliases,
             bool @public,
             global::System.DateTime createdAt,
             long spawnCount,
@@ -141,6 +152,7 @@ namespace E2B
             this.TemplateID = templateID ?? throw new global::System.ArgumentNullException(nameof(templateID));
             this.Team = team ?? throw new global::System.ArgumentNullException(nameof(team));
             this.Names = names ?? throw new global::System.ArgumentNullException(nameof(names));
+            this.Aliases = aliases ?? throw new global::System.ArgumentNullException(nameof(aliases));
             this.Public = @public;
             this.CreatedAt = createdAt;
             this.LastSpawnedAt = lastSpawnedAt;
